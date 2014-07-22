@@ -1,0 +1,158 @@
+#topBar{
+
+// General rules
+  position:fixed;
+  top:0;
+  z-index:2;
+  width:100%;
+  height:$header-height;
+  background:$header-background;
+  height: $header-height;
+  color: white;
+  i{
+    padding: ($header-height - 20px)/2;
+    font-size: 20px;
+  }
+
+  #hamburger{
+    position:absolute;
+    left:0;
+    top:0;
+    cursor: pointer;
+    border-right: 1px solid lighten($brand-color, 10);
+    i{
+    padding: ($header-height - 26px)/2;
+    font-size: 26px;
+  }
+    &:hover{
+      background:darken($brand-color, 10);
+    }
+  }
+  
+  #logo{
+
+    padding: ($header-height - 40px)/2;
+    .full{
+      @media screen and (max-width:400px){
+        display: none;
+      }
+    }
+    .mobile{
+      @media screen and (min-width:401px){
+        display: none;
+      }
+    }
+    
+    position:absolute;
+    left: $header-height;
+    top:0;
+    line-height:$header-height;
+  }
+
+  #about{
+    cursor: pointer;
+    position: absolute;
+    top:0;
+    right:$header-height;
+    z-index: 5;
+    border-right: 1px solid white;
+    &:hover{
+      background:darken($brand-color, 10);
+    }
+  }
+
+  #search{
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top:0;
+    z-index: 5;
+    &:hover{
+      background:darken($brand-color, 10);
+    }
+
+  }
+
+  #aboutMenu{
+    top:-185px;
+    opacity:0;  
+    z-index: 0;
+    display: inline-block;
+    width: 300px - $header-height;
+    position:absolute;
+    @include lbTransitions();
+    right: $header-height + 1;
+    li {
+      //height: ($header-height * 3 ) / 4;
+      background:darken($brand-color, 10);
+      padding:10px;
+      border-bottom:1px solid lighten($brand-color, 10);
+      &last:child{
+        border-bottom: none;
+      }
+      a {
+        font-size:14px;
+        color: white;
+        text-decoration: none;
+      }
+    }
+  }
+
+  #searchMenu{
+    top:-75px;
+    opacity:0;
+    z-index: 0;
+    display: inline-block;
+    width: 300px - $header-height;
+    position:absolute;
+    @include lbTransitions();
+    right: 0;
+    li {
+      background:darken($brand-color, 10);
+      padding:10px;
+      Color: white;
+      input{
+        width: 100%;
+        padding: 8px;
+        border: 0;
+        margin-top: 9px;        
+      }
+    }
+  }
+
+  #about.open{
+    background: darken($brand-color, 10);
+  }
+
+  #about.open + #aboutMenu{
+    top: $header-height;
+    opacity: 1;
+  }
+  #search.open{
+    background: darken($brand-color, 10);
+  }
+
+  #search.open + #searchMenu{
+    top: $header-height;
+    opacity: 1;
+  }
+}
+
+#content{
+  padding-top:$header-height;
+  background: $content-background;
+  overflow:auto;
+
+  .currentChannel{
+    letter-spacing: 3;
+    border-top:1px solid white;
+    color:white;
+    padding:4px;
+    text-transform:uppercase;
+    text-align:center;
+    i{
+      margin-right:10px;
+      font-size:15px;
+    }
+  }
+}

@@ -1,0 +1,1 @@
+lbApp.hideCurrentTopFive=function(){$(".toplist ul").css("background","silver").find("li").hide()};
