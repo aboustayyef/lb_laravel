@@ -449,15 +449,16 @@ body {
   background: #d1d1d1;
   overflow: auto; }
   #content .currentChannel {
-    letter-spacing: 3;
+    letter-spacing: 3px;
     border-top: 1px solid white;
     color: white;
     padding: 4px;
     text-transform: uppercase;
-    text-align: center; }
+    text-align: center;
+    font-weight: 400; }
     #content .currentChannel i {
       margin-right: 10px;
-      font-size: 15px; }
+      font-size: 16px; }
 
 #sidebar {
   position: fixed;

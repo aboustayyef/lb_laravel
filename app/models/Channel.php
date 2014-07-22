@@ -61,19 +61,19 @@ class Channel
       'name'        =>  'politics',
       'description' =>  'Politics & Current Affairs',
       'icon'        =>  'fa-globe',
-      'color'       =>  '#960800'
+      'color'       =>  '#A76336'
     ),
     array(
       'name'        =>  'tech',
       'description' =>  'Tech & Business',
       'icon'        =>  'fa-laptop',
-      'color'       =>  '#0074D9'
+      'color'       =>  '#6C88A0'
     ),
     array(
       'name'        =>  'media',
       'description' =>  'Music, TV & Film',
       'icon'        =>  'fa-music',
-      'color'       =>  '#39CCCC'
+      'color'       =>  '#02A7A7'
     ),
     array(
       'name'        =>  'design',

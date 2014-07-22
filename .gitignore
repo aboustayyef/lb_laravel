@@ -1,3 +1,5 @@
+**/cache
+**/.sass-cache
 /app/storage/**
 /app/storage/cache
 /bootstrap/compiled.php
