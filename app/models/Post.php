@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Post extends Eloquent{
 
@@ -7,6 +7,10 @@ class Post extends Eloquent{
 
   public function blog(){
     return $this->belongsTo('Blog');
+  }
+
+  public function columnist(){
+    return $this->belongsTo('Columnist');
   }
 
 /*
@@ -26,7 +30,7 @@ class Post extends Eloquent{
       ->orderBy('posts.post_timestamp','desc')
       ->skip($from)->take($amount)
       ->remember(5)
-      ->get();        
+      ->get();
     }else{
       $posts = DB::table('posts')
       ->leftJoin('blogs', 'posts.blog_id', '=', 'blogs.blog_id')
@@ -34,9 +38,9 @@ class Post extends Eloquent{
       ->orderBy('posts.post_timestamp','desc')
       ->skip($from)->take($amount)
       ->remember(5)
-      ->get();         
+      ->get();
     }
-    
+
     // harmonize results
     $posts = self::harmonise($posts);
     return $posts;
@@ -75,7 +79,7 @@ class Post extends Eloquent{
       ->orderBy('posts.post_virality','desc')
       ->take(5)
       ->remember(5)
-      ->get();        
+      ->get();
     }else{
       $posts = DB::table('posts')
       ->leftJoin('blogs', 'posts.blog_id', '=', 'blogs.blog_id')
@@ -84,17 +88,36 @@ class Post extends Eloquent{
       ->orderBy('posts.post_virality','desc')
       ->take(5)
       ->remember(5)
-      ->get();         
+      ->get();
     }
-    
+
     // harmonize results
     $posts = self::harmonise($posts);
     return $posts;
   }
+/*
+|--------------------------------------------------------------------------
+| Get Posts From Blogger
+|--------------------------------------------------------------------------
+|
+*/
+
+public static function getPostsByBlogger($bloggerId, $from, $howmany){
+  $posts = Post::Where('blog_id', $bloggerId)->skip($from)->take($howmany)->get();
+  // harmonize results
+  $posts = self::harmonise($posts);
+  return $posts;
+}
+
+public static function getTopPostsByBlogger($bloggerId){
+  $posts = Post::Where('blog_id', $bloggerId)->orderBy('posts.post_virality','desc')->take(5)->get();
+  $posts = self::harmonise($posts);
+  return $posts;
+}
 
 /*
 |--------------------------------------------------------------------------
-| Results Harmoniser 
+| Results Harmoniser
 |--------------------------------------------------------------------------
 | This general function makes sure that the results are standardised between
 | Bloggers and columnists
@@ -103,7 +126,7 @@ class Post extends Eloquent{
   public static function harmonise($input = array())
 {
     $output = array();
-    foreach ($input as $key => $post) 
+    foreach ($input as $key => $post)
     {
         if (empty($post->blog_id)) {
             $post->blog_id = $post->col_shorthand ;
@@ -115,10 +138,10 @@ class Post extends Eloquent{
             }
             if (!empty($post->col_tags)) {
                 $post->blog_tags = $post->col_tags;
-            }            
+            }
             if (!empty($post->col_home_page)) {
                 $post->blog_url = $post->col_home_page;
-            }        
+            }
         }
         array_push($output, $post);
     }

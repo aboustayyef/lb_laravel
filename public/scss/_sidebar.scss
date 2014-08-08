@@ -1,43 +1,87 @@
+#scroller{
+  width:$sidebar-width + 25px;
+  overflow-y:scroll;
+  max-height:100%;
+}
+
 #sidebar{
   position:fixed;
   width:$sidebar-width;
   background:$sidebar-background;
-  top:0;
-  height:5000px;
+  top:$header-height;
+  bottom:0;
+  overflow:hide;
   z-index:3;
   opacity:0;
   backface-visibility: hidden;
   perspective: 1000;
-  transform: translateZ( - $sidebar-width);
+  left: - ( $sidebar-width + 25px);
   @include lbTransitions() ;
   &.open{
-    transform: translateZ(0);
+    left: 0;
     opacity:1;
   }
 
-  border-right:1px solid silver;
+  ul.list{
+    overflow:auto;
+    li{
+      width:320px;
+      overflow:auto;
+      clear:both;
+      margin-bottom:10px;
+      i{
+        display:block;
+        font-size:15px;
+        width:34px;
+        height:34px;
+        float:left;
+        text-align:center;
+        line-height:34px;
+        margin-right:20px;
+      }
+      .dynamicLink{
+        display:block;
+        height:34px;
+        width: 200px;
+        float:left;
+        line-height:34px;
+      }
+      &.list{
+        margin-bottom:0;
+        i{
+          display:block;
+          font-size:22px;
+          width:28px;
+          height:28px;
+          float:left;
+          text-align:center;
+          line-height:28px;
+          margin-right:20px;
+        }
+        .dynamicLink{
+          height:28px;
+        }
+      }
+      &.block{
+        i{
+          border:1px solid white;
+          border-radius:50%;
+        }
+
+      }
+    }
+  }
+
   i{
     margin-right: 5px;
     font-size:16px;
     color:#9c9c9c;
   }
-  a{
+  .dynamicLink{
     text-decoration: none;
-    color: #4d4d4d;
+    color: white;
     font-size: 14px;
     line-height:20px;
-  }
-  
-  #dismissSidebar{
-    cursor: pointer;
-    position: absolute;
-    top:5px;
-    right:5px;
-    
-    i{
-      color:black;
-      font-size: 26px;
-    }
   }
 
   h4{

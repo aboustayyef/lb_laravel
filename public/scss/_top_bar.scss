@@ -16,19 +16,62 @@
 
   #hamburger{
     position:absolute;
-    left:0;
     top:0;
+    left:0;
+    width:50px;
+    height:50px;
     cursor: pointer;
     border-right: 1px solid lighten($brand-color, 10);
     i{
-    padding: ($header-height - 26px)/2;
-    font-size: 26px;
-  }
+      padding: ($header-height - 26px)/2;
+      font-size: 26px;
+    }
+    span, span:before, span:after{
+      @include lbTransitions();
+      cursor:pointer;
+      background:white;
+      position:absolute;
+      content: '';
+      height:3px;
+      left:10px;
+      width:26px;
+      top: 24px;
+      display:block;
+      border-radius: 1px;
+    }
+    span:before{
+      background:white;
+      left:0;
+      top:-8px;
+    }
+    span:after{
+      background:white;
+      top:8px;
+      left:0;
+    }
+    &.open{
+      background: $sidebar-background;
+      &:hover{
+        background: $sidebar-background;
+      }
+      span{
+        background:transparent;
+        &:before{
+          top:0;
+          transform: rotate(45deg);
+        }
+        &:after{
+          top:0;
+          transform: rotate(-45deg);
+        }
+      }
+
+    }
     &:hover{
       background:darken($brand-color, 10);
     }
   }
-  
+
   #logo{
 
     padding: ($header-height - 40px)/2;
@@ -42,7 +85,7 @@
         display: none;
       }
     }
-    
+
     position:absolute;
     left: $header-height;
     top:0;
@@ -75,7 +118,7 @@
 
   #aboutMenu{
     top:-185px;
-    opacity:0;  
+    opacity:0;
     z-index: 0;
     display: inline-block;
     width: 300px - $header-height;
@@ -115,7 +158,7 @@
         width: 100%;
         padding: 8px;
         border: 0;
-        margin-top: 9px;        
+        margin-top: 9px;
       }
     }
   }
@@ -142,7 +185,6 @@
   padding-top:$header-height;
   background: $content-background;
   overflow:auto;
-
   .currentChannel{
     letter-spacing: 3px;
     border-top:1px solid white;

@@ -2,7 +2,7 @@
 /*******************************************************************
 *  This controller handles redirects to outside of lebanese blogs
 *
-********************************************************************/ 
+********************************************************************/
 class ExitController extends BaseController
 {
 
@@ -15,7 +15,6 @@ class ExitController extends BaseController
 
     $encodedUrl = Input::Get('url');
     $url = urldecode($encodedUrl);
-
     self::registerExit($url);
     return Redirect::away($url);
   }
@@ -24,7 +23,7 @@ class ExitController extends BaseController
 
     // get user's IP Address
     $post = Post::where('post_url',$url)->first();
-    
+
     // if url doesn't exist in database, abort;
     if (!is_object($post)) {
       return Redirect::away('/posts/all');
@@ -36,7 +35,7 @@ class ExitController extends BaseController
     $log = new ExitLog;
 
     // update counter for post (only human, non-repeat user)
-    if (($browser['name'] !== 'Unknown') && (!$log->has($ip_address, $url))){   
+    if (($browser['name'] !== 'Unknown') && (!$log->has($ip_address, $url))){
             $post->post_visits = $post->post_visits + 1;
             // This only happens if user didn't click on this link before.
             $post->save();
@@ -53,8 +52,8 @@ class ExitController extends BaseController
   }
 
   static function getBrowser() //source: http://us.php.net/get-browser
-  { 
-      $u_agent = $_SERVER['HTTP_USER_AGENT']; 
+  {
+      $u_agent = $_SERVER['HTTP_USER_AGENT'];
       $bname = 'Unknown';
       $platform = 'Unknown';
       $version= "";
@@ -69,39 +68,39 @@ class ExitController extends BaseController
       elseif (preg_match('/windows|win32/i', $u_agent)) {
           $platform = 'windows';
       }
-      
+
       // Next get the name of the useragent yes seperately and for good reason
-      if(preg_match('/MSIE/i',$u_agent) && !preg_match('/Opera/i',$u_agent)) 
-      { 
-          $bname = 'Internet Explorer'; 
-          $ub = "MSIE"; 
-      } 
-      elseif(preg_match('/Firefox/i',$u_agent)) 
-      { 
-          $bname = 'Mozilla Firefox'; 
-          $ub = "Firefox"; 
-      } 
-      elseif(preg_match('/Chrome/i',$u_agent)) 
-      { 
-          $bname = 'Google Chrome'; 
-          $ub = "Chrome"; 
-      } 
-      elseif(preg_match('/Safari/i',$u_agent)) 
-      { 
-          $bname = 'Apple Safari'; 
-          $ub = "Safari"; 
-      } 
-      elseif(preg_match('/Opera/i',$u_agent)) 
-      { 
-          $bname = 'Opera'; 
-          $ub = "Opera"; 
-      } 
-      elseif(preg_match('/Netscape/i',$u_agent)) 
-      { 
-          $bname = 'Netscape'; 
-          $ub = "Netscape"; 
-      } 
-      
+      if(preg_match('/MSIE/i',$u_agent) && !preg_match('/Opera/i',$u_agent))
+      {
+          $bname = 'Internet Explorer';
+          $ub = "MSIE";
+      }
+      elseif(preg_match('/Firefox/i',$u_agent))
+      {
+          $bname = 'Mozilla Firefox';
+          $ub = "Firefox";
+      }
+      elseif(preg_match('/Chrome/i',$u_agent))
+      {
+          $bname = 'Google Chrome';
+          $ub = "Chrome";
+      }
+      elseif(preg_match('/Safari/i',$u_agent))
+      {
+          $bname = 'Apple Safari';
+          $ub = "Safari";
+      }
+      elseif(preg_match('/Opera/i',$u_agent))
+      {
+          $bname = 'Opera';
+          $ub = "Opera";
+      }
+      elseif(preg_match('/Netscape/i',$u_agent))
+      {
+          $bname = 'Netscape';
+          $ub = "Netscape";
+      }
+
       // finally get the correct version number
       $known = array('Version', $ub, 'other');
       $pattern = '#(?<browser>' . join('|', $known) .
@@ -109,7 +108,7 @@ class ExitController extends BaseController
       if (!preg_match_all($pattern, $u_agent, $matches)) {
           // we have no matching number just continue
       }
-      
+
       // see how many we have
       $i = count($matches['browser']);
       if ($i != 1) {
@@ -125,10 +124,10 @@ class ExitController extends BaseController
       else {
           $version= $matches['version'][0];
       }
-      
+
       // check if we have a number
       if ($version==null || $version=="") {$version="?";}
-      
+
       return array(
           'userAgent' => $u_agent,
           'name'      => $bname,
@@ -136,19 +135,19 @@ class ExitController extends BaseController
           'platform'  => $platform,
           'pattern'    => $pattern
       );
-  } 
+  }
 
-  static function getIP() { 
-      $ip; 
-      if (getenv("HTTP_CLIENT_IP")) 
-      $ip = getenv("HTTP_CLIENT_IP"); 
-      else if(getenv("HTTP_X_FORWARDED_FOR")) 
-      $ip = getenv("HTTP_X_FORWARDED_FOR"); 
-      else if(getenv("REMOTE_ADDR")) 
-      $ip = getenv("REMOTE_ADDR"); 
-      else 
+  static function getIP() {
+      $ip;
+      if (getenv("HTTP_CLIENT_IP"))
+      $ip = getenv("HTTP_CLIENT_IP");
+      else if(getenv("HTTP_X_FORWARDED_FOR"))
+      $ip = getenv("HTTP_X_FORWARDED_FOR");
+      else if(getenv("REMOTE_ADDR"))
+      $ip = getenv("REMOTE_ADDR");
+      else
       $ip = "UNKNOWN";
-      return $ip; 
+      return $ip;
   }
 
 }

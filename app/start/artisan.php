@@ -11,3 +11,6 @@
 |
 */
 
+Artisan::add(new TestCommand);
+Artisan::add(new CrawlRss);
+

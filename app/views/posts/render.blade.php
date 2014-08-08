@@ -1,29 +1,31 @@
-{{-- 
-This will render the html of the actual posts, 
+{{--
+This will render the html of the actual posts,
 it can be used for ajax as well as normal display
 --}}
-    
-    
-    {{-- handles injection of extra cards --}}
-    <?php $counter = $from + 1 ?>
-    
-    
+
+
+    <?php
+      $counter = isset($from)? $from + 1 : 1;
+    ?>
+
+
     @foreach ($posts as $post)
 
+    {{-- handles injection of extra cards --}}
     {{ View::make('posts.extras.main')->with('counter', $counter) }}
-    
+
       <div class="post_wrapper">
-        
+
         <!-- Blog Header -->
         <div class="blog_header">
 
           <!-- Thumbnail -->
-          <img 
-          class="thumbnail" 
-          src="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}" 
-          alt="{{$post->blog_name }} thumbnail" 
+          <img
+          class="thumbnail"
+          src="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}"
+          alt="{{$post->blog_name }} thumbnail"
           width ="50px" height="50px">
-          
+
           <!-- Blog's Name -->
           <div class="blogname">
             <a href="{{url('/blogger/'.$post->blog_id)}}">
@@ -33,7 +35,7 @@ it can be used for ajax as well as normal display
 
           <div class="fave">
             <i class ="fa fa-star-o"></i>
-          </div>   
+          </div>
         </div>
 
         <div class="post_body">
@@ -41,10 +43,9 @@ it can be used for ajax as well as normal display
           <div class="metaInfo">
             <div class="postedSince">
               {{lbFunctions::time_elapsed_string($post->post_timestamp)}}
-            </div> 
-
+            </div>
             {{View::make('posts.partials.virality')->with('score',$post->post_virality)}}
-            
+
           </div>
           <!-- Post Title -->
           <h2
@@ -52,14 +53,12 @@ it can be used for ajax as well as normal display
              class="rtl"
             @endif
             >
-            <a href="{{URL::to('/r').'?url='.urlencode($post->post_url)}}">{{ $post->post_title }} </a>
-            
-            {{ $counter }}
+            <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url)}}">{{ $post->post_title }} </a>
           </h2>
 
           <!-- Post image (if any ) -->
             @if ($post->post_image_height > 0)
-              <a href="{{URL::to('/r').'?url='.urlencode($post->post_url)}}">
+              <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url)}}">
                 {{View::make('posts.partials.post_image')->with('post',$post)}}
               </a>
             @else
@@ -80,7 +79,7 @@ it can be used for ajax as well as normal display
         </div>
         <div class="shareButton">
             <i class="fa fa-share"></i> Share
-        </div>      
+        </div>
         <ul class="sharing">
           <a href="">
             <li>

@@ -1,0 +1,167 @@
+<?php
+
+/*
+|---------------------------------------------------------------------
+|   Implementing signin with Facebook, Twitter and Google
+|---------------------------------------------------------------------
+|
+|   This class handles both the authentication component
+|   and the callback components of the signin
+|
+*/
+
+class AuthenticationController extends BaseController
+{
+
+  function auth($provider){
+
+    $list_of_providers = ['twitter','facebook','google'];
+
+    // Check if $provider is listed
+    if (!in_array($provider, $list_of_providers)) {
+      //abort
+      return app::abort(404,'Provider Does not exist');
+    }
+
+    switch ($provider) {
+/*
+|---------------------------------------------------------------------
+|   TWITTER
+|---------------------------------------------------------------------
+*/
+      case 'twitter':
+
+          // Retrieve temporary credentials
+          $temporaryCredentials = AuthenticationServer::twitter()->getTemporaryCredentials();
+
+          // Store credentials in the session, we'll need them later
+          Session::put('temporaryCredentials', $temporaryCredentials);
+          Session::save();
+
+          // Redirect the resource owner to the login screen on the server.
+          return AuthenticationServer::twitter()->authorize($temporaryCredentials);
+
+/*
+|---------------------------------------------------------------------
+|   FACEBOOK
+|---------------------------------------------------------------------
+*/
+      case 'facebook':
+
+          // Retrieve temporary credentials
+          return Redirect::to(AuthenticationServer::facebook()->getAuthorizationUrl());
+
+        break;
+
+/*
+|---------------------------------------------------------------------
+|   GOOGLE
+|---------------------------------------------------------------------
+*/
+      case 'google':
+
+          // Retrieve temporary credentials
+          return Redirect::to(AuthenticationServer::google()->getAuthorizationUrl());
+
+        break;
+    }
+
+  }
+
+  function callback($provider){
+    switch ($provider) {
+/*
+|---------------------------------------------------------------------
+|   TWITTER Callback
+|---------------------------------------------------------------------
+*/
+      case 'twitter':
+
+
+        if ((Input::has('oauth_token')) && (Input::has('oauth_verifier'))) {
+
+            // We will now retrieve token credentials from the server
+            $tokenCredentials = AuthenticationServer::twitter()->getTokenCredentials(
+              Session::get('temporaryCredentials'),
+              Input::get('oauth_token'),
+              Input::get('oauth_verifier')
+            );
+
+            // User is an instance of League\OAuth1\Client\Server\User
+            $user = AuthenticationServer::twitter()->getUserDetails($tokenCredentials);
+
+            // Twitter returns full name
+            $names = explode(' ', $user->name);
+
+            $userDetails = array(
+              'provider'  =>  'twitter',
+              'providerId' => $user->uid,
+              'twitterHandle' =>  $user->nickname,
+              'firstName'  => $names[0],
+              'lastName'  =>  $names[1],
+              'email'     =>  $user->email,
+              'gender'    =>  null,
+            );
+
+            // Next:
+            // 1- If user is not in database, add to database,
+            // 2- Add cookie with user's id.
+
+        } else {
+          // redirect back to sign in screen
+        }
+        break;
+
+/*
+|---------------------------------------------------------------------
+|   FACEBOOK Callback
+|---------------------------------------------------------------------
+*/
+      case 'facebook':
+
+
+        if ((Input::has('code'))) {
+            // We will now retrieve token credentials from the server
+            $tokenCredentials = AuthenticationServer::facebook()->getAccessToken('authorization_code', [
+                'code' => Input::get('code')
+            ]);
+
+            // User is an instance of League\OAuth1\Client\Server\User
+            $user = AuthenticationServer::facebook()->getUserDetails($tokenCredentials);
+            echo '<pre>',var_dump($user),'</pre>';
+            // Next:
+            // 1- If user is not in database, add to database,
+            // 2- Add cookie with user's id.
+        } else {
+          // redirect back to signin screen
+        }
+        break;
+
+/*
+|---------------------------------------------------------------------
+|   GOOGLE Callback
+|---------------------------------------------------------------------
+*/
+      case 'google':
+
+
+        if ((Input::has('code'))) {
+            // We will now retrieve token credentials from the server
+            $tokenCredentials = AuthenticationServer::google()->getAccessToken('authorization_code', [
+                'code' => Input::get('code')
+            ]);
+
+            // User is an instance of League\OAuth1\Client\Server\User
+            $user = AuthenticationServer::google()->getUserDetails($tokenCredentials);
+            echo '<pre>',var_dump($user),'</pre>';
+            // Next:
+            // 1- If user is not in database, add to database,
+            // 2- Add cookie with user's id.
+
+        } else {
+          // redirect back to signin screen
+        }
+        break;
+    }
+  }
+}

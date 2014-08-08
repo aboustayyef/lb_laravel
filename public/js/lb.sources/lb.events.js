@@ -10,9 +10,19 @@ $('document').ready(function(){
   $('.post_wrapper').css('visibility','visible');
   lbApp.hideLoadingCurtain();
   lbApp.loadLazyImages();
+
+  // dynamic links
+  $('.dynamicLink').on('click', function(){
+    console.log('clicked Dynamic link');
+    $destination = $(this).data('destination');
+    lbApp.clearMenus();
+    lbApp.showLoadingCurtain("true");
+    window.location.href = $destination ;
+  });
+
 });
 
-$( window ).on('resize', function(){ 
+$( window ).on('resize', function(){
   if ($('.posts').hasClass('cards')) {
       lbApp.resizeViewport();
   };
@@ -24,7 +34,7 @@ $( window ).on('scroll', function(){
     $docHeight = $(document).height();
     $scrollAmount = $(window).scrollTop();
     $bottomOfPage = $docHeight - $viewHeight;
-    
+
     if (($(window).scrollTop()) > ($bottomOfPage-(2*($viewHeight)))) {
         lbApp.showPostsLoadingIndicator();
         lbApp.addMorePosts();

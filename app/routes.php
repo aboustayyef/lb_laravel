@@ -11,55 +11,60 @@ use Symfony\Component\DomCrawler\Crawler ;
 |
 */
 
+
+// Default route from root
 Route::get('/', function(){
+  if (Input::has('channel')) {
+    return Redirect::to('/posts/'.Input::get('channel'));
+  }
   return Redirect::to('posts/all');
 });
 
-Route::get('posts', function(){
-  return Redirect::to('posts/all');
-});
+
+// redirect outgoing links
+Route::get('exit', array(
+  'uses'  => 'ExitController@lbExit'
+));
+
+// handle urls, legacy and otherwise
+Route::get('{slug}', ['uses'  =>  'UrlController@redirect']);
 
 Route::get('posts/{channel?}', array(
-  'as'=>'posts', 
-  'uses'=>'ShowPosts@display'
-));
-
-Route::get('ajaxGetMorePosts', array(
-  'uses'  =>  'AjaxController@loadMorePosts'
-));
-
-Route::get('ajaxGetTop5', array(
-  'uses'  =>  'AjaxController@loadTopFivePostsJson'
-));
-
-Route::get('login', array(
-  'as'    =>  'login',
-  'uses'  =>  'LoginController@initial'
-));
-
-Route::get('login/facebook', array(
-  'uses'  =>  'LoginController@facebook'
-));
-Route::get('login/facebook/redirect', array(
-  'uses'  =>  'LoginController@facebookRedirect'
+  'as'=>'posts',
+  'uses'=>'PostsController@show'
 ));
 
 Route::get('/blogger/{nameId?}', array(
   'as'    =>  'blogger',
-  'uses'  =>  'ShowAuthors@display'
-)); 
+  'uses'  =>  'BloggerController@showPosts'
+));
+
+Route::get('/ajax/GetMorePosts', array(
+  'uses'  =>  'AjaxController@loadMorePosts'
+));
+
+Route::get('/ajax/GetTop5', array(
+  'uses'  =>  'AjaxController@loadTopFivePostsJson'
+));
+
+
+
 
 /*
-|----------------- 
-| Redirector
-|-----------------
+|---------------------------------------------------------------------
+|   Authentication Routes
+|---------------------------------------------------------------------
 |
-| Redirect outgoing links
+|   Use to authenticate with third party providers
 |
-|*/ 
+*/
 
-Route::get('r', array(
-  'uses'  => 'ExitController@lbExit'
+Route::get('/auth/{provider}', array(
+  'uses'  =>  'AuthenticationController@auth'
+));
+
+Route::get('/auth/{provider}/callback', array(
+  'uses'  =>  'AuthenticationController@callback'
 ));
 
 /*
@@ -71,22 +76,44 @@ Route::get('r', array(
 |
 */
 
-Route::get('test3', function(){
-  $post = Post::where('post_url','http://hummusforthought.com/2014/03/29/the-problem-of-primitive-pride/')->first();
-  echo $post->post_url;
-  echo '<pre>',print_r($post),'</pre>';
-  //echo $post->post_visits;
+Route::get('setTestCookie',function(){
+  return Response::make('cookie Set', 200)->withCookie(Cookie::make('lbUserId', 25 , 300));
+});
+
+Route::get('userposts/{userid}', function($userid){
+  $user = User::find($userid);
+  $posts = $user->latestPostsByFavoriteBlogs();
+  echo '<pre>',print_r($posts),'</pre>';
+});
+
+Route::get('testUser', function(){
+  if (User::signedIn()) {
+    echo '<pre>',print_r(User::signedIn()),'</pre>';
+  }else{
+    echo 'false';
+  }
+  //$mustapha = User::where('user_first_name','Makram')->first();
+  //$mustaphaPosts = $mustapha->blogs(true);
+  //echo '<pre>',print_r($mustaphaPosts),'</pre>';
 });
 
 
-Route::get('test2', function(){
-  $log = new ExitLog;
-  if ($log->has('37.58.100.226', 'http://hummusforthought.com/2014/03/29/the-problem-of-primitive-pride/')) {
-    echo 'record exists';
-  } else {
-    echo 'record doesnt exist';
+// temporary route to import user records from old database table to new
+Route::get('import',function(){
+  $all = DB::table('users_blogs')->get();
+  foreach ($all as $key => $relationship) {
+    $facebookId = $relationship->user_facebook_id;
+    $userId = DB::table('users_new')->where('user_provider_id', $facebookId)->pluck('user_id');
+
+    DB::table('users_blogs')
+            ->where('user_facebook_id', $facebookId)
+            ->update(array('user_id' => $userId));
+    echo $facebookId,' --> ',$userId,'<br>';
   }
 });
+
+
+Route::get('my/articles', ['uses' =>  'ArticlesFetcherController@getArticles']);
 
 Route::get('test', function(){
 

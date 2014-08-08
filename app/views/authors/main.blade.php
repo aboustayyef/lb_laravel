@@ -3,11 +3,9 @@
 @include('partials.topbar')
 
 <div id="content">
-    <div class="posts cards"> <!-- cards is default -->
-    	<div class="blogger">
+    <div class="posts cards blogger"> <!-- cards is default -->
 	      @include('posts.render', array('posts', $posts))
-	    </div>
     </div>
 </div>
-      
+
 @include('partials.footer')

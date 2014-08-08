@@ -1,5 +1,5 @@
-<?php 
-  
+<?php
+
   if (Session::has('channel')) {
     $channel = Session::get('channel');
   } else {
@@ -17,7 +17,7 @@
   @if ($channel != 'all')
     <h3 class ="category" style="color:{{Channel::color($channel)}}">In {{Channel::description($channel)}}</h3>
   @endif
-  
+
   {{Form::open(array('url'=>'my/route'))}}
   {{Form::select('time_scope', array(
     '12'    =>  '12 hours',
@@ -36,8 +36,8 @@
         </div>
         <div class="details">
           <h3>{{$post->post_title}}</h3>
-          <h4>{{$post->blog_name}}</h4>  
-        </div>    
+          <h4>{{$post->blog_name}}</h4>
+        </div>
       </div>
     </li>
     @endforeach

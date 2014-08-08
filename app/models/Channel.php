@@ -1,8 +1,8 @@
-<?php 
+<?php
 
 /*
 |----------------------------------------------------------------------
-| This model handles channels and tags. 
+| This model handles channels and tags.
 | It doesn't use a databases because the data is very minimal
 |----------------------------------------------------------------------
 |
@@ -13,7 +13,7 @@ class Channel
   private static $tagrouter =  array(
     'all'         => 'all',
     'fashion'     => 'fashion',
-    'style'       => 'fashion', 
+    'style'       => 'fashion',
     'food'        => 'food',
     'health'      => 'food',
     'family'      => 'society',
@@ -37,7 +37,7 @@ class Channel
       'name'        =>  'columnists',
       'description' =>  'Columnists',
       'icon'        =>  'fa-quote-right',
-      'color'       =>  '#001F3F' // navy
+      'color'       =>  '#29639E' // navy
     ),
     array(
       'name'        =>  'fashion',
@@ -79,9 +79,18 @@ class Channel
       'name'        =>  'design',
       'description' =>  'Advertising & Design',
       'icon'        =>  'fa-picture-o',
-      'color'       =>  '#111111'
+      'color'       =>  '#EFC050'
     )
   );
+
+  public static function exists($channelName){
+    foreach (self::$list as $key => $channel) {
+      if ($channel['name'] == $channelName) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   public static function resolveTag($tag){
     if (array_key_exists($tag, self::$tagrouter)){
@@ -117,5 +126,4 @@ class Channel
     }
     return "fa-question";
   }
-
 }

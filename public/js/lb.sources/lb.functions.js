@@ -3,8 +3,8 @@ lbApp.resizeViewport = function(){
   // it serves to recalculate the viewport's width to center the posts
 
   var columns = Math.floor(($(window).width())/320);
-  $('div.posts').css('width',columns*320); 
-  
+  $('div.posts').css('width',columns*320);
+
   // masonry automatically reflow posts on resize, so no need for custom reflowing of posts.
 }
 
@@ -27,6 +27,16 @@ lbApp.flowPosts = function(){
     itemSelector: 'div.post_wrapper',
     transitionDuration: 1, // no animation
   });
+}
+
+lbApp.showLoadingCurtain = function(fadein){
+  // This function shows the "loading" window
+  // after everything has loaded
+  if (fadein == "true") {
+    $('#loading').fadeIn("fast");
+  }else{
+    $('#loading').show();
+  }
 }
 
 lbApp.hideLoadingCurtain = function(){
@@ -67,6 +77,6 @@ lbApp.addMorePosts = function(){
       lbApp.hidePostsLoadingIndicator();
       lbApp.loadLazyImages();
     }
-  }); 
+  });
 }
 
