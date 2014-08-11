@@ -27,7 +27,7 @@ class AuthenticationServer
 
   static function facebook(){
     if (!is_object(self::$facebook)) { // if it exists, don't recreate it.
-      self::$facebook = new League\OAuth2\Client\Provider\facebook(array(
+      self::$facebook = new League\OAuth2\Client\Provider\Facebook(array(
         'clientId'     => $_ENV['FACEBOOK_APP_ID'],
         'clientSecret' => $_ENV['FACEBOOK_APP_SECRET'],
         'redirectUri'  => URL::to('/auth/facebook/callback'),
@@ -38,7 +38,7 @@ class AuthenticationServer
 
   static function google(){
     if (!is_object(self::$google)) { // if it exists, don't recreate it.
-      self::$google = new League\OAuth2\Client\Provider\google(array(
+      self::$google = new League\OAuth2\Client\Provider\Google(array(
         'clientId'     => $_ENV['GOOGLE_CLIENT_ID'],
         'clientSecret' => $_ENV['GOOGLE_CLIENT_SECRET'],
         'redirectUri'  => URL::to('/auth/google/callback'),
