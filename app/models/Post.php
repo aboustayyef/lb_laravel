@@ -103,7 +103,7 @@ class Post extends Eloquent{
 */
 
 public static function getPostsByBlogger($bloggerId, $from, $howmany){
-  $posts = Post::Where('blog_id', $bloggerId)->skip($from)->take($howmany)->get();
+  $posts = Post::Where('blog_id', $bloggerId)->skip($from)->orderBy('posts.post_timestamp','desc')->take($howmany)->get();
   // harmonize results
   $posts = self::harmonise($posts);
   return $posts;

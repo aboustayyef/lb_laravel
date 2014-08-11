@@ -37,9 +37,27 @@ class articleCrawler extends BaseController
       'title'              =>  '.mainflash-article h1',
       'content'            =>  'div.article-body-page',
       'dateTimeLocation'   =>  'div.articleinfo',
-      'dateTime_regex'     =>  '[A-Za-z]+\s\d,\s\d{4}', // ex 1/08/2014 11:09 AM
-      'dateTime_format'    =>  'F j, Y', // ex: August 3, 2014
+      'dateTime_regex'     =>  '[A-Za-z]+\s\d{1,2},\s\d{4}', // ex August 3, 2014
+      'dateTime_format'    =>  'F j, Y',
     ),
+    array(
+      'Name'               =>  'Al Akhbar',
+      'domain'             =>  'al-akhbar.com',
+      'title'              =>  'h1.title',
+      'content'            =>  'div.content-wrap',
+      'dateTimeLocation'   =>  'span.date-display-single',
+      'dateTime_regex'     =>  '[a-zA-z]+\s\d{1,2},\s\d{4}', // ex July 21, 2014
+      'dateTime_format'    =>  'F j, Y',
+    ),
+    array(
+      'Name'               =>  'Beirut City Guide',
+      'domain'             =>  'beirut.com',
+      'title'              =>  '#sidebar h2',
+      'content'            =>  '.profile p',
+      'dateTimeLocation'   =>  array('div.info > p:nth-child(2) > span:nth-child(3)','div.info > p:nth-child(2) > span:nth-child(2)'),
+      'dateTime_regex'     =>  '[a-zA-Z]+\s\d{1,2},\s\d{4}', // ex Aug 9, 2014
+      'dateTime_format'    =>  'M j, Y',
+    )
   );
 
   private $_link, $_sourceName, $_titleSource, $_contentSource, $_dateTimeSource, $_dateTimeRegex, $dateTimeFormat;
@@ -48,7 +66,7 @@ class articleCrawler extends BaseController
 
   function __construct($link)
   {
-    $this->_link = $link;
+    $this->_link = urldecode($link);
 
     // get which news site
     foreach (self::$sources as $key => $source) {
@@ -70,13 +88,25 @@ class articleCrawler extends BaseController
   public function getTitle()
   {
     $this->_title = $this->_MainCrawler->filter($this->_titleSource)->text();
-    return $this->_title;
+    return trim($this->_title);
   }
 
   public function getTimeStamp()
   {
-    $dateTimeGross = $this->_MainCrawler->filter($this->_dateTimeSource)->text();
-    preg_match('#(' . $this->_dateTimeRegex . ')#u', $dateTimeGross, $dateTime);
+    if (is_array($this->_dateTimeSource))
+    {
+      foreach ($this->_dateTimeSource as $key => $source) {
+        $dateTimeGross = $this->_MainCrawler->filter($source)->text();
+        preg_match('#(' . $this->_dateTimeRegex . ')#u', $dateTimeGross, $dateTime);
+        if (!empty($dateTime)) {
+          break;
+        }
+      }
+    } else {
+      $dateTimeGross = $this->_MainCrawler->filter($this->_dateTimeSource)->text();
+      preg_match('#(' . $this->_dateTimeRegex . ')#u', $dateTimeGross, $dateTime);
+    }
+
     $dateTime = $dateTime[0];
     $dateTimeObject = DateTime::createFromFormat($this->dateTimeFormat, $dateTime);
     // Manually remove 10800 (3 hours) to convert to UTC (inelegant but faster than timezone Tinkering in DateTime)
@@ -103,9 +133,17 @@ class articleCrawler extends BaseController
         $finalContent .= '<p>'. $paragraph->text()."</p>\n";
       }
       $this->_content = $finalContent;
-      return $this->_content;
+      return trim(strip_tags($this->_content));
     }else{
-      return $this->_content;
+      return trim(strip_tags($this->_content));
     }
+  }
+
+  public function getExcerpt()
+  {
+    if (empty($this->_content)) {
+      $this->getContent();
+    }
+    return trim(strip_tags(substr($this->_content, 0,128))).' ...';
   }
 }

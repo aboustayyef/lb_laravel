@@ -13,4 +13,5 @@
 
 Artisan::add(new TestCommand);
 Artisan::add(new CrawlRss);
+Artisan::add(new CrawlArticles);
 
