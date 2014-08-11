@@ -28,6 +28,7 @@ $env = $app->detectEnvironment(array(
 
 	'local' => array('musMBA.local'),
   'local2' => array('musiMac.local'),
+  'production' => array('MustaphaSites')
 ));
 
 /*
