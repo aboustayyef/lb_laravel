@@ -32,7 +32,7 @@
     <li>
       <div class="item">
         <div class="thumb">
-          {{View::make('images.topListThumb')->with(array('image'=>$post->post_image, 'height'=>$post->post_image_height, 'width'=>$post->post_image_width))}}
+          {{View::make('images.topListThumb')->with('post',$post)}}
         </div>
         <div class="details">
           <h3>{{$post->post_title}}</h3>

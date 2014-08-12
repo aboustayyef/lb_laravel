@@ -76,7 +76,7 @@ class Post extends Eloquent{
         $query->where('columnists.col_tags', 'like', '%' . $channel . '%')
               ->orwhere('blogs.blog_tags', 'like', '%' . $channel . '%');
       })
-      ->orderBy('posts.post_virality','desc')
+      ->orderBy('posts.post_socialScore','desc')
       ->take(5)
       ->remember(5)
       ->get();
@@ -124,7 +124,7 @@ public static function getTopPostsByBlogger($bloggerId){
 */
 
   public static function harmonise($input = array())
-{
+  {
     $output = array();
     foreach ($input as $key => $post)
     {
@@ -147,4 +147,37 @@ public static function getTopPostsByBlogger($bloggerId){
     }
     return $output;
   }
+
+  /*
+  |--------------------------------------------------------------------------
+  | Returns Cached Image Location (if any)
+  |--------------------------------------------------------------------------
+  | This method returns the location of a post's cached image;
+  | if it doesn't find any, it returns false
+  */
+
+  public function cacheImage(){
+    $cachedImageFilename = $this->post_timestamp.'_'.$this->blog_id.'.jpg';
+    $cachedImage = $_ENV['DIRECTORYTOPUBLICFOLDER'].'/img/cache/'.$this->post_timestamp.'_'.$this->blog_id.'.jpg'; // if exists
+    if (file_exists($cachedImage)) {
+      return asset('/img/cache/'.$cachedImageFilename);
+    } else {
+      return FALSE;
+    }
+  }
+
+  /*
+  |--------------------------------------------------------------------------
+  | Returns whether or not a post has an image (true or false)
+  |--------------------------------------------------------------------------
+  */
+
+  public function hasImage(){
+    if ($this->post_image_height > 0 ) {
+      return true;
+    } else {
+      return FALSE;
+    }
+  }
+
 }

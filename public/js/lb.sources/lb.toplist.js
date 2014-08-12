@@ -21,9 +21,9 @@ lbApp.updateTopFive = function(data){
 		$item.find('h4').text(data[key].blog_name);
 		$item.find('.thumb img').addClass('lazy').attr({'src':data[key].post_image});
 		if (data[key].post_image_height > data[key].post_image_width) {
-			$item.find('.thumb img').attr({'width':50,'height':'auto'});
+			$item.find('.thumb img').attr({'width':100,'height':'auto'});
 		}else{
-			$item.find('.thumb img').attr({'height':50,'width':'auto'});
+			$item.find('.thumb img').attr({'height':100,'width':'auto'});
 		};
 	});
 }

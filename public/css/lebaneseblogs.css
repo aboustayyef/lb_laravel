@@ -257,8 +257,8 @@ div.posts.cards.blogger .post_wrapper .blog_header {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   overflow: auto; }
   .toplist div.item div.thumb {
-    width: 49px;
-    height: 49px;
+    width: 99px;
+    height: 99px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     background: rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -266,7 +266,7 @@ div.posts.cards.blogger .post_wrapper .blog_header {
     margin-right: 10px; }
   .toplist div.item div.details {
     float: left;
-    width: 218px; }
+    width: 150px; }
   .toplist div.item h3 {
     font-size: 14px;
     line-height: 16px;
