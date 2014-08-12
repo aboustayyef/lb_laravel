@@ -85,7 +85,7 @@ class Post extends Eloquent{
       ->leftJoin('blogs', 'posts.blog_id', '=', 'blogs.blog_id')
       ->leftJoin('columnists', 'posts.blog_id', '=', 'columnists.col_shorthand')
       ->where('posts.post_timestamp','>', time()-$seconds)
-      ->orderBy('posts.post_virality','desc')
+      ->orderBy('posts.post_socialScore','desc')
       ->take(5)
       ->remember(5)
       ->get();
