@@ -353,3 +353,132 @@ Stack trace:
 [12-Aug-2014 12:13:23 UTC] PHP  10. Boris\Boris->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:49
 [12-Aug-2014 12:13:23 UTC] PHP  11. Boris\EvalWorker->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/Boris.php:171
 [12-Aug-2014 12:13:23 UTC] PHP  12. eval() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/EvalWorker.php:133
+[12-Aug-2014 13:21:18 UTC] PHP Warning:  file_put_contents(/Users/Stayyef/Dropbox/_websites_/lb_laravel/app/storage/cache/76/b3/76b3624de0b669cd6a11e72c098364e4): failed to open stream: No such file or directory in /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 71
+[12-Aug-2014 13:21:18 UTC] PHP Stack trace:
+[12-Aug-2014 13:21:18 UTC] PHP   1. {main}() /Users/Stayyef/Dropbox/_websites_/lb_laravel/artisan:0
+[12-Aug-2014 13:21:18 UTC] PHP   2. Symfony\Component\Console\Application->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/artisan:59
+[12-Aug-2014 13:21:18 UTC] PHP   3. Symfony\Component\Console\Application->doRun() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:124
+[12-Aug-2014 13:21:18 UTC] PHP   4. Symfony\Component\Console\Application->doRunCommand() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:193
+[12-Aug-2014 13:21:18 UTC] PHP   5. Illuminate\Console\Command->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:887
+[12-Aug-2014 13:21:18 UTC] PHP   6. Symfony\Component\Console\Command\Command->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php:100
+[12-Aug-2014 13:21:18 UTC] PHP   7. Illuminate\Console\Command->execute() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Command/Command.php:252
+[12-Aug-2014 13:21:18 UTC] PHP   8. Illuminate\Foundation\Console\TinkerCommand->fire() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php:112
+[12-Aug-2014 13:21:18 UTC] PHP   9. Illuminate\Foundation\Console\TinkerCommand->runBorisShell() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:30
+[12-Aug-2014 13:21:18 UTC] PHP  10. Boris\Boris->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:49
+[12-Aug-2014 13:21:18 UTC] PHP  11. Boris\EvalWorker->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/Boris.php:171
+[12-Aug-2014 13:21:18 UTC] PHP  12. eval() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/EvalWorker.php:133
+[12-Aug-2014 13:21:18 UTC] PHP  13. Post::getTopPosts() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/EvalWorker.php(133) : eval()'d code:1
+[12-Aug-2014 13:21:18 UTC] PHP  14. Illuminate\Database\Query\Builder->get() /Users/Stayyef/Dropbox/_websites_/lb_laravel/app/models/Post.php:91
+[12-Aug-2014 13:21:18 UTC] PHP  15. Illuminate\Database\Query\Builder->getCached() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php:1335
+[12-Aug-2014 13:21:18 UTC] PHP  16. Illuminate\Cache\Repository->remember() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php:1391
+[12-Aug-2014 13:21:18 UTC] PHP  17. Illuminate\Cache\Repository->put() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Cache/Repository.php:131
+[12-Aug-2014 13:21:18 UTC] PHP  18. Illuminate\Cache\FileStore->put() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Cache/Repository.php:92
+[12-Aug-2014 13:21:18 UTC] PHP  19. Illuminate\Filesystem\Filesystem->put() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Cache/FileStore.php:106
+[12-Aug-2014 13:21:18 UTC] PHP  20. file_put_contents() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:71
+[12-Aug-2014 13:21:38 UTC] PHP Warning:  file_put_contents(/Users/Stayyef/Dropbox/_websites_/lb_laravel/app/storage/cache/56/cc/56cc6a3d6df187abf8b9e5772f52ad1e): failed to open stream: No such file or directory in /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php on line 71
+[12-Aug-2014 13:21:38 UTC] PHP Stack trace:
+[12-Aug-2014 13:21:38 UTC] PHP   1. {main}() /Users/Stayyef/Dropbox/_websites_/lb_laravel/artisan:0
+[12-Aug-2014 13:21:38 UTC] PHP   2. Symfony\Component\Console\Application->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/artisan:59
+[12-Aug-2014 13:21:38 UTC] PHP   3. Symfony\Component\Console\Application->doRun() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:124
+[12-Aug-2014 13:21:38 UTC] PHP   4. Symfony\Component\Console\Application->doRunCommand() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:193
+[12-Aug-2014 13:21:38 UTC] PHP   5. Illuminate\Console\Command->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:887
+[12-Aug-2014 13:21:38 UTC] PHP   6. Symfony\Component\Console\Command\Command->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php:100
+[12-Aug-2014 13:21:38 UTC] PHP   7. Illuminate\Console\Command->execute() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Command/Command.php:252
+[12-Aug-2014 13:21:38 UTC] PHP   8. Illuminate\Foundation\Console\TinkerCommand->fire() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php:112
+[12-Aug-2014 13:21:38 UTC] PHP   9. Illuminate\Foundation\Console\TinkerCommand->runBorisShell() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:30
+[12-Aug-2014 13:21:38 UTC] PHP  10. Boris\Boris->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:49
+[12-Aug-2014 13:21:38 UTC] PHP  11. Boris\EvalWorker->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/Boris.php:171
+[12-Aug-2014 13:21:38 UTC] PHP  12. eval() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/EvalWorker.php:133
+[12-Aug-2014 13:21:38 UTC] PHP  13. Post::getTopPosts() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/EvalWorker.php(133) : eval()'d code:1
+[12-Aug-2014 13:21:38 UTC] PHP  14. Illuminate\Database\Query\Builder->get() /Users/Stayyef/Dropbox/_websites_/lb_laravel/app/models/Post.php:91
+[12-Aug-2014 13:21:38 UTC] PHP  15. Illuminate\Database\Query\Builder->getCached() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php:1335
+[12-Aug-2014 13:21:38 UTC] PHP  16. Illuminate\Cache\Repository->remember() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php:1391
+[12-Aug-2014 13:21:38 UTC] PHP  17. Illuminate\Cache\Repository->put() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Cache/Repository.php:131
+[12-Aug-2014 13:21:38 UTC] PHP  18. Illuminate\Cache\FileStore->put() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Cache/Repository.php:92
+[12-Aug-2014 13:21:38 UTC] PHP  19. Illuminate\Filesystem\Filesystem->put() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Cache/FileStore.php:106
+[12-Aug-2014 13:21:38 UTC] PHP  20. file_put_contents() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:71
+[12-Aug-2014 15:40:10 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/EvalWorker.php(133) : eval()'d code on line 1
+[12-Aug-2014 15:40:10 UTC] PHP Stack trace:
+[12-Aug-2014 15:40:10 UTC] PHP   1. {main}() /Users/Stayyef/Dropbox/_websites_/lb_laravel/artisan:0
+[12-Aug-2014 15:40:10 UTC] PHP   2. Symfony\Component\Console\Application->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/artisan:59
+[12-Aug-2014 15:40:10 UTC] PHP   3. Symfony\Component\Console\Application->doRun() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:124
+[12-Aug-2014 15:40:10 UTC] PHP   4. Symfony\Component\Console\Application->doRunCommand() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:193
+[12-Aug-2014 15:40:10 UTC] PHP   5. Illuminate\Console\Command->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:887
+[12-Aug-2014 15:40:10 UTC] PHP   6. Symfony\Component\Console\Command\Command->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php:100
+[12-Aug-2014 15:40:10 UTC] PHP   7. Illuminate\Console\Command->execute() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Command/Command.php:252
+[12-Aug-2014 15:40:10 UTC] PHP   8. Illuminate\Foundation\Console\TinkerCommand->fire() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php:112
+[12-Aug-2014 15:40:10 UTC] PHP   9. Illuminate\Foundation\Console\TinkerCommand->runBorisShell() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:30
+[12-Aug-2014 15:40:10 UTC] PHP  10. Boris\Boris->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:49
+[12-Aug-2014 15:40:10 UTC] PHP  11. Boris\EvalWorker->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/Boris.php:171
+[12-Aug-2014 15:40:33 UTC] PHP Fatal error:  Class 'Poss' not found in /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/EvalWorker.php(133) : eval()'d code on line 1
+[12-Aug-2014 15:40:33 UTC] PHP Stack trace:
+[12-Aug-2014 15:40:33 UTC] PHP   1. {main}() /Users/Stayyef/Dropbox/_websites_/lb_laravel/artisan:0
+[12-Aug-2014 15:40:33 UTC] PHP   2. Symfony\Component\Console\Application->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/artisan:59
+[12-Aug-2014 15:40:33 UTC] PHP   3. Symfony\Component\Console\Application->doRun() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:124
+[12-Aug-2014 15:40:33 UTC] PHP   4. Symfony\Component\Console\Application->doRunCommand() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:193
+[12-Aug-2014 15:40:33 UTC] PHP   5. Illuminate\Console\Command->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:887
+[12-Aug-2014 15:40:33 UTC] PHP   6. Symfony\Component\Console\Command\Command->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php:100
+[12-Aug-2014 15:40:33 UTC] PHP   7. Illuminate\Console\Command->execute() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Command/Command.php:252
+[12-Aug-2014 15:40:33 UTC] PHP   8. Illuminate\Foundation\Console\TinkerCommand->fire() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php:112
+[12-Aug-2014 15:40:33 UTC] PHP   9. Illuminate\Foundation\Console\TinkerCommand->runBorisShell() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:30
+[12-Aug-2014 15:40:33 UTC] PHP  10. Boris\Boris->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:49
+[12-Aug-2014 15:40:33 UTC] PHP  11. Boris\EvalWorker->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/Boris.php:171
+[12-Aug-2014 15:40:33 UTC] PHP  12. eval() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/EvalWorker.php:133
+[12-Aug-2014 15:40:42 UTC] PHP Fatal error:  Uncaught exception 'BadMethodCallException' with message 'Call to undefined method Illuminate\Database\Query\Builder::TopPosts()' in /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php:2118
+Stack trace:
+#0 [internal function]: Illuminate\Database\Query\Builder->__call('TopPosts', Array)
+#1 [internal function]: Illuminate\Database\Query\Builder->TopPosts('all', 200)
+#2 /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(913): call_user_func_array(Array, Array)
+#3 [internal function]: Illuminate\Database\Eloquent\Builder->__call('TopPosts', Array)
+#4 [internal function]: Illuminate\Database\Eloquent\Builder->TopPosts('all', 200)
+#5 /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(3022): call_user_func_array(Array, Array)
+#6 [internal function]: Illuminate\Database\Eloquent\Model->__call('TopPosts', Array)
+#7 [internal function] in /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php on line 2118
+[12-Aug-2014 15:40:50 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/Stayyef/Dropbox/_websites_/lb_laravel/app/models/Post.php on line 129
+[12-Aug-2014 15:40:50 UTC] PHP Stack trace:
+[12-Aug-2014 15:40:50 UTC] PHP   1. {main}() /Users/Stayyef/Dropbox/_websites_/lb_laravel/artisan:0
+[12-Aug-2014 15:40:50 UTC] PHP   2. Symfony\Component\Console\Application->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/artisan:59
+[12-Aug-2014 15:40:50 UTC] PHP   3. Symfony\Component\Console\Application->doRun() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:124
+[12-Aug-2014 15:40:50 UTC] PHP   4. Symfony\Component\Console\Application->doRunCommand() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:193
+[12-Aug-2014 15:40:50 UTC] PHP   5. Illuminate\Console\Command->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:887
+[12-Aug-2014 15:40:50 UTC] PHP   6. Symfony\Component\Console\Command\Command->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php:100
+[12-Aug-2014 15:40:50 UTC] PHP   7. Illuminate\Console\Command->execute() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Command/Command.php:252
+[12-Aug-2014 15:40:50 UTC] PHP   8. Illuminate\Foundation\Console\TinkerCommand->fire() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php:112
+[12-Aug-2014 15:40:50 UTC] PHP   9. Illuminate\Foundation\Console\TinkerCommand->runBorisShell() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:30
+[12-Aug-2014 15:40:50 UTC] PHP  10. Boris\Boris->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:49
+[12-Aug-2014 15:40:50 UTC] PHP  11. Boris\EvalWorker->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/Boris.php:171
+[12-Aug-2014 15:40:50 UTC] PHP  12. eval() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/EvalWorker.php:133
+[12-Aug-2014 15:40:50 UTC] PHP  13. Post::getTopPosts() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/EvalWorker.php(133) : eval()'d code:1
+[12-Aug-2014 15:40:50 UTC] PHP  14. Post::harmonise() /Users/Stayyef/Dropbox/_websites_/lb_laravel/app/models/Post.php:95
+[12-Aug-2014 15:40:54 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/Stayyef/Dropbox/_websites_/lb_laravel/app/models/Post.php on line 129
+[12-Aug-2014 15:40:54 UTC] PHP Stack trace:
+[12-Aug-2014 15:40:54 UTC] PHP   1. {main}() /Users/Stayyef/Dropbox/_websites_/lb_laravel/artisan:0
+[12-Aug-2014 15:40:54 UTC] PHP   2. Symfony\Component\Console\Application->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/artisan:59
+[12-Aug-2014 15:40:54 UTC] PHP   3. Symfony\Component\Console\Application->doRun() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:124
+[12-Aug-2014 15:40:54 UTC] PHP   4. Symfony\Component\Console\Application->doRunCommand() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:193
+[12-Aug-2014 15:40:54 UTC] PHP   5. Illuminate\Console\Command->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:887
+[12-Aug-2014 15:40:54 UTC] PHP   6. Symfony\Component\Console\Command\Command->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php:100
+[12-Aug-2014 15:40:54 UTC] PHP   7. Illuminate\Console\Command->execute() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Command/Command.php:252
+[12-Aug-2014 15:40:54 UTC] PHP   8. Illuminate\Foundation\Console\TinkerCommand->fire() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php:112
+[12-Aug-2014 15:40:54 UTC] PHP   9. Illuminate\Foundation\Console\TinkerCommand->runBorisShell() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:30
+[12-Aug-2014 15:40:54 UTC] PHP  10. Boris\Boris->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:49
+[12-Aug-2014 15:40:54 UTC] PHP  11. Boris\EvalWorker->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/Boris.php:171
+[12-Aug-2014 15:40:54 UTC] PHP  12. eval() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/EvalWorker.php:133
+[12-Aug-2014 15:40:54 UTC] PHP  13. Post::getTopPosts() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/EvalWorker.php(133) : eval()'d code:1
+[12-Aug-2014 15:40:54 UTC] PHP  14. Post::harmonise() /Users/Stayyef/Dropbox/_websites_/lb_laravel/app/models/Post.php:95
+[12-Aug-2014 15:41:42 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/Stayyef/Dropbox/_websites_/lb_laravel/app/models/Post.php on line 129
+[12-Aug-2014 15:41:42 UTC] PHP Stack trace:
+[12-Aug-2014 15:41:42 UTC] PHP   1. {main}() /Users/Stayyef/Dropbox/_websites_/lb_laravel/artisan:0
+[12-Aug-2014 15:41:42 UTC] PHP   2. Symfony\Component\Console\Application->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/artisan:59
+[12-Aug-2014 15:41:42 UTC] PHP   3. Symfony\Component\Console\Application->doRun() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:124
+[12-Aug-2014 15:41:42 UTC] PHP   4. Symfony\Component\Console\Application->doRunCommand() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:193
+[12-Aug-2014 15:41:42 UTC] PHP   5. Illuminate\Console\Command->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:887
+[12-Aug-2014 15:41:42 UTC] PHP   6. Symfony\Component\Console\Command\Command->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php:100
+[12-Aug-2014 15:41:42 UTC] PHP   7. Illuminate\Console\Command->execute() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Command/Command.php:252
+[12-Aug-2014 15:41:42 UTC] PHP   8. Illuminate\Foundation\Console\TinkerCommand->fire() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php:112
+[12-Aug-2014 15:41:42 UTC] PHP   9. Illuminate\Foundation\Console\TinkerCommand->runBorisShell() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:30
+[12-Aug-2014 15:41:42 UTC] PHP  10. Boris\Boris->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:49
+[12-Aug-2014 15:41:42 UTC] PHP  11. Boris\EvalWorker->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/Boris.php:171
+[12-Aug-2014 15:41:42 UTC] PHP  12. eval() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/EvalWorker.php:133
+[12-Aug-2014 15:41:42 UTC] PHP  13. Post::getTopPosts() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/EvalWorker.php(133) : eval()'d code:1
+[12-Aug-2014 15:41:42 UTC] PHP  14. Post::harmonise() /Users/Stayyef/Dropbox/_websites_/lb_laravel/app/models/Post.php:95

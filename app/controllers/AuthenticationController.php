@@ -122,7 +122,7 @@ class AuthenticationController extends BaseController
 
         if ((Input::has('code'))) {
             // We will now retrieve token credentials from the server
-            $tokenCredentials = AuthenticationServer::facebook()->getAccessToken('authorization_code', [
+            $tokenCredentials = AuthenticationServer::facebook()->getAccessToken('authorizationCode', [
                 'code' => Input::get('code')
             ]);
 
@@ -147,7 +147,7 @@ class AuthenticationController extends BaseController
 
         if ((Input::has('code'))) {
             // We will now retrieve token credentials from the server
-            $tokenCredentials = AuthenticationServer::google()->getAccessToken('authorization_code', [
+            $tokenCredentials = AuthenticationServer::google()->getAccessToken('authorizationCode', [
                 'code' => Input::get('code')
             ]);
 
