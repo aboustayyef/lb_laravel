@@ -482,3 +482,51 @@ Stack trace:
 [12-Aug-2014 15:41:42 UTC] PHP  12. eval() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/EvalWorker.php:133
 [12-Aug-2014 15:41:42 UTC] PHP  13. Post::getTopPosts() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/EvalWorker.php(133) : eval()'d code:1
 [12-Aug-2014 15:41:42 UTC] PHP  14. Post::harmonise() /Users/Stayyef/Dropbox/_websites_/lb_laravel/app/models/Post.php:95
+[14-Aug-2014 12:15:53 UTC] PHP Fatal error:  Uncaught exception 'BadMethodCallException' with message 'Call to undefined method Illuminate\Database\Query\Builder::hasSavedPost()' in /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php:2118
+Stack trace:
+#0 [internal function]: Illuminate\Database\Query\Builder->__call('hasSavedPost', Array)
+#1 [internal function]: Illuminate\Database\Query\Builder->hasSavedPost('http://beirutnt...')
+#2 /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(913): call_user_func_array(Array, Array)
+#3 [internal function]: Illuminate\Database\Eloquent\Builder->__call('hasSavedPost', Array)
+#4 [internal function]: Illuminate\Database\Eloquent\Builder->hasSavedPost('http://beirutnt...')
+#5 /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(3022): call_user_func_array(Array, Array)
+#6 /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/ in /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php on line 2118
+[14-Aug-2014 12:16:35 UTC] PHP Fatal error:  Uncaught exception 'BadMethodCallException' with message 'Call to undefined method Illuminate\Database\Query\Builder::latestPostsByFavoriteBloggers()' in /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php:2118
+Stack trace:
+#0 [internal function]: Illuminate\Database\Query\Builder->__call('latestPostsByFa...', Array)
+#1 [internal function]: Illuminate\Database\Query\Builder->latestPostsByFavoriteBloggers()
+#2 /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(913): call_user_func_array(Array, Array)
+#3 [internal function]: Illuminate\Database\Eloquent\Builder->__call('latestPostsByFa...', Array)
+#4 [internal function]: Illuminate\Database\Eloquent\Builder->latestPostsByFavoriteBloggers()
+#5 /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(3022): call_user_func_array(Array, Array)
+#6 /Users/Stayyef/Dropbox/_websites_/lb_larav in /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php on line 2118
+[14-Aug-2014 12:16:50 UTC] PHP Warning:  Error while sending STMT_PREPARE packet. PID=67372 in /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Connection.php on line 278
+[14-Aug-2014 12:16:50 UTC] PHP Stack trace:
+[14-Aug-2014 12:16:50 UTC] PHP   1. {main}() /Users/Stayyef/Dropbox/_websites_/lb_laravel/artisan:0
+[14-Aug-2014 12:16:50 UTC] PHP   2. Symfony\Component\Console\Application->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/artisan:59
+[14-Aug-2014 12:16:50 UTC] PHP   3. Symfony\Component\Console\Application->doRun() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:124
+[14-Aug-2014 12:16:50 UTC] PHP   4. Symfony\Component\Console\Application->doRunCommand() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:193
+[14-Aug-2014 12:16:50 UTC] PHP   5. Illuminate\Console\Command->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:887
+[14-Aug-2014 12:16:50 UTC] PHP   6. Symfony\Component\Console\Command\Command->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php:100
+[14-Aug-2014 12:16:50 UTC] PHP   7. Illuminate\Console\Command->execute() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Command/Command.php:252
+[14-Aug-2014 12:16:50 UTC] PHP   8. Illuminate\Foundation\Console\TinkerCommand->fire() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php:112
+[14-Aug-2014 12:16:50 UTC] PHP   9. Illuminate\Foundation\Console\TinkerCommand->runBorisShell() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:30
+[14-Aug-2014 12:16:50 UTC] PHP  10. Boris\Boris->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:49
+[14-Aug-2014 12:16:50 UTC] PHP  11. Boris\EvalWorker->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/Boris.php:171
+[14-Aug-2014 12:16:50 UTC] PHP  12. eval() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/EvalWorker.php:133
+[14-Aug-2014 12:16:50 UTC] PHP  13. User->latestPostsByFavoriteBlogs() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/EvalWorker.php(133) : eval()'d code:1
+[14-Aug-2014 12:16:50 UTC] PHP  14. User->favoritedBlogs() /Users/Stayyef/Dropbox/_websites_/lb_laravel/app/models/User.php:91
+[14-Aug-2014 12:16:50 UTC] PHP  15. Illuminate\Database\Query\Builder->lists() /Users/Stayyef/Dropbox/_websites_/lb_laravel/app/models/User.php:75
+[14-Aug-2014 12:16:50 UTC] PHP  16. Illuminate\Database\Query\Builder->get() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php:1488
+[14-Aug-2014 12:16:50 UTC] PHP  17. Illuminate\Database\Query\Builder->getFresh() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php:1337
+[14-Aug-2014 12:16:50 UTC] PHP  18. Illuminate\Database\Query\Builder->runSelect() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php:1350
+[14-Aug-2014 12:16:50 UTC] PHP  19. Illuminate\Database\Connection->select() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php:1360
+[14-Aug-2014 12:16:50 UTC] PHP  20. Illuminate\Database\Connection->run() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Connection.php:283
+[14-Aug-2014 12:16:50 UTC] PHP  21. Illuminate\Database\Connection->Illuminate\Database\{closure}() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Connection.php:547
+[14-Aug-2014 12:16:50 UTC] PHP  22. PDO->prepare() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Connection.php:278
+[14-Aug-2014 12:16:50 UTC] PHP Fatal error:  Uncaught exception 'Illuminate\Database\QueryException' with message 'SQLSTATE[HY000]: General error: 2006 MySQL server has gone away (SQL: select `blog_id` from `users_blogs` where `user_id` = 71)' in /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Connection.php:555
+Stack trace:
+#0 /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Connection.php(283): Illuminate\Database\Connection->run('select `blog_id...', Array, Object(Closure))
+#1 /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(1360): Illuminate\Database\Connection->select('select `blog_id...', Array)
+#2 /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(1350): Illuminate\Database\Query\Builder->runSelect()
+#3 /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(1337): Illuminate\Data in /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Database/Connection.php on line 555

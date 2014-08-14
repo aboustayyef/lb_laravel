@@ -16,11 +16,6 @@ class UrlController extends BaseController
 
   function redirect($slug){
 
-    // if 'blog' Redirect to Lebanese Blog's Blog
-    if ($slug == 'blog') {
-      // to do
-    }
-
     // if we have a blog with the id slug, redirect to its page
     if (Blog::exists($slug)){
       return Redirect::to('blogger/'.$slug);

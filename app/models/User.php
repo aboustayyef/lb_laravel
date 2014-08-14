@@ -17,7 +17,7 @@ class User extends Eloquent
 |   This method will return the user's details or false if not found
 */
 
-  public static function signedIn(){
+  public static function cookieExists(){
     if (Cookie::get('lbUserId')) {
       $uid = Cookie::get('lbUserId');
       $user = User::find($uid);
@@ -80,17 +80,46 @@ class User extends Eloquent
     return $listOfBlogIds;
   }
 
-/*
-|---------------------------------------------------------------------
-|   Get latest posts by favorited blogs
-|---------------------------------------------------------------------
-|   Returns a list of posts from favorite bloggers
-|
-*/
+  /*
+  |---------------------------------------------------------------------
+  |   Get latest posts by favorited blogs
+  |---------------------------------------------------------------------
+  |   Returns a list of posts from favorite bloggers
+  |
+  */
   public function latestPostsByFavoriteBlogs($from = 0, $to = 20){
     $listOfBlogIds = $this->favoritedBlogs();
     $posts = DB::table('posts')->whereIn('blog_id', $listOfBlogIds)->skip($from)->take($to)->get();
     return $posts;
   }
 
+
+  /*
+  |--------------------------------------------------------------------------
+  | Find out if blog is favorited by user
+  |--------------------------------------------------------------------------
+  | return true if a blog is favorited by user
+  */
+
+  public function hasFavoriteBlog($blogId){
+    if (DB::table('users_blogs')->where('user_id',$this->user_id)->where('blog_id', $blogId)->count() > 0) {
+      return true;
+    }
+    return false;
+  }
+
+
+  /*
+  |--------------------------------------------------------------------------
+  | Find out if post is saved by user
+  |--------------------------------------------------------------------------
+  | return true if a post is saved by user
+  */
+
+  public function hasSavedPost($postUrl){
+    if (DB::table('users_posts')->where('user_id',$this->user_id)->where('post_url', $postUrl)->count() > 0) {
+      return true;
+    }
+    return false;
+  }
 }
