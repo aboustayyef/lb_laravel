@@ -6,6 +6,7 @@ it can be used for ajax as well as normal display
 
     <?php
       $counter = isset($from)? $from + 1 : 1;
+      $ourUser = User::find(Session::get('lb_user_id'));
     ?>
 
 
@@ -14,8 +15,10 @@ it can be used for ajax as well as normal display
     {{-- handles injection of extra cards --}}
     {{ View::make('posts.extras.main')->with('counter', $counter) }}
 
+    <?php
+      $blog = Blog::where('blog_id',$post->blog_id)->remember(15)->first();
+    ?>
       <div class="post_wrapper">
-
         <!-- Blog Header -->
         <div class="blog_header">
 
@@ -23,18 +26,14 @@ it can be used for ajax as well as normal display
           <img
           class="thumbnail"
           src="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}"
-          alt="{{$post->blog_name }} thumbnail"
+          alt="{{$blog->blog_name }} thumbnail"
           width ="50px" height="50px">
 
           <!-- Blog's Name -->
           <div class="blogname">
             <a href="{{url('/blogger/'.$post->blog_id)}}">
-              {{ $post->blog_name }}
+              {{ $blog->blog_name }}
             </a>
-          </div>
-
-          <div class="fave">
-            <i class ="fa fa-star-o"></i>
           </div>
         </div>
 
@@ -45,7 +44,6 @@ it can be used for ajax as well as normal display
               {{lbFunctions::time_elapsed_string($post->post_timestamp)}}
             </div>
             {{View::make('posts.partials.virality')->with('score',$post->post_virality)}}
-
           </div>
           <!-- Post Title -->
           <h2
@@ -53,6 +51,7 @@ it can be used for ajax as well as normal display
              class="rtl"
             @endif
             >
+            <!-- outward url -->
             <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url)}}">{{ $post->post_title }} </a>
           </h2>
 
@@ -77,42 +76,14 @@ it can be used for ajax as well as normal display
         <div class="tools_footer">
           &nbsp; {{-- This just creates a free space at the bottom of each post --}}
         </div>
-        <div class="shareButton">
-            <i class="fa fa-share"></i> Share
+        <div class="sharingButton tweetit">
+          <i class="fa fa-twitter"></i>
+          Tweet it
         </div>
-        <ul class="sharing">
-          <a href="">
-            <li>
-              <div class ="shareIcon">
-                <i class="fa fa-clock-o"></i>
-              </div>
-              <div class ="shareDescription">
-                Read Later
-              </div>
-            </li>
-          </a>
-          <a href="">
-            <li class ="middle">
-              <div class ="shareIcon">
-                <i class="fa fa-twitter"></i>
-              </div>
-              <div class ="shareDescription">
-                Twitter
-              </div>
-            </li>
-          </a>
-          <a href="">
-            <li>
-              <div class ="shareIcon">
-                <i class="fa fa-facebook"></i>
-              </div>
-              <div class ="shareDescription">
-                Facebook
-              </div>
-            </li>
-          </a>
-        </ul>
-
+        <div class="sharingButton action">
+            <i class="fa fa-share"></i> More
+        </div>
+        {{View::make('posts.partials.sharemenu')->with(['post'=>$post,'ourUser'=>$ourUser])}}
       </div> <!-- /post wrapper -->
       <?php $counter++ ?>
   @endforeach

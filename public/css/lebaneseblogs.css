@@ -2,6 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -51,13 +52,15 @@ table {
           box-sizing: Border-box; }
 
 body {
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: 'Montserrat', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-size: 12px;
   line-height: 15px;
-  font-weight: 300; }
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased; }
 
 a {
-  color: #b12530; }
+  color: inherit;
+  text-decoration: none; }
 
 div.posts.cards {
   margin: auto;
@@ -73,7 +76,13 @@ div.posts.cards {
     background: white;
     width: 300px;
     margin: 10px;
-    border: 1px solid #b3b3b3; }
+    border: 1px solid #b3b3b3;
+    min-height: 320px; }
+    div.posts.cards div.post_wrapper.no_min {
+      min-height: 0;
+      border: 0;
+      width: 300px;
+      background: transparent; }
     div.posts.cards div.post_wrapper div.blog_header {
       padding: 10px;
       background: rgba(0, 0, 0, 0.03);
@@ -90,18 +99,11 @@ div.posts.cards {
         div.posts.cards div.post_wrapper div.blog_header .blogname a {
           color: rgba(0, 0, 0, 0.6);
           text-decoration: none; }
-      div.posts.cards div.post_wrapper div.blog_header .fave {
-        position: absolute;
-        top: 10px;
-        right: 10px; }
-        div.posts.cards div.post_wrapper div.blog_header .fave i {
-          font-size: 20px; }
       div.posts.cards div.post_wrapper div.blog_header img.thumbnail {
         border-radius: 50%;
         border: 1px solid rgba(0, 0, 0, 0.1); }
     div.posts.cards div.post_wrapper div.post_body h2 {
       font-size: 16px;
-      font-weight: bold;
       padding: 10px;
       line-height: 24px;
       color: #444; }
@@ -150,7 +152,8 @@ div.posts.cards {
         color: rgba(0, 0, 0, 0.5);
         position: absolute;
         right: 10px;
-        display: inline-block; }
+        display: inline-block;
+        font-size: 0.8em; }
         div.posts.cards div.post_wrapper div.post_body .metaInfo .viralityWrapper .viralityBox {
           display: inline-block;
           width: 100px;
@@ -165,68 +168,105 @@ div.posts.cards {
       overflow: auto;
       position: relative;
       clear: both; }
-    div.posts.cards div.post_wrapper .shareButton {
+    div.posts.cards div.post_wrapper .sharingButton {
       cursor: pointer;
-      padding: 11px 15px;
+      bottom: 4px;
       position: absolute;
-      right: 10px;
-      bottom: 10px;
-      color: rgba(0, 0, 0, 0.4);
-      bottom: 0; }
-      div.posts.cards div.post_wrapper .shareButton:hover {
-        color: rgba(0, 0, 0, 0.8); }
-      div.posts.cards div.post_wrapper .shareButton.active {
+      font-size: 0.8em;
+      display: block;
+      padding: 5px;
+      border: 1px solid #f2f2f2;
+      border-radius: 3px;
+      border-bottom: 2px solid #e6e6e6;
+      color: #a6a6a6; }
+      div.posts.cards div.post_wrapper .sharingButton:hover {
+        background: #b12530;
         color: white;
-        background: #575757; }
-        div.posts.cards div.post_wrapper .shareButton.active:hover {
-          background: black; }
-    div.posts.cards div.post_wrapper ul.sharing {
-      display: none;
-      position: absolute;
-      bottom: 36px;
-      right: 10px;
-      overflow: auto; }
-      div.posts.cards div.post_wrapper ul.sharing li {
-        background: #ffcc66;
-        width: 93px;
-        height: 93px;
-        float: left;
-        position: relative; }
-        div.posts.cards div.post_wrapper ul.sharing li:hover {
-          background: #b12530; }
-          div.posts.cards div.post_wrapper ul.sharing li:hover .shareIcon {
-            color: white; }
-          div.posts.cards div.post_wrapper ul.sharing li:hover .shareDescription {
-            color: white;
-            opacity: 0.7; }
-        div.posts.cards div.post_wrapper ul.sharing li.middle {
-          background: #ffbb33;
-          width: 92px; }
-          div.posts.cards div.post_wrapper ul.sharing li.middle:hover {
-            background: #b12530; }
-        div.posts.cards div.post_wrapper ul.sharing li .shareIcon {
-          color: rgba(0, 0, 0, 0.5);
-          height: 30px;
-          width: 30px;
-          margin: auto;
-          text-align: center;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          -webkit-transform: translate(-15px, -15px);
-              -ms-transform: translate(-15px, -15px);
-                  transform: translate(-15px, -15px);
-          font-size: 22px;
-          line-height: 25px; }
-        div.posts.cards div.post_wrapper ul.sharing li .shareDescription {
-          position: absolute;
-          bottom: 5px;
-          width: 100%;
-          text-align: center;
-          font-size: 12px;
-          color: rgba(0, 0, 0, 0.3); }
-    div.posts.cards div.post_wrapper .shareButton.active + ul.sharing {
+        border-color: #8f1e27; }
+    div.posts.cards div.post_wrapper .tweetit {
+      right: 78px; }
+    div.posts.cards div.post_wrapper .action {
+      right: 10px; }
+      div.posts.cards div.post_wrapper .action.active {
+        color: white;
+        background: #b12530; }
+        div.posts.cards div.post_wrapper .action.active:hover {
+          background: #9c212a; }
+    div.posts.cards div.post_wrapper .action.active + div.bubblewrapper {
       display: block; }
+
+div.bubblewrapper {
+  font-size: 0.85em;
+  display: none;
+  width: 270px;
+  overflow: auto;
+  position: absolute;
+  bottom: 30px;
+  right: 15px;
+  padding: 0 3px;
+  padding-top: 3px;
+  /*
+
+  Below is simply to achieve the tooltip triangle
+
+  */ }
+  div.bubblewrapper ul.sharing {
+    overflow: auto;
+    background: white;
+    margin-bottom: 20px;
+    border: solid 1px #9c9c9c; }
+    div.bubblewrapper ul.sharing li {
+      cursor: pointer;
+      font-size: 0.9em;
+      padding: 8px; }
+      div.bubblewrapper ul.sharing li.addToFavorites i {
+        color: silver; }
+      div.bubblewrapper ul.sharing li.removeFromFavorites i {
+        color: #EBA900; }
+      div.bubblewrapper ul.sharing li i {
+        margin-right: 10px; }
+      div.bubblewrapper ul.sharing li:hover {
+        background: #f2f2f2; }
+        div.bubblewrapper ul.sharing li:hover color:white
+        a {
+          color: white; }
+      div.bubblewrapper ul.sharing li.dim {
+        cursor: not-allowed;
+        color: #b3b3b3; }
+        div.bubblewrapper ul.sharing li.dim:hover:after {
+          content: 'needs login';
+          color: #b12530;
+          margin-left: 5px; }
+    div.bubblewrapper ul.sharing li.header {
+      cursor: default;
+      color: #b12530;
+      font-weight: bold; }
+      div.bubblewrapper ul.sharing li.header:hover {
+        background: inherit; }
+  div.bubblewrapper:before {
+    position: absolute;
+    display: block;
+    content: "";
+    border-color: #9c9c9c transparent transparent transparent;
+    border-style: solid;
+    border-width: 10px;
+    height: 0;
+    width: 0;
+    position: absolute;
+    bottom: 0px;
+    left: 218px; }
+  div.bubblewrapper:after {
+    position: absolute;
+    display: block;
+    content: "";
+    border-color: white transparent transparent transparent;
+    border-style: solid;
+    border-width: 10px;
+    height: 0;
+    width: 0;
+    position: absolute;
+    bottom: 2px;
+    left: 218px; }
 
 div.posts.cards.blogger .post_wrapper .blog_header {
   display: none; }
@@ -243,7 +283,6 @@ div.posts.cards.blogger .post_wrapper .blog_header {
   padding: 10px;
   padding-top: 0;
   font-size: 20px;
-  font-weight: 450;
   padding-bottom: 20px; }
 .toplist form {
   position: absolute;
@@ -269,8 +308,7 @@ div.posts.cards.blogger .post_wrapper .blog_header {
     width: 150px; }
   .toplist div.item h3 {
     font-size: 14px;
-    line-height: 16px;
-    font-weight: bold; }
+    line-height: 16px; }
   .toplist div.item h4 {
     margin-top: 5px;
     color: #b12530;
@@ -285,9 +323,10 @@ div.posts.cards.blogger .post_wrapper .blog_header {
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 16px;
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden; }
+          backface-visibility: hidden;
+  -webkit-overflow-scrolling: touch; }
 
 #loading {
   z-index: 5;
@@ -339,7 +378,12 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0; }
+  bottom: 0;
+  -webkit-transition: 0.2s;
+          transition: 0.2s; }
+  #siteWrapper.open {
+    left: 320px;
+    opacity: 1; }
 
 .dynamicLink {
   cursor: pointer; }
@@ -352,7 +396,9 @@ body {
   height: 50px;
   background: #b12530;
   height: 50px;
-  color: white; }
+  color: white;
+  -webkit-transition: 0.2s;
+          transition: 0.2s; }
   #topBar i {
     padding: 15px;
     font-size: 20px; }
@@ -368,8 +414,8 @@ body {
       padding: 12px;
       font-size: 26px; }
     #topBar #hamburger span, #topBar #hamburger span:before, #topBar #hamburger span:after {
-      -webkit-transition: 0.2s ease all;
-              transition: 0.2s ease all;
+      -webkit-transition: 0.2s;
+              transition: 0.2s;
       cursor: pointer;
       background: white;
       position: absolute;
@@ -389,9 +435,9 @@ body {
       top: 8px;
       left: 0; }
     #topBar #hamburger.open {
-      background: #323232; }
+      background: #353535; }
       #topBar #hamburger.open:hover {
-        background: #323232; }
+        background: #353535; }
       #topBar #hamburger.open span {
         background: transparent; }
         #topBar #hamburger.open span:before {
@@ -442,8 +488,8 @@ body {
     display: inline-block;
     width: 250px;
     position: absolute;
-    -webkit-transition: 0.2s ease all;
-            transition: 0.2s ease all;
+    -webkit-transition: 0.2s;
+            transition: 0.2s;
     right: 51px; }
     #topBar #aboutMenu li {
       background: #871c25;
@@ -462,8 +508,8 @@ body {
     display: inline-block;
     width: 250px;
     position: absolute;
-    -webkit-transition: 0.2s ease all;
-            transition: 0.2s ease all;
+    -webkit-transition: 0.2s;
+            transition: 0.2s;
     right: 0; }
     #topBar #searchMenu li {
       background: #871c25;
@@ -488,7 +534,10 @@ body {
 #content {
   padding-top: 50px;
   background: #d1d1d1;
-  overflow: auto; }
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transition: 0.2s;
+          transition: 0.2s; }
   #content .currentChannel {
     letter-spacing: 3px;
     border-top: 1px solid white;
@@ -502,92 +551,123 @@ body {
       font-size: 16px; }
 
 #scroller {
-  width: 345px;
+  width: 320px;
   overflow-y: scroll;
   max-height: 100%; }
 
 #sidebar {
   position: fixed;
   width: 320px;
-  background: #323232;
-  top: 50px;
+  background: #353535;
+  top: 0;
   bottom: 0;
   overflow: hide;
   z-index: 3;
-  opacity: 0;
+  border-right: 1px solid silver;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
   -webkit-perspective: 1000;
           perspective: 1000;
-  left: -345px;
-  -webkit-transition: 0.2s ease all;
-          transition: 0.2s ease all; }
-  #sidebar.open {
-    left: 0;
-    opacity: 1; }
-  #sidebar ul.list {
+  margin-left: -320px;
+  -webkit-transition: 0.2s;
+          transition: 0.2s; }
+  #sidebar .close {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 5px;
+    right: 5px; }
+    #sidebar .close a {
+      position: absolute;
+      top: 8px;
+      left: 6px;
+      color: white;
+      text-decoration: none;
+      font-size: 34px; }
+    #sidebar .close:hover {
+      background: #686868;
+      border-radius: 50%; }
+  #sidebar #userArea {
+    padding: 10px;
+    width: 319px;
+    border-bottom: 5px solid #b12530;
+    background-color: #424242;
     overflow: auto; }
-    #sidebar ul.list li {
-      width: 320px;
-      overflow: auto;
-      clear: both;
+    #sidebar #userArea .profilePicture {
+      display: block;
+      float: left;
+      width: 70px; }
+      #sidebar #userArea .profilePicture img {
+        max-width: 70px;
+        max-height: 70px;
+        border-radius: 50%;
+        border: 5px solid #b12530; }
+    #sidebar #userArea .greeting {
+      display: block;
+      width: 220px;
+      float: left;
+      padding: 10px;
+      color: white; }
+      #sidebar #userArea .greeting a {
+        color: #cccccc;
+        text-decoration: none;
+        font-size: 0.85em; }
+    #sidebar #userArea .login {
+      display: block;
+      width: 220px;
+      float: left;
+      padding: 10px; }
+      #sidebar #userArea .login a {
+        margin-bottom: 5px;
+        width: 80px;
+        display: block;
+        padding: 8px;
+        background: #b12530;
+        color: white;
+        text-decoration: none; }
+      #sidebar #userArea .login p {
+        color: silver;
+        font-size: 0.8em; }
+    #sidebar #userArea .tools ul {
+      margin-top: 20px; }
+    #sidebar #userArea .tools li {
+      margin: 5px 0; }
+      #sidebar #userArea .tools li i {
+        margin-right: 10px; }
+      #sidebar #userArea .tools li .amount {
+        background-color: #02A7A7;
+        color: white;
+        border-radius: 5px;
+        padding: 0 5px;
+        float: right;
+        font-size: 12px; }
+    #sidebar #userArea .tools li + li {
+      border-top: 1px solid #5c5c5c;
+      padding-top: 5px; }
+  #sidebar #channels {
+    padding: 10px; }
+    #sidebar #channels h3 {
+      color: white;
       margin-bottom: 10px; }
-      #sidebar ul.list li i {
+    #sidebar #channels ul {
+      font-size: 0.8em;
+      overflow: auto;
+      width: 320px; }
+      #sidebar #channels ul li.categoryButton {
+        border-radius: 3px;
+        margin-top: 7px;
         display: block;
-        font-size: 15px;
-        width: 34px;
-        height: 34px;
+        background: #555;
+        padding: 7px;
+        margin-right: 7px;
         float: left;
-        text-align: center;
-        line-height: 34px;
-        margin-right: 20px; }
-      #sidebar ul.list li .dynamicLink {
-        display: block;
-        height: 34px;
-        width: 200px;
-        float: left;
-        line-height: 34px; }
-      #sidebar ul.list li.list {
-        margin-bottom: 0; }
-        #sidebar ul.list li.list i {
-          display: block;
-          font-size: 22px;
-          width: 28px;
-          height: 28px;
-          float: left;
-          text-align: center;
-          line-height: 28px;
-          margin-right: 20px; }
-        #sidebar ul.list li.list .dynamicLink {
-          height: 28px; }
-      #sidebar ul.list li.block i {
-        border: 1px solid white;
-        border-radius: 50%; }
-  #sidebar i {
-    margin-right: 5px;
-    font-size: 16px;
-    color: #9c9c9c; }
-  #sidebar .dynamicLink {
-    text-decoration: none;
-    color: white;
-    font-size: 14px;
-    line-height: 20px; }
-  #sidebar h4 {
-    font-size: 14px;
-    margin-left: 10px;
-    text-transform: uppercase;
-    padding-top: 20px;
-    color: #b12530;
-    font-weight: bold; }
-  #sidebar hr {
-    opacity: 0.2; }
-  #sidebar ul {
-    margin-top: 10px; }
-  #sidebar li {
-    padding: 2px 5px 3px 20px; }
-    #sidebar li:hover {
-      background: rgba(0, 0, 0, 0.08); }
-      #sidebar li:hover i {
-        color: #b12530; }
+        color: white; }
+        #sidebar #channels ul li.categoryButton i {
+          color: #D8D8D8;
+          margin-right: 3px; }
+        #sidebar #channels ul li.categoryButton:hover {
+          background: #666; }
+        #sidebar #channels ul li.categoryButton.selected {
+          background: #b12530; }
   #sidebar .credits {
     padding: 10px 20px; }

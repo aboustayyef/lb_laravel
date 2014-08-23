@@ -9,9 +9,36 @@ class Post extends Eloquent{
     return $this->belongsTo('Blog');
   }
 
-  public function columnist(){
-    return $this->belongsTo('Columnist');
+
+public static function getPosts($channel='all', $from=0, $amount=20){
+  if (isset($channel) && $channel != 'all'){
+    $posts = self::where('post_tags','like', "%$channel%")->orderBy('post_timestamp','desc')->skip($from)->take($amount)->remember(5)->get();
+  }else{
+    $posts = self::orderBy('post_timestamp','desc')->skip($from)->take($amount)->remember(5)->get();
   }
+  return $posts;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| get favorite posts interval
+|--------------------------------------------------------------------------
+| gets an interval of posts from favorite bloggers
+*/
+
+public static function getFavoritePosts($userID, $from=0, $amount=20){
+  $user = User::find($userID);
+  $listOfBlogIds = $user->blogs->lists('blog_id');
+  if (count($listOfBlogIds) == 0) { // no favorited blogs
+    return false;
+  }
+  $posts = Post::whereIn('blog_id', $listOfBlogIds)
+          ->orderBy('post_timestamp','desc')
+          ->skip($from)->take($amount)->get();
+  return $posts;
+}
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +47,7 @@ class Post extends Eloquent{
 | A general function to get posts from an interval
 */
 
-  public static function getPosts($channel='all', $from=0, $amount=20){
+  public static function old_getPosts($channel='all', $from=0, $amount=20){
     if (isset($channel) && $channel != 'all') {
       $posts = DB::table('posts')
       ->leftJoin('blogs', 'posts.blog_id', '=', 'blogs.blog_id')
@@ -103,9 +130,8 @@ class Post extends Eloquent{
 */
 
 public static function getPostsByBlogger($bloggerId, $from, $howmany){
-  $posts = Post::Where('blog_id', $bloggerId)->skip($from)->orderBy('posts.post_timestamp','desc')->take($howmany)->get();
-  // harmonize results
-  $posts = self::harmonise($posts);
+  $blog = Blog::find($bloggerId);
+  $posts = Post::where('blog_id',$blog->blog_id)->orderBy('posts.post_timestamp','desc')->skip($from)->take($howmany)->get();
   return $posts;
 }
 

@@ -59,6 +59,7 @@ class CrawlArticles extends Command {
     foreach ($columnists as $key => $columnist) {
       $this->columnist = $columnist;
       $this->homepage = $columnist->col_home_page;
+      $this->columnType = $columnist->col_media_source;
       echo 'Article #'.$key;
       $this->exploreColumnist();
     }
@@ -73,10 +74,11 @@ class CrawlArticles extends Command {
     $columnDescription = $this->columnist;
     $columnDescription = $columnDescription['col_name'];
     $columnHomePage = $this->homepage;
+    $columntype = $this->columnType;
     $this->info("Now fetching posts from columist: $columnDescription from the home page: $columnHomePage");
 
     // Get list of articles
-    $articles = listArticlesFromUrl::get($this->homepage);
+    $articles = listArticlesFromUrl::get($this->homepage, $this->columnType);
     $this->info(print_r($articles));
     // loop through feed items
     foreach($articles as $key => $article)
@@ -89,7 +91,7 @@ class CrawlArticles extends Command {
 
       // initialize article crawling object
       echo $article_link;
-      $article_object = new articleCrawler($article_link);
+      $article_object = new articleCrawler($article_link, $this->columnType);
 
       // get timestamp
       $article_timestamp =  $article_object->getTimeStamp(); // get post's timestamp;
@@ -179,9 +181,19 @@ class CrawlArticles extends Command {
         $post->post_image_width = $article_image_width ;
         $post->post_image_height = $article_image_height ;
         $post->post_visits = 0 ;
+        $post->post_tags = $this->columnist->col_tags;
+        try {
+          $post->save();
 
-        $post->save();
-        $this->comment('New Post Saved: "' . $article_title . '"');
+          // add timestamp to blogger's record (as timestamp of last post)
+          $blog = Blog::where('blog_id', $domain)->first();
+          $blog->blog_last_post_timestamp = $article_timestamp;
+          $blog->save();
+
+          $this->comment('New Post Saved: "' . $article_title . '"');
+        } catch (Exception $e) {
+          $this->error('Problem saving post [' . $post->post_title .']');
+        }
 
         // Cache image if exists. Flatten and convert to jpg;
         if ($article_image) { // image exists

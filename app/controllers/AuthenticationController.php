@@ -98,14 +98,9 @@ class AuthenticationController extends BaseController
               'lastName'  =>  $names[1],
               'email'     =>  $user->email,
               'gender'    =>  null,
+              'imageUrl'  =>  $user->urls['profile_image_url']
             );
-
-            echo '<pre>',var_dump($userDetails),'</pre>';
-
-            // Next:
-            // 1- If user is not in database, add to database,
-            // 2- Add cookie with user's id.
-
+            return User::processProviderData($userDetails);
         } else {
           Session::flash('message', 'Sorry, Could not sign in. Want to try again?');
           return View::make('login');
@@ -136,11 +131,9 @@ class AuthenticationController extends BaseController
               'lastName'  =>  $user->lastName,
               'email'     =>  $user->email,
               'gender'    =>  null,
+              'imageUrl'  =>  $user->imageUrl
             );
-            echo '<pre>',var_dump($userDetails),'</pre>';
-            // Next:
-            // 1- If user is not in database, add to database,
-            // 2- Add cookie with user's id.
+            return User::processProviderData($userDetails);
         } else {
             Session::flash('message', 'Sorry, Could not sign in. Want to try again?');
             return View::make('login');
@@ -163,20 +156,17 @@ class AuthenticationController extends BaseController
 
             // User is an instance of League\OAuth1\Client\Server\User
             $user = AuthenticationServer::google()->getUserDetails($tokenCredentials);
-            echo '<pre>',var_dump($user),'</pre>';
-            die();
             $userDetails = array(
-              'provider'  =>  'Facebook',
+              'provider'  =>  'Google',
               'providerId' => $user->uid,
               'twitterHandle' =>  null,
               'firstName'  => $user->firstName,
               'lastName'  =>  $user->lastName,
               'email'     =>  $user->email,
               'gender'    =>  null,
+              'imageUrl'  =>  $user->imageUrl
             );
-            // Next:
-            // 1- If user is not in database, add to database,
-            // 2- Add cookie with user's id.
+            return User::processProviderData($userDetails);
 
         } else {
             Session::flash('message', 'Sorry, Could not sign in. Want to try again?');

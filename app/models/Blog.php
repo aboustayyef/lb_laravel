@@ -8,6 +8,10 @@
       return $this->hasMany('Post');
     }
 
+    public function users(){
+      return $this->belongsToMany('User');
+    }
+
     public static function exists($blogId){
       $blog = self::where('blog_id', $blogId)->first();
       if (is_object($blog)) {

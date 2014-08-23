@@ -1,8 +1,9 @@
 body{
   padding:0;
   margin:0;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 16px;
   backface-visibility: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 #loading{
@@ -58,6 +59,12 @@ body{
   left:0;
   right:0;
   bottom:0;
+  @include lbTransitions();
+  &.open{
+    left: 320px;
+    //margin-left: 320px;
+    opacity:1;
+  }
 }
 
 .dynamicLink{

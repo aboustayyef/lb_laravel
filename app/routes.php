@@ -28,6 +28,28 @@ Route::get('exit', array(
   'uses'  => 'ExitController@lbExit'
 ));
 
+Route::get('posts/favorites', array(
+  'before'  =>  'lb.auth:favorites',
+  'as'      =>  'favorites',
+  'uses'    =>  'PostsController@favorites'
+));
+
+Route::get('posts/favorites/add/{blogId}', array(
+  'as'      =>  'addfavorites',
+  'uses'   =>  'FavoritesController@add'
+));
+
+Route::get('posts/favorites/remove/{blogId}', array(
+  'as'      =>  'removefavorites',
+  'uses'   =>  'FavoritesController@remove'
+));
+
+Route::get('posts/saved', array(
+  'before'  =>  'lb.auth:saved',
+  'as'      =>  'saved',
+  'uses'    =>  'PostsController@saved'
+));
+
 Route::get('posts/{channel?}', array(
   'as'=>'posts',
   'uses'=>'PostsController@show'
@@ -46,6 +68,12 @@ Route::get('/ajax/GetTop5', array(
   'uses'  =>  'AjaxController@loadTopFivePostsJson'
 ));
 
+Route::get('/logout',function()
+{
+  Session::forget('lb_user_id');
+  $cookie = Cookie::forget('lb_user_id');
+  return Redirect::to('/')->withCookie($cookie);
+});
 
 /*
 |---------------------------------------------------------------------

@@ -1,4 +1,4 @@
-$('document').ready(function(){
+$(window).load(function(){
 
   // cards specific action. Fix layout before showing posts
   if ($('.posts').hasClass('cards')) {

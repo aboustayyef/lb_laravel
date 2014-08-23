@@ -13,18 +13,36 @@ $('#search').on('click', function(e){
 
 $('#hamburger').on('click', function(e){
 		$('#sidebar').toggleClass('open');
-    $(this).toggleClass('open');
-	e.stopPropagation();
+    $('#siteWrapper').toggleClass('open');
+    //$(this).toggleClass('open');
+  	e.stopPropagation();
+});
+$('#sidebar .close').on('click', function(e){
+    e.preventDefault();
+    $('#sidebar').removeClass('open');
+    $('#siteWrapper').removeClass('open');
+    e.stopPropagation();
 });
 
-
-$(document).on('click', ".shareButton", function(e){
+$(document).on('click', ".action", function(e){
+  $fatherPost = $(this).closest('div.post_wrapper');
 	if ($(this).hasClass('active')) {
-		$(this).removeClass('active');
-		$(this).html('<i class="fa fa-share"></i> Share');
+    // undim background
+    $fatherPost.css('background-color','');
+    $fatherPost.find('img.thumbnail').css('opacity','');
+    $fatherPost.find('.viralityBox').css('opacity','');
+    $fatherPost.find('img.cardImage').css('opacity','');
+
+    $(this).removeClass('active');
+    $(this).html('<i class="fa fa-share"></i> More');
 	} else {
 		$(this).addClass('active');
 		$(this).html('<i class ="fa fa-times"> </i> Close');
+    // dim background
+    $fatherPost.css('background-color','silver');
+    $fatherPost.find('img.thumbnail').css('opacity',0.5);
+    $fatherPost.find('.viralityBox').css('opacity',0.5);
+    $fatherPost.find('img.cardImage').css('opacity',0.5);
 	};
 });
 
@@ -32,6 +50,8 @@ lbApp.clearMenus = function(){
 	$('#search').removeClass('open');
 	$('#about').removeClass('open');
   $('#sidebar').removeClass('open');
+  $('#siteWrapper').removeClass('open');
+  $('#topBar').removeClass('open');
 }
 
 $(document).on('click', function(e){

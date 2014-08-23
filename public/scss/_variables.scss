@@ -7,12 +7,12 @@ $header-background: $brand-color;
 $header-height: 50px;
 
 $sidebar-width: 320px;
-$sidebar-background: rgba(50,50,50,1);
+$sidebar-background: #353535;
 
 $content-background: #d1d1d1;
 
 $card-width: 300px;
 
 @mixin lbTransitions(){
-transition: 0.2s ease all;
+transition: 0.2s;
 }

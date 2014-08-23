@@ -63,7 +63,7 @@ lbApp.addMorePosts = function(){
 
   lbApp.busy = true; // to avoid simultaneous calls
   $.ajax({
-    url: lbApp.ajaxPath,
+    url: lbApp.rootPath + '/ajax/GetMorePosts',
     type: "GET",
     data: {startFrom: $('.post_body').length }, //counts posts we already have
     success: function(data){

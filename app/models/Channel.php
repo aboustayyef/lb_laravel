@@ -53,13 +53,13 @@ class Channel
     ),
     array(
       'name'        =>  'society',
-      'description' =>  'Society & Fun News',
+      'description' =>  'Society & Fun',
       'icon'        =>  'fa-smile-o',
       'color'       =>  '#3D9970'
     ),
     array(
       'name'        =>  'politics',
-      'description' =>  'Politics & Current Affairs',
+      'description' =>  'Politics & News',
       'icon'        =>  'fa-globe',
       'color'       =>  '#A76336'
     ),

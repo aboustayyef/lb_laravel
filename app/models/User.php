@@ -5,42 +5,71 @@
 class User extends Eloquent
 {
   // use new users table to avoid conflict when moving to new version
-  protected $table = 'users_new';
-  protected $primaryKey = 'user_id';
+  protected $table = 'new_users';
+  public $timestamps = false;
 
-/*
-|---------------------------------------------------------------------
-|   Get details of signed in user
-|---------------------------------------------------------------------
-|
-|   If a user is signed in, there will be a cookie with their id number
-|   This method will return the user's details or false if not found
-*/
+  /*
+  |--------------------------------------------------------------------------
+  | Find out if a user is logged in
+  |--------------------------------------------------------------------------
+  | usage: if User::signedIn() proceed
+  */
 
-  public static function cookieExists(){
-    if (Cookie::get('lbUserId')) {
-      $uid = Cookie::get('lbUserId');
-      $user = User::find($uid);
-      if ($user) {
-        return $user;
-      }
-      return false;
+  public static function signedIn(){
+
+    // check session
+    if (Session::has('lb_user_id')) {
+      return Session::get('lb_user_id');
     }
+
+    // check cookie
+    if (Cookie::has('lb_user_id')) {
+      return Cookie::get('lb_user_id');
+    }
+
+    // if none of those exists
+    return false;
+  }
+
+  public function blogs(){
+      return $this->belongsToMany('Blog');
+  }
+
+  public function posts(){
+      return $this->belongsToMany('Post');
   }
 
 /*
 |---------------------------------------------------------------------
-|   Create New User from array of values
+|   see if a blog belong to users' favorites
 |---------------------------------------------------------------------
+|
 */
-  public static function createNew($details){
-    $user = new User;
-    $user->user_email = $details['email'];
-    $user->user_provider = $details['provider'];
-    $user->user_provider_id = $details['provider_id'];
-    $user->user_gender = $details['gender'];
-    $user->save();
-    Cookie::queue('lbUserId', $user->user_id, 60*24*30);
+  public function hasFavoriteBlog($blog_id){
+    if (in_array($blog_id, $this->blogs->lists('blog_id'))) {
+      return true;
+    }
+    return false;
+  }
+
+/*
+|---------------------------------------------------------------------
+|   returns amount of favorited blogs
+|---------------------------------------------------------------------
+|
+*/
+  public function howManyFavoritedBlogs(){
+    return $this->blogs->count();
+  }
+
+/*
+|---------------------------------------------------------------------
+|   returns amount of saved posts
+|---------------------------------------------------------------------
+|
+*/
+  public function howManySavedPosts(){
+    return $this->posts->count();
   }
 
 /*
@@ -62,52 +91,6 @@ class User extends Eloquent
     return $listOfPostUrls;
   }
 
-/*
-|---------------------------------------------------------------------
-|   Get list of favorited bloggers
-|---------------------------------------------------------------------
-|
-| Provides a list of blogs favorited by user. If $comprehensive
-| is set to true it will returns all blog details
-|
-*/
-  public function favoritedBlogs($comprehensive = false){
-    $listOfBlogIds = DB::table('users_blogs')->where('user_id','=',$this->user_id)->lists('blog_id');
-    if ($comprehensive) {
-      $blogs = DB::table('blogs')->whereIn('blog_id', $listOfBlogIds)->get();
-      return $blogs;
-    }
-    return $listOfBlogIds;
-  }
-
-  /*
-  |---------------------------------------------------------------------
-  |   Get latest posts by favorited blogs
-  |---------------------------------------------------------------------
-  |   Returns a list of posts from favorite bloggers
-  |
-  */
-  public function latestPostsByFavoriteBlogs($from = 0, $to = 20){
-    $listOfBlogIds = $this->favoritedBlogs();
-    $posts = DB::table('posts')->whereIn('blog_id', $listOfBlogIds)->skip($from)->take($to)->get();
-    return $posts;
-  }
-
-
-  /*
-  |--------------------------------------------------------------------------
-  | Find out if blog is favorited by user
-  |--------------------------------------------------------------------------
-  | return true if a blog is favorited by user
-  */
-
-  public function hasFavoriteBlog($blogId){
-    if (DB::table('users_blogs')->where('user_id',$this->user_id)->where('blog_id', $blogId)->count() > 0) {
-      return true;
-    }
-    return false;
-  }
-
 
   /*
   |--------------------------------------------------------------------------
@@ -121,5 +104,67 @@ class User extends Eloquent
       return true;
     }
     return false;
+  }
+
+
+
+  public function profileImage(){
+      $img = $this->image_url;
+      if (!empty($img)) {
+        return $img;
+      }else{
+        return asset('/img/placeholder_profile_pic.png');
+      }
+  }
+
+  public function firstName(){
+    $firstName = $this->first_name;
+    if (!empty($firstName)) {
+      return $firstName;
+    }else{
+      return '';
+    }
+  }
+
+  /*
+  |--------------------------------------------------------------------------
+  | Process the data provided by login provider log in
+  |--------------------------------------------------------------------------
+  | 1 - if user exists, see if missing records (temporary untill all records are full).
+  | 2 - if user doesn't exist create user
+  | 3 - set up cookie
+  | 4 - if there is an intended page, go there, otherwise
+  */
+
+  public static function processProviderData($userDetails){
+
+    // if user exists;
+    if (User::where('provider',$userDetails['provider'])->where('provider_id',$userDetails['providerId'])->count() > 0 ){
+
+      //select user
+      $user = User::where('provider',$userDetails['provider'])->where('provider_id',$userDetails['providerId'])->first();
+
+    }else{
+      $user = new User;
+    }
+    // in any case, fill the data
+    $user->provider = $userDetails['provider'];
+    $user->provider_id = $userDetails['providerId'];
+    $user->first_name = $userDetails['firstName'];
+    $user->last_name = $userDetails['lastName'];
+    $user->email_address = $userDetails['email'];
+    $user->gender = $userDetails['gender'];
+    $user->updated_timestamp = time();
+    $user->last_visit_timestamp = time();
+    $user->image_url = $userDetails['imageUrl'];
+    $user->visit_count = $user->visit_count + 1;
+    $user->save();
+
+    Session::put('lb_user_id', $user->id);
+    if (Session::has('finalDestination')) {
+      return Redirect::action(Session::get('finalDestination'));
+    } else {
+      return Redirect::to('posts/all');
+    }
   }
 }

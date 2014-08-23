@@ -51,7 +51,7 @@ class CrawlRss extends Command {
       $blogs = Blog::where('blog_id','=',$this->argument('blog'))->get();
     } else {
       // get all active blogs
-      $blogs = Blog::where('blog_active','=','1')->get();
+      $blogs = Blog::where('blog_RSSCrawl_active','=','1')->get();
     }
 
 
@@ -163,9 +163,12 @@ class CrawlRss extends Command {
 
         // Get Image Dimensions (if exists)
         if ($blog_post_image) {
-          list($width, $height, $type, $attr) = getimagesize($blog_post_image);
-          $blog_post_image_width = $width;
-          $blog_post_image_height = $height;
+          if (@getimagesize($blog_post_image)) {
+            list($width, $height, $type, $attr) = getimagesize($blog_post_image);
+            $blog_post_image_width = $width;
+            $blog_post_image_height = $height;
+          }
+
         } else {
           $blog_post_image_width = 0;
           $blog_post_image_height = 0;
@@ -184,9 +187,20 @@ class CrawlRss extends Command {
         $post->post_image_width = $blog_post_image_width ;
         $post->post_image_height = $blog_post_image_height ;
         $post->post_visits = 0 ;
+        $post->post_tags = $this->blog->blog_tags;
+        try {
+          $post->save();
 
-        $post->save();
-        $this->comment('New Post Saved: "' . $blog_post_title . '"');
+          // add timestamp to blogger's record (as timestamp of last post)
+          $blog = Blog::where('blog_id', $domain)->first();
+          $blog->blog_last_post_timestamp = $blog_post_timestamp;
+          $blog->save();
+
+          $this->comment('New Post Saved: "' . $blog_post_title . '"');
+        } catch (Exception $e) {
+          $this->error('Cannot save post [' . $this->post_title . ']' );
+        }
+
 
         // Cache image if exists. Flatten and convert to jpg;
         if ($blog_post_image) { // image exists

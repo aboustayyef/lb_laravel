@@ -54,6 +54,17 @@ Route::filter('auth.basic', function()
 	return Auth::basic();
 });
 
+
+Route::filter('lb.auth', function($route,$request,$finalDestination){
+  if (!User::signedIn())
+  {
+    if (!empty($finalDestination)) {
+      Session::put('finalDestination', $finalDestination);
+    }
+    return Redirect::to('/login')->with('message', 'You need to be signed in to use this feature');
+  }
+});
+
 /*
 |--------------------------------------------------------------------------
 | Guest Filter

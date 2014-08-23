@@ -13,6 +13,7 @@
     padding: ($header-height - 20px)/2;
     font-size: 20px;
   }
+  @include lbTransitions();
 
   #hamburger{
     position:absolute;
@@ -185,6 +186,7 @@
   padding-top:$header-height;
   background: $content-background;
   overflow:auto;
+  -webkit-overflow-scrolling: touch;
   .currentChannel{
     letter-spacing: 3px;
     border-top:1px solid white;
@@ -198,4 +200,5 @@
       font-size:16px;
     }
   }
+  @include lbTransitions() ;
 }

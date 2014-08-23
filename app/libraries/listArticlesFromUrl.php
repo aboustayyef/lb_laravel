@@ -14,35 +14,41 @@ class listArticlesFromUrl extends BaseController
   }
 
 
-  public static function get($link){
+  public static function get($link, $type){
 
     $sources = array(
       array(
-        'Name'          =>  'Daily Star',
+        'Column Type'   =>  'The Daily Star',
         'domain'        =>  'dailystar.com.lb',
         'root'          =>  'http://dailystar.com.lb',
         'articleLinks'  =>  '.more-news h4 a'
       ),
       array(
-        'Name'          =>  'Now Lebanon',
+        'Column Type'   =>  'Now Lebanon',
         'domain'        =>  'now.mmedia.me',
         'root'          =>  'http://now.mmedia.me',
         'articleLinks'  =>  'div.author_profile_listing_content  a'
       ),
       array(
-        'Name'          =>  'The National',
+        'Column Type'   =>  'Now Lebanon Blogs',
+        'domain'        =>  'now.mmedia.me',
+        'root'          =>  'http://now.mmedia.me',
+        'articleLinks'  =>  'div.author_profile_listing_content  a'
+      ),
+      array(
+        'Column Type'   =>  'The National',
         'domain'        =>  'thenational.ae',
         'root'          =>  'http://thenational.ae',
         'articleLinks'  =>  'li .holder h4 a'
       ),
       array(
-        'Name'          =>  'Al Akhbar',
+        'Column Type'   =>  'Al-Akhbar English',
         'domain'        =>  'al-akhbar.com',
         'root'          =>  'http://english.al-akhbar.com',
         'articleLinks'  =>  '.views-field-title a'
       ),
       array(
-        'Name'          =>  'Beirut City Guide',
+        'Column Type'   =>  'Beirut.com',
         'domain'        =>  'beirut.com',
         'root'          =>  'http://beirut.com',
         'articleLinks'  =>  '.list-rows .post h3 a'
@@ -50,7 +56,7 @@ class listArticlesFromUrl extends BaseController
     );
 
     foreach ($sources as $key => $source) {
-      if (strpos($link, $source['domain'])) {
+      if ($source['Column Type'] == $type) {
         $articleLinks = $source['articleLinks'];
         $theRoot = $source['root'];
       }
@@ -59,8 +65,10 @@ class listArticlesFromUrl extends BaseController
       echo '$articleLinks is empty';
       return false;
     }
-    $content = crawlHelpers::slurp($link);
-    $crawler = new Crawler($content);
+
+    $crawler = new Crawler;
+    $crawler->addHTMLContent(file_get_contents($link), 'UTF-8');
+
     $allLinks = $crawler->filter($articleLinks);
     $linksArray = array();
 

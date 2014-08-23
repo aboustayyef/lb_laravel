@@ -1,6 +1,3 @@
-<div class="post_wrapper">
-	<div class="tip">
-		<i class="fa fa-star"></i>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, nesciunt.</p>	
-	</div>
+<div class="post_wrapper no_min">
+	<img class="lazy" data-original="{{asset('/img/favorites_poster.png')}}" src="{{asset('/img/grey.gif')}}" width="300" height="300" alt="">
 </div>

@@ -14,8 +14,7 @@ class articleCrawler extends BaseController
 
   static private $sources = array(
     array(
-      'Name'              =>  'Daily Star',
-      'domain'            =>  'dailystar.com.lb',
+      'Column Type'      =>  'The Daily Star',
       'title'             =>  '#bodyHolder_divTitle',
       'content'           =>  '#divDetails',
       'dateTimeLocation'  =>  '#bodyHolder_divDate',
@@ -23,8 +22,7 @@ class articleCrawler extends BaseController
       'dateTime_format'   =>  'M. d, Y \| h:i A',
     ),
     array(
-      'Name'               =>  'Now Lebanon',
-      'domain'             =>  'now.mmedia.me',
+      'Column Type'       =>  'Now Lebanon',
       'title'              =>  'h1.article_title',
       'content'            =>  '#news_template > div.main_area_align > div > div.article_section > div.article_main_section > div.main_article > div.main_txt',
       'dateTimeLocation'   =>  'h3.article_date',
@@ -32,8 +30,15 @@ class articleCrawler extends BaseController
       'dateTime_format'    =>  'j/m/Y   h:i A',
     ),
     array(
-      'Name'               =>  'The National',
-      'domain'             =>  'thenational.ae',
+      'Column Type'       =>  'Now Lebanon Blogs',
+      'title'              =>  'h1.article_title',
+      'content'            =>  '#news_template > div.main_area_align > div > div.article_section > div.article_main_section > div.main_article > div.main_txt',
+      'dateTimeLocation'   =>  'h3.article_date',
+      'dateTime_regex'     =>  '\d{1,2}/\d{1,2}/\d{4}\s{3}\d{1,2}:\d{1,2}\s[A-Z]{2}', // ex 1/08/2014 11:09 AM
+      'dateTime_format'    =>  'j/m/Y   h:i A',
+    ),
+    array(
+      'Column Type'       =>  'The National',
       'title'              =>  '.mainflash-article h1',
       'content'            =>  'div.article-body-page',
       'dateTimeLocation'   =>  'div.articleinfo',
@@ -41,8 +46,7 @@ class articleCrawler extends BaseController
       'dateTime_format'    =>  'F j, Y',
     ),
     array(
-      'Name'               =>  'Al Akhbar',
-      'domain'             =>  'al-akhbar.com',
+      'Column Type'       =>  'Al-Akhbar English',
       'title'              =>  'h1.title',
       'content'            =>  'div.content-wrap',
       'dateTimeLocation'   =>  'span.date-display-single',
@@ -50,8 +54,7 @@ class articleCrawler extends BaseController
       'dateTime_format'    =>  'F j, Y',
     ),
     array(
-      'Name'               =>  'Beirut City Guide',
-      'domain'             =>  'beirut.com',
+      'Column Type'       =>  'Beirut.com',
       'title'              =>  '#sidebar h2',
       'content'            =>  '.profile p',
       'dateTimeLocation'   =>  array('div.info > p:nth-child(2) > span:nth-child(3)','div.info > p:nth-child(2) > span:nth-child(2)'),
@@ -64,15 +67,14 @@ class articleCrawler extends BaseController
   private $_MainCrawler;
   private $_title, $_timeStamp, $_image, $_content;
 
-  function __construct($link)
+  function __construct($link, $type)
   {
     $this->_link = urldecode($link);
 
     // get which news site
     foreach (self::$sources as $key => $source) {
 
-      if (strpos($link, $source['domain'])) {
-        $this->_sourceName = $source['Name'];
+      if ($source['Column Type'] == $type) {
         $this->_titleSource = $source['title'];
         $this->_contentSource = $source['content'];
         $this->_dateTimeSource = $source['dateTimeLocation'];
@@ -81,14 +83,20 @@ class articleCrawler extends BaseController
       }
     }
 
-    $grossContent = crawlHelpers::slurp($link);
-    $this->_MainCrawler = new Crawler($grossContent);
+    $this->_MainCrawler = new Crawler;
+    try {
+      $this->_MainCrawler->addHTMLContent(file_get_contents($link), 'UTF-8');
+    } catch (Exception $e) {
+      echo "== Having Some Difficulty with $link == \n";
+      continue;
+    }
+
   }
 
   public function getTitle()
   {
     $this->_title = $this->_MainCrawler->filter($this->_titleSource)->text();
-    return trim($this->_title);
+    return trim(html_entity_decode($this->_title));
   }
 
   public function getTimeStamp()
@@ -121,7 +129,11 @@ class articleCrawler extends BaseController
 
   public function getContent()
   {
-    $this->_content = $this->_MainCrawler->filter($this->_contentSource)->html();
+    if ($this->_MainCrawler->filter($this->_contentSource)->count() > 0) {
+      $this->_content = $this->_MainCrawler->filter($this->_contentSource)->html();
+    } else {
+      return 'Content Not Available';
+    }
 
     // try to sanitize it by removing javascript ..etc
     $grossContentCrawler = new Crawler($this->_content);
