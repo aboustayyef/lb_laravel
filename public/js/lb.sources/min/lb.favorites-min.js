@@ -1,1 +1,0 @@
-$("document").ready(function(){$("document").on("click","li.addToFavorites",function(){alert("test")})});

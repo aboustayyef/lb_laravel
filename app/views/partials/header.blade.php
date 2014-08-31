@@ -6,8 +6,11 @@
   <meta name="description" content="{{$pageDescription}}">
   <link rel="stylesheet" href="{{asset('/css/lebaneseblogs.css')}}">
 
-  {{-- for font awesome consider using CDN when done--}}
-  <link rel="stylesheet" href="{{asset('/css/font-awesome/css/font-awesome.min.css?t='.time())}}">
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{{asset('/favicon.ico')}}" >
+
+  <!-- font awesome -->
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
   <title>{{$pageTitle}}</title>
 </head>

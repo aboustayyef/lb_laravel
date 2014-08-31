@@ -29,6 +29,7 @@ class CrawlArticles extends Command {
     parent::__construct();
     $this->hr = str_repeat('-', 70);
     $this->dhr = str_repeat('=', 70);
+    $this->searchClient = new Elasticsearch\Client();
   }
 
   /**
@@ -185,6 +186,22 @@ class CrawlArticles extends Command {
         try {
           $post->save();
 
+          // index post
+          $params = array();
+          $params['index']='lebaneseblogs';
+          $params['type']='post';
+          $params['id']=$post->post_id;
+          $params['body']= array(
+            'title' =>  $post->post_title,
+            'content'  =>  $post->post_content
+          );
+          try {
+            $ret = $this->searchClient->index($params);
+          } catch (Exception $e) {
+            $this->error('Failed to index post: ' . $post->post_title);
+          }
+          $this->comment('Indexed post ' . $post->post_title);
+
           // add timestamp to blogger's record (as timestamp of last post)
           $blog = Blog::where('blog_id', $domain)->first();
           $blog->blog_last_post_timestamp = $article_timestamp;
@@ -224,8 +241,7 @@ class CrawlArticles extends Command {
   protected function getArguments()
   {
     return array(
-      //array('blogid', InputArgument::REQUIRED, 'The Blog Id'),
-      array('columnist', InputArgument::OPTIONAL)
+      array('columnist', InputArgument::OPTIONAL, 'This will be set if only one blog is to be crawled')
     );
   }
 

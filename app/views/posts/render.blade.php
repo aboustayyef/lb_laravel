@@ -23,12 +23,13 @@ it can be used for ajax as well as normal display
         <div class="blog_header">
 
           <!-- Thumbnail -->
+          <a href="{{url('/blogger/'.$post->blog_id)}}">
           <img
-          class="thumbnail"
-          src="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}"
-          alt="{{$blog->blog_name }} thumbnail"
-          width ="50px" height="50px">
-
+            class="thumbnail"
+            src="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}"
+            alt="{{$blog->blog_name }} thumbnail"
+            width ="50px" height="50px">
+          </a>
           <!-- Blog's Name -->
           <div class="blogname">
             <a href="{{url('/blogger/'.$post->blog_id)}}">

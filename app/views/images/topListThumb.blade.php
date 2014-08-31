@@ -13,10 +13,7 @@ if ($currentPost->hasImage()) {
   }
 } else {
     $image = asset('/img/no_image.png');
-}
-
-
-?>
+}?>
 @if ($height > $width)
 <img class="lazy" data-original="{{$image}}" src="{{asset('/img/grey.gif')}}" width="100" height="auto" alt="">
 @else

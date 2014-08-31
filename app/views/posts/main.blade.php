@@ -3,12 +3,17 @@
 @section('content')
   @if (Session::has('channel'))
     @if (Session::get('channel') != 'all')
-    <div class="currentChannel" style="background: {{Channel::color(Session::get('channel'))}}">
-      <i class="fa fa-times-circle"></i>
-      {{Channel::description(Session::get('channel'))}}
-    </div>
+    <?php if (!in_array(Session::get('pageKind'), ['favorites', 'saved', 'search'])): ?>
+      <div class="currentChannel" style="background: {{Channel::color(Session::get('channel'))}}">
+        <span class="close dynamicLink" data-destination="{{URL::to('/posts/all')}}"><a href ="#">&times;</a></span>
+        {{Channel::description(Session::get('channel'))}}
+      </div>
+    <?php endif; ?>
     @endif
   @endif
+
+    @include('posts.partials.helloWindow')
+
     <div class="posts cards"> <!-- cards is default -->
       @include('posts.render', array(
         'posts'=>$posts ,

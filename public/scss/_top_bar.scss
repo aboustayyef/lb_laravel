@@ -1,90 +1,43 @@
 #topBar{
 
 // General rules
+  height: $header-height;
   position:fixed;
   top:0;
-  z-index:2;
+  z-index:5;
   width:100%;
-  height:$header-height;
   background:$header-background;
-  height: $header-height;
   color: white;
   i{
-    padding: ($header-height - 20px)/2;
-    font-size: 20px;
+    padding: ($header-height - 25px)/2;
+    font-size: 25px;
   }
   @include lbTransitions();
 
   #hamburger{
-    position:absolute;
-    top:0;
-    left:0;
-    width:50px;
-    height:50px;
+    border-right:1px solid white;
+    font-size:1.5em;
+    width:$header-height - 1;
     cursor: pointer;
-    border-right: 1px solid lighten($brand-color, 10);
-    i{
-      padding: ($header-height - 26px)/2;
-      font-size: 26px;
-    }
-    span, span:before, span:after{
-      @include lbTransitions();
-      cursor:pointer;
-      background:white;
-      position:absolute;
-      content: '';
-      height:3px;
-      left:10px;
-      width:26px;
-      top: 24px;
-      display:block;
-      border-radius: 1px;
-    }
-    span:before{
-      background:white;
-      left:0;
-      top:-8px;
-    }
-    span:after{
-      background:white;
-      top:8px;
-      left:0;
-    }
-    &.open{
-      background: $sidebar-background;
-      &:hover{
-        background: $sidebar-background;
-      }
-      span{
-        background:transparent;
-        &:before{
-          top:0;
-          transform: rotate(45deg);
-        }
-        &:after{
-          top:0;
-          transform: rotate(-45deg);
-        }
-      }
-
-    }
     &:hover{
-      background:darken($brand-color, 10);
+      background: rgba(0,0,0,0.2);
     }
   }
 
   #logo{
-
-    padding: ($header-height - 40px)/2;
-    .full{
-      @media screen and (max-width:400px){
-        display: none;
-      }
-    }
-    .mobile{
-      @media screen and (min-width:401px){
-        display: none;
-      }
+    margin-left:10px;
+    width:150px;
+    height: 50px;
+    background: url(../img/logo-mobile.png);
+    background-repeat: no-repeat;
+    background-size: 150px 40px;
+    background-position-y:5px;
+    @media screen and (min-width:401px){
+      width:250px;
+      background: url(../img/logo.png);
+      background-repeat: no-repeat;
+      background-size: 250px 40px;
+      background-position-y:5px;
     }
 
     position:absolute;
@@ -94,27 +47,17 @@
   }
 
   #about{
+    font-size: 14px;
     cursor: pointer;
     position: absolute;
-    top:0;
-    right:$header-height;
+    top:10px;
+    right:10px;
     z-index: 5;
-    border-right: 1px solid white;
+    padding: 7px;
+    border: 1px solid lighten($brand-color, 30);
     &:hover{
       background:darken($brand-color, 10);
     }
-  }
-
-  #search{
-    cursor: pointer;
-    position: absolute;
-    right: 0;
-    top:0;
-    z-index: 5;
-    &:hover{
-      background:darken($brand-color, 10);
-    }
-
   }
 
   #aboutMenu{
@@ -125,7 +68,7 @@
     width: 300px - $header-height;
     position:absolute;
     @include lbTransitions();
-    right: $header-height + 1;
+    right: 10px;
     li {
       //height: ($header-height * 3 ) / 4;
       background:darken($brand-color, 10);
@@ -140,27 +83,9 @@
         text-decoration: none;
       }
     }
-  }
-
-  #searchMenu{
-    top:-75px;
-    opacity:0;
-    z-index: 0;
-    display: inline-block;
-    width: 300px - $header-height;
-    position:absolute;
-    @include lbTransitions();
-    right: 0;
-    li {
-      background:darken($brand-color, 10);
-      padding:10px;
-      Color: white;
-      input{
-        width: 100%;
-        padding: 8px;
-        border: 0;
-        margin-top: 9px;
-      }
+    @media screen and (max-width: 360px){
+      width:100%;
+      right:0;
     }
   }
 
@@ -172,14 +97,6 @@
     top: $header-height;
     opacity: 1;
   }
-  #search.open{
-    background: darken($brand-color, 10);
-  }
-
-  #search.open + #searchMenu{
-    top: $header-height;
-    opacity: 1;
-  }
 }
 
 #content{
@@ -188,17 +105,36 @@
   overflow:auto;
   -webkit-overflow-scrolling: touch;
   .currentChannel{
+    position:relative;
     letter-spacing: 3px;
-    border-top:1px solid white;
+    border-top:1px dashed white;
+    border-bottom:1px dashed white;
     color:white;
-    padding:4px;
+    padding:7px;
     text-transform:uppercase;
     text-align:center;
-    font-weight:400;
     i{
       margin-right:10px;
       font-size:16px;
     }
+    // closing for channels
+    .close{
+      position:absolute;
+      top:0;
+      left:0;
+      cursor:pointer;
+      a{
+        display:block;
+        font-size: 1.5em;
+        opacity:0.8;
+        height:29px;
+        line-height:29px;
+        width:29px;
+        &:hover{
+          opacity:1;
+          background:rgba(0,0,0,0.2);
+        }
+      }
+    }
   }
-  @include lbTransitions() ;
 }

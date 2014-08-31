@@ -29,6 +29,7 @@ class CrawlRss extends Command {
     parent::__construct();
     $this->hr = str_repeat('-', 70);
     $this->dhr = str_repeat('=', 70);
+    $this->searchClient = new Elasticsearch\Client();
   }
 
   /**
@@ -59,7 +60,12 @@ class CrawlRss extends Command {
     foreach ($blogs as $key => $blog) {
       $this->blog = $blog;
       $this->feed = $blog->blog_rss_feed;
-      $this->exploreFeed();
+      try {
+        $this->exploreFeed();
+      } catch (Exception $e) {
+        $this->error('Probelm with feed: ' . $this->blog->blog_name);
+      }
+
     }
 
     $this->info('Feeds Work Ended: '.date('d M Y , H:i:s'));
@@ -190,6 +196,21 @@ class CrawlRss extends Command {
         $post->post_tags = $this->blog->blog_tags;
         try {
           $post->save();
+          // index post
+          $params = array();
+          $params['index']='lebaneseblogs';
+          $params['type']='post';
+          $params['id']=$post->post_id;
+          $params['body']= array(
+            'title' =>  $post->post_title,
+            'content'  =>  $post->post_content
+          );
+          try {
+            $ret = $this->searchClient->index($params);
+          } catch (Exception $e) {
+            $this->error('Failed to index post: ' . $post->post_title);
+          }
+          $this->comment('Indexed post ' . $post->post_title);
 
           // add timestamp to blogger's record (as timestamp of last post)
           $blog = Blog::where('blog_id', $domain)->first();

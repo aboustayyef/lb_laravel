@@ -2,14 +2,19 @@
 
 @if ($counter == 1)
   <?php
-    if ((Session::has('pageKind')) && (Session::get('pageKind') == 'blogger')) {
+    $pageKind = Session::get('pageKind');
+    if ((!empty($pageKind)) && ($pageKind == 'blogger')) {
       echo View::make('posts.extras.topBloggerList');
-    }else{
+    }elseif (in_array($pageKind, ['search','favorites','saved'])){
+      #don't show top posts for kinds in that array
+    } else{
       echo View::make('posts.extras.topList');
     }
   ?>
 @endif
 
-@if ($counter == 5)
-	{{View::make('posts.extras.tipFavorites')}}
+@if ($counter == 2)
+  <?php
+      echo View::make('posts.extras.flip3dTest');
+  ?>
 @endif

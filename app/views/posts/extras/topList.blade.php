@@ -5,11 +5,30 @@
   } else {
     $channel = 'all';
   }
-  $hours = 12;
-  $posts = Post::getTopPosts($channel, $hours);
-  while ( count($posts) < 5) {
-    $hours = $hours * 2;
+
+  $postsReady = false;
+  $possibleTimeFrames = [12, 24, 72, 168];
+
+  // first check if $hours is set (through a get input)
+  if (isset($hours)) {
     $posts = Post::getTopPosts($channel, $hours);
+    if ($posts->count() > 4) {
+      $postsReady = true;
+      $numberOfHours = $hours;
+    }
+  }
+  if (!$postsReady) {
+    foreach ($possibleTimeFrames as $key => $hours) {
+      $posts = Post::getTopPosts($channel, $hours);
+      if ($posts->count() > 4) {
+        $numberOfHours = $hours;
+        break;
+      }
+    }
+  }
+
+  if ($posts->count() < 5 ) {
+    die('You need to update database with recent posts');
   }
 ?>
 <div class="post_wrapper toplist">
@@ -24,7 +43,7 @@
     '24'    =>  '24 hours',
     '72'    =>  '3 days',
     '168'   =>  '7 days'
-  ), '12', array('id' => 'topListScoper')) }}
+  ), $numberOfHours, array('id' => 'topListScoper')) }}
   {{ Form::close() }}
 
   <ul>
@@ -32,11 +51,13 @@
     <li>
       <div class="item">
         <div class="thumb">
-          {{View::make('images.topListThumb')->with('post',$post)}}
+          <a href ="{{$post->post_url}}">
+            {{View::make('images.topListThumb')->with('post',$post)}}
+          </a>
         </div>
         <div class="details">
-          <h3>{{$post->post_title}}</h3>
-          <h4>{{$post->blog_name}}</h4>
+          <h3><a href ="{{$post->post_url}}">{{$post->post_title}}</a></h3>
+          <h4>{{$post->blog->blog_name}}</h4>
         </div>
       </div>
     </li>

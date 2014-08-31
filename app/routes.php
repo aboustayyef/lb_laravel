@@ -50,6 +50,11 @@ Route::get('posts/saved', array(
   'uses'    =>  'PostsController@saved'
 ));
 
+Route::get('posts/search', array(
+  'as'      =>  'search',
+  'uses'    =>  'PostsController@search'
+));
+
 Route::get('posts/{channel?}', array(
   'as'=>'posts',
   'uses'=>'PostsController@show'
@@ -65,7 +70,7 @@ Route::get('/ajax/GetMorePosts', array(
 ));
 
 Route::get('/ajax/GetTop5', array(
-  'uses'  =>  'AjaxController@loadTopFivePostsJson'
+  'uses'  =>  'AjaxController@loadTopFivePosts'
 ));
 
 Route::get('/logout',function()

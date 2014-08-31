@@ -1,10 +1,10 @@
 <div id="sidebar">
-  <div class="close">
-    <a href ="#">&times;</a>
-  </div>
   <div id="scroller">
   <?php $ourUser = User::find(User::signedIn()) ?>
     <div id="userArea">
+      <div class="close">
+        <a href ="#">&times;</a>
+      </div>
       <div class="profilePicture">
         @if($ourUser)
           <img src="{{$ourUser->profileImage()}}" alt="">
@@ -32,8 +32,15 @@
     </div>
 
     <div id="channels">
+      <h3>Search Thousands of Posts</h3>
+      <div class="searchform">
+        {{Form::open(array( 'url' => 'posts/search', 'method' =>  'get' )) }}
 
-      <h3>Blog Channels</h3>
+        {{Form::text('q')}}
+        {{Form::submit('Find')}}
+        {{ Form::close() }}
+      </div>
+      <h3>Filter Posts By Topics</h3>
       <?php $currentChannel = Session::get('channel'); ?>
       <ul>
 
@@ -42,11 +49,13 @@
         </li>
         @foreach (Channel::$list as $channel)
         <li class ="categoryButton dynamicLink" data-destination="{{URL::to('/posts/'.$channel['name'])}}"
-        @if($channel['name'] == $currentChannel)
-          style="background: {{$channel['color']}}"
-        @else
-          style="border-left: solid 3px {{$channel['color']}}"
-        @endif
+        <?php if (!in_array(Session::get('pageKind'), ['favorites', 'saved', 'search'])): ?>
+          @if($channel['name'] == $currentChannel)
+            style="background: {{$channel['color']}}"
+          @else
+            style="border-left: solid 3px {{$channel['color']}}"
+          @endif
+        <?php endif; ?>
         >
           <i class ="fa {{$channel['icon']}}"></i> {{$channel['description']}}
         </li>

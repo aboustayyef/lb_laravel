@@ -12,9 +12,19 @@ class Post extends Eloquent{
 
 public static function getPosts($channel='all', $from=0, $amount=20){
   if (isset($channel) && $channel != 'all'){
-    $posts = self::where('post_tags','like', "%$channel%")->orderBy('post_timestamp','desc')->skip($from)->take($amount)->remember(5)->get();
+    $posts = self::where('post_tags','like', "%$channel%")->orderBy('post_timestamp','desc')->skip($from)->take($amount)->remember(1)->get();
   }else{
-    $posts = self::orderBy('post_timestamp','desc')->skip($from)->take($amount)->remember(5)->get();
+    $posts = self::orderBy('post_timestamp','desc')->skip($from)->take($amount)->remember(1)->get();
+  }
+  return $posts;
+}
+
+public static function getTopPosts($channel='all', $hours=12){
+  $targetTimeStamp = time() - ( $hours * 60 * 60 );
+  if (isset($channel) && $channel != 'all'){
+    $posts = self::where('post_timestamp' , '>' , $targetTimeStamp )->where('post_tags','like', "%$channel%")->orderBy('posts.post_socialScore','desc')->take(5)->get();
+  }else{
+    $posts = self::where('post_timestamp' , '>' , $targetTimeStamp )->orderBy('posts.post_socialScore','desc')->take(5)->get();
   }
   return $posts;
 }
@@ -56,7 +66,7 @@ public static function getFavoritePosts($userID, $from=0, $amount=20){
       ->orwhere('blogs.blog_tags', 'like', '%' . $channel . '%')
       ->orderBy('posts.post_timestamp','desc')
       ->skip($from)->take($amount)
-      ->remember(5)
+      ->remember(1)
       ->get();
     }else{
       $posts = DB::table('posts')
@@ -64,7 +74,7 @@ public static function getFavoritePosts($userID, $from=0, $amount=20){
       ->leftJoin('columnists', 'posts.blog_id', '=', 'columnists.col_shorthand')
       ->orderBy('posts.post_timestamp','desc')
       ->skip($from)->take($amount)
-      ->remember(5)
+      ->remember(1)
       ->get();
     }
 
@@ -92,7 +102,7 @@ public static function getFavoritePosts($userID, $from=0, $amount=20){
 | Gets Top Posts based on a timeframe
 */
 
-  public static function getTopPosts($channel='all', $hours=12){
+  public static function OLD_getTopPosts($channel='all', $hours=12){
     $seconds = $hours * 60 * 60;
     if (isset($channel) && $channel != 'all') {
       $posts = DB::table('posts')
@@ -105,7 +115,7 @@ public static function getFavoritePosts($userID, $from=0, $amount=20){
       })
       ->orderBy('posts.post_socialScore','desc')
       ->take(5)
-      ->remember(5)
+      ->remember(1)
       ->get();
     }else{
       $posts = DB::table('posts')
@@ -114,7 +124,7 @@ public static function getFavoritePosts($userID, $from=0, $amount=20){
       ->where('posts.post_timestamp','>', time()-$seconds)
       ->orderBy('posts.post_socialScore','desc')
       ->take(5)
-      ->remember(5)
+      ->remember(1)
       ->get();
     }
 

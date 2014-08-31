@@ -131,31 +131,50 @@ class articleCrawler extends BaseController
   {
     if ($this->_MainCrawler->filter($this->_contentSource)->count() > 0) {
       $this->_content = $this->_MainCrawler->filter($this->_contentSource)->html();
+
+      //Pipe raw content through sanitizing filters to produce cleaner output
+      $this->content = self::removeScriptTags($this->_content);
+      $this->content = self::removeEmptyTags($this->content);
+      $this->content = self::removeDivTags($this->content);
+      $this->content = trim($this->content);
+      return $this->content;
     } else {
       return 'Content Not Available';
     }
 
+    // Old stuff: remove if everything is working
     // try to sanitize it by removing javascript ..etc
-    $grossContentCrawler = new Crawler($this->_content);
-    $paragraphs = $grossContentCrawler->filter('p');
-    $finalContent = '';
-    if ($paragraphs->count() > 0) {
-      foreach ($paragraphs as $key => $paragraph) {
-        $paragraph = new Crawler($paragraph);
-        $finalContent .= '<p>'. $paragraph->text()."</p>\n";
-      }
-      $this->_content = $finalContent;
-      return trim(strip_tags($this->_content));
-    }else{
-      return trim(strip_tags($this->_content));
-    }
+    // $grossContentCrawler = new Crawler($this->_content);
+    // $paragraphs = $grossContentCrawler->filter('p');
+    // $finalContent = '';
+    // if ($paragraphs->count() > 0) {
+    //   foreach ($paragraphs as $key => $paragraph) {
+    //     $paragraph = new Crawler($paragraph);
+    //     $finalContent .= '<p>'. $paragraph->html()."</p>\n";
+    //   }
+    //   $this->_content = $finalContent;
+    //   return trim(html_entity_decode(strip_tags($this->_content)));
+    // }else{
+    //   return trim(html_entity_decode(strip_tags($this->_content)));
+    // }
   }
-
   public function getExcerpt()
   {
     if (empty($this->_content)) {
       $this->getContent();
     }
-    return trim(strip_tags(substr($this->_content, 0,128))).' ...';
+    return substr(strip_tags($this->_content), 0,128).' ...';
+  }
+  public static function removeScriptTags($ourString){
+    $result = preg_replace("#<script>.+</script>#uiUs", " ", $ourString);
+    return $result;
+  }
+  public static function removeEmptyTags($ourString){
+    $result = preg_replace("#<[a-zA-Z]+>\\s*</[a-zA-Z]+>#uiUs", " ", $ourString);
+    return $result;
+  }
+  public static function removeDivTags($ourString){
+    $result = preg_replace("#<div .+>|<\\/div>#uiUs", " ", $ourString);
+    return $result;
   }
 }

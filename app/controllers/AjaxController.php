@@ -16,18 +16,19 @@ class AjaxController extends BaseController
       $from = Input::Get('startFrom');
 
       // If this is a blogger's page, return more of that blogger's posts
-
-      if ((Session::has('pageKind')) && (Session::get('pageKind') == 'blogger')) {
+      $pageKind = Session::get('pageKind');
+      if ((!empty($pageKind)) && ($pageKind == 'blogger')) {
         $blogger = Session::get('blogger');
         $posts = Post::getPostsByBlogger($blogger, $from, $amount);
 
       // If this is a favorites page, return more posts from favorite blogs
 
-      } elseif  ((Session::has('pageKind')) && (Session::get('pageKind') == 'favorites')){
+      } elseif  ($pageKind == 'favorites'){
         $posts = Post::getFavoritePosts(Session::get('lb_user_id'), $from, $amount);
-
       // Otherwise return everything
-
+      } elseif  ($pageKind == 'search'){
+        return Null;
+      // Otherwise return everything
       } else {
         // otherwise, return the normal stuff
         $channel = Session::get('channel');
@@ -44,11 +45,19 @@ class AjaxController extends BaseController
 
     }
 
+/*******************************************************************
+* This Function returns a JSON object with top 5 posts
+*
+********************************************************************/
+    function loadTopFivePosts(){
+      $hours = Input::Get('hours');
+      return View::Make('posts.extras.toplist')->with('hours',$hours);
+    }
 
-    /*******************************************************************
-    *	This Function returns a JSON object with top 5 posts
-    *
-    ********************************************************************/
+/*******************************************************************
+*	This Function returns a JSON object with top 5 posts
+*
+********************************************************************/
     function loadTopFivePostsJson(){
     	$hours = Input::Get('hours');
     	$channel = Session::get('channel');

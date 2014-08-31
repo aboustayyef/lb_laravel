@@ -13,7 +13,6 @@
         // Set up app Variables that require php and blade logic
           lbApp.imagePlaceHolder = '{{asset('/img/grey.gif')}}';
           lbApp.rootPath = '{{URL::to('/')}}';
-          lbApp.ajaxTop5Path = '{{URL::to('/ajax/GetTop5')}}';
 
       </script>
       <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
