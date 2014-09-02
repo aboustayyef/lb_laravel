@@ -49,6 +49,25 @@ public static function getFavoritePosts($userID, $from=0, $amount=20){
   return $posts;
 }
 
+/*
+|--------------------------------------------------------------------------
+| get Saved posts interval
+|--------------------------------------------------------------------------
+| gets an interval of posts from Saved Posts
+*/
+
+public static function getSavedPosts($userID, $from=0, $amount=20){
+  $user = User::find($userID);
+  $listOfPostIds = $user->posts->lists('post_id');
+  if (count($listOfPostIds) == 0) { // no saved posts
+    return false;
+  }
+  $posts = Post::whereIn('post_id', $listOfPostIds)
+          ->orderBy('post_timestamp','desc')
+          ->skip($from)->take($amount)->get();
+  return $posts;
+}
+
 
 /*
 |--------------------------------------------------------------------------

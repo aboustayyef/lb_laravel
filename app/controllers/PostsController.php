@@ -52,11 +52,11 @@
           'from'=>0,
           'to'=>20,
           'windowDetails' => array(
-            'left-message'    =>    ['Favorites: ','15'], // second figure is width percentage
+            'left-message'    =>    ['Favorites','15'], // second figure is width percentage
             'right-message'   =>    ['Posts by your favorite bloggers', '85' ],
             'color'           =>    '#ffcc66'
           ),
-          ));
+        ));
       } else {
         return View::make('posts.noFavoritesYet')->with(array(
           'pageTitle'=>'No Favorites Yet',
@@ -66,7 +66,29 @@
     }
 
     public function saved(){
-      return View::make('posts.saved');
+      $userID = User::signedIn();
+      Session::put('pageKind', 'saved');
+      $pageTitle = "Reading List";
+      $pageDescription ="";
+      $posts = Post::getSavedPosts($userID);
+      if ($posts) {
+        return View::make('posts.main')->with(array(
+          'pageTitle'=>$pageTitle,
+          'pageDescription'=> $pageDescription,
+          'posts'=>$posts ,
+          'from'=>0,
+          'to'=>20,
+          'windowDetails' => array(
+            'left-message'    =>    ['Reading List','15'], // second figure is width percentage
+            'right-message'   =>    ['Posts you marked for reading later', '85' ],
+            'color'           =>    '#ffcc66'
+          ),
+        ));
+      } else {
+        return View::make('posts.noSavedYet')->with(array(
+          'pageTitle'=>'No Saved Posts Yet',
+          'pageDescription'=> ''));
+      }
     }
 
     public function search(){

@@ -71,9 +71,21 @@ body {
           transform: translate(-190px, -210px);
   text-align: center; }
   .modalWindow p {
-    color: #666;
-    margin: 10px 0;
-    font-size: 0.8em; }
+    color: #aaa;
+    margin: 10px auto;
+    font-size: 0.7em;
+    line-height: 15px;
+    width: 280px;
+    margin-top: 20px; }
+  .modalWindow .tip {
+    margin: 5px auto;
+    padding: 5px;
+    margin: 10px auto;
+    border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
+    font-size: 0.8em;
+    background: #f7f7f7;
+    width: 240px; }
   .modalWindow a {
     display: block;
     text-decoration: none;
@@ -83,7 +95,7 @@ body {
       margin: auto;
       margin-top: 7px;
       color: white;
-      padding: 10px;
+      padding: 8px;
       padding-left: 60px;
       width: 240px;
       -webkit-background-size: 42px 126px;
@@ -94,7 +106,8 @@ body {
       letter-spacing: 0.5px; }
       .modalWindow a.btn.facebook {
         background-position-y: 0;
-        background-color: #3b5998; }
+        background-color: #3b5998;
+        margin-top: 20px; }
       .modalWindow a.btn.twitter {
         background-position-y: -42px;
         background-color: #55ACEE; }
@@ -108,4 +121,6 @@ body {
       width: 280px;
       -webkit-transform: translate(-140px, -210px);
           -ms-transform: translate(-140px, -210px);
-              transform: translate(-140px, -210px); } }
+              transform: translate(-140px, -210px); }
+      .modalWindow p {
+        width: 210px; } }

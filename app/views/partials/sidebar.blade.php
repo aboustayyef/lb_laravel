@@ -18,15 +18,15 @@
           <div class="tools">
             <ul>
               <li><i class="fa fa-star"></i><a href="/posts/favorites">Favorite Blogs</a> <span class="amount favorites">{{$ourUser->howManyFavoritedBlogs()}}</span></li>
-              <li><i class="fa fa-list-alt"></i><a href="#">Saved Posts</a> <span class="amount saved">{{$ourUser->howManySavedPosts()}}</span></li>
+              <li><i class="fa fa-list-alt"></i><a href="/posts/saved">Saved Posts</a> <span class="amount saved">{{$ourUser->howManySavedPosts()}}</span></li>
               <li><i class="fa fa-sign-out"></i><a href="{{URL::to('/logout')}}">Sign Out</a></li>
             </ul>
           </div>
         </div>
       @else
         <div class="login">
-          <a href="{{URL::to('/login')}}">Sign in</a>
-          <p>Login for free to use features like favoriting blogs, saving posts and, if you're a blogger, editing &amp; organizing your posts</p>
+          <a href="{{URL::to('/login')}}">Log in</a>
+          <p>Enable features like favoriting blogs, saving posts and, if you're a blogger, editing &amp; organizing your posts</p>
         </div>
       @endif
     </div>

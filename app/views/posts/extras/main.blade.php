@@ -15,6 +15,6 @@
 
 @if ($counter == 2)
   <?php
-      echo View::make('posts.extras.flip3dTest');
+      //echo View::make('posts.extras.flip3dTest');
   ?>
 @endif

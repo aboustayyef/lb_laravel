@@ -50,6 +50,17 @@ Route::get('posts/saved', array(
   'uses'    =>  'PostsController@saved'
 ));
 
+Route::get('posts/saved/add/{postId}', array(
+  'as'      =>  'addsaved',
+  'uses'   =>  'SavedController@add'
+));
+
+Route::get('posts/saved/remove/{postId}', array(
+  'as'      =>  'removesaved',
+  'uses'   =>  'SavedController@remove'
+));
+
+
 Route::get('posts/search', array(
   'as'      =>  'search',
   'uses'    =>  'PostsController@search'

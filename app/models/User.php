@@ -72,6 +72,21 @@ class User extends Eloquent
     return $this->posts->count();
   }
 
+
+/*
+|---------------------------------------------------------------------
+|   see if a blog belong to users' favorites
+|---------------------------------------------------------------------
+|
+*/
+  public function hasSavedPost($post_id){
+    if (in_array($post_id, $this->posts->lists('post_id'))) {
+      return true;
+    }
+    return false;
+  }
+
+
 /*
 |---------------------------------------------------------------------
 |   Get posts saved by user
@@ -90,22 +105,6 @@ class User extends Eloquent
     }
     return $listOfPostUrls;
   }
-
-
-  /*
-  |--------------------------------------------------------------------------
-  | Find out if post is saved by user
-  |--------------------------------------------------------------------------
-  | return true if a post is saved by user
-  */
-
-  public function hasSavedPost($postUrl){
-    if (DB::table('users_posts')->where('user_id',$this->user_id)->where('post_url', $postUrl)->count() > 0) {
-      return true;
-    }
-    return false;
-  }
-
 
 
   public function profileImage(){

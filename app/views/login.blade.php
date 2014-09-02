@@ -16,11 +16,11 @@
 <h3>{{Session::get('message')}}</h3>
 @endif
 <img src="{{asset('/img/square-logo.png')}}" width="60px" height="60px" alt="Lebanese Blogs Logo">
-<h2>Login to Access Extra Features</h2>
+<div class="tip">Bloggers! Sign in with twitter so you can edit your profile and posts</div>
 <a class ="btn facebook "href="{{URL::to('/auth/facebook')}}">Sign In With Facebook</a>
 <a class ="btn twitter "href="{{URL::to('/auth/twitter')}}">Sign In With Twitter</a>
 <a class ="btn google "href="{{URL::to('/auth/google')}}">Sign In With Google</a>
-<p>We respect your privacy. We will not share your email address and we won't spam you. We only need it to get in touch with you if something is wrong with your account</p>
+<p>We respect your privacy. We won't share your email and we won't spam you. We only get in touch with you if something is wrong with your account</p>
 
 </div>
 

@@ -8576,6 +8576,17 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/js\/lb.sources\/lb.saved.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/js\/lb.sources\/lb.saved.js",
+		"outputAbbreviatedPath": "\/js\/lb.sources\/min\/lb.saved-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/js\/lb.sources\/lb.toplist.js": {
 		"fileType": 64,
 		"ignore": 1,
@@ -8920,6 +8931,12 @@
 			"followForSyntaxChecking": 1,
 			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.favorites.js",
 			"position": 5,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.saved.js",
+			"position": 6,
 			"type": 0
 			}
 		]

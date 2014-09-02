@@ -19,10 +19,25 @@ body{
   border: 1px solid silver;
   transform: translate(-190px, -210px);
   text-align: center;
+
   p{
-    color: #666;
-    margin: 10px 0;
+    color: #aaa;
+    margin: 10px auto;
+    font-size: 0.7em;
+    line-height:15px;
+    width: 280px;
+    margin-top:20px;
+  }
+  .tip
+  {
+    margin: 5px auto;
+    padding: 5px;
+    margin:10px auto;
+    border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
     font-size: 0.8em;
+    background: rgb(247, 247, 247);
+    width:240px;
   }
   a{
     display:block;
@@ -33,7 +48,7 @@ body{
       margin:auto;
       margin-top:7px;
       color: white;
-      padding:10px;
+      padding:8px;
       padding-left:60px;
       width: 240px;
       background-size: 42px 126px;
@@ -44,6 +59,7 @@ body{
       &.facebook{
         background-position-y:0;
         background-color: #3b5998;
+        margin-top:20px;
       }
       &.twitter{
         background-position-y:-42px;
@@ -61,5 +77,8 @@ body{
   @media screen and (max-width:400px){
     width: 280px;
     transform: translate(-140px, -210px);
+    p{
+      width:210px;
+    }
   }
 }
