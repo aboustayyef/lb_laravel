@@ -43,7 +43,7 @@ class updateVirality extends Command {
     if ($this->argument('hours')) {
       $hours = $this->argument('hours');
     } else {
-      $hours = 24 * 60; // default is 60 days
+      $hours = 24; // default is 1 day
     }
 
     // convert timeframe to timestamp
