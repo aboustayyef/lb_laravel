@@ -7,7 +7,7 @@ div.posts.cards{
     margin-left:10px;
   }
   margin: auto;
-  margin-top:20px;
+  margin-top:30px;
   div.post_wrapper{
     visibility:hidden;
     background:white;
@@ -164,29 +164,9 @@ div.posts.cards{
     }
   }
 }
-#flipme{
-  // tutorial: http://desandro.github.io/3dtransforms/docs/card-flip.html
-  perspective: 800px;
-  transform-style: preserve-3d;
-  transition: transform 1s;
-  position:absolute;
-  width:100%;
-  height:100%;
-  .side {
-    backface-visibility: hidden;
-    display:block;
-    position:absolute;
-    width:100%;
-    height:100%;
+
+div.posts.cards{
+  @media screen and (max-width:360px){
+    margin-top:20px;
   }
-  .front{
-    background:beige;
-  }
-  .back{
-    background:silver;
-    transform: rotateY(180deg);
-  }
-}
-#flipme.flipped{
-  transform:rotateY(180deg);
 }

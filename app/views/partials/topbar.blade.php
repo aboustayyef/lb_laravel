@@ -10,8 +10,9 @@
 	</div>
 	<div id="aboutMenu">
 		<ul>
-			<li><a href="">What is this Website?</a></li>
-			<li><a href="">Submit Your Blog</a></li>
+			<li><a href="{{URL::to('/about')}}">What is this Website?</a></li>
+			<li><a href="{{URL::to('/about/faq')}}">Frequently Asked Question</a></li>
+      <li><a href="">Submit Your Blog</a></li>
 			<li><a href="">Submit Feedback</a></li>
 			<li><a href="">Our own Blog</a></li>
 			<li><a href="">Admin</a></li>

@@ -2,10 +2,20 @@ lbApp.resizeViewport = function(){
   // this function is only used with cards
   // it serves to recalculate the viewport's width to center the posts
 
-  var columns = Math.floor(($(window).width())/320);
+  var columns = Math.floor((($(window).width() ))/320);
+
   $('div.posts').css('width',columns*320);
 
-  // masonry automatically reflow posts on resize, so no need for custom reflowing of posts.
+  // position logo to be alligned with posts
+  if ($(window).width() > 430) {
+    var $leftMargin = parseInt($('div.posts').css('margin-left'));
+    var $logoMargin = $leftMargin - 50 + 10 ;
+    if ($logoMargin > 10) {
+     $('#logo').css('margin-left', $logoMargin + 'px');
+    }else{
+      $('#logo').css('margin-left', '10px');
+    };
+  };
 }
 
 lbApp.loadLazyImages = function(){

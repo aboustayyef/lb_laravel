@@ -13,8 +13,8 @@
   ?>
 @endif
 
-@if ($counter == 2)
+@if ($counter == 4)
   <?php
-      //echo View::make('posts.extras.flip3dTest');
+      echo View::make('posts.extras.tips');
   ?>
 @endif

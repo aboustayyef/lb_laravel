@@ -64,7 +64,7 @@ a {
 
 div.posts.cards {
   margin: auto;
-  margin-top: 20px; }
+  margin-top: 30px; }
   div.posts.cards .rtl {
     font-family: sans-serif;
     direction: rtl;
@@ -196,33 +196,9 @@ div.posts.cards {
     div.posts.cards div.post_wrapper .action.active + div.bubblewrapper {
       display: block; }
 
-#flipme {
-  -webkit-perspective: 800px;
-          perspective: 800px;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  -webkit-transition: -webkit-transform 1s;
-          transition: transform 1s;
-  position: absolute;
-  width: 100%;
-  height: 100%; }
-  #flipme .side {
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%; }
-  #flipme .front {
-    background: beige; }
-  #flipme .back {
-    background: silver;
-    -webkit-transform: rotateY(180deg);
-            transform: rotateY(180deg); }
-
-#flipme.flipped {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg); }
+@media screen and (max-width: 360px) {
+  div.posts.cards {
+    margin-top: 20px; } }
 
 div.bubblewrapper {
   font-size: 0.85em;

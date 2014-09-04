@@ -91,6 +91,25 @@ Route::get('/logout',function()
   return Redirect::to('/')->withCookie($cookie);
 });
 
+
+/*
+|--------------------------------------------------------------------------
+| Static routes
+|--------------------------------------------------------------------------
+| These are the routes to take us to static pages
+*/
+
+Route::get('/about/{slug?}', array(
+  'as'    =>  'staticpages',
+  'uses'  =>  'StaticPagesController@index'
+));
+
+Route::post('/about/{slug?}', array(
+  'as'  =>  'submition',
+  'uses'  =>  'StaticPagesController@submit'
+));
+
+
 /*
 |---------------------------------------------------------------------
 |   Authentication Routes

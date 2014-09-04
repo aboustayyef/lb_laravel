@@ -1,0 +1,213 @@
+@import "reset";
+@import "variables";
+
+
+body{
+  margin:0;
+  padding:0;
+  font-size:16px;
+}
+a{
+  color: $brand-color;
+  text-decoration: none;
+}
+
+.inner{
+    width: 900px;
+    margin:0 auto;
+}
+em{
+  font-style:italic;
+}
+
+// --------------------------------------------------
+// Typography
+// --------------------------------------------------
+
+body{
+  font-family: Helvetica,Arial,Sans-Serif;
+}
+h1,h2,p{
+  margin:30px 0;
+}
+cite{
+  display: block;
+  margin-bottom:10px;
+}
+h1{
+  font-size:28px;
+}
+p{
+  &.lead{
+    font-size:20px;
+    line-height: 24px;
+    font-weight: lighter;
+  }
+}
+
+h2{
+  font-size:22px;
+  color: $brand-color;
+}
+
+blockquote{
+  padding:5px;
+  &:before{
+    content:"“ ";
+    color:$brand-color;
+    font-size:20px;
+  }
+  &:after{
+    content:" ”";
+    color:$brand-color;
+    font-size:20px;
+  }
+}
+ul.criteria{
+  list-style-type:circle;
+  li{
+    margin-top:10px;
+  }
+}
+
+
+
+form{
+  margin-top:20px;
+  margin-bottom:30px;
+}
+
+label{
+  display:block;
+  margin: 5px 0;
+}
+input{
+  padding:5px;
+  width:100%;
+}
+input[type="submit"]{
+  width:100px;
+  padding:10px;
+  margin-top:10px;
+}
+
+// --------------------------------------------------
+// Header
+// --------------------------------------------------
+
+header{
+  background: $brand-color;
+  width: 100%;
+  height: $header-height;
+  postion:fixed;
+  top:0;
+  left:0;
+  .inner{
+      #logo{
+      margin-left:10px;
+      text-indent:-999px;
+      width:150px;
+      height: 50px;
+      background: url(../img/logo-mobile.png);
+      background-repeat: no-repeat;
+      background-size: 150px 40px;
+      background-position-y:5px;
+      @media screen and (min-width:401px)
+      {
+        margin-left:0;
+        width:250px;
+        background: url(../img/logo.png);
+        background-repeat: no-repeat;
+        background-size: 250px 40px;
+        background-position-y:5px;
+      }
+    }
+  }
+}
+
+// --------------------------------------------------
+// Wrapper
+// --------------------------------------------------
+
+#wrapper{
+  width: 900px;
+  margin:30px auto;
+}
+
+
+// --------------------------------------------------
+// Content
+// --------------------------------------------------
+.content{
+  width:66%;
+  margin-right:4%;
+  float:left;
+  @media screen and (max-width:600px){
+    float:right;
+    width:100%;
+    margin-right:0;
+    padding: 0 5%;
+  }
+}
+.testimonials{
+  font-size:0.8em;
+  padding:15px 20px;
+  border: 1px solid silver;
+}
+
+
+// --------------------------------------------------
+// Sidebar
+// --------------------------------------------------
+
+aside{
+  margin-top:30px;
+  width:30%;
+  float:right;
+  ul{
+    list-style-type: none;
+  }
+  li{
+    padding:15px 0 15px 15px;
+    border-top:1px solid silver;
+    line-height:20px;
+    &:after{
+      content: "›";
+      float:right;
+      font-size:26px;
+
+    }
+  }
+  a.active li{
+    background-color:darken(#fff, 2);
+    color:black;
+    &:after{
+      content:"";
+    }
+  }
+  @media screen and (max-width:600px){
+    float:left;
+    width:100%;
+  }
+}
+
+
+// --------------------------------------------------
+// footer
+// --------------------------------------------------
+footer{
+  clear:both;
+  margin-top:30px;
+}
+
+@media all and (max-width: 1000px){
+  #wrapper, header .inner , footer .inner{
+    width: 600px;
+  }
+}
+
+@media all and (max-width: 600px){
+  #wrapper, header .inner , footer .inner{
+    width: 90%;
+  }
+}
