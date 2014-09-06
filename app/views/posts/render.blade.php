@@ -18,7 +18,9 @@ it can be used for ajax as well as normal display
     <?php
       $blog = Blog::where('blog_id',$post->blog_id)->remember(15)->first();
     ?>
-      <div class="post_wrapper">
+      <div class="post_wrapper"> <!-- /For grouping items together -->
+
+        <div class="card">
         <!-- Blog Header -->
         <div class="blog_header">
 
@@ -85,6 +87,7 @@ it can be used for ajax as well as normal display
             <i class="fa fa-share"></i> More
         </div>
         {{View::make('posts.partials.sharemenu')->with(['post'=>$post,'ourUser'=>$ourUser])}}
+        </div>
       </div> <!-- /post wrapper -->
       <?php $counter++ ?>
   @endforeach

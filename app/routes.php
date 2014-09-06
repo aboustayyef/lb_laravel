@@ -134,6 +134,14 @@ Route::get('/auth/{provider}/callback', array(
   'uses'  =>  'AuthenticationController@callback'
 ));
 
+Route::get('test', function(){
+  $test = new imageAnalyzer('http://local2.lebaneseblogs.com/img/cache/1409673840_blogbaladi.jpg');
+  $hue = $test->getDominantHue();
+  echo '<div style="height:140px;width:140px;background-color:hsl(' . $hue . ',30%,75%)"></div>';
+  echo '<div style="height:140px;width:140px;background-color:hsl(' . $hue . ',20%,75%)"></div>';
+  echo '<div style="height:140px;width:140px;background-color:hsl(' . $hue . ',15%,75%)"></div>';
+});
+
 
 /*
 |---------------------------------------------------------------------

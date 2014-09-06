@@ -25,6 +25,10 @@ lbApp.loadLazyImages = function(){
   });
 }
 
+lbApp.fixViewportHeight = function(){
+  $('#momentumScrollingViewport').height($(window).height());
+}
+
 lbApp.flowPosts = function(){
 
   // This function is only used with cards

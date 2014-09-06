@@ -3,7 +3,11 @@ $(window).load(function(){
   // cards specific action. Fix layout before showing posts
   if ($('.posts').hasClass('cards')) {
       lbApp.resizeViewport();
+      lbApp.fixViewportHeight();
       lbApp.flowPosts();
+
+      // momentum scrolling hack
+      $('#momentumScrollingViewport').css('-webkit-overflow-scrolling: touch;');
   };
 
   // show initial posts
@@ -25,19 +29,23 @@ $(window).load(function(){
 $( window ).on('resize', function(){
   if ($('.posts').hasClass('cards')) {
       lbApp.resizeViewport();
+      lbApp.fixViewportHeight();
+      lbApp.checkIfMorePostsNeedToBeAdded();
   };
 });
 
-$( window ).on('scroll', function(){
-  if (!lbApp.busy) {
-    $viewHeight = $(window).height();
-    $docHeight = $(document).height();
-    $scrollAmount = $(window).scrollTop();
-    $bottomOfPage = $docHeight - $viewHeight;
+$('#momentumScrollingViewport').on('scroll', function(){
+  lbApp.checkIfMorePostsNeedToBeAdded();
+});
 
-    if (($(window).scrollTop()) > ($bottomOfPage-(2*($viewHeight)))) {
+lbApp.checkIfMorePostsNeedToBeAdded = function(){
+  if (!lbApp.busy) {
+    $heightOfContent = $('#content').height(); // the height of the total posts content
+    $positionOfContentTop = $('#content').position().top; // a negative number indicating how far content has scrolled
+    $distanceToBottom = $heightOfContent + $positionOfContentTop;
+    if ($distanceToBottom < 1500) { // add more posts whenever there's a thousand pixels to bottom
         lbApp.showPostsLoadingIndicator();
         lbApp.addMorePosts();
     };
   };
-})
+}
