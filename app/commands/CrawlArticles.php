@@ -182,6 +182,7 @@ class CrawlArticles extends Command {
         $post->post_image_width = $article_image_width ;
         $post->post_image_height = $article_image_height ;
         $post->post_visits = 0 ;
+        $post->post_image_hue = 0;
         $post->post_tags = $this->columnist->col_tags;
         try {
           $post->save();
@@ -214,17 +215,35 @@ class CrawlArticles extends Command {
 
         // Cache image if exists. Flatten and convert to jpg;
         if ($article_image) { // image exists
+
           // cache it
-          if ($image = new Imagick($article_image))
-          {
-            $image = $image->flattenImages();
-            $image->setFormat('JPEG');
-            $image->thumbnailImage(300,0);
-            $outFile = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/' . $article_timestamp.'_'.$domain.'.jpg';//.Lb_functions::get_image_format($blog_post_image);
-            echo $outFile;
-            $image->writeImage($outFile);
-            $this->comment('Image added to cache folder');
-           };
+          $candidateCachingFile = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/' . $article_timestamp.'_'.$domain.'.jpg' ;
+          if (!file_exists($candidateCachingFile)) {
+            if ($image = new Imagick($article_image))
+            {
+              $image = $image->flattenImages();
+              $image->setFormat('JPEG');
+              $image->thumbnailImage(300,0);
+              $outFile = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/' . $article_timestamp.'_'.$domain.'.jpg';//.Lb_functions::get_image_format($blog_post_image);
+              echo $outFile;
+              $image->writeImage($outFile);
+              $this->comment('Image added to cache folder');
+
+              // add hue color
+              $imageAnalyzer = new imageAnalyzer($outFile);
+              $hue = $imageAnalyzer->getDominantHue();
+              $post->post_image_hue = $hue;
+              try {
+                $post->save();
+                $this->comment('Hue added');
+              } catch (Exception $e) {
+                $this->error('could not save hue');
+              }
+            };
+          }else{
+            $this->info('Cache image ' . $candidateCachingFile . ' already exists');
+          }
+
         }
 
       }

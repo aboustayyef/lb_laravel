@@ -193,6 +193,7 @@ class CrawlRss extends Command {
         $post->post_image_width = $blog_post_image_width ;
         $post->post_image_height = $blog_post_image_height ;
         $post->post_visits = 0 ;
+        $post->post_image_hue = 0 ;
         $post->post_tags = $this->blog->blog_tags;
         try {
           $post->save();
@@ -219,25 +220,39 @@ class CrawlRss extends Command {
 
           $this->comment('New Post Saved: "' . $blog_post_title . '"');
         } catch (Exception $e) {
-          $this->error('Cannot save post [' . $this->post_title . ']' );
+          $this->error('Cannot save post [' . $blog_post_title . ']' );
         }
 
 
         // Cache image if exists. Flatten and convert to jpg;
-        if ($blog_post_image) { // image exists
-          // cache it
-          if ($image = new Imagick($blog_post_image))
-          {
-            $image = $image->flattenImages();
-            $image->setFormat('JPEG');
-            $image->thumbnailImage(300,0);
-            $outFile = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/' . $blog_post_timestamp.'_'.$domain.'.jpg';//.Lb_functions::get_image_format($blog_post_image);
-            echo $outFile;
-            $image->writeImage($outFile);
-            $this->comment('Image added to cache folder');
-           };
-        }
+        $candidateCachingFile = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/' . $blog_post_timestamp.'_'.$domain.'.jpg' ;
+        if (!file_exists($candidateCachingFile)) {
+          if ($blog_post_image) { // image exists
+            // cache it
+            if ($image = new Imagick($blog_post_image))
+            {
+              $image = $image->flattenImages();
+              $image->setFormat('JPEG');
+              $image->thumbnailImage(300,0);
+              $outFile = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/' . $blog_post_timestamp.'_'.$domain.'.jpg';//.Lb_functions::get_image_format($blog_post_image);
+              $image->writeImage($outFile);
+              $this->comment('Image added to cache folder');
 
+              // add hue color
+              $imageAnalyzer = new imageAnalyzer($outFile);
+              $hue = $imageAnalyzer->getDominantHue();
+              $post->post_image_hue = $hue;
+              try {
+                $post->save();
+                $this->comment('Hue added');
+              } catch (Exception $e) {
+                $this->error('could not save hue');
+              }
+             };
+          }
+        }else{
+          $this->info('Cache image ' . $candidateCachingFile . ' already exists');
+        }
       }
 
     } // end foreach feed item
