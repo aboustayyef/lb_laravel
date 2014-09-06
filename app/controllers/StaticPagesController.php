@@ -24,24 +24,34 @@ class StaticPagesController extends \BaseController {
   {
     if (in_array($slug, ['submit', 'feedback'])) {
       $rulesSubmit = [
+        'url' =>  'required',
         'email' =>  'required|email',
-        'twitter' =>  'required',
-        'url' =>  'required'
+        'twitter' =>  'required'
       ];
 
-      $rulesFeedback = [];
+      $rulesFeedback = [
+        'email' =>  'required|email',
+        'feedback'  => 'required|min:10'
+      ];
+
       $validator = Validator::make(Input::all(), $rulesSubmit);
       if ($validator->fails()) {
+        // put values in a flash session
         Input::flash();
         return View::make('static.submit', ['slug'  =>  'submit'])->withErrors($validator);
-        echo '<pre>',var_dump($validator->messages()),'</pre>';
       }
+
+      // if everything is okay
+
       $data = ['twitter' => Input::get('twitter'), 'email'=>Input::get('email'), 'url'  =>  Input::get('url')];
-      Mail::send('emails.submission', $data, function($message)
+      Mail::queue('emails.submission', $data, function($message)
       {
           $message->from('mustapha.hamoui@gmail.com', 'Lebanese Blogs');
           $message->to('mustapha.hamoui@gmail.com', 'Mustapha Hamoui')->subject('[ Blog Submission ]');
       });
+      Session::flash('message', 'Your blog has been submitted. Please permit a few days to process it.');
+      return View::make('static.submit', ['slug'  =>  'submit']);
+      // if neither submit nor feedback
      } else {
       return Redirect::to('/posts/all');
      }

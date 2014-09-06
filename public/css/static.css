@@ -49,14 +49,34 @@ table {
 * {
   box-sizing: Border-box; }
 
+html {
+  height: 100%; }
+
 body {
   margin: 0;
   padding: 0;
-  font-size: 16px; }
+  font-size: 16px;
+  height: 100%; }
 
 a {
   color: #b12530;
   text-decoration: none; }
+
+.message {
+  margin-top: 30px;
+  padding: 10px; }
+  .message li {
+    margin-top: 5px; }
+
+small {
+  color: #888;
+  font-size: 0.8em; }
+
+.warning {
+  background: #FFF1F2; }
+
+.allok {
+  background: #F4FFF1; }
 
 .inner {
   width: 900px;
@@ -145,9 +165,13 @@ header {
         background-size: 250px 40px;
         background-position-y: 5px; } }
 
-#wrapper {
-  width: 900px;
-  margin: 30px auto; }
+#pageWrapper {
+  min-height: 100%;
+  position: relative; }
+
+#contentWrapper {
+  overflow: auto;
+  padding-bottom: 50px; }
 
 .content {
   width: 66%;
@@ -157,8 +181,7 @@ header {
     .content {
       float: right;
       width: 100%;
-      margin-right: 0;
-      padding: 0 5%; } }
+      margin-right: 0; } }
 
 .testimonials {
   font-size: 0.8em;
@@ -191,11 +214,22 @@ aside {
 
 footer {
   clear: both;
-  margin-top: 30px; }
+  font-size: 0.8em;
+  color: sivler;
+  margin-top: 20px;
+  border-top: 1px solid #b12530;
+  padding: 5px;
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%; }
+  footer .inner {
+    padding-top: 10px; }
 
 @media all and (max-width: 1000px) {
-  #wrapper, header .inner, footer .inner {
+  .inner {
     width: 600px; } }
 @media all and (max-width: 600px) {
-  #wrapper, header .inner, footer .inner {
+  .inner {
     width: 90%; } }

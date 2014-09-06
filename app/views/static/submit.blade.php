@@ -3,12 +3,16 @@
 
 <?php
   if($errors->count() > 0):
-    echo '<ul class="errors">';
+    echo '<ul class="message warning">';
     foreach ($errors->all() as $key => $message) {
       echo '<li>' . $message . '</li>';
     };
     echo '</ul>';
+  elseif (Session::has('message')):
+    echo '<div class="message allok"><p>' . Session::get('message'). '</p>';
+    echo '<a href="' . URL::to('/posts/all') . '">&larr; back to lebanese blogs</a></div>';
   endif;
+
 ?>
 
 <h1>Submit Your Blog</h1>
@@ -22,7 +26,7 @@
   <li>The blog should not be a vehicle for ads or spam in the posts</li>
 </ul>
 
-<h2>Submit Here</h2>
+<h2>Submit Here <small>(all fields are required)</small></h2>
 
 <?php
 
@@ -59,7 +63,6 @@
 
 {{ Form::label('twitter', 'Twitter Handle')}}
 {{ Form::text('twitter', $defaultTwitter, ['placeholder' => '@myTwitter']) }}
-
 
 {{ Form::submit('Submit it') }}
 
