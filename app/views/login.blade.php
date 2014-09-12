@@ -15,6 +15,7 @@
 @if (Session::has('message'))
 <h3>{{Session::get('message')}}</h3>
 @endif
+
 <img src="{{asset('/img/square-logo.png')}}" width="60px" height="60px" alt="Lebanese Blogs Logo">
 <div class="tip">Bloggers! Sign in with twitter so you can edit your profile and posts</div>
 <a class ="btn facebook "href="{{URL::to('/auth/facebook')}}">Sign In With Facebook</a>

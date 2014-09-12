@@ -1,20 +1,40 @@
 {{-- This view handles the routing for the extra cards --}}
 
-@if ($counter == 1)
+
+@if ($counter == 0)
   <?php
     $pageKind = Session::get('pageKind');
-    if ((!empty($pageKind)) && ($pageKind == 'blogger')) {
-      echo View::make('posts.extras.topBloggerList');
-    }elseif (in_array($pageKind, ['search','favorites','saved'])){
-      #don't show top posts for kinds in that array
-    } else{
-      echo View::make('posts.extras.topList');
-    }
   ?>
+
+  @if ($pageKind == 'blogger')
+    @include('posts.extras.topBloggerList')
+    <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
+
+  @elseif ($pageKind == 'following')
+    <div class="post_wrapper"> <!-- on its own, not part of top list -->
+      @include('posts.extras.user')
+    </div>
+    <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
+
+  @elseif ($pageKind == 'liked')
+    <div class="post_wrapper"> <!-- on its own, not part of top list -->
+      @include('posts.extras.user')
+    </div>
+    <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
+
+  @elseif ($pageKind == 'search')
+    {{-- Nothing yet --}}
+
+  @else
+    @include('posts.extras.topList')
+    <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
+
+  @endif
 @endif
 
-@if ($counter == 4)
+@if ($counter == 6)
+  @include('posts.extras.tips')
   <?php
-      echo View::make('posts.extras.tips');
+      Session::set('cardsCounter', Session::get('cardsCounter') + 1);
   ?>
 @endif

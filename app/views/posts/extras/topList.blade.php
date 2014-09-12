@@ -32,11 +32,18 @@
   }
 ?>
 <div class="post_wrapper toplist">
-  <div class="card push_down no_min">I am testing another card before main card</div>
+  @if(!User::signedIn())
+    <?php echo View::make('posts.extras.welcomeMessage') ?>
+  @else
+    <?php echo View::make('posts.extras.user') ?>
+  @endif
+
+
+
   <div class="card">
-    <h2>Top Posts</h2>
+    <h3>Top Posts</h3>
     @if ($channel != 'all')
-      <h3 class ="category" style="color:{{Channel::color($channel)}}">In {{Channel::description($channel)}}</h3>
+      <h4 class ="category" style="color:{{Channel::color($channel)}}">In {{Channel::description($channel)}}</h4>
     @endif
 
     {{Form::open(array('url'=>'my/route'))}}
@@ -58,8 +65,8 @@
             </a>
           </div>
           <div class="details">
-            <h3><a href ="{{$post->post_url}}">{{$post->post_title}}</a></h3>
-            <h4>{{$post->blog->blog_name}}</h4>
+            <h4><a href ="{{$post->post_url}}">{{$post->post_title}}</a></h4>
+            <h5>{{$post->blog->blog_name}}</h5>
           </div>
         </div>
       </li>

@@ -1,23 +1,47 @@
 @extends('posts.template')
 
 @section('content')
-  @if (Session::has('channel'))
-    @if (Session::get('channel') != 'all')
-    <?php if (!in_array(Session::get('pageKind'), ['favorites', 'saved', 'search'])): ?>
+
+  <?php
+    if (User::signedIn()) {
+      $user =  User::find(User::signedIn());
+    }
+  ?>
+
+  {{-- Show the Channel bar if we're in the 'channel pagekind' --}}
+
+  @if (Session::get('pageKind') == 'channel')
       <div class="currentChannel" style="background: {{Channel::color(Session::get('channel'))}}">
         <span class="close dynamicLink" data-destination="{{URL::to('/posts/all')}}"><a href ="#">&times;</a></span>
         {{Channel::description(Session::get('channel'))}}
       </div>
-    <?php endif; ?>
-    @endif
   @endif
 
-    @include('posts.partials.helloWindow')
 
+  {{-- Show a message if one exists --}}
+
+  @if (Session::has('lbMessage'))
+    @include('posts.partials.helloWindow')
+  @endif
+
+
+  {{-- Get The Initial Set of Posts --}}
+
+    <?php
+      $initialPosts = Page::getPosts();
+      if (!$initialPosts) {
+        echo View::make('posts.extras.noresults');
+      }
+    ?>
+
+
+  {{-- Render the first batch of posts --}}
+    @if($initialPosts)
     <div class="posts cards"> <!-- cards is default -->
       @include('posts.render', array(
-        'posts'=>$posts ,
+        'posts'=>$initialPosts ,
         'from'=>0,
         'to'=>20))
     </div>
+    @endif
 @stop

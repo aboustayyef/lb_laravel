@@ -3,6 +3,23 @@
 class BloggerController extends BaseController{
 
   function showPosts($nameId){
+    // if blog exists
+    if (Blog::find($nameId)):
+      Session::set('pageKind', 'blogger');
+      Session::set('blogger', $nameId);
+
+      // initialize posts counters
+      Session::put('postsCounter', 0);
+      Session::put('cardsCounter', 0);
+
+      return View::make('posts.main');
+    else :
+      return Response::make('Blogger Not Found', 404);
+    endif;
+  }
+
+
+  function old_showPosts($nameId){
     // if a blog or a column with that id exists,
     if ((Blog::find($nameId))||(Columnist::find($nameId))) {
 

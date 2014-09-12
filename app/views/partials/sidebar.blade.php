@@ -17,8 +17,9 @@
           Hello {{$ourUser->firstName()}}!
           <div class="tools">
             <ul>
-              <li><i class="fa fa-star"></i><a href="/posts/favorites">Favorite Blogs</a> <span class="amount favorites">{{$ourUser->howManyFavoritedBlogs()}}</span></li>
-              <li><i class="fa fa-list-alt"></i><a href="/posts/saved">Saved Posts</a> <span class="amount saved">{{$ourUser->howManySavedPosts()}}</span></li>
+              <li><i class="fa fa-th"></i><a href="/posts/all">All Blogs</a></li>
+              <li><i class="fa fa-check"></i><a href="/user/following">Followed Blogs</a> <span class="amount favorites">{{$ourUser->followsHowMany()}}</span></li>
+              <li><i class="fa fa-heart"></i><a href="/posts/saved">liked Posts</a> <span class="amount saved">{{$ourUser->LikedHowMany()}}</span></li>
               <li><i class="fa fa-sign-out"></i><a href="{{URL::to('/logout')}}">Sign Out</a></li>
             </ul>
           </div>
@@ -44,9 +45,6 @@
       <?php $currentChannel = Session::get('channel'); ?>
       <ul>
 
-        <li class ="categoryButton @if($currentChannel == 'all' || empty($currentChannel))selected @endif dynamicLink" data-destination="{{URL::to('/posts/all')}}">
-          <i class="fa fa-th"></i> Show Me Everything
-        </li>
         @foreach (Channel::$list as $channel)
         <li class ="categoryButton dynamicLink" data-destination="{{URL::to('/posts/'.$channel['name'])}}"
         <?php if (!in_array(Session::get('pageKind'), ['favorites', 'saved', 'search'])): ?>

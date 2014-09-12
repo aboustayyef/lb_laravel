@@ -27,7 +27,7 @@
       color: #fff;
       position: absolute;
       top: 5px;
-      right: 4px;
+      right: 25px;
       padding-top: 1px;
       width: 25px;
       height: 25px;
@@ -60,7 +60,7 @@
     @mixin userInfo{
       // applies to both signed in and non signed in user
       display:block;
-      width:220px;
+      width:190px;
       float:left;
       padding:10px;
 
@@ -123,7 +123,7 @@
       margin-bottom:10px;
     }
     ul{
-      font-size:0.8em;
+      font-size:0.75em;
       overflow:auto;
       width:320px;
       li.categoryButton{
@@ -132,7 +132,7 @@
         display:block;
         background:#555;
         padding:7px;
-        margin-right: 7px;
+        margin-right: 5px;
         float:left;
         color: white;
         i{
@@ -161,7 +161,7 @@
     border-radius:0;
   }
   input[type="text"]{
-    width:220px;
+    width:190px;
     background: darken(white,10);
   }
   input[type="submit"]{

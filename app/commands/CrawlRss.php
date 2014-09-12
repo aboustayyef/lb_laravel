@@ -63,7 +63,7 @@ class CrawlRss extends Command {
       try {
         $this->exploreFeed();
       } catch (Exception $e) {
-        $this->error('Probelm with feed: ' . $this->blog->blog_name);
+        $this->error($e);
       }
 
     }
@@ -209,7 +209,7 @@ class CrawlRss extends Command {
           try {
             $ret = $this->searchClient->index($params);
           } catch (Exception $e) {
-            $this->error('Failed to index post: ' . $post->post_title);
+            $this->error($e); //'Failed to index post: ' . $post->post_title
           }
           $this->comment('Indexed post ' . $post->post_title);
 
@@ -220,7 +220,7 @@ class CrawlRss extends Command {
 
           $this->comment('New Post Saved: "' . $blog_post_title . '"');
         } catch (Exception $e) {
-          $this->error('Cannot save post [' . $blog_post_title . ']' );
+          $this->error($e); //'Cannot save post [' . $blog_post_title . ']'
         }
 
 
@@ -246,7 +246,7 @@ class CrawlRss extends Command {
                 $post->save();
                 $this->comment('Hue added');
               } catch (Exception $e) {
-                $this->error('could not save hue');
+                $this->error($e); //'could not save hue'
               }
              };
           }

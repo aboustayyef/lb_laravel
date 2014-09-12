@@ -9,7 +9,7 @@
     *   This function displays our initial rendering of posts
     */
 
-    function show($channel){
+    function index($channel='all', $action=null){
 
       // 1- $channel is a child resolve it to its parent channel;
       $canonicalChannel = Channel::resolveTag($channel);
@@ -18,77 +18,21 @@
       if ($canonicalChannel != $channel) {
         return Redirect::to('posts/'.$canonicalChannel);
       }
-      $channelDescription = Channel::description($canonicalChannel);
 
-      // set session for channel. Necessary for ajax calls;
+      // set pageKind & channel sessions
+
       Session::put('channel', $canonicalChannel);
-      Session::put('pageKind', 'general');
-
-      $pageTitle = ($canonicalChannel == 'all') ? "Lebanese Blogs | Latest posts from the best Blogs" : "Lebanese Blogs | $channelDescription ";
-      $pageDescription = ($canonicalChannel == 'all') ? "The best place to discover, read and organize Lebanon's top blogs" : "Lebanon's top blogs about $channelDescription";
-
-      $posts = Post::getPosts($channel);
-      //$posts = Post::getLatest($canonicalChannel);
-      return View::make('posts.main')->with(array(
-        'pageTitle'=>$pageTitle,
-        'pageDescription'=> $pageDescription,
-        'posts'=>$posts ,
-        'from'=>0,
-        'to'=>20));
-    }
-
-    public function favorites()
-    {
-      $userID = User::signedIn();
-      Session::put('pageKind', 'favorites');
-      $pageTitle = "Posts by My Favorite Bloggers";
-      $pageDescription ="";
-      $posts = Post::getFavoritePosts($userID);
-      if ($posts) {
-        return View::make('posts.main')->with(array(
-          'pageTitle'=>$pageTitle,
-          'pageDescription'=> $pageDescription,
-          'posts'=>$posts ,
-          'from'=>0,
-          'to'=>20,
-          'windowDetails' => array(
-            'left-message'    =>    ['Favorites','15'], // second figure is width percentage
-            'right-message'   =>    ['Posts by your favorite bloggers', '85' ],
-            'color'           =>    '#ffcc66'
-          ),
-        ));
+      if ($canonicalChannel == 'all') {
+        Session::put('pageKind', 'allPosts');
       } else {
-        return View::make('posts.noFavoritesYet')->with(array(
-          'pageTitle'=>'No Favorites Yet',
-          'pageDescription'=> ''));
+        Session::put('pageKind', 'channel');
       }
 
-    }
+      // initialize posts counters
+      Session::put('postsCounter', 0);
+      Session::put('cardsCounter', 0);
 
-    public function saved(){
-      $userID = User::signedIn();
-      Session::put('pageKind', 'saved');
-      $pageTitle = "Reading List";
-      $pageDescription ="";
-      $posts = Post::getSavedPosts($userID);
-      if ($posts) {
-        return View::make('posts.main')->with(array(
-          'pageTitle'=>$pageTitle,
-          'pageDescription'=> $pageDescription,
-          'posts'=>$posts ,
-          'from'=>0,
-          'to'=>20,
-          'windowDetails' => array(
-            'left-message'    =>    ['Reading List','15'], // second figure is width percentage
-            'right-message'   =>    ['Posts you marked for reading later', '85' ],
-            'color'           =>    '#ffcc66'
-          ),
-        ));
-      } else {
-        return View::make('posts.noSavedYet')->with(array(
-          'pageTitle'=>'No Saved Posts Yet',
-          'pageDescription'=> ''));
-      }
+      return View::make('posts.main');
     }
 
     public function search(){

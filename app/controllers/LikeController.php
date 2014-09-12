@@ -3,7 +3,7 @@
 /**
 *
 */
-class SavedController extends BaseController
+class LikeController extends BaseController
 {
 
   function __construct()

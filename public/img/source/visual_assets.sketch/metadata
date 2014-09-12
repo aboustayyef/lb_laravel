@@ -44,9 +44,15 @@
 		<string>Helvetica-Bold</string>
 		<string>Helvetica-Bold</string>
 		<string>Helvetica-Light</string>
+		<string>Verdana-Bold</string>
+		<string>FontAwesome</string>
+		<string>Verdana-Bold</string>
+		<string>FontAwesome</string>
+		<string>Verdana-Bold</string>
+		<string>FontAwesome</string>
 	</array>
 	<key>length</key>
-	<integer>1967023</integer>
+	<integer>1995702</integer>
 	<key>version</key>
 	<integer>18</integer>
 </dict>

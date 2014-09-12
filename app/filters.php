@@ -58,6 +58,7 @@ Route::filter('auth.basic', function()
 Route::filter('lb.auth', function($route,$request,$finalDestination){
   if (!User::signedIn())
   {
+    $finalDestination = Session::get('url.intended');
     if (!empty($finalDestination)) {
       Session::put('finalDestination', $finalDestination);
     }

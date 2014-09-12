@@ -18,58 +18,34 @@ Route::get('/', function(){
     // handles requests from old permalink structures like lebaneseblogs.com/?channel=fashion
     return Redirect::to('/posts/'.Input::get('channel'));
   }
-  // otherwise, root redirects to all posts
+  // otherwise, root redirects to user/following if signed in or to posts/all if not
+  if (User::signedIn()) {
+    return Redirect::to('user/following');
+  }
   return Redirect::to('posts/all');
 });
 
+Route::get('/user/{section}/{action?}', array(
+  'before'  =>  'lb.auth:following',
+  'as'  =>  'user',
+  'uses'  =>  'UserController@index'
+));
+
+Route::get('/posts/{channel}/{action?}', array(
+  'as'  =>  'posts',
+  'uses'  =>  'PostsController@index'
+));
 
 // redirect outgoing links, for exit link counting and registering
 Route::get('exit', array(
   'uses'  => 'ExitController@lbExit'
 ));
 
-Route::get('posts/favorites', array(
-  'before'  =>  'lb.auth:favorites',
-  'as'      =>  'favorites',
-  'uses'    =>  'PostsController@favorites'
-));
-
-Route::get('posts/favorites/add/{blogId}', array(
-  'as'      =>  'addfavorites',
-  'uses'   =>  'FavoritesController@add'
-));
-
-Route::get('posts/favorites/remove/{blogId}', array(
-  'as'      =>  'removefavorites',
-  'uses'   =>  'FavoritesController@remove'
-));
-
-Route::get('posts/saved', array(
-  'before'  =>  'lb.auth:saved',
-  'as'      =>  'saved',
-  'uses'    =>  'PostsController@saved'
-));
-
-Route::get('posts/saved/add/{postId}', array(
-  'as'      =>  'addsaved',
-  'uses'   =>  'SavedController@add'
-));
-
-Route::get('posts/saved/remove/{postId}', array(
-  'as'      =>  'removesaved',
-  'uses'   =>  'SavedController@remove'
-));
-
-
 Route::get('posts/search', array(
   'as'      =>  'search',
   'uses'    =>  'PostsController@search'
 ));
 
-Route::get('posts/{channel?}', array(
-  'as'=>'posts',
-  'uses'=>'PostsController@show'
-));
 
 Route::get('/blogger/{nameId?}', array(
   'as'    =>  'blogger',
@@ -123,6 +99,15 @@ Route::post('/about/{slug?}', array(
 //login page
 Route::get('/login',function()
 {
+    if (Input::has('follow')) {
+      Session::set('blogToFollow', Input::get('follow'));
+     }
+    if (Input::has('like')) {
+      Session::set('postToLike', Input::get('like'));
+     }
+    if (Input::has('camefrom')){
+      Session::set('finalDestination', Input::get('camefrom'));
+    }
     return View::make('login');
 });
 
@@ -135,11 +120,7 @@ Route::get('/auth/{provider}/callback', array(
 ));
 
 Route::get('test', function(){
-  $test = new imageAnalyzer('http://local2.lebaneseblogs.com/img/cache/1409673840_blogbaladi.jpg');
-  $hue = $test->getDominantHue();
-  echo '<div style="height:140px;width:140px;background-color:hsl(' . $hue . ',30%,75%)"></div>';
-  echo '<div style="height:140px;width:140px;background-color:hsl(' . $hue . ',20%,75%)"></div>';
-  echo '<div style="height:140px;width:140px;background-color:hsl(' . $hue . ',15%,75%)"></div>';
+  return View::make('static.welcome');
 });
 
 

@@ -46,7 +46,7 @@ class StaticPagesController extends \BaseController {
       $data = ['twitter' => Input::get('twitter'), 'email'=>Input::get('email'), 'url'  =>  Input::get('url')];
       Mail::queue('emails.submission', $data, function($message)
       {
-          $message->from('mustapha.hamoui@gmail.com', 'Lebanese Blogs');
+          $message->from('donotreply@lebaneseblogs.com', 'Lebanese Blogs');
           $message->to('mustapha.hamoui@gmail.com', 'Mustapha Hamoui')->subject('[ Blog Submission ]');
       });
       Session::flash('message', 'Your blog has been submitted. Please permit a few days to process it.');

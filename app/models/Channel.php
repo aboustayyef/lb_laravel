@@ -40,6 +40,12 @@ class Channel
       'color'       =>  '#29639E' // navy
     ),
     array(
+      'name'        =>  'design',
+      'description' =>  'Marketing & Design',
+      'icon'        =>  'fa-picture-o',
+      'color'       =>  '#EFC050'
+    ),
+    array(
       'name'        =>  'fashion',
       'description' =>  'Fashion & Style',
       'icon'        =>  'fa-umbrella',
@@ -74,12 +80,6 @@ class Channel
       'description' =>  'Music, TV & Film',
       'icon'        =>  'fa-music',
       'color'       =>  '#02A7A7'
-    ),
-    array(
-      'name'        =>  'design',
-      'description' =>  'Advertising & Design',
-      'icon'        =>  'fa-picture-o',
-      'color'       =>  '#EFC050'
     )
   );
 

@@ -3,13 +3,12 @@ $(window).load(function(){
   // cards specific action. Fix layout before showing posts
   if ($('.posts').hasClass('cards')) {
       lbApp.resizeViewport();
-      lbApp.fixViewportHeight();
+      console.log('pssst');
       lbApp.flowPosts();
-
       // momentum scrolling hack
       $('#momentumScrollingViewport').css('-webkit-overflow-scrolling: touch;');
   };
-
+  lbApp.fixViewportHeight();
   // show initial posts
   $('.post_wrapper').css('visibility','visible');
   lbApp.hideLoadingCurtain();

@@ -26,7 +26,13 @@ lbApp.loadLazyImages = function(){
 }
 
 lbApp.fixViewportHeight = function(){
-  $('#momentumScrollingViewport').height($(window).height());
+  $winHeight = $(window).height();
+  $('#momentumScrollingViewport').height($winHeight);
+  //fix the grey area to stretch fully even if little content
+
+  if ($('#content').height() < $winHeight) {
+    $('#content').height($winHeight);
+  };
 }
 
 lbApp.flowPosts = function(){
@@ -79,7 +85,6 @@ lbApp.addMorePosts = function(){
   $.ajax({
     url: lbApp.rootPath + '/ajax/GetMorePosts',
     type: "GET",
-    data: {startFrom: $('.post_body').length }, //counts posts we already have
     success: function(data){
       $data = $(data);
       if ($('.posts').hasClass('cards')) {

@@ -546,6 +546,39 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/img\/login_with_facebook.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 5544,
+		"inputAbbreviatedPath": "\/img\/login_with_facebook.png",
+		"outputAbbreviatedPath": "\/img\/login_with_facebook.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/login_with_google.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 5812,
+		"inputAbbreviatedPath": "\/img\/login_with_google.png",
+		"outputAbbreviatedPath": "\/img\/login_with_google.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/login_with_twitter.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 4797,
+		"inputAbbreviatedPath": "\/img\/login_with_twitter.png",
+		"outputAbbreviatedPath": "\/img\/login_with_twitter.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/img\/logo-mobile.png": {
 		"fileType": 32768,
 		"ignore": 0,
@@ -619,6 +652,28 @@
 		"initialSize": 110341,
 		"inputAbbreviatedPath": "\/img\/poster_twitter.png",
 		"outputAbbreviatedPath": "\/img\/poster_twitter.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/source\/visual_assets.sketch\/QuickLook\/Preview.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 2.28331e+06,
+		"inputAbbreviatedPath": "\/img\/source\/visual_assets.sketch\/QuickLook\/Preview.png",
+		"outputAbbreviatedPath": "\/img\/source\/visual_assets.sketch\/QuickLook\/Preview.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/source\/visual_assets.sketch\/QuickLook\/Thumbnail.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 50218,
+		"inputAbbreviatedPath": "\/img\/source\/visual_assets.sketch\/QuickLook\/Thumbnail.png",
+		"outputAbbreviatedPath": "\/img\/source\/visual_assets.sketch\/QuickLook\/Thumbnail.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -8711,6 +8766,22 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
+	"\/scss\/_extras.scss": {
+		"createSourceMap": 0,
+		"debugStyle": 0,
+		"decimalPrecision": 5,
+		"fileType": 4,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/scss\/_extras.scss",
+		"outputAbbreviatedPath": "\/css\/_extras.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"useLibsass": 0
+		},
 	"\/scss\/_hello_window.scss": {
 		"createSourceMap": 0,
 		"debugStyle": 0,
@@ -8736,6 +8807,22 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/scss\/_layout.scss",
 		"outputAbbreviatedPath": "\/css\/_layout.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"useLibsass": 0
+		},
+	"\/scss\/_noresults.scss": {
+		"createSourceMap": 0,
+		"debugStyle": 0,
+		"decimalPrecision": 5,
+		"fileType": 4,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/scss\/_noresults.scss",
+		"outputAbbreviatedPath": "\/css\/_noresults.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
@@ -8974,19 +9061,19 @@
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.events.js",
+			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.menus.js",
 			"position": 1,
 			"type": 0
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.functions.js",
+			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.events.js",
 			"position": 2,
 			"type": 0
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.menus.js",
+			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.functions.js",
 			"position": 3,
 			"type": 0
 			},

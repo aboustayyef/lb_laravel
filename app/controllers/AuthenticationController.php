@@ -100,7 +100,8 @@ class AuthenticationController extends BaseController
               'gender'    =>  null,
               'imageUrl'  =>  $user->urls['profile_image_url']
             );
-            return User::processProviderData($userDetails);
+
+            return User::register($userDetails);
         } else {
           Session::flash('message', 'Sorry, Could not sign in. Want to try again?');
           return View::make('login');
@@ -126,14 +127,14 @@ class AuthenticationController extends BaseController
             $userDetails = array(
               'provider'  =>  'Facebook',
               'providerId' => $user->uid,
-              'twitterHandle' =>  null,
+              'twitterHandle' =>  'provider_is_facebook',
               'firstName'  => $user->firstName,
               'lastName'  =>  $user->lastName,
               'email'     =>  $user->email,
               'gender'    =>  null,
               'imageUrl'  =>  $user->imageUrl
             );
-            return User::processProviderData($userDetails);
+            return User::register($userDetails);
         } else {
             Session::flash('message', 'Sorry, Could not sign in. Want to try again?');
             return View::make('login');
@@ -159,14 +160,14 @@ class AuthenticationController extends BaseController
             $userDetails = array(
               'provider'  =>  'Google',
               'providerId' => $user->uid,
-              'twitterHandle' =>  null,
+              'twitterHandle' =>  'provider_is_google',
               'firstName'  => $user->firstName,
               'lastName'  =>  $user->lastName,
               'email'     =>  $user->email,
               'gender'    =>  null,
               'imageUrl'  =>  $user->imageUrl
             );
-            return User::processProviderData($userDetails);
+            return User::register($userDetails);
 
         } else {
             Session::flash('message', 'Sorry, Could not sign in. Want to try again?');

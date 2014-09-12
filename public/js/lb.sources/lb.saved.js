@@ -1,51 +1,70 @@
 $('document').ready(function(){
 
-// Add to Reading List
-$(document).on('click', 'li.addToSaved', function(){
-  event.stopPropagation();
-  var $this = $(this); // to persist variable through closure;
-  $.ajax({
-    url: lbApp.rootPath + '/posts/saved/add/' + $(this).data('postid'),
-    type: "Get",
-    success: function(){
+  // like a post
+  $(document).on('click', 'div.sharingButton.likeit', function(){
 
-      // replace share menu from "add to saved" to remove From saved
-      $("li[data-postid='" + $this.data('postid') + "']").removeClass('addToSaved').addClass('removeFromSaved').html('<i class="fa fa-clock-o"></i>Remove from reading list');
+    event.stopPropagation();
 
-      // add +1 to the favorites counter on the sidebar
-      $counterBubble = $('li > .amount.saved');
-      $initialValue = parseInt($counterBubble.text());
-      $newValue = $initialValue + 1;
-      $counterBubble.text($newValue);
+    var $this = $(this); // to persist variable through closure;
 
-      // declare victory
-      console.log('Successfully added ' + $this.data('postid') + ' to reading list');
-    }
+    // if user is not logged in, forward to login page
+
+    if (lbApp.signedIn == false){
+
+      var currentPage = window.location.pathname;
+
+      window.location = lbApp.rootPath + '/login?like=' + $this.data('postid') + '&camefrom=' + currentPage;
+
+    } else {  // user is signed in
+
+      if ($this.hasClass('liked')) {
+
+        $.ajax({
+
+          url: lbApp.rootPath + '/user/unlike/' + $(this).data('postid'),
+
+          type: "Get",
+
+          success: function(){
+
+            // replace share menu from "add to saved" to remove From saved
+
+            $("div[data-postid='" + $this.data('postid') + "']").removeClass('liked');
+
+            console.log('Successfully removed ' + $this.data('postid') + ' from reading list');
+
+            // refresh page if we're already in the liked page
+
+            if (lbApp.pageKind == 'liked') {
+
+              location.reload();
+
+            };
+          }
+
+        });
+
+      } else { // this has no class 'liked', do the opposite
+
+        $.ajax({
+
+          url: lbApp.rootPath + '/user/like/' + $(this).data('postid'),
+
+          type: "Get",
+
+          success: function(){
+
+            // replace share menu from "add to saved" to remove From saved
+
+            $("div[data-postid='" + $this.data('postid') + "']").addClass('liked');
+
+            console.log('Successfully added ' + $this.data('postid') + ' to reading list');
+
+          }
+
+        });
+
+      }
+    } // / lbApp.signed in conditional
   });
-});
-// Remove From Favorites
-$(document).on('click', 'li.removeFromSaved', function(){
-  event.stopPropagation();
-  var $this = $(this); // to persist variable through closure;
-  $.ajax({
-    url: lbApp.rootPath + '/posts/saved/remove/' + $(this).data('postid'),
-    type: "Get",
-    success: function(){
-
-      // replace from "remove From saved" to "add to saved"
-      $("li[data-postid='" + $this.data('postid') + "']").removeClass('removeFromSaved').addClass('addToSaved').html('<i class="fa fa-clock-o"></i>Read it later');
-
-      // add +1 to the favorites counter on the sidebar
-      $counterBubble = $('li > .amount.saved');
-      $initialValue = parseInt($counterBubble.text());
-      $newValue = $initialValue - 1;
-      $counterBubble.text($newValue);
-
-      // declare victory
-      console.log('Successfully removed ' + $this.data('postid') + ' from reading list');
-    }
-  });
-});
-
-
 });

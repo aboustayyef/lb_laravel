@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -99,15 +100,35 @@ div.posts.cards {
         text-transform: uppercase;
         top: 15px;
         left: 70px;
-        width: 180px;
+        width: 130px;
         font-size: 12px;
         line-height: 18px; }
         div.posts.cards div.post_wrapper div.blog_header .blogname a {
           color: rgba(0, 0, 0, 0.6);
-          text-decoration: none; }
+          text-decoration: none;
+          font-size: 12px; }
       div.posts.cards div.post_wrapper div.blog_header img.thumbnail {
         border-radius: 50%;
         border: 1px solid rgba(0, 0, 0, 0.1); }
+      div.posts.cards div.post_wrapper div.blog_header .followBlogger {
+        cursor: pointer;
+        position: absolute;
+        font-size: 12px;
+        top: 20px;
+        right: 10px;
+        color: #B3B3B3; }
+        div.posts.cards div.post_wrapper div.blog_header .followBlogger:hover:after {
+          border-color: #b12530;
+          color: #b12530; }
+        div.posts.cards div.post_wrapper div.blog_header .followBlogger:after {
+          content: "+ Follow";
+          padding: 5px;
+          border: 1px solid #B3B3B3;
+          border-radius: 5px; }
+        div.posts.cards div.post_wrapper div.blog_header .followBlogger.followed:after {
+          content: "✓ Followed"; }
+        div.posts.cards div.post_wrapper div.blog_header .followBlogger.followed:hover:after {
+          content: "x Unfollow"; }
     div.posts.cards div.post_wrapper div.post_body h2 {
       font-size: 16px;
       padding: 10px;
@@ -192,101 +213,19 @@ div.posts.cards {
         border-color: #8f1e27; }
     div.posts.cards div.post_wrapper .tweetit {
       right: 78px; }
-    div.posts.cards div.post_wrapper .action {
+    div.posts.cards div.post_wrapper .likeit {
       right: 10px; }
-      div.posts.cards div.post_wrapper .action.active {
+      div.posts.cards div.post_wrapper .likeit.active {
         color: white;
         background: #b12530; }
-        div.posts.cards div.post_wrapper .action.active:hover {
+        div.posts.cards div.post_wrapper .likeit.active:hover {
           background: #9c212a; }
-    div.posts.cards div.post_wrapper .action.active + div.bubblewrapper {
-      display: block; }
+      div.posts.cards div.post_wrapper .likeit.liked i {
+        color: #b12530; }
 
 @media screen and (max-width: 360px) {
   div.posts.cards {
     margin-top: 20px; } }
-
-div.bubblewrapper {
-  font-size: 0.85em;
-  display: none;
-  width: 270px;
-  overflow: auto;
-  position: absolute;
-  bottom: 22px;
-  right: 18px;
-  padding: 0 3px;
-  padding-top: 3px;
-  /*
-
-  Below is simply to achieve the tooltip triangle
-
-  */ }
-  div.bubblewrapper ul.sharing {
-    overflow: auto;
-    background: white;
-    margin-bottom: 20px;
-    border: solid 1px #ADADAD;
-    -webkit-box-shadow: 0px 0px 2px rgba(50, 50, 50, 0.5);
-            box-shadow: 0px 0px 2px rgba(50, 50, 50, 0.5); }
-    div.bubblewrapper ul.sharing li {
-      cursor: pointer;
-      font-size: 0.9em;
-      padding: 8px; }
-      div.bubblewrapper ul.sharing li.addToFavorites i {
-        color: silver; }
-      div.bubblewrapper ul.sharing li.removeFromFavorites i {
-        color: #b12530; }
-      div.bubblewrapper ul.sharing li.addToSaved i {
-        color: silver; }
-      div.bubblewrapper ul.sharing li.removeFromSaved i {
-        color: #b12530; }
-      div.bubblewrapper ul.sharing li i {
-        margin-right: 10px; }
-      div.bubblewrapper ul.sharing li:hover {
-        background: #f2f2f2; }
-        div.bubblewrapper ul.sharing li:hover color:white
-        a {
-          color: white; }
-      div.bubblewrapper ul.sharing li.dim {
-        cursor: not-allowed;
-        color: #b3b3b3; }
-        div.bubblewrapper ul.sharing li.dim:hover:after {
-          content: 'needs login';
-          color: #b12530;
-          margin-left: 5px; }
-    div.bubblewrapper ul.sharing li.header {
-      cursor: default;
-      color: #b12530;
-      font-weight: bold; }
-      div.bubblewrapper ul.sharing li.header:hover {
-        background: inherit; }
-    div.bubblewrapper ul.sharing li.header ~ li.header {
-      margin-top: 5px;
-      border-top: 1px solid grey; }
-  div.bubblewrapper:before {
-    position: absolute;
-    display: block;
-    content: "";
-    border-color: #9c9c9c transparent transparent transparent;
-    border-style: solid;
-    border-width: 10px;
-    height: 0;
-    width: 0;
-    position: absolute;
-    bottom: 0px;
-    left: 218px; }
-  div.bubblewrapper:after {
-    position: absolute;
-    display: block;
-    content: "";
-    border-color: white transparent transparent transparent;
-    border-style: solid;
-    border-width: 10px;
-    height: 0;
-    width: 0;
-    position: absolute;
-    bottom: 2px;
-    left: 218px; }
 
 div.posts.cards.blogger .post_wrapper .blog_header {
   display: none; }
@@ -295,11 +234,11 @@ div.posts.cards.blogger .post_wrapper .blog_header {
   position: absolute;
   padding: 10px;
   font-size: 16px; }
-.toplist h2 {
-  font-size: 28px;
+.toplist h3 {
+  font-size: 26px;
   padding: 30px 10px 20px 10px;
-  color: #b12530; }
-.toplist h3.category {
+  color: #555; }
+.toplist h4.category {
   padding: 10px;
   padding-top: 0;
   font-size: 20px;
@@ -329,10 +268,10 @@ div.posts.cards.blogger .post_wrapper .blog_header {
   .toplist div.item div.details {
     float: left;
     width: 150px; }
-  .toplist div.item h3 {
+  .toplist div.item h4 {
     font-size: 14px;
     line-height: 16px; }
-  .toplist div.item h4 {
+  .toplist div.item h5 {
     margin-top: 5px;
     color: #b12530;
     opacity: 0.4;
@@ -559,7 +498,7 @@ body {
     color: #fff;
     position: absolute;
     top: 5px;
-    right: 4px;
+    right: 25px;
     padding-top: 1px;
     width: 25px;
     height: 25px;
@@ -586,7 +525,7 @@ body {
         border: 5px solid #b12530; }
     #sidebar #userArea .greeting {
       display: block;
-      width: 220px;
+      width: 190px;
       float: left;
       padding: 10px;
       color: white; }
@@ -596,7 +535,7 @@ body {
         font-size: 0.85em; }
     #sidebar #userArea .login {
       display: block;
-      width: 220px;
+      width: 190px;
       float: left;
       padding: 10px; }
       #sidebar #userArea .login a {
@@ -633,7 +572,7 @@ body {
       color: white;
       margin-bottom: 10px; }
     #sidebar #channels ul {
-      font-size: 0.8em;
+      font-size: 0.75em;
       overflow: auto;
       width: 320px; }
       #sidebar #channels ul li.categoryButton {
@@ -642,7 +581,7 @@ body {
         display: block;
         background: #555;
         padding: 7px;
-        margin-right: 7px;
+        margin-right: 5px;
         float: left;
         color: white; }
         #sidebar #channels ul li.categoryButton i {
@@ -662,7 +601,7 @@ body {
     border: 0;
     border-radius: 0; }
   .searchform input[type="text"] {
-    width: 220px;
+    width: 190px;
     background: #e6e6e6; }
   .searchform input[type="submit"] {
     width: 60px;
@@ -692,3 +631,149 @@ body {
       font-size: 14px;
       line-height: 18px;
       float: left; }
+
+#welcomeMessage {
+  padding: 10px; }
+  #welcomeMessage div h2 {
+    color: #b12530;
+    font-size: 18px;
+    line-height: 22px; }
+  #welcomeMessage div p {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 18px;
+    color: #8F8F8F; }
+    #welcomeMessage div p a {
+      display: inline; }
+  #welcomeMessage div.buttonswrapper {
+    margin-top: 20px;
+    overflow: auto; }
+    #welcomeMessage div.buttonswrapper a {
+      display: block;
+      float: left;
+      margin-left: 0; }
+    #welcomeMessage div.buttonswrapper a + a {
+      margin-left: 5px; }
+  #welcomeMessage div a {
+    color: #b12530;
+    text-align: center;
+    display: block; }
+    #welcomeMessage div a.learnMore {
+      margin-top: 5px;
+      font-size: 0.9em;
+      color: #888;
+      clear: both;
+      padding-top: 10px; }
+      #welcomeMessage div a.learnMore:hover {
+        color: #b12530; }
+    #welcomeMessage div a small {
+      color: #e6e6e6;
+      font-size: 0.9em; }
+
+#bloggerStats {
+  background: teal;
+  border: 1px solid #b3b3b3; }
+  #bloggerStats div img {
+    width: 50px;
+    height: 50px;
+    margin: 10px 124px;
+    border-radius: 50%; }
+  #bloggerStats div h2 {
+    line-height: 20px;
+    color: white;
+    font-size: 18px;
+    padding: 5px;
+    text-align: center; }
+  #bloggerStats .follow {
+    display: block;
+    overflow: auto;
+    padding: 20px 0; }
+  #bloggerStats .followBlogger {
+    cursor: pointer;
+    font-size: 12px;
+    color: white;
+    text-align: center; }
+    #bloggerStats .followBlogger:hover:after {
+      border-color: yellow;
+      color: yellow; }
+    #bloggerStats .followBlogger:after {
+      content: "+ Follow";
+      padding: 5px;
+      border: 1px solid white;
+      border-radius: 5px; }
+    #bloggerStats .followBlogger.followed:after {
+      content: "✓ Followed"; }
+    #bloggerStats .followBlogger.followed:hover:after {
+      content: "x Unfollow"; }
+  #bloggerStats ul {
+    padding: 10px;
+    display: block;
+    overflow: auto;
+    background: white; }
+  #bloggerStats li + li {
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px solid #b3b3b3; }
+
+#userTools .userHeader {
+  padding-top: 20px;
+  padding-left: 75px;
+  background: #555;
+  color: white;
+  position: relative; }
+  #userTools .userHeader img {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    height: 50px;
+    width: 50px; }
+  #userTools .userHeader .signout {
+    font-size: 12px;
+    color: #999;
+    padding-top: 5px;
+    padding-bottom: 10px; }
+#userTools .info ul.userNavigation {
+  overflow: auto;
+  border-bottom: 1px solid silver; }
+  #userTools .info ul.userNavigation li {
+    width: 89px;
+    padding: 4px;
+    margin: 4px;
+    padding-bottom: 7px;
+    float: left;
+    font-size: 12px;
+    text-align: center;
+    color: #c7c7c7; }
+    #userTools .info ul.userNavigation li.active {
+      color: #444;
+      background: beige;
+      border: 1px solid #efefc8; }
+      #userTools .info ul.userNavigation li.active:hover {
+        color: #444; }
+    #userTools .info ul.userNavigation li:hover {
+      color: #888; }
+    #userTools .info ul.userNavigation li i {
+      display: block;
+      margin: 5px 0;
+      width: 100%; }
+  #userTools .info ul.userNavigation li + li {
+    border-left: 1px solid silver; }
+
+.noresults {
+  width: 500px;
+  padding: 50px;
+  margin: 20px auto;
+  background: white;
+  text-align: center; }
+  @media all and (max-width: 500px) {
+    .noresults {
+      width: 280px;
+      padding: 20px; } }
+  .noresults h2 {
+    color: #b12530;
+    font-size: 1.5em;
+    margin: 20px 0; }
+  .noresults a {
+    color: #b12530;
+    text-decoration: underline; }
