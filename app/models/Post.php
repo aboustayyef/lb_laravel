@@ -131,4 +131,35 @@ public static function getTopPostsByBlogger($bloggerId){
     }
   }
 
+  /*
+  |--------------------------------------------------------------------------
+  | Returns posts from search results
+  |--------------------------------------------------------------------------
+  */
+
+  public static function getPostsFromSearchResults($from=0, $amount=20){
+
+    // all post Ids of result were stored in a session from PostController
+
+    $all_results = Session::get('searchResults');
+    if ( count( $all_results ) == 0 ) {
+
+      return false;
+
+    }
+
+    $output_results = array();
+
+    $subset_of_results = array_slice($all_results, $from, $amount);
+
+    foreach ($subset_of_results as $key => $postId) {
+
+      $output_results[] = Post::with('blog')->find($postId);
+
+    }
+
+    return $output_results;
+
+  }
+
 }

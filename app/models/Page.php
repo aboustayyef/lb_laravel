@@ -88,6 +88,9 @@
         $posts = Post::getPosts($channel, $from, $amount);
         return $posts;
 
+      elseif ( $pagekind == 'searchResults'):
+        $posts = Post::getPostsFromSearchResults($from, $amount);
+        return $posts;
       endif;
     }
   }

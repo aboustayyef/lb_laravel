@@ -12,7 +12,7 @@ class AjaxController extends BaseController
     $amount = 20;
     $from = Session::get('postsCounter');
 
-    $posts = Page::getPosts($from, 20);
+    $posts = Page::getPosts($from, $amount);
     return View::make('posts.render')->with(['posts'  =>  $posts]);
   }
 }

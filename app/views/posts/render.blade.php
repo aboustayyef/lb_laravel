@@ -1,5 +1,4 @@
 <?php
-
   // we reinstantiate the user object each time because
   // this page is requested from ajax with access to session variables only
 

@@ -1,36 +1,7 @@
 <div id="sidebar">
+  <img class="close" width="19px" height="19px" src="{{asset('/img/close-button.png')}}" alt="">
   <div id="scroller">
   <?php $ourUser = User::find(User::signedIn()) ?>
-    <div id="userArea">
-      <div class="close">
-        <a href ="#">&times;</a>
-      </div>
-      <div class="profilePicture">
-        @if($ourUser)
-          <img src="{{$ourUser->profileImage()}}" alt="">
-        @else
-          <img src="{{ asset('/img/placeholder_profile_pic.png') }}" alt="">
-        @endif
-      </div>
-      @if ($ourUser)
-        <div class="greeting">
-          Hello {{$ourUser->firstName()}}!
-          <div class="tools">
-            <ul>
-              <li><i class="fa fa-th"></i><a href="/posts/all">All Blogs</a></li>
-              <li><i class="fa fa-check"></i><a href="/user/following">Followed Blogs</a> <span class="amount favorites">{{$ourUser->followsHowMany()}}</span></li>
-              <li><i class="fa fa-heart"></i><a href="/posts/saved">liked Posts</a> <span class="amount saved">{{$ourUser->LikedHowMany()}}</span></li>
-              <li><i class="fa fa-sign-out"></i><a href="{{URL::to('/logout')}}">Sign Out</a></li>
-            </ul>
-          </div>
-        </div>
-      @else
-        <div class="login">
-          <a href="{{URL::to('/login')}}">Log in</a>
-          <p>Enable features like favoriting blogs, saving posts and, if you're a blogger, editing &amp; organizing your posts</p>
-        </div>
-      @endif
-    </div>
 
     <div id="channels">
       <h3>Search Thousands of Posts</h3>
@@ -61,9 +32,9 @@
       </ul>
     </div>
       <div class="credits">
-        Designed and Built by
+        Lebanese Blogs Designed &amp; Built by
         <br>
-        <a href="http://twitter.com/beirutspring">Mustapha Hamoui</a>
+        <a href="http://twitter.com/beirutspring">Mustapha Hamoui -<?php echo date('Y') ?></a>
       </div>
   </div>
 </div>

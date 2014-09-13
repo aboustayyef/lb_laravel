@@ -16,6 +16,10 @@
     </div>
     <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
 
+  @elseif ($pageKind == 'searchResults')
+    @include('posts.extras.searchResults')
+    <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
+
   @elseif ($pageKind == 'liked')
     <div class="post_wrapper"> <!-- on its own, not part of top list -->
       @include('posts.extras.user')
@@ -25,10 +29,11 @@
   @elseif ($pageKind == 'search')
     {{-- Nothing yet --}}
 
+
+
   @else
     @include('posts.extras.topList')
     <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
-
   @endif
 @endif
 

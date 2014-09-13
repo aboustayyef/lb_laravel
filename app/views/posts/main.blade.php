@@ -3,6 +3,7 @@
 @section('content')
 
   <?php
+
     if (User::signedIn()) {
       $user =  User::find(User::signedIn());
     }
