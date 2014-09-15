@@ -11,7 +11,6 @@ use Symfony\Component\DomCrawler\Crawler ;
 |
 */
 
-
 // Default route from root
 Route::get('/', function(){
   if (Input::has('channel')) {
@@ -50,6 +49,14 @@ Route::get('posts/search', array(
 Route::get('/blogger/{nameId?}', array(
   'as'    =>  'blogger',
   'uses'  =>  'BloggerController@showPosts'
+));
+
+Route::get('/edit/{what?}/{which?}', array(
+  'uses'  =>  'EditController@index'
+));
+
+Route::post('/edit/{what?}/{which?}', array(
+  'uses'  =>  'EditController@submit'
 ));
 
 Route::get('/ajax/GetMorePosts', array(
@@ -118,10 +125,6 @@ Route::get('/auth/{provider}', array(
 Route::get('/auth/{provider}/callback', array(
   'uses'  =>  'AuthenticationController@callback'
 ));
-
-Route::get('test', function(){
-  return View::make('static.welcome');
-});
 
 
 /*

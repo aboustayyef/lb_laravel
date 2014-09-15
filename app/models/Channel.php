@@ -126,4 +126,12 @@ class Channel
     }
     return "fa-question";
   }
+
+  public static function getValueDescriptionArray(){
+    $array = [];
+    foreach (self::$list as $key => $channel) {
+      $array[$channel['name']] = $channel['description'];
+    }
+    return $array;
+  }
 }

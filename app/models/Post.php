@@ -116,6 +116,17 @@ public static function getTopPostsByBlogger($bloggerId){
       return FALSE;
     }
   }
+/**
+ * Check if post exists
+ */
+  public static function exists($post_id){
+    $post = self::where('post_id', $post_id)->first();
+    if (is_object($post)) {
+      return true;
+    }
+    return false;
+  }
+
 
   /*
   |--------------------------------------------------------------------------
@@ -130,36 +141,58 @@ public static function getTopPostsByBlogger($bloggerId){
       return FALSE;
     }
   }
-
   /*
   |--------------------------------------------------------------------------
   | Returns posts from search results
   |--------------------------------------------------------------------------
   */
-
   public static function getPostsFromSearchResults($from=0, $amount=20){
-
     // all post Ids of result were stored in a session from PostController
-
     $all_results = Session::get('searchResults');
     if ( count( $all_results ) == 0 ) {
-
       return false;
-
     }
-
     $output_results = array();
-
     $subset_of_results = array_slice($all_results, $from, $amount);
-
     foreach ($subset_of_results as $key => $postId) {
 
       $output_results[] = Post::with('blog')->find($postId);
+    }
+    return $output_results;
+  }
 
+    public function editUpdate($newDetails){
+
+      //prepare categories
+      $categories = $newDetails['category1'];
+      if (!empty($newDetails['category2'])) {
+        $categories .= ' , ' . $newDetails['category2'];
+      }
+
+      $this->post_title = $newDetails['title'];
+      $this->post_excerpt = $newDetails['excerpt'];
+      $this->post_tags = $categories;
+      try {
+        $this->save();
+        return true;
+        #success
+      } catch (Exception $e) {
+        return false;
+      }
     }
 
-    return $output_results;
+    static function validate($input){
+      $rules = [
+        'title'  =>  'required|min:3',
+        'excerpt' =>  'required|min:10| max:123',
+      ];
 
-  }
+      $validator = Validator::make($input, $rules);
+      if ($validator->fails()) {
+        return $validator->messages();
+      } else {
+        return 'ok';
+      }
+    }
 
 }

@@ -211,7 +211,7 @@ div.posts.cards {
         color: white;
         border-color: #8f1e27; }
     div.posts.cards div.post_wrapper .tweetit {
-      right: 78px; }
+      right: 66px; }
     div.posts.cards div.post_wrapper .likeit {
       right: 10px; }
       div.posts.cards div.post_wrapper .likeit.active {
@@ -584,7 +584,8 @@ body {
       display: inline; }
   #welcomeMessage div.buttonswrapper {
     margin-top: 20px;
-    overflow: auto; }
+    overflow: auto;
+    overflow-y: hidden; }
     #welcomeMessage div.buttonswrapper a {
       display: block;
       float: left;
@@ -621,6 +622,11 @@ body {
     font-size: 18px;
     padding: 5px;
     text-align: center; }
+  #bloggerStats div.blogDescription {
+    font-size: 14px;
+    line-height: 18px;
+    padding: 10px;
+    background: #d0dddd; }
   #bloggerStats .follow {
     display: block;
     overflow: auto;

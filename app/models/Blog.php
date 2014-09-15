@@ -35,4 +35,31 @@
       }
 
     }
+
+    public function editUpdate($newDetails){
+      $this->blog_name = $newDetails['name'];
+      $this->blog_description = $newDetails['description'];
+      try {
+        $this->save();
+        return true;
+        #success
+      } catch (Exception $e) {
+        return false;
+      }
+    }
+
+    static function validate($input){
+      $rules = [
+        'name'  =>  'required|min:5',
+        'description' =>  'required|min:15|max:150',
+        'image'   =>  'image|max:150'
+      ];
+
+      $validator = Validator::make($input, $rules);
+      if ($validator->fails()) {
+        return $validator->messages();
+      } else {
+        return 'ok';
+      }
+    }
   }

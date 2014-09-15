@@ -72,10 +72,18 @@
 
     <div class="tools_footer">
       &nbsp; {{-- This just creates a free space at the bottom of each post --}}
+      <?php $blogOwner = $blog->blog_author_twitter_username ?>
     </div>
+    @if (User::signedIn())
+      @if ($ourUser->twitter_username == 'beirutspring' ||  $ourUser->twitter_username == $blogOwner)
+        <div class="editpost">
+          {{link_to('/edit/post/'.$post->post_id, 'edit this post', ['class'  =>  'button'])}}
+        </div>
+        @endif
+    @endif
     <div class="sharingButton tweetit">
       <i class="fa fa-twitter"></i>
-      Tweet it
+      Tweet
     </div>
     <div data-postid="{{$post->post_id}}" class="sharingButton likeit
     <?php if(User::signedIn()){
