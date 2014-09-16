@@ -68,7 +68,6 @@ class CrawlArticles extends Command {
     $this->info('Crawl Ended: '.date('d M Y , H:i:s'));
     $this->info('Kind of fetching used: '. $this->option('fetching'));
 
-
   } // fire
 
   private function exploreColumnist(){
@@ -172,12 +171,19 @@ class CrawlArticles extends Command {
         // Save new record
         $post = new Post;
 
+        // which time to use?
+        if ($this->option('timeSetting') == 'time_of_fetching') {
+          $post->post_timestamp = time() - rand(0,600) ;
+        } else { // time_in_post. we use that setting if we're doing a long time thing
+          $post->post_timestamp = $article_timestamp ;
+        }
+
         $post->post_url = $article_link ;
         $post->post_title = $article_title ;
         $post->post_image = $article_image ;
         $post->post_excerpt = $article_excerpt ;
         $post->blog_id = $domain ;
-        $post->post_timestamp = $article_timestamp ;
+
         $post->post_content = $article_content ;
         $post->post_image_width = $article_image_width ;
         $post->post_image_height = $article_image_height ;
@@ -276,6 +282,7 @@ class CrawlArticles extends Command {
       // 'updater' breaks the loop and goes to next blog as soon as fetcher finds an existing post
       // 'thorough' goes through the entire feed to find older unlisted posts.
       array('fetching', null, InputOption::VALUE_OPTIONAL, 'method of fetching', "updater"),
+      array('timeSetting', null, InputOption::VALUE_OPTIONAL, 'Which time to use when fetching', "time_of_fetching"),
     );
   }
 
