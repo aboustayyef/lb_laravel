@@ -539,7 +539,7 @@
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 521,
+		"initialSize": 495,
 		"inputAbbreviatedPath": "\/img\/close-button.png",
 		"outputAbbreviatedPath": "\/img\/close-button.png",
 		"outputPathIsOutsideProject": 0,
@@ -594,7 +594,7 @@
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 8443,
+		"initialSize": 7391,
 		"inputAbbreviatedPath": "\/img\/logo-mobile.png",
 		"outputAbbreviatedPath": "\/img\/logo-mobile.png",
 		"outputPathIsOutsideProject": 0,
@@ -649,7 +649,7 @@
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 58771,
+		"initialSize": 48981,
 		"inputAbbreviatedPath": "\/img\/poster_favorites.png",
 		"outputAbbreviatedPath": "\/img\/poster_favorites.png",
 		"outputPathIsOutsideProject": 0,
@@ -671,7 +671,7 @@
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 110341,
+		"initialSize": 111026,
 		"inputAbbreviatedPath": "\/img\/poster_twitter.png",
 		"outputAbbreviatedPath": "\/img\/poster_twitter.png",
 		"outputPathIsOutsideProject": 0,
@@ -682,7 +682,7 @@
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 2.28331e+06,
+		"initialSize": 2.29713e+06,
 		"inputAbbreviatedPath": "\/img\/source\/visual_assets.sketch\/QuickLook\/Preview.png",
 		"outputAbbreviatedPath": "\/img\/source\/visual_assets.sketch\/QuickLook\/Preview.png",
 		"outputPathIsOutsideProject": 0,
@@ -693,7 +693,7 @@
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 50218,
+		"initialSize": 51502,
 		"inputAbbreviatedPath": "\/img\/source\/visual_assets.sketch\/QuickLook\/Thumbnail.png",
 		"outputAbbreviatedPath": "\/img\/source\/visual_assets.sketch\/QuickLook\/Thumbnail.png",
 		"outputPathIsOutsideProject": 0,
@@ -1378,6 +1378,17 @@
 		"initialSize": 1066,
 		"inputAbbreviatedPath": "\/img\/thumbs\/brofessionalreview.jpg",
 		"outputAbbreviatedPath": "\/img\/thumbs\/brofessionalreview.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/thumbs\/brownieboxblog.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 4730,
+		"inputAbbreviatedPath": "\/img\/thumbs\/brownieboxblog.jpg",
+		"outputAbbreviatedPath": "\/img\/thumbs\/brownieboxblog.jpg",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -2163,6 +2174,17 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/img\/thumbs\/heelsoverheads.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 9099,
+		"inputAbbreviatedPath": "\/img\/thumbs\/heelsoverheads.jpg",
+		"outputAbbreviatedPath": "\/img\/thumbs\/heelsoverheads.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/img\/thumbs\/helenmackreath.jpg": {
 		"fileType": 16384,
 		"ignore": 0,
@@ -2291,6 +2313,17 @@
 		"initialSize": 1513,
 		"inputAbbreviatedPath": "\/img\/thumbs\/inkontheside.jpg",
 		"outputAbbreviatedPath": "\/img\/thumbs\/inkontheside.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/thumbs\/innerbeautybymariam.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 9292,
+		"inputAbbreviatedPath": "\/img\/thumbs\/innerbeautybymariam.jpg",
+		"outputAbbreviatedPath": "\/img\/thumbs\/innerbeautybymariam.jpg",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -2834,6 +2867,17 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/img\/thumbs\/maiahmdn.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 9907,
+		"inputAbbreviatedPath": "\/img\/thumbs\/maiahmdn.jpg",
+		"outputAbbreviatedPath": "\/img\/thumbs\/maiahmdn.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/img\/thumbs\/majnouna-blog.jpg": {
 		"fileType": 16384,
 		"ignore": 0,
@@ -3127,6 +3171,17 @@
 		"initialSize": 12571,
 		"inputAbbreviatedPath": "\/img\/thumbs\/modeaupoint.jpg",
 		"outputAbbreviatedPath": "\/img\/thumbs\/modeaupoint.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/thumbs\/modenomade.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 9264,
+		"inputAbbreviatedPath": "\/img\/thumbs\/modenomade.jpg",
+		"outputAbbreviatedPath": "\/img\/thumbs\/modenomade.jpg",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -4246,7 +4301,7 @@
 		"fileType": 16384,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 1797,
+		"initialSize": 6167,
 		"inputAbbreviatedPath": "\/img\/thumbs\/theadsgarage.jpg",
 		"outputAbbreviatedPath": "\/img\/thumbs\/theadsgarage.jpg",
 		"outputPathIsOutsideProject": 0,
@@ -8653,6 +8708,28 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/img\/uploads\/processed.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 3632,
+		"inputAbbreviatedPath": "\/img\/uploads\/processed.jpg",
+		"outputAbbreviatedPath": "\/img\/uploads\/processed.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/img\/uploads\/to_process.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 20493,
+		"inputAbbreviatedPath": "\/img\/uploads\/to_process.jpg",
+		"outputAbbreviatedPath": "\/img\/uploads\/to_process.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/index.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -9085,50 +9162,6 @@
 	],
 "lastSavedByUser": "Mustapha Hamoui",
 "manualImportLinks": {
-	"\/js\/lebaneseblogs.js": [
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/third_party\/masonry.pkgd.min.js",
-			"position": 0,
-			"type": 0
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.events.js",
-			"position": 1,
-			"type": 0
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.functions.js",
-			"position": 2,
-			"type": 0
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.menus.js",
-			"position": 3,
-			"type": 0
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.toplist.js",
-			"position": 4,
-			"type": 0
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.favorites.js",
-			"position": 5,
-			"type": 0
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.saved.js",
-			"position": 6,
-			"type": 0
-			}
-		]
 	},
 "projectAttributes": {
 	"bowerAbbreviatedPath": "",

@@ -172,6 +172,7 @@ div.posts.cards{
       position:relative;
       clear:both;
     }
+
     .sharingButton{
       cursor: pointer;
       bottom: 4px;
@@ -205,6 +206,18 @@ div.posts.cards{
         i{
           color:$brand-color;
         }
+      }
+    }
+
+    div.editpost{
+      background:$brand-color;
+      position: absolute;
+      bottom: 5px;
+      left: 9px;
+      padding: 5px;
+      a{
+        font-size:12px;
+        color:white;
       }
     }
   }

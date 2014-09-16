@@ -221,6 +221,15 @@ div.posts.cards {
           background: #9c212a; }
       div.posts.cards div.post_wrapper .likeit.liked i {
         color: #b12530; }
+    div.posts.cards div.post_wrapper div.editpost {
+      background: #b12530;
+      position: absolute;
+      bottom: 5px;
+      left: 9px;
+      padding: 5px; }
+      div.posts.cards div.post_wrapper div.editpost a {
+        font-size: 12px;
+        color: white; }
 
 @media screen and (max-width: 360px) {
   div.posts.cards {
@@ -657,6 +666,11 @@ body {
     margin-top: 5px;
     padding-top: 5px;
     border-top: 1px solid #b3b3b3; }
+  #bloggerStats div.editBlog {
+    width: 100%;
+    background: #b12530;
+    padding: 5px 10px;
+    color: white; }
 
 #userTools .userHeader {
   padding-top: 20px;

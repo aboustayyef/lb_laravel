@@ -42,8 +42,8 @@ if ($ourUser) {
     <ul>
       <li>Followers: <span class="followerCount">{{ $followerCount }}</span></li>
       <li>Posts indexed: {{$numberOfPosts}}</li>
-      <li><i class="fa fa-link"></i> Go to website</li>
-      <li><i class="fa fa-twitter"></i> Follow on Twitter</li>
+      <li><a href="{{$blog->blog_url}}"><i class="fa fa-link"></i> Go to website</a></li>
+      <li><a href="http://twitter.com/{{$blog->blog_author_twitter_username}}"><i class="fa fa-twitter"></i> Follow on Twitter</a></li>
     </ul>
     @if (User::signedIn())
       <?php $blogOwner = $blog->blog_author_twitter_username ?>
