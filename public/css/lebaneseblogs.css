@@ -689,11 +689,12 @@ body {
     text-align: center;
     color: #c7c7c7; }
     #userTools .info ul.userNavigation li.active {
-      color: #444;
-      background: beige;
-      border: 1px solid #efefc8; }
+      color: white;
+      background: #b12530; }
+      #userTools .info ul.userNavigation li.active i {
+        color: #efb3b8; }
       #userTools .info ul.userNavigation li.active:hover {
-        color: #444; }
+        color: silver; }
     #userTools .info ul.userNavigation li:hover {
       color: #888; }
     #userTools .info ul.userNavigation li i {

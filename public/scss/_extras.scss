@@ -155,11 +155,13 @@
         text-align:center;
         color: #c7c7c7;
         &.active{
-          color:#444;
-          background:beige;
-          border:1px solid darken(beige, 5);
+          i{
+            color: lighten($brand-color, 40);
+          }
+          color:white;
+          background:$brand-color;
           &:hover{
-            color:#444;
+            color:silver;
           }
         }
         &:hover{
