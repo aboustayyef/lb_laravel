@@ -3,7 +3,7 @@
 		<i class="fa fa-bars"></i>
 	</div>
 
-	<div id="logo" class="dynamicLink" data-destination="{{URL::to('/posts/all')}}">	</div>
+	<div id="logo" class="dynamicLink" data-destination="{{URL::to('/')}}">	</div>
 
 	<div id= "about">
 		About ▾

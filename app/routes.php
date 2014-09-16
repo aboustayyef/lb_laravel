@@ -19,7 +19,11 @@ Route::get('/', function(){
   }
   // otherwise, root redirects to user/following if signed in or to posts/all if not
   if (User::signedIn()) {
-    return Redirect::to('user/following');
+    $follows = User::find(User::signedIn())->followsHowMany();
+    // only set following as home page if user has more than 7 blogs user is following
+    if ($follows > 6) {
+      return Redirect::to('user/following');
+    }
   }
   return Redirect::to('posts/all');
 });
@@ -67,6 +71,15 @@ Route::get('/ajax/GetTop5', array(
   'uses'  =>  'AjaxController@loadTopFivePosts'
 ));
 
+/*
+|---------------------------------------------------------------------
+|   Logging out
+|---------------------------------------------------------------------
+|
+|   destroys cookies and sessions
+|
+*/
+
 Route::get('/logout',function()
 {
   Session::forget('lb_user_id');
@@ -77,7 +90,7 @@ Route::get('/logout',function()
 
 /*
 |--------------------------------------------------------------------------
-| Static routes
+| Static routes for the "about pages"
 |--------------------------------------------------------------------------
 | These are the routes to take us to static pages
 */
@@ -95,15 +108,11 @@ Route::post('/about/{slug?}', array(
 
 /*
 |---------------------------------------------------------------------
-|   Authentication Routes
+|   The Login Page
 |---------------------------------------------------------------------
-|
-|   Use to authenticate with third party providers
 |
 */
 
-
-//login page
 Route::get('/login',function()
 {
     if (Input::has('follow')) {
@@ -117,6 +126,16 @@ Route::get('/login',function()
     }
     return View::make('login');
 });
+
+
+/*
+|---------------------------------------------------------------------
+|   Authentication Routes
+|---------------------------------------------------------------------
+|
+|   Use to authenticate with third party providers
+|
+*/
 
 Route::get('/auth/{provider}', array(
   'uses'  =>  'AuthenticationController@auth'
