@@ -676,6 +676,19 @@ body {
     padding: 5px 10px;
     color: white; }
 
+#searchResults .card {
+  padding: 10px; }
+  #searchResults .card h2 {
+    font-size: 1.6em;
+    line-height: 1.1em;
+    font-weight: bold;
+    color: #b12530;
+    margin-bottom: 0.5em; }
+  #searchResults .card p {
+    line-height: 1.5em; }
+    #searchResults .card p .highlight {
+      background: #FFE9E9; }
+
 #userTools .userHeader {
   padding-top: 20px;
   padding-left: 75px;
