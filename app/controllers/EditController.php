@@ -63,7 +63,7 @@ class EditController extends \BaseController {
       $blog = Blog::find($which);
       $saveSuccess = $blog->editUpdate(Input::all());
 
-      if (!$saveSuccess || is_array($fileValidation) ) {
+      if (!$saveSuccess) {
         return View::make('static.edit.error');
       } else {
         return View::make('static.edit.success');
