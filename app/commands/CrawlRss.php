@@ -197,21 +197,21 @@ class CrawlRss extends Command {
         $post->post_tags = $this->blog->blog_tags;
         try {
           $post->save();
-          // index post
-          $params = array();
-          $params['index']='lebaneseblogs';
-          $params['type']='post';
-          $params['id']=$post->post_id;
-          $params['body']= array(
-            'title' =>  $post->post_title,
-            'content'  =>  $post->post_content
-          );
-          try {
-            $ret = $this->searchClient->index($params);
-          } catch (Exception $e) {
-            $this->error($e); //'Failed to index post: ' . $post->post_title
-          }
-          $this->comment('Indexed post ' . $post->post_title);
+          // index post (disabled elastic search now)
+          // $params = array();
+          // $params['index']='lebaneseblogs';
+          // $params['type']='post';
+          // $params['id']=$post->post_id;
+          // $params['body']= array(
+          //   'title' =>  $post->post_title,
+          //   'content'  =>  $post->post_content
+          // );
+          // try {
+          //   $ret = $this->searchClient->index($params);
+          // } catch (Exception $e) {
+          //   $this->error($e); //'Failed to index post: ' . $post->post_title
+          // }
+          // $this->comment('Indexed post ' . $post->post_title);
 
           // add timestamp to blogger's record (as timestamp of last post)
           $blog = Blog::where('blog_id', $domain)->first();
@@ -220,9 +220,8 @@ class CrawlRss extends Command {
 
           $this->comment('New Post Saved: "' . $blog_post_title . '"');
         } catch (Exception $e) {
-          $this->error($e); //'Cannot save post [' . $blog_post_title . ']'
+          $this->error($e->getMessage()); //'Cannot save post [' . $blog_post_title . ']'
         }
-
 
         // Cache image if exists. Flatten and convert to jpg;
         $candidateCachingFile = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/' . $blog_post_timestamp.'_'.$domain.'.jpg' ;

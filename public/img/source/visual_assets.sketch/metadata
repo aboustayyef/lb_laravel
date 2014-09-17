@@ -48,8 +48,8 @@
 		<string>Helvetica-Bold</string>
 		<string>Helvetica-Light</string>
 		<string>DINCondensed-Bold</string>
-		<string>Helvetica-Bold</string>
 		<string>Helvetica</string>
+		<string>Helvetica-Bold</string>
 		<string>Verdana-Bold</string>
 		<string>FontAwesome</string>
 		<string>Verdana-Bold</string>
@@ -58,7 +58,7 @@
 		<string>FontAwesome</string>
 	</array>
 	<key>length</key>
-	<integer>1988487</integer>
+	<integer>1988555</integer>
 	<key>version</key>
 	<integer>18</integer>
 </dict>

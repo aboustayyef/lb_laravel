@@ -193,21 +193,21 @@ class CrawlArticles extends Command {
         try {
           $post->save();
 
-          // index post
-          $params = array();
-          $params['index']='lebaneseblogs';
-          $params['type']='post';
-          $params['id']=$post->post_id;
-          $params['body']= array(
-            'title' =>  $post->post_title,
-            'content'  =>  $post->post_content
-          );
-          try {
-            $ret = $this->searchClient->index($params);
-          } catch (Exception $e) {
-            $this->error('Failed to index post: ' . $post->post_title);
-          }
-          $this->comment('Indexed post ' . $post->post_title);
+          // index post (disabled elasticsearch)
+          // $params = array();
+          // $params['index']='lebaneseblogs';
+          // $params['type']='post';
+          // $params['id']=$post->post_id;
+          // $params['body']= array(
+          //   'title' =>  $post->post_title,
+          //   'content'  =>  $post->post_content
+          // );
+          // try {
+          //   $ret = $this->searchClient->index($params);
+          // } catch (Exception $e) {
+          //   $this->error('Failed to index post: ' . $post->post_title);
+          // }
+          // $this->comment('Indexed post ' . $post->post_title);
 
           // add timestamp to blogger's record (as timestamp of last post)
           $blog = Blog::where('blog_id', $domain)->first();
@@ -216,7 +216,7 @@ class CrawlArticles extends Command {
 
           $this->comment('New Post Saved: "' . $article_title . '"');
         } catch (Exception $e) {
-          $this->error('Problem saving post [' . $post->post_title .']');
+          $this->error('Problem saving post [' . $post->post_title .']. | '. $e->getMessage());
         }
 
         // Cache image if exists. Flatten and convert to jpg;

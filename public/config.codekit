@@ -539,7 +539,7 @@
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 495,
+		"initialSize": 521,
 		"inputAbbreviatedPath": "\/img\/close-button.png",
 		"outputAbbreviatedPath": "\/img\/close-button.png",
 		"outputPathIsOutsideProject": 0,
@@ -594,7 +594,7 @@
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 7391,
+		"initialSize": 8443,
 		"inputAbbreviatedPath": "\/img\/logo-mobile.png",
 		"outputAbbreviatedPath": "\/img\/logo-mobile.png",
 		"outputPathIsOutsideProject": 0,
@@ -649,7 +649,7 @@
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 48981,
+		"initialSize": 58771,
 		"inputAbbreviatedPath": "\/img\/poster_favorites.png",
 		"outputAbbreviatedPath": "\/img\/poster_favorites.png",
 		"outputPathIsOutsideProject": 0,
@@ -671,7 +671,7 @@
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 111026,
+		"initialSize": 110341,
 		"inputAbbreviatedPath": "\/img\/poster_twitter.png",
 		"outputAbbreviatedPath": "\/img\/poster_twitter.png",
 		"outputPathIsOutsideProject": 0,
@@ -682,7 +682,7 @@
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 2.29713e+06,
+		"initialSize": 2.28331e+06,
 		"inputAbbreviatedPath": "\/img\/source\/visual_assets.sketch\/QuickLook\/Preview.png",
 		"outputAbbreviatedPath": "\/img\/source\/visual_assets.sketch\/QuickLook\/Preview.png",
 		"outputPathIsOutsideProject": 0,
@@ -693,7 +693,7 @@
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 51502,
+		"initialSize": 50218,
 		"inputAbbreviatedPath": "\/img\/source\/visual_assets.sketch\/QuickLook\/Thumbnail.png",
 		"outputAbbreviatedPath": "\/img\/source\/visual_assets.sketch\/QuickLook\/Thumbnail.png",
 		"outputPathIsOutsideProject": 0,
@@ -4301,7 +4301,7 @@
 		"fileType": 16384,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 6167,
+		"initialSize": 1797,
 		"inputAbbreviatedPath": "\/img\/thumbs\/theadsgarage.jpg",
 		"outputAbbreviatedPath": "\/img\/thumbs\/theadsgarage.jpg",
 		"outputPathIsOutsideProject": 0,
@@ -8712,7 +8712,7 @@
 		"fileType": 16384,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 3632,
+		"initialSize": 4803,
 		"inputAbbreviatedPath": "\/img\/uploads\/processed.jpg",
 		"outputAbbreviatedPath": "\/img\/uploads\/processed.jpg",
 		"outputPathIsOutsideProject": 0,
@@ -8723,7 +8723,7 @@
 		"fileType": 16384,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 20493,
+		"initialSize": 7807,
 		"inputAbbreviatedPath": "\/img\/uploads\/to_process.jpg",
 		"outputAbbreviatedPath": "\/img\/uploads\/to_process.jpg",
 		"outputPathIsOutsideProject": 0,
@@ -9162,6 +9162,50 @@
 	],
 "lastSavedByUser": "Mustapha Hamoui",
 "manualImportLinks": {
+	"\/js\/lebaneseblogs.js": [
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/third_party\/masonry.pkgd.min.js",
+			"position": 0,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.events.js",
+			"position": 1,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.functions.js",
+			"position": 2,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.menus.js",
+			"position": 3,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.toplist.js",
+			"position": 4,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.favorites.js",
+			"position": 5,
+			"type": 0
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/js\/lb.sources\/lb.saved.js",
+			"position": 6,
+			"type": 0
+			}
+		]
 	},
 "projectAttributes": {
 	"bowerAbbreviatedPath": "",

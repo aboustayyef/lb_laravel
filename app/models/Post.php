@@ -141,12 +141,23 @@ public static function getTopPostsByBlogger($bloggerId){
       return FALSE;
     }
   }
+
+  public static function getPostsFromSearchResults($from=0, $amount=20){
+    $terms = Session::get('searchQuery');
+    $results = $results = Post::with('blog')
+      ->whereRaw("MATCH(post_title,post_content) AGAINST(? IN BOOLEAN MODE)", array($terms))
+      ->orderBy('post_timestamp','desc')
+      ->remember(1440)->get();
+    return $results;
+
+  }
+
   /*
   |--------------------------------------------------------------------------
   | Returns posts from search results
   |--------------------------------------------------------------------------
   */
-  public static function getPostsFromSearchResults($from=0, $amount=20){
+  public static function getPostsFromElasticSearchResults($from=0, $amount=20){
     // all post Ids of result were stored in a session from PostController
     $all_results = Session::get('searchResults');
     if ( count( $all_results ) == 0 ) {

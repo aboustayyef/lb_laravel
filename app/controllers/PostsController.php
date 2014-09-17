@@ -17,12 +17,11 @@
           // if no parameters, forward back to home page
           return Redirect::to('/posts/all');
         }else{
-          $listOfIds = self::search($query);
           // initialize posts counters
           Session::put('postsCounter', 0);
           Session::put('cardsCounter', 0);
           Session::put('pageKind', 'searchResults');
-          Session::put('searchResults', $listOfIds);
+          Session::put('searchQuery', stripcslashes($query));
           return View::make('posts.main');
         }
       }
@@ -51,7 +50,7 @@
       return View::make('posts.main');
     }
 
-    public static function search($query){
+    public static function elasticSearch($query){
 
       // prepare elastic search client
 
