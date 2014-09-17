@@ -4,6 +4,7 @@
    License: none (public domain)
 */
 @import url(http://fonts.googleapis.com/css?family=Montserrat);
+@import url(http://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -66,7 +67,8 @@ div.posts.cards {
   margin: auto;
   margin-top: 30px; }
   div.posts.cards .rtl {
-    font-family: sans-serif;
+    font-family: 'Droid Arabic Naskh', serif;
+    font-weight: bold;
     direction: rtl;
     float: right;
     margin-right: 0;
@@ -141,19 +143,21 @@ div.posts.cards {
     div.posts.cards div.post_wrapper div.post_body p {
       padding: 10px 20px;
       font-size: 15px;
-      line-height: 22px;
+      line-height: 25px;
       color: rgba(0, 0, 0, 0.4);
       margin-bottom: 20px;
       overflow: hidden; }
       div.posts.cards div.post_wrapper div.post_body p:first-letter {
+        line-height: 42px;
         text-transform: uppercase;
         font-size: 20px;
         line-height: 36px;
         margin-right: 7px;
-        color: #FFFFFF;
+        color: #8B8B8B;
+        border: 1px solid #ADA9A9;
         float: left;
         text-align: center;
-        background: #b12530;
+        background: #EBEBEB;
         padding: 0 12px;
         margin-top: 5px; }
       div.posts.cards div.post_wrapper div.post_body p.rtl:first-letter {
