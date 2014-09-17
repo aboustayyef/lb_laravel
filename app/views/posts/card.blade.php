@@ -82,8 +82,23 @@
         @endif
     @endif
     <div class="sharingButton tweetit">
-      <i class="fa fa-twitter"></i>
-      Tweet
+      <?php
+        "%title% %url% [by %@author%] via lebaneseblogs.com";
+        $byline = $blog->blog_author_twitter_username ? " by @$blog->blog_author_twitter_username" : "";
+        $byline .= " via lebaneseblogs.com";
+        $allowedTitleSize = 140 - strlen($byline) - 28; // urls count for 22 chars on twitter and we add space
+        $byline = ' ' . $post->post_url . $byline;
+        $postTitle = $post->post_title;
+        if (strlen($postTitle) >= $allowedTitleSize) {
+          $postTitle = substr($postTitle, 0, ($allowedTitleSize - 4)) . '... ';
+        }
+        $tweetExpression = $postTitle.$byline;
+        $twitterUrl = urlencode($tweetExpression);
+      ?>
+      <a href="https://twitter.com/intent/tweet?text={{$twitterUrl}}" title="Click to send this post to Twitter!" target="_blank">
+        <i class="fa fa-twitter"></i> Tweet
+      </a>
+
     </div>
     <div data-postid="{{$post->post_id}}" class="sharingButton likeit
     <?php if(User::signedIn()){
