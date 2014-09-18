@@ -387,7 +387,7 @@ body {
     #topBar #hamburger:hover {
       background: rgba(0, 0, 0, 0.2); }
   #topBar #logo {
-    margin-left: 10px;
+    margin-left: 20px;
     width: 150px;
     height: 50px;
     background: url(../img/logo-mobile.png);
@@ -417,7 +417,7 @@ body {
     #topBar #about:hover {
       background: #871c25; }
   #topBar #aboutMenu {
-    top: -185px;
+    top: -220px;
     opacity: 0;
     z-index: 0;
     display: inline-block;
@@ -506,14 +506,20 @@ body {
   #sidebar .close {
     cursor: pointer;
     position: absolute;
-    top: 18px;
-    right: 22px; }
+    top: 0;
+    right: 0;
+    padding: 16px; }
+    #sidebar .close img {
+      height: 19px;
+      width: 19px; }
 
 #channels {
   padding: 10px; }
   #channels h3 {
     color: white;
-    margin: 10px 0; }
+    margin: 10px 0;
+    width: 230px;
+    float: left; }
   #channels ul {
     font-size: 0.75em;
     overflow: auto;

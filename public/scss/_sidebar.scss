@@ -25,8 +25,13 @@
   .close{
     cursor:pointer;
     position:absolute;
-    top:18px;
-    right:22px;
+    top:0;
+    right:0;
+    padding:16px;
+    img{
+      height:19px;
+      width:19px;
+    }
   }
 
     @mixin userInfo{
@@ -35,7 +40,6 @@
       width:190px;
       float:left;
       padding:10px;
-
     }
   }
   #channels{
@@ -43,6 +47,8 @@
     h3{
       color:white;
       margin:10px 0;
+      width:230px;
+      float:left;
     }
     ul{
       font-size:0.75em;
