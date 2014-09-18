@@ -1,9 +1,12 @@
 <div id="sidebar">
-  <img class="close" width="19px" height="19px" src="{{asset('/img/close-button.png')}}" alt="">
+
   <div id="scroller">
   <?php $ourUser = User::find(User::signedIn()) ?>
 
     <div id="channels">
+      <div class="close">
+        <img src="{{asset('/img/close-button.png')}}" alt="">
+      </div>
       <h3>Search Thousands of Posts</h3>
       <div class="searchform">
         {{Form::open(array( 'url' => 'posts/search', 'method' =>  'get' )) }}

@@ -63,6 +63,10 @@ Route::post('/edit/{what?}/{which?}', array(
   'uses'  =>  'EditController@submit'
 ));
 
+Route::get('/delete/{what?}/{which?}', array(
+  'uses'  =>  'DeleteController@index'
+));
+
 Route::get('/ajax/GetMorePosts', array(
   'uses'  =>  'AjaxController@loadMorePosts'
 ));

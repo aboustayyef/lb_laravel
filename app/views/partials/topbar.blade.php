@@ -1,4 +1,4 @@
-<div id="topBar">
+<div id="topBar" style="height:50px">
 	<div id="hamburger">
 		<i class="fa fa-bars"></i>
 	</div>

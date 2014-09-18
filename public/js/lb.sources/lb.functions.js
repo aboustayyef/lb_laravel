@@ -10,10 +10,10 @@ lbApp.resizeViewport = function(){
   if ($(window).width() > 430) {
     var $leftMargin = parseInt($('div.posts').css('margin-left'));
     var $logoMargin = $leftMargin - 50 + 10 ;
-    if ($logoMargin > 10) {
+    if ($logoMargin > 20) {
      $('#logo').css('margin-left', $logoMargin + 'px');
     }else{
-      $('#logo').css('margin-left', '10px');
+      $('#logo').css('margin-left', '20px');
     };
   };
 }

@@ -66,6 +66,7 @@ class EditController extends \BaseController {
       if (!$saveSuccess) {
         return View::make('static.edit.error');
       } else {
+        Cache::flush();
         return View::make('static.edit.success');
       }
 
