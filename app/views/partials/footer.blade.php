@@ -28,6 +28,7 @@
       <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
       <script src ="{{asset('js/lebaneseblogs.min.js')}}"></script>
 
+
       <!-- Statcounter -->
           <script type="text/javascript">
           var sc_project=8489889;

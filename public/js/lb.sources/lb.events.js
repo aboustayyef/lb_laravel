@@ -1,20 +1,5 @@
-$(window).load(function(){
-
-  // cards specific action. Fix layout before showing posts
-  if ($('.posts').hasClass('cards')) {
-      lbApp.resizeViewport();
-      console.log('pssst');
-      lbApp.flowPosts();
-      // momentum scrolling hack
-      $('#momentumScrollingViewport').css('-webkit-overflow-scrolling: touch;');
-  };
-  lbApp.fixViewportHeight();
-  // show initial posts
-  $('.post_wrapper').css('visibility','visible');
-  lbApp.hideLoadingCurtain();
-  lbApp.loadLazyImages();
-
-  // dynamic links
+$(document).ready(function(){
+  // initialize dynamic links behavior
   $('.dynamicLink').on('click', function(){
     console.log('clicked Dynamic link');
     $destination = $(this).data('destination');
@@ -22,7 +7,6 @@ $(window).load(function(){
     lbApp.showLoadingCurtain("true");
     window.location.href = $destination ;
   });
-
 });
 
 $( window ).on('resize', function(){

@@ -1,6 +1,6 @@
 .noresults{
   width:500px;
-  padding:50px;
+  padding:50px 70px;
   margin: 20px auto;
   background:white;
   text-align: center;
@@ -13,8 +13,19 @@
     font-size:1.5em;
     margin: 20px 0;
   }
-  a{
-    color:$brand-color;
-    text-decoration:underline;
+
+  p{
+    color: #555;
+    line-height: 1.5em;
+  }
+
+  a.bigAssRedButton{
+    background: #b12530;
+    color: white;
+    margin-top: 20px;
+    padding: 10px 0;
+    display: block;
+    width: 160px;
+    margin: 20px auto;
   }
 }

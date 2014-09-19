@@ -29,7 +29,7 @@ class crawlHelpers extends BaseController
 
 
     public static function getImageFromContent($content, $link=null){
-
+      echo "-[]- Attempting to get image from Body of post \n";
       $imageContainer = new Crawler($content);
       $imageFound = self::getImageFromContainer($imageContainer, $link);
       if ($imageFound) {
@@ -41,12 +41,14 @@ class crawlHelpers extends BaseController
 
     public static function getImageFromUrl($url)
     {
+      echo "-[]- Now attempting to get image from URL of post \n";
       // Prepare list of "main content tags by providers"
-      $contentClasses = ['#main','.entry-content','.post-entry', '.entry', '.article_main_section', '.main-content', '#content', '.article'];
+      $contentClasses = ['.entry-content','.post-entry', '.entry', '.article_main_section', '.main-content', '#content', '.article', '#main'];
       if ($grossContent = @file_get_contents($url)){
         //proceed
       }else{
         // none of the methods succeeded
+        echo "-[]- Could not extract the content from the URL \n";
         return;
       };
       $grossContentCrawler = new Crawler($grossContent);
@@ -60,8 +62,10 @@ class crawlHelpers extends BaseController
       {
         // Check if this class exists in DOM
         $crawlerCount = $grossContentCrawler->filter($class)->count();
+        echo "-[]- Inspecting element ( $class ) for images \n";
         if ($crawlerCount > 0)
         {
+          echo "-[]- Found some images. Digging deeper \n";
           // the class exists, crawl it for images
           $imageContainer = $grossContentCrawler->filter($class);
           $imageFound = self::getImageFromContainer($imageContainer, $root);
@@ -70,7 +74,7 @@ class crawlHelpers extends BaseController
           if ($imageFound) {
             return $imageFound;
           }else{
-            return false;
+            continue;
           }
         }
       }
@@ -97,7 +101,7 @@ class crawlHelpers extends BaseController
 
           // if image has width larger than 300 return image
           if (@getimagesize($tmpImage)) {
-            echo 'candidate picture found: ' . $tmpImage ."\n";
+            echo '-[]- candidate picture found: ' . $tmpImage ."\n";
             // remove url parameters from the end
             $tmpImage = preg_replace('#\?.+#', '', $tmpImage);
             list($width, $height, $type, $attr) = getimagesize($tmpImage);
@@ -113,7 +117,7 @@ class crawlHelpers extends BaseController
 
       // check youtube
       $htmlContent = $imageContainer->html();
-
+      echo "-[]- Attempting to find YouTube Preview \n";
       preg_match('#(\.be/|/embed/|/v/|/watch\?v=)([A-Za-z0-9_-]{5,11})#', $htmlContent, $matches);
       if(isset($matches[2]) && $matches[2] != '')
       {
@@ -129,6 +133,7 @@ class crawlHelpers extends BaseController
 
       // check vimeo
       $htmlContent = $imageContainer->html();
+      echo "-[]- Attempting to find Vimeo Preview \n";
       preg_match_all("#(?:https?://)?(?:\w+\.)?vimeo.com/(?:video/|moogaloop\.swf\?clip_id=)(\w+)#", $htmlContent, $results);
       if (isset($results[1][0])){
         $imgid = $results[1][0];

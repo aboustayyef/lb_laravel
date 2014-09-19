@@ -1,3 +1,26 @@
+lbApp.veryFirstLoad= function(){
+
+  // adjust sizes of DOM elements
+  lbApp.resizeViewport();
+
+  // momentum scrolling hack
+  $('#momentumScrollingViewport').css('-webkit-overflow-scrolling: touch;');
+
+  // use masonry to flow the posts
+  lbApp.flowPosts();
+
+  // more adjusting of DOM element sizes
+  lbApp.fixViewportHeight();
+
+  // show initial posts (and remove 'loading curtain')
+  $('.post_wrapper').css('visibility','visible');
+  lbApp.hideLoadingCurtain();
+
+  // show lazy images
+  lbApp.loadLazyImages();
+};
+
+
 lbApp.resizeViewport = function(){
   // this function is only used with cards
   // it serves to recalculate the viewport's width to center the posts

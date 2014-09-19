@@ -40,13 +40,14 @@
 		<string>Helvetica</string>
 		<string>DINCondensed-Bold</string>
 		<string>Helvetica</string>
-		<string>Helvetica</string>
+		<string>Helvetica-Bold</string>
 		<string>DINCondensed-Bold</string>
 		<string>Helvetica-Bold</string>
 		<string>Helvetica-Light</string>
 		<string>Helvetica-Bold</string>
 		<string>Helvetica-Bold</string>
 		<string>Helvetica-Light</string>
+		<string>DINCondensed-Bold</string>
 		<string>DINCondensed-Bold</string>
 		<string>Helvetica</string>
 		<string>Helvetica-Bold</string>
@@ -55,10 +56,34 @@
 		<string>Verdana-Bold</string>
 		<string>FontAwesome</string>
 		<string>Verdana-Bold</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
+		<string>FontAwesome</string>
 		<string>FontAwesome</string>
 	</array>
 	<key>length</key>
-	<integer>2383785</integer>
+	<integer>2482907</integer>
 	<key>version</key>
 	<integer>18</integer>
 </dict>
