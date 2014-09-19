@@ -131,6 +131,15 @@ Route::get('/login',function()
     return View::make('login');
 });
 
+/**
+ * Blog Routes. This will redirect old blog urls based on subfolder to new subdomain.
+ */
+
+Route::get('/blog/{slug1?}/{slug2?}/{slug3?}/{slug4?}', function($slug1=null, $slug2=null, $slug3=null, $slug4=null){
+  $endSlug = '/'. $slug1 .'/'. $slug2 .'/'. $slug3 .'/'. $slug4;
+  return Redirect::to('http://blog.lebaneseblogs.com'.$endSlug);
+});
+
 
 /*
 |---------------------------------------------------------------------
