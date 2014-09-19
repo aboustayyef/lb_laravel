@@ -95,8 +95,9 @@ div.posts.cards{
         padding:10px;
         line-height:24px;
         color:#444;
-        &.ltr{
-          font-size:18px;
+        &.rtl{
+          margin-top: 10px;
+          font-size:16px;
         }
         a{
           color: #444;
@@ -170,7 +171,7 @@ div.posts.cards{
       }
     }
     div.tools_footer{
-      height:28px;
+      height:35px;
       overflow: auto;
       position:relative;
       clear:both;
@@ -178,7 +179,7 @@ div.posts.cards{
 
     .sharingButton{
       cursor: pointer;
-      bottom: 4px;
+      bottom: 8px;
       position: absolute;
       font-size: 0.8em;
       display: block;

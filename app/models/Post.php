@@ -148,7 +148,11 @@ public static function getTopPostsByBlogger($bloggerId){
       ->whereRaw("MATCH(post_title,post_content) AGAINST(? IN BOOLEAN MODE)", array($terms))
       ->orderBy('post_timestamp','desc')
       ->remember(1440)->get();
-    return $results;
+    if (count($results) > 0 ) {
+      return $results;
+    } else {
+      return False;
+    }
 
   }
 
