@@ -539,6 +539,13 @@ body {
         background: #666; }
       #channels ul li.categoryButton.selected {
         background: #b12530; }
+      #channels ul li.categoryButton.showAll {
+        background: transparent;
+        border: 2px solid #555;
+        width: 270px;
+        margin-bottom: 15px; }
+        #channels ul li.categoryButton.showAll:hover {
+          background: #666; }
 
 .credits {
   padding: 30px 10px;

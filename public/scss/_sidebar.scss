@@ -73,6 +73,15 @@
         &.selected{
           background:$brand-color;
         }
+        &.showAll{
+          background:transparent;
+          border:2px solid #555;
+          width:270px;
+          margin-bottom:15px;
+          &:hover{
+            background:#666;
+          }
+        }
       }
     }
   }

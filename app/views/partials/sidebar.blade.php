@@ -18,6 +18,11 @@
       <h3>Filter Posts By Topics</h3>
       <?php $currentChannel = Session::get('channel'); ?>
       <ul>
+        @if ($currentChannel != 'all')
+          <li class ="showAll categoryButton dynamicLink" data-destination="{{URL::to('/posts/all')}}">
+            <i class="fa fa-th"></i> Show All Posts
+          </li>
+        @endif
 
         @foreach (Channel::$list as $channel)
         <li class ="categoryButton dynamicLink" data-destination="{{URL::to('/posts/'.$channel['name'])}}"
