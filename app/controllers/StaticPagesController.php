@@ -23,117 +23,76 @@ class StaticPagesController extends \BaseController {
   public function submit($slug = null)
   {
     if (in_array($slug, ['submit', 'feedback'])) {
-      $rulesSubmit = [
-        'url' =>  'required',
-        'email' =>  'required|email',
-        'twitter' =>  'required'
-      ];
+      if ($slug == 'submit') {
+        $rulesSubmit = [
+          'url' =>  'required',
+          'email' =>  'required|email',
+          'twitter' =>  'required'
+        ];
 
-      $rulesFeedback = [
-        'email' =>  'required|email',
+        $validator = Validator::make(Input::all(), $rulesSubmit);
+        if ($validator->fails()) {
+          Input::flash();
+          return View::make('static.submit', ['slug'  =>  'submit'])->withErrors($validator);
+        }
+
+        // if everything is okay
+
+        $data = ['twitter' => Input::get('twitter'), 'email'=>Input::get('email'), 'url'  =>  Input::get('url')];
+
+        Mail::queue('emails.submission', $data, function($message)
+        {
+            $message->from('donotreply@lebaneseblogs.com', 'Lebanese Blogs');
+            $message->to('mustapha.hamoui@gmail.com', 'Mustapha Hamoui')->subject('[ Blog Submission ]');
+        });
+
+        // Mail::later(3,'emails.thankyouforsubmitting', $data, function($message)
+        // {
+        //     $email = Input::get('email');
+        //     $message->from('donotreply@lebaneseblogs.com', 'Lebanese Blogs');
+        //     $message->to($email)->subject('Thank You for Submitting your blog');
+        // });
+
+        Session::flash('message', 'Your blog has been submitted. Please permit a few days to process it.');
+        return View::make('static.submit', ['slug'  =>  'submit']);
+      }elseif ($slug == 'feedback'){
+        $rulesFeedback = [
+        'email' =>  'email',
         'feedback'  => 'required|min:10'
-      ];
+        ];
+        $validator = Validator::make(Input::all(), $rulesFeedback);
+        if ($validator->fails()) {
+          Input::flash();
+          return View::make('static.feedback', ['slug'  =>  'feedback'])->withErrors($validator);
+        }
 
-      $validator = Validator::make(Input::all(), $rulesSubmit);
-      if ($validator->fails()) {
-        // put values in a flash session
-        Input::flash();
-        return View::make('static.submit', ['slug'  =>  'submit'])->withErrors($validator);
+        // if everything is okay
+
+        $data = ['email' => Input::get('email'), 'feedback'=>Input::get('feedback')];
+
+        Mail::queue('emails.feedback', $data, function($message)
+        {
+            $message->from('donotreply@lebaneseblogs.com', 'Lebanese Blogs');
+            $message->to('mustapha.hamoui@gmail.com', 'Mustapha Hamoui')->subject('[ Feedback for Lebanese Blogs ]');
+        });
+
+        // Mail::later(3,'emails.thankyouforsubmitting', $data, function($message)
+        // {
+        //     $email = Input::get('email');
+        //     $message->from('donotreply@lebaneseblogs.com', 'Lebanese Blogs');
+        //     $message->to($email)->subject('Thank You for Submitting your blog');
+        // });
+        //
+        Session::flash('message', 'Your Feedback has been submitted. If you included your email address we\'ll do our best to get back to you');
+        return View::make('static.feedback', ['slug'  =>  'submit']);
       }
 
-      // if everything is okay
-
-      $data = ['twitter' => Input::get('twitter'), 'email'=>Input::get('email'), 'url'  =>  Input::get('url')];
-
-      Mail::queue('emails.submission', $data, function($message)
-      {
-          $message->from('donotreply@lebaneseblogs.com', 'Lebanese Blogs');
-          $message->to('mustapha.hamoui@gmail.com', 'Mustapha Hamoui')->subject('[ Blog Submission ]');
-      });
-
-      // Mail::later(3,'emails.thankyouforsubmitting', $data, function($message)
-      // {
-      //     $email = Input::get('email');
-      //     $message->from('donotreply@lebaneseblogs.com', 'Lebanese Blogs');
-      //     $message->to($email)->subject('Thank You for Submitting your blog');
-      // });
-
-      Session::flash('message', 'Your blog has been submitted. Please permit a few days to process it.');
-      return View::make('static.submit', ['slug'  =>  'submit']);
       // if neither submit nor feedback
      } else {
       return Redirect::to('/posts/all');
      }
   }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
 
 
 }

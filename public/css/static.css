@@ -143,9 +143,10 @@ label {
   display: block;
   margin: 5px 0; }
 
-input {
+input, textarea {
   padding: 5px;
-  width: 100%; }
+  width: 100%;
+  margin-bottom: 10px; }
 
 input[type="submit"] {
   width: 100px;

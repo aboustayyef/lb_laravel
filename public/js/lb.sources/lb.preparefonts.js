@@ -1,11 +1,15 @@
 $(document).ready(function() {
-
+  console.log('trying to load fonts');
   WebFontConfig = {
     google: { families: [ 'Montserrat', 'Droid Arabic Naskh' ] },
 
     // when the fonts download, beging masonry layout..
     fontactive: function(fontFamily, fontDescription) {
       console.log('WebFonts have loaded');
+      lbApp.veryFirstLoad();
+    },
+    inactive: function() {
+      console.log('WebFonts have Failed to load, need to move on with normal fonts');
       lbApp.veryFirstLoad();
     }
   };
