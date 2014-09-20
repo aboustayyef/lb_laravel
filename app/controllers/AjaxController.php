@@ -15,4 +15,13 @@ class AjaxController extends BaseController
     $posts = Page::getPosts($from, $amount);
     return View::make('posts.render')->with(['posts'  =>  $posts]);
   }
+
+/*******************************************************************
+* This Function returns a JSON object with top 5 posts
+*
+********************************************************************/
+    function loadTopFivePosts(){
+      $hours = Input::Get('hours');
+      return View::Make('posts.extras.toplist')->with('hours',$hours);
+    }
 }
