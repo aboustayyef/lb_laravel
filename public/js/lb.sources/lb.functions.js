@@ -115,7 +115,9 @@ lbApp.addMorePosts = function(){
         $container.append( $data ).masonry( 'appended', $data, true );
       }
       $('.post_wrapper').css('visibility','visible');
+      lbApp.currentPageNumber = lbApp.currentPageNumber + 1;
       lbApp.busy = false;
+      ga('send','pageview', lbApp.currentPage + '/page-' + lbApp.currentPageNumber );
       lbApp.hidePostsLoadingIndicator();
       lbApp.loadLazyImages();
     }

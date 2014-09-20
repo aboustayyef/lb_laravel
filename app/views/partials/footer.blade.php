@@ -14,6 +14,8 @@
           lbApp.imagePlaceHolder = '{{asset('/img/grey.gif')}}';
           lbApp.rootPath = '{{URL::to('/')}}';
           lbApp.pageKind = '{{Session::get('pageKind')}}';
+          lbApp.currentPage = '{{Request::path()}}';
+          lbApp.currentPageNumber= 1;
       </script>
 
       @if (User::signedIn() == true)
