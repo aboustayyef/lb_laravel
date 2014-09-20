@@ -22,6 +22,6 @@ class AjaxController extends BaseController
 ********************************************************************/
     function loadTopFivePosts(){
       $hours = Input::Get('hours');
-      return View::Make('posts.extras.toplist')->with('hours',$hours);
+      return View::Make('posts.extras.topList')->with('hours',$hours);
     }
 }
