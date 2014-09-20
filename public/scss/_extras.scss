@@ -8,17 +8,17 @@
     }
     p{
       margin-top: 10px;
-      font-size: 12px;
+      font-size: 14px;
       line-height: 18px;
       color: #8F8F8F;
       a{
         display:inline;
       }
     }
+
     &.buttonswrapper{
       margin-top:20px;
-      overflow:auto;
-      overflow-y:hidden;
+      overflow:hidden;
       a{
         display:block;
         float:left;
@@ -48,6 +48,14 @@
       }
     }
   }
+    .whySignup{
+      font-size:12px;
+      margin-top:10px;
+      line-height:1.5em;
+      background:beige;
+      padding: 5px;
+      color:#555;
+    }
 }
 
 #bloggerStats{

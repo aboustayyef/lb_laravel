@@ -603,15 +603,14 @@ body {
     line-height: 22px; }
   #welcomeMessage div p {
     margin-top: 10px;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 18px;
     color: #8F8F8F; }
     #welcomeMessage div p a {
       display: inline; }
   #welcomeMessage div.buttonswrapper {
     margin-top: 20px;
-    overflow: auto;
-    overflow-y: hidden; }
+    overflow: hidden; }
     #welcomeMessage div.buttonswrapper a {
       display: block;
       float: left;
@@ -633,6 +632,13 @@ body {
     #welcomeMessage div a small {
       color: #e6e6e6;
       font-size: 0.9em; }
+  #welcomeMessage .whySignup {
+    font-size: 12px;
+    margin-top: 10px;
+    line-height: 1.5em;
+    background: beige;
+    padding: 5px;
+    color: #555; }
 
 #bloggerStats {
   background: teal;
@@ -765,11 +771,3 @@ body {
   .noresults p {
     color: #555;
     line-height: 1.5em; }
-  .noresults a.bigAssRedButton {
-    background: #b12530;
-    color: white;
-    margin-top: 20px;
-    padding: 10px 0;
-    display: block;
-    width: 160px;
-    margin: 20px auto; }

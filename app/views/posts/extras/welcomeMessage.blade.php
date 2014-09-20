@@ -12,4 +12,7 @@
     <a href="{{URL::to('/auth/facebook')}}"><img src="{{asset('img/login_with_facebook.png')}}" width="90px" height="34px" alt=""></a>
     <a href="{{URL::to('/auth/google')}}"><img src="{{asset('img/login_with_google.png')}}" width="90px" height="34px" alt=""></a>
   </div>
+  <div class="whySignup">
+    Logging in allows you to personalize your feed by following blogs and liking posts.
+  </div>
 </div>
