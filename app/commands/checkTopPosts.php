@@ -52,6 +52,10 @@ class checkTopPosts extends Command {
       if ($topPost->post_visits > 8) {
 
         # add post to database
+        $newTopPost = new topPost;
+        $newTopPost->top_post_url = $topPost->post_url;
+        $newTopPost->top_post_timestamp_added = time();
+        $newTopPost->save();
 
         # share on facebook
         self::sharePostToFacebook($topPost);
@@ -107,13 +111,32 @@ class checkTopPosts extends Command {
     // see: https://developers.facebook.com/docs/reference/php/facebook-api/
     try {
       $ret = $fb->api('/625974710801501/feed', 'POST', $params);
-      echo 'Successfully posted to Facebook';
+      echo 'Successfully posted to Facebook'."\n";
     } catch(Exception $e) {
       echo $e->getMessage();
     }
   }
 
   static function sharePostToTwitter($post){
+    $twitter_author = $post->blog->blog_author_twitter_username;
+
+    $length_of_twitter_handle = strlen($twitter_author);
+    $title_allowance = 59 - $length_of_twitter_handle; // twitter handle + title should be equal to 59 in length to accomodate rest of tweet.
+    $title = substr($post->post_title, 0, $title_allowance);
+
+    if ($length_of_twitter_handle > 0) {
+      $status = 'New Top Post: '.$title.' by @'.$twitter_author.', '.$postObject->post_url.'. More at lebaneseblogs.com';
+    } else {
+      $status = 'New Top Post: '.$title.' '.$postObject->post_url.'. More at lebaneseblogs.com';
+    }
+    echo 'Twitter Status: '.$status."\n";
+
+    $twitter = new Twitter(getenv('TWITTER_PUBLISHER_IDENTIFIER'), getenv('TWITTER_PUBLISHER_SECRET'), getenv('TWITTER_PUBLISHER_TOKEN1'), getenv('TWITTER_PUBLISHER_TOKEN2'));
+    try {
+        $twitter->send($status);
+    } catch (TwitterException $e) {
+        echo "\nTwitter Error: ", $e->getMessage();
+    }
   }
 
 	/**
