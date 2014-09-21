@@ -125,9 +125,9 @@ class checkTopPosts extends Command {
     $title = substr($post->post_title, 0, $title_allowance);
 
     if ($length_of_twitter_handle > 0) {
-      $status = 'New Top Post: '.$title.' by @'.$twitter_author.', '.$postObject->post_url.'. More at lebaneseblogs.com';
+      $status = 'New Top Post: '.$title.' by @'.$twitter_author.', '.$post->post_url.'. More at lebaneseblogs.com';
     } else {
-      $status = 'New Top Post: '.$title.' '.$postObject->post_url.'. More at lebaneseblogs.com';
+      $status = 'New Top Post: '.$title.' '.$post->post_url.'. More at lebaneseblogs.com';
     }
     echo 'Twitter Status: '.$status."\n";
 
