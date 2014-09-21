@@ -226,7 +226,13 @@ div.posts.cards{
     }
   }
 }
-
+div.postvisits{
+  position: absolute;
+  bottom: 5px;
+  left: 110px;
+  background: beige;
+  padding: 5px;
+  }
 div.posts.cards{
   @media screen and (max-width:360px){
     margin-top:20px;

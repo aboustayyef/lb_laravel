@@ -79,7 +79,10 @@
         <div class="editpost">
           {{link_to('/edit/post/'.$post->post_id, 'edit this post', ['class'  =>  'button'])}}
         </div>
-        @endif
+      @endif
+      @if ($ourUser->twitter_username == 'beirutspring')
+        <div class="postvisits">{{$post->post_visits}}</div>
+      @endif
     @endif
     <div class="sharingButton tweetit">
       <?php
