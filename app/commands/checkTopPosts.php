@@ -97,8 +97,8 @@ class checkTopPosts extends Command {
     $messageToShare = $variety_of_messages[rand(0,count($variety_of_messages)-1)];
     $messageToShare = $messageToShare.". Find more top posts at http://lebaneseblogs.com";
 
-    echo "\nFacebook Message: \n";
-    echo $messageToShare."\n";
+    // echo "\nFacebook Message: \n";
+    // echo $messageToShare."\n";
 
     $fb = new Facebook($fbConfig);
     $params = array(
