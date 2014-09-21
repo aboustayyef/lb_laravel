@@ -100,18 +100,23 @@ class crawlHelpers extends BaseController
           }
 
           // if image has width larger than 300 return image
-          if (@getimagesize($tmpImage)) {
-            echo '-[]- candidate picture found: ' . $tmpImage ."\n";
-            // remove url parameters from the end
-            $tmpImage = preg_replace('#\?.+#', '', $tmpImage);
-            list($width, $height, $type, $attr) = getimagesize($tmpImage);
-            if ($width > 299)
-            {
-              return $tmpImage;
-            } else {
-              echo 'image too small'."\n";
+          try {
+            if (@getimagesize($tmpImage)) {
+              echo '-[]- candidate picture found: ' . $tmpImage ."\n";
+              // remove url parameters from the end
+              $tmpImage = preg_replace('#\?.+#', '', $tmpImage);
+              list($width, $height, $type, $attr) = getimagesize($tmpImage);
+              if ($width > 299)
+              {
+                return $tmpImage;
+              } else {
+                echo 'image too small'."\n";
+              }
             }
+          } catch (Exception $e) {
+            echo 'attempts to fetch the image gave an exception';
           }
+
         }
       }
 
