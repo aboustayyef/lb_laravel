@@ -16,3 +16,4 @@ Artisan::add(new CrawlArticles);
 Artisan::add(new updateVirality);
 Artisan::add(new indexPosts);
 Artisan::add(new populateHues);
+Artisan::add(new checkTopPosts);

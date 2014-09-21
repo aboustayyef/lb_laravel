@@ -158,7 +158,6 @@ Route::get('/auth/{provider}/callback', array(
   'uses'  =>  'AuthenticationController@callback'
 ));
 
-
 /*
 |---------------------------------------------------------------------
 |   handle url shortcuts, especially those carried forward from previous version
@@ -167,5 +166,4 @@ Route::get('/auth/{provider}/callback', array(
 |   lebaneseblogs.com/beirutspring -> lebaneseblogs.com/blogger/beirutspring
 |   lebaneseblogs.com/fashion -> lebanesbelogs.com/channel/fashion
 */
-
 Route::get('{slug}', ['uses'  =>  'UrlController@redirect']);
