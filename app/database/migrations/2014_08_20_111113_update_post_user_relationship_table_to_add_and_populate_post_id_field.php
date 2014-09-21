@@ -17,7 +17,7 @@ class UpdatePostUserRelationshipTableToAddAndPopulatePostIdField extends Migrati
     foreach ($usersPosts as $key => $record) {
       $post = DB::table('posts')->where('post_url', $record->post_url)->first();
       if ($post) {
-        $postID = ->post_id;
+        $postID = $post->post_id;
         DB::table('post_user')
               ->where('post_url', $record->post_url)
               ->update(array('post_id' => $postID));
