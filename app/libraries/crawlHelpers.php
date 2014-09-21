@@ -103,6 +103,13 @@ class crawlHelpers extends BaseController
           try {
             if (@getimagesize($tmpImage)) {
               echo '-[]- candidate picture found: ' . $tmpImage ."\n";
+              $imageParts = parse_url($tmpImage);
+              if (strpos($imageParts['query'],'image=')) {
+                preg_match('/image=(.+)/', $imageParts['query'], $matches );
+                $tmpImage = $imageParts['scheme'].'://'.$imageParts['host'].$matches[1];
+              } else {
+                $tmpImage = $imageParts['scheme'].'://'.$imageParts['host'].$imageParts['path'];
+              }
               // remove url parameters from the end
               $tmpImage = preg_replace('#\?.+#', '', $tmpImage);
               list($width, $height, $type, $attr) = getimagesize($tmpImage);
