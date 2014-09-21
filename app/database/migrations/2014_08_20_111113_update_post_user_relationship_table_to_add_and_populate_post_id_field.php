@@ -12,13 +12,7 @@ class UpdatePostUserRelationshipTableToAddAndPopulatePostIdField extends Migrati
 	 */
 	public function up()
 	{
-		// Add the user_id column
-    Schema::table('post_user', function($table)
-    {
-        $table->integer('post_id')->unsigned();
-    });
-
-    // populate it
+    // populate post_id
     $usersPosts = DB::table('post_user')->get();
     foreach ($usersPosts as $key => $record) {
       $postID = DB::table('posts')->where('post_url', $record->post_url)->first()->post_id;
@@ -35,10 +29,10 @@ class UpdatePostUserRelationshipTableToAddAndPopulatePostIdField extends Migrati
 	 */
 	public function down()
 	{
-		Schema::table('post_user', function($table)
-    {
-        $table->dropColumn('post_id');
-    });
+		$all = DB::table('post_user')->get();
+    foreach ($all as $key => $record) {
+      $record->update(array('post_id' => 0));
+    }
 	}
 
 }
