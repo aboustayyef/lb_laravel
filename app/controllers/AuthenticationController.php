@@ -89,13 +89,17 @@ class AuthenticationController extends BaseController
 
             // Twitter returns full name
             $names = explode(' ', $user->name);
-
+            if (count($names) > 1) {
+              $twitterLastName = $names[1];
+            } else {
+              $twitterLastName = '';
+            }
             $userDetails = array(
               'provider'  =>  'Twitter',
               'providerId' => $user->uid,
               'twitterHandle' =>  $user->nickname,
               'firstName'  => $names[0],
-              'lastName'  =>  $names[1],
+              'lastName'  =>  $twitterLastName,
               'email'     =>  $user->email,
               'gender'    =>  null,
               'imageUrl'  =>  $user->urls['profile_image_url']
