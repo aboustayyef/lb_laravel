@@ -58,6 +58,7 @@ class ExitController extends BaseController
       $u_agent = $_SERVER['HTTP_USER_AGENT'];
       $bname = 'Unknown';
       $platform = 'Unknown';
+      $ub = 'Unknown';
       $version= "";
 
       //First get the platform?
