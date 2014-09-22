@@ -9,7 +9,11 @@
       <a href="{{url('/blogger/'.$post->blog_id)}}">
         <img
           class="thumbnail"
-          src="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}"
+          @if (app('env') == 'staging')
+            src="http://static1.lebaneseblogs.com/{{$post->blog_id.'.jpg'}}"
+          @else
+            src="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}"
+          @endif
           alt="{{$blog->blog_name }} thumbnail"
           width ="50px" height="50px">
       </a>

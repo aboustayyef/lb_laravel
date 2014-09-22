@@ -111,7 +111,11 @@ public static function getTopPostsByBlogger($bloggerId){
     $cachedImageFilename = $this->post_timestamp.'_'.$this->blog_id.'.jpg';
     $cachedImage = $_ENV['DIRECTORYTOPUBLICFOLDER'].'/img/cache/'.$this->post_timestamp.'_'.$this->blog_id.'.jpg'; // if exists
     if (file_exists($cachedImage)) {
-      return asset('/img/cache/'.$cachedImageFilename);
+      if (app('env') == 'staging') {
+        return 'http://static2.lebaneseblogs.com/' . $cachedImageFilename;
+      } else {
+        return asset('/img/cache/'.$cachedImageFilename);
+      }
     } else {
       return FALSE;
     }
