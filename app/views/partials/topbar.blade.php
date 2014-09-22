@@ -1,6 +1,6 @@
 <div id="topBar" style="height:50px">
 	<div id="hamburger">
-		<i class="fa fa-bars"></i>
+		<?php fontAwesomeToSvg::convert('fa-bars') ?>
 	</div>
 
 	<div id="logo" class="dynamicLink" data-destination="{{URL::to('/')}}">	</div>

@@ -15,8 +15,16 @@
   @include lbTransitions();
 
   #hamburger{
+    text-align: center;
+    padding: 14px 0;
+    svg{
+      width:24px;
+      height:20px;
+      path{
+        fill:white;
+      }
+    }
     border-right:1px solid white;
-    font-size:1.5em;
     width:$header-height - 1;
     cursor: pointer;
     &:hover{

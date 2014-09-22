@@ -218,10 +218,16 @@ div.posts.cards {
       border-radius: 3px;
       border-bottom: 2px solid #d9d9d9;
       color: #a6a6a6; }
+      div.posts.cards div.post_wrapper .sharingButton svg {
+        width: 12px; }
+        div.posts.cards div.post_wrapper .sharingButton svg path {
+          fill: #a6a6a6; }
       div.posts.cards div.post_wrapper .sharingButton:hover {
         background: #b12530;
         color: white;
         border-color: #8f1e27; }
+        div.posts.cards div.post_wrapper .sharingButton:hover svg path {
+          fill: white; }
     div.posts.cards div.post_wrapper .tweetit {
       right: 66px; }
     div.posts.cards div.post_wrapper .likeit {
@@ -231,8 +237,8 @@ div.posts.cards {
         background: #b12530; }
         div.posts.cards div.post_wrapper .likeit.active:hover {
           background: #9c212a; }
-      div.posts.cards div.post_wrapper .likeit.liked i {
-        color: #b12530; }
+      div.posts.cards div.post_wrapper .likeit.liked svg path {
+        fill: #b12530; }
     div.posts.cards div.post_wrapper div.editpost {
       background: #b12530;
       position: absolute;
@@ -396,10 +402,16 @@ body {
     padding: 12.5px;
     font-size: 25px; }
   #topBar #hamburger {
+    text-align: center;
+    padding: 14px 0;
     border-right: 1px solid white;
-    font-size: 1.5em;
     width: 49px;
     cursor: pointer; }
+    #topBar #hamburger svg {
+      width: 24px;
+      height: 20px; }
+      #topBar #hamburger svg path {
+        fill: white; }
     #topBar #hamburger:hover {
       background: rgba(0, 0, 0, 0.2); }
   #topBar #logo {
@@ -548,10 +560,13 @@ body {
       padding: 7px;
       margin-right: 5px;
       float: left;
-      color: white; }
-      #channels ul li.categoryButton i {
-        color: #D8D8D8;
+      color: white;
+      height: 30px; }
+      #channels ul li.categoryButton svg {
+        width: 13px;
         margin-right: 3px; }
+        #channels ul li.categoryButton svg path {
+          fill: #D8D8D8; }
       #channels ul li.categoryButton:hover {
         background: #666; }
       #channels ul li.categoryButton.selected {
@@ -757,16 +772,19 @@ body {
     #userTools .info ul.userNavigation li.active {
       color: white;
       background: #b12530; }
-      #userTools .info ul.userNavigation li.active i {
-        color: #efb3b8; }
+      #userTools .info ul.userNavigation li.active svg path {
+        fill: #efb3b8; }
       #userTools .info ul.userNavigation li.active:hover {
         color: silver; }
     #userTools .info ul.userNavigation li:hover {
       color: #888; }
-    #userTools .info ul.userNavigation li i {
+    #userTools .info ul.userNavigation li svg {
       display: block;
-      margin: 5px 0;
-      width: 100%; }
+      margin: auto;
+      width: 12px;
+      height: 22px; }
+      #userTools .info ul.userNavigation li svg path {
+        fill: #c7c7c7; }
   #userTools .info ul.userNavigation li + li {
     border-left: 1px solid silver; }
 

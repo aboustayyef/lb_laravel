@@ -99,7 +99,7 @@
         $twitterUrl = urlencode($tweetExpression);
       ?>
       <a href="https://twitter.com/intent/tweet?text={{$twitterUrl}}" title="Click to send this post to Twitter!" target="_blank">
-        <i class="fa fa-twitter"></i> Tweet
+        <?php fontAwesomeToSvg::convert('fa-twitter') ?> Tweet
       </a>
 
     </div>
@@ -111,7 +111,7 @@
         echo ' unliked';
       }
     }?>">
-        <i class="fa fa-heart"></i> like
+        <?php fontAwesomeToSvg::convert('fa-heart') ?> like
     </div>
   </div> <!-- /card -->
 </div> <!-- /post wrapper -->

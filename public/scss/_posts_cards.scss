@@ -188,10 +188,21 @@ div.posts.cards{
       border-radius: 3px;
       border-bottom: 2px solid darken(white,15);
       color: darken(white,35);
+      svg{
+        width:12px;
+        path{
+          fill: darken(white,35);
+        }
+      }
       &:hover{
         background: $brand-color;
         color: white;
         border-color:darken($brand-color,8);
+        svg{
+          path{
+            fill: white;
+          }
+        }
       }
     }
     .tweetit{
@@ -207,8 +218,10 @@ div.posts.cards{
         }
       }
       &.liked{
-        i{
-          color:$brand-color;
+        svg{
+          path{
+            fill:$brand-color;
+          }
         }
       }
     }

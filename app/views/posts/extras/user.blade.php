@@ -10,9 +10,9 @@
     </div>
     <div class="info">
       <ul class="userNavigation">
-        <a href="/user/following"><li <?php if (session::get('pageKind') == 'following') echo 'class="active"' ?>><i class="fa fa-check"></i>My Feed</li></a>
-        <a href="/user/liked"><li <?php if (session::get('pageKind') == 'liked') echo 'class="active"' ?>><i class="fa fa-heart"></i>My Likes</li>
-        <a href="/posts/all"><li <?php if (session::get('pageKind') == 'allPosts') echo 'class="active"' ?>><i class="fa fa-th"></i>All Blogs</li></a>
+        <a href="/user/following"><li <?php if (session::get('pageKind') == 'following') echo 'class="active"' ?>><?php fontAwesomeToSvg::convert('fa-check') ?>My Feed</li></a>
+        <a href="/user/liked"><li <?php if (session::get('pageKind') == 'liked') echo 'class="active"' ?>><?php fontAwesomeToSvg::convert('fa-heart') ?>My Likes</li>
+        <a href="/posts/all"><li <?php if (session::get('pageKind') == 'allPosts') echo 'class="active"' ?>><?php fontAwesomeToSvg::convert('fa-th') ?>All Blogs</li></a>
       </ul>
     </div>
   </div>

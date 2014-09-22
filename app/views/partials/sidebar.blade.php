@@ -20,7 +20,7 @@
       <ul>
         @if ($currentChannel != 'all')
           <li class ="showAll categoryButton dynamicLink" data-destination="{{URL::to('/posts/all')}}">
-            <i class="fa fa-th"></i> Show All Posts
+            <span style="float:left; margin-right:10px"><?php fontAwesomeToSvg::convert('fa-th'); ?> </span>Show All Posts
           </li>
         @endif
 
@@ -34,7 +34,7 @@
           @endif
         <?php endif; ?>
         >
-          <i class ="fa {{$channel['icon']}}"></i> {{$channel['description']}}
+          <?php fontAwesomeToSvg::convert($channel['icon']); ?> {{$channel['description']}}
         </li>
         @endforeach
       </ul>

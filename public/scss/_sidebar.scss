@@ -63,9 +63,13 @@
         margin-right: 5px;
         float:left;
         color: white;
-        i{
-          color:#D8D8D8;
+        height:30px;
+        svg{
+          width:13px;
           margin-right:3px;
+          path{
+            fill:#D8D8D8;
+          }
         }
         &:hover{
           background:#666;

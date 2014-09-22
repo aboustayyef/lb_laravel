@@ -190,8 +190,10 @@
         text-align:center;
         color: #c7c7c7;
         &.active{
-          i{
-            color: lighten($brand-color, 40);
+          svg{
+            path{
+              fill: lighten($brand-color, 40);
+            }
           }
           color:white;
           background:$brand-color;
@@ -202,10 +204,14 @@
         &:hover{
           color:#888;
         }
-        i{
+        svg{
           display:block;
-          margin:5px 0;
-          width:100%;
+          margin: auto;
+          width: 12px;
+          height: 22px;
+          path{
+            fill:#c7c7c7
+          }
         }
       }
       li+li{
