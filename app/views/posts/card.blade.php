@@ -53,12 +53,12 @@
         @endif
         >
         <!-- outward url -->
-        <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url)}}">{{ $post->post_title }} </a>
+        <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url)}}" target="_blank">{{ $post->post_title }} </a>
       </h2>
 
       <!-- Post image (if any ) -->
         @if ($post->post_image_height > 0)
-          <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url)}}">
+          <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url)}}" target="_blank">
             {{View::make('posts.partials.post_image')->with('post',$post)}}
           </a>
         @else
