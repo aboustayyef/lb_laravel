@@ -53,7 +53,7 @@
         @endif
         >
         <!-- outward url -->
-        <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url)}}" target="_blank">{{ $post->post_title }} </a>
+        <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" target="_blank">{{ $post->post_title }} </a>
       </h2>
 
       <!-- Post image (if any ) -->
