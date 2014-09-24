@@ -58,7 +58,7 @@
 
       <!-- Post image (if any ) -->
         @if ($post->post_image_height > 0)
-          <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url)}}" target="_blank">
+          <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" target="_blank">
             {{View::make('posts.partials.post_image')->with('post',$post)}}
           </a>
         @else
