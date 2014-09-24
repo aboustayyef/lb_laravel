@@ -17,9 +17,9 @@ class ExitController extends BaseController
     if( (!(Input::Has('token'))) || (Input::get('token') != Session::get('_token'))){
        return Redirect::away('/posts/all?from=badExitUrl');
     }
-    self::registerExit($url);
     $encodedUrl = Input::Get('url');
     $url = urldecode($encodedUrl);
+    self::registerExit($url);
     $url_for_analytics = $url."?utm_source=lebanese%20blogs&utm_medium=website&utm_campaign=referrals";
     return Redirect::away($url_for_analytics);
   }
