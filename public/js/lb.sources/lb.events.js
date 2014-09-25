@@ -22,7 +22,7 @@ $('#momentumScrollingViewport').on('scroll', function(){
 });
 
 lbApp.checkIfMorePostsNeedToBeAdded = function(){
-  if (!lbApp.busy) {
+  if (!lbApp.busy && !lbApp.reachedEndOfPosts) {
     $heightOfContent = $('#content').height(); // the height of the total posts content
     $positionOfContentTop = $('#content').position().top; // a negative number indicating how far content has scrolled
     $distanceToBottom = $heightOfContent + $positionOfContentTop;

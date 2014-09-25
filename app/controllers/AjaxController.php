@@ -13,6 +13,15 @@ class AjaxController extends BaseController
     $from = Session::get('postsCounter');
 
     $posts = Page::getPosts($from, $amount);
+
+    // if we have less than 20 posts,
+      // we disable infinite scrolling
+      if (count($posts) < 20) { ?>
+        <script>
+          lbApp.reachedEndOfPosts = true;
+        </script>
+      <?php }
+
     return View::make('posts.render')->with(['posts'  =>  $posts]);
   }
 

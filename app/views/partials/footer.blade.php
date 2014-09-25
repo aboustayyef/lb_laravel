@@ -4,20 +4,6 @@
 
       {{-- Minify and combine JS assets later  --}}
 
-      <script>
-
-        // Initiate app object
-        if ( typeof lbApp != 'object'){
-          lbApp = {}
-        };
-        // Set up app Variables that require php and blade logic
-          lbApp.imagePlaceHolder = '{{asset('/img/grey.gif')}}';
-          lbApp.rootPath = '{{URL::to('/')}}';
-          lbApp.pageKind = '{{Session::get('pageKind')}}';
-          lbApp.currentPage = '{{Request::path()}}';
-          lbApp.currentPageNumber= 1;
-      </script>
-
       @if (User::signedIn() == true)
         <script>
           lbApp.signedIn = true;

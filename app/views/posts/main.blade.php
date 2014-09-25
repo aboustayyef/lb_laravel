@@ -30,6 +30,13 @@
 
     <?php
       $initialPosts = Page::getPosts();
+      // if we have less than 20 initial posts,
+      // we disable infinite scrolling
+      if (count($initialPosts) < 20) {
+        echo '<script>lbApp.reachedEndOfPosts = true</script>';
+      }
+      // if we don't have any initial posts
+      // we return the relevant "no results" page
       if (!$initialPosts) {
         echo View::make('posts.extras.noresults');
       }
