@@ -13,7 +13,6 @@ $(document).ready(function() {
       lbApp.veryFirstLoad();
     }
   };
-
   (function() {
     var wf = document.createElement('script');
     wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
