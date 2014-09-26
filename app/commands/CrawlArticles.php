@@ -173,7 +173,8 @@ class CrawlArticles extends Command {
 
         // which time to use?
         if ($this->option('timeSetting') == 'time_of_fetching') {
-          $post->post_timestamp = time() - rand(0,600) ;
+          $article_timestamp = time() - rand(0,600) ;
+          $post->post_timestamp = $article_timestamp ;
         } else { // time_in_post. we use that setting if we're doing a long time thing
           $post->post_timestamp = $article_timestamp ;
         }
