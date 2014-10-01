@@ -115,7 +115,7 @@ class crawlHelpers extends BaseController
                 }
               }
 
-              list($width, $height, $type, $attr) = getimagesize($tmpImage);
+              list($width, $height, $type, $attr) = @getimagesize($tmpImage);
               if ($width > 299)
               {
                 return $tmpImage;
