@@ -49,7 +49,6 @@ Route::get('posts/search', array(
   'uses'    =>  'PostsController@search'
 ));
 
-
 Route::get('/blogger/{nameId?}', array(
   'as'    =>  'blogger',
   'uses'  =>  'BloggerController@showPosts'
@@ -60,6 +59,7 @@ Route::get('/edit/{what?}/{which?}', array(
 ));
 
 Route::post('/edit/{what?}/{which?}', array(
+  'before'  =>  'csrf',
   'uses'  =>  'EditController@submit'
 ));
 
@@ -105,6 +105,7 @@ Route::get('/about/{slug?}', array(
 ));
 
 Route::post('/about/{slug?}', array(
+  'before'  =>  'csrf',
   'as'  =>  'submition',
   'uses'  =>  'StaticPagesController@submit'
 ));
