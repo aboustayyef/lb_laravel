@@ -3,7 +3,13 @@
 		<?php fontAwesomeToSvg::convert('fa-bars') ?>
 	</div>
 
-	<div id="logo" class="dynamicLink" data-destination="{{URL::to('/')}}">	</div>
+	<div id="logo" class="dynamicLink" data-destination="{{URL::to('/')}}">
+    <p id="aboutlb">
+      The best place to <strong>discover</strong>, <strong>read</strong> and <strong>organize</strong> Lebanon's top blogs
+    </p>
+  </div>
+
+
 
 	<div id= "about">
 		About ▾
