@@ -17,5 +17,5 @@
   <p>If you think your blog belongs here and satisfies the criteria, what are you waiting for? {{link_to('/about/submit', 'Submit It!')}}</p>
 
   <h2>More Questions?</h2>
-  <p>There's a tons of answers in our {{link_to('/about/faq', 'FAQ section')}}</p>
+  <p>Find answers in our {{link_to('/about/faq', 'FAQ section')}}</p>
 @stop
