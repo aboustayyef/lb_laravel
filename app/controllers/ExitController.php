@@ -15,11 +15,12 @@ class ExitController extends BaseController
 
     $encodedUrl = Input::Get('url');
     $url = urldecode($encodedUrl);
-
     // check if click emanated from app
+
     if( (!(Input::Has('token'))) || (Input::get('token') != Session::get('_token'))){
        return Redirect::away($url);
     }
+
     self::registerExit($url);
     $url_for_analytics = $url."?utm_source=lebanese%20blogs&utm_medium=website&utm_campaign=referrals";
     return Redirect::away($url_for_analytics);
@@ -36,6 +37,7 @@ class ExitController extends BaseController
     }
 
     // proceed
+    $u_agent = $_SERVER['HTTP_USER_AGENT'];
     $ip_address = self::getIP();
     $browser = self::getBrowser();
     $log = new ExitLog;
@@ -50,7 +52,7 @@ class ExitController extends BaseController
     // update exit log (all users)
     $log->exit_time = time();
     $log->exit_url = $url;
-    $log->user_agent = $browser['name'];
+    $log->user_agent = $browser['name'].' [ User agent: '.$u_agent.' ]';
     $log->ip_address = $ip_address;
     $log->save();
 
