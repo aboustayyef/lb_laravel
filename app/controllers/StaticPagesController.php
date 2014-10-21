@@ -27,7 +27,7 @@ class StaticPagesController extends \BaseController {
         $rulesSubmit = [
           'url' =>  'required',
           'email' =>  'required|email',
-          'twitter' =>  'required'
+          'twitter' =>  'required|regex:#^@[A-Za-z0-9_]{1,15}$#'
         ];
 
         $validator = Validator::make(Input::all(), $rulesSubmit);
