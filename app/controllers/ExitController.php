@@ -13,25 +13,24 @@ class ExitController extends BaseController
       return Redirect::away('/posts/all');
     }
 
+    // get url from parameters
     $encodedUrl = Input::Get('url');
     $url = urldecode($encodedUrl);
-    // check if click emanated from app
 
+    // check if click emanated from app (if token is valid)
     if( (!(Input::Has('token'))) || (Input::get('token') != Session::get('_token'))){
        return Redirect::away($url);
     }
 
+    // if human clicks link for first time, increase counter;
     self::registerExit($url);
-    $url_for_analytics = $url."?utm_source=lebanese%20blogs&utm_medium=website&utm_campaign=referrals";
-    return Redirect::away($url_for_analytics);
+    return Redirect::away($url);
   }
 
   static function registerExit($url){
 
-    // get user's IP Address
+    // check if post is in database or abort
     $post = Post::where('post_url',$url)->first();
-
-    // if url doesn't exist in database, abort;
     if (!is_object($post)) {
       return Redirect::away('/posts/all');
     }
@@ -39,11 +38,10 @@ class ExitController extends BaseController
     // proceed
     $u_agent = $_SERVER['HTTP_USER_AGENT'];
     $ip_address = self::getIP();
-    $browser = self::getBrowser();
     $log = new ExitLog;
 
     // update counter for post (only human, non-repeat user)
-    if (($browser['name'] !== 'Unknown') && (!$log->has($ip_address, $url))){
+    if ((!self::isRobot($u_agent)) && (!$log->has($ip_address, $url))){
             $post->post_visits = $post->post_visits + 1;
             // This only happens if user didn't click on this link before.
             $post->save();
@@ -52,100 +50,12 @@ class ExitController extends BaseController
     // update exit log (all users)
     $log->exit_time = time();
     $log->exit_url = $url;
-    $log->user_agent = $browser['name'].' [ User agent: '.$u_agent.' ]';
+    $log->user_agent = $u_agent;
     $log->ip_address = $ip_address;
     $log->save();
 
 
   }
-
-  static function getBrowser() //source: http://us.php.net/get-browser
-  {
-      $u_agent = $_SERVER['HTTP_USER_AGENT'];
-      $bname = 'Unknown';
-      $platform = 'Unknown';
-      $ub = 'Unknown';
-      $version= "";
-
-      //First get the platform?
-      if (preg_match('/linux/i', $u_agent)) {
-          $platform = 'linux';
-      }
-      elseif (preg_match('/macintosh|mac os x/i', $u_agent)) {
-          $platform = 'mac';
-      }
-      elseif (preg_match('/windows|win32/i', $u_agent)) {
-          $platform = 'windows';
-      }
-
-      // Next get the name of the useragent yes seperately and for good reason
-      if(preg_match('/MSIE/i',$u_agent) && !preg_match('/Opera/i',$u_agent))
-      {
-          $bname = 'Internet Explorer';
-          $ub = "MSIE";
-      }
-      elseif(preg_match('/Firefox/i',$u_agent))
-      {
-          $bname = 'Mozilla Firefox';
-          $ub = "Firefox";
-      }
-      elseif(preg_match('/Chrome/i',$u_agent))
-      {
-          $bname = 'Google Chrome';
-          $ub = "Chrome";
-      }
-      elseif(preg_match('/Safari/i',$u_agent))
-      {
-          $bname = 'Apple Safari';
-          $ub = "Safari";
-      }
-      elseif(preg_match('/Opera/i',$u_agent))
-      {
-          $bname = 'Opera';
-          $ub = "Opera";
-      }
-      elseif(preg_match('/Netscape/i',$u_agent))
-      {
-          $bname = 'Netscape';
-          $ub = "Netscape";
-      }
-
-      // finally get the correct version number
-      $known = array('Version', $ub, 'other');
-      $pattern = '#(?<browser>' . join('|', $known) .
-      ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
-      if (!preg_match_all($pattern, $u_agent, $matches)) {
-          // we have no matching number just continue
-      }
-
-      // see how many we have
-      $i = count($matches['browser']);
-      if ($i != 1) {
-          //we will have two since we are not using 'other' argument yet
-          //see if version is before or after the name
-          if (strripos($u_agent,"Version") < strripos($u_agent,$ub)){
-              $version= $matches['version'][0];
-          }
-          else {
-              $version= $matches['version'][1];
-          }
-      }
-      else {
-          $version= $matches['version'][0];
-      }
-
-      // check if we have a number
-      if ($version==null || $version=="") {$version="?";}
-
-      return array(
-          'userAgent' => $u_agent,
-          'name'      => $bname,
-          'version'   => $version,
-          'platform'  => $platform,
-          'pattern'    => $pattern
-      );
-  }
-
   static function getIP() {
       $ip;
       if (getenv("HTTP_CLIENT_IP"))
@@ -157,6 +67,16 @@ class ExitController extends BaseController
       else
       $ip = "UNKNOWN";
       return $ip;
+  }
+
+  static function isRobot($user_agent){
+    $robotStrings = ['spider','slurp','bot','Bot', 'crawl', 'crawler'];
+    foreach ($robotStrings as $key => $robotString) {
+      if (str_contains($user_agent, $robotString)) {
+        return true;
+      }
+    }
+    return false;
   }
 
 }
