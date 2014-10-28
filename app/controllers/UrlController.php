@@ -27,7 +27,8 @@ class UrlController extends BaseController
     }
 
     // if all fails, go to default page
-      return Redirect::to('posts/all');
+    return Response::make('Sorry, this page does\'nt exist',404);
+    //  return Redirect::to('posts/all');
 
   }
 }
