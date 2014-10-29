@@ -18,6 +18,15 @@
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="icon" sizes="192x192" href="{{asset('/img/chrome-touch-icon-192x192.png')}}">
 
+    <!-- Facebook Open Graph Data -->
+    <meta property="og:url" content="http://lebaneseblogs.com">
+    <meta property="og:title" content="Lebanese Blogs">
+    <meta property="og:description" content="The best place to discover, read and organize Lebanon's top blogs">
+    <meta property="og:image" content="{{asset('img/lb_screenshot.jpg')}}">
+
+    <!-- Link to Facebook Page -->
+    <meta property="fb:app_id" content="1419973148218767" />
+
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
