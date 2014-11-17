@@ -1,3 +1,20 @@
+div.posts.cards div.post_wrapper div.post_body h2 a.download961 {
+  background: #0181ca;
+  padding: 4px 10px;
+  color: white;
+  display: block;
+  margin-top: 5px;
+  width: 175px;
+  border-bottom: 4px solid #0768A0;
+  &:hover{
+    background: lighten(#0181ca, 5);
+
+  }
+  &:active{
+    background: darken(#0181ca, 5);
+  }
+}
+
 #welcomeMessage{
   padding:10px;
   div{
