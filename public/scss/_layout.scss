@@ -62,7 +62,7 @@ body{
   bottom:0;
   @include lbTransitions();
   &.open{
-    left: 320px;
+    transform: translate3d($sidebar-width,0,0);;
     //margin-left: 320px;
     opacity:1;
   }
