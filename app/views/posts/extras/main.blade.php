@@ -37,7 +37,7 @@
   @endif
 @endif
 
-@if ($counter == 3)
+@if ($counter == 9)
   @include('posts.extras.961mag')
   <?php
       Session::set('cardsCounter', Session::get('cardsCounter') + 1);
