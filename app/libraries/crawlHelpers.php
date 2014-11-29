@@ -43,7 +43,7 @@ class crawlHelpers extends BaseController
     {
       echo "-[]- Now attempting to get image from URL of post \n";
       // Prepare list of "main content tags by providers"
-      $contentClasses = ['.entry-content','.post-entry', '.entry', '.article_main_section', '.main-content', '#content', '.article'];
+      $contentClasses = ['.post-entry-media','.entry-content','.post-entry', '.entry', '.article_main_section', '.main-content', '#content', '.article'];
       if ($grossContent = @file_get_contents($url)){
         //proceed
       }else{
