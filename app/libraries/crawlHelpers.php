@@ -43,7 +43,7 @@ class crawlHelpers extends BaseController
     {
       echo "-[]- Now attempting to get image from URL of post \n";
       // Prepare list of "main content tags by providers"
-      $contentClasses = ['.post-entry-media','.entry-content','.post-entry', '.entry', '.article_main_section', '.main-content', '#content', '.article'];
+      $contentClasses = ['.pinContent','.post-entry-media','.entry-content','.post-entry', '.entry', '.article_main_section', '.main-content', '#content', '.article'];
       if ($grossContent = @file_get_contents($url)){
         //proceed
       }else{
@@ -57,6 +57,9 @@ class crawlHelpers extends BaseController
       $parsedUrl = parse_url($url);
       $root = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . '/';
       $root = rtrim($root, '/'); // remove trailing backslash.
+
+      // todo: check og:image for featured image savvy bloggers
+
 
       foreach ($contentClasses as $key => $class)
       {
@@ -94,10 +97,15 @@ class crawlHelpers extends BaseController
 
           $imageNode = new Crawler($image);
           $tmpImage = $imageNode->attr('src');
+
           // if the image is relative, convert it to absolute
-          if ($tmpImage[0] == '/') {
+          if ($tmpImage[0] == '/') { // root url, example ('/src/of/image.jpg')
             $tmpImage = $root . $tmpImage;
+          } elseif (!strpos($tmpImage, 'http')) { // relative url, example('src/of/image.jpg')
+            $tmpImage = $root. '/' . $tmpImage;
           }
+
+          echo $tmpImage . "\n";
 
           // if image has width larger than 300 return image
           try {
