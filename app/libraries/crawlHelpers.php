@@ -57,7 +57,7 @@ class crawlHelpers extends BaseController
       $parsedUrl = parse_url($url);
       $root = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . '/';
       $root = rtrim($root, '/'); // remove trailing backslash.
-
+      echo "Root: $root"."\n";
       // todo: check og:image for featured image savvy bloggers
 
 
@@ -101,10 +101,10 @@ class crawlHelpers extends BaseController
           // if the image is relative, convert it to absolute
           if ($tmpImage[0] == '/') { // root url, example ('/src/of/image.jpg')
             $tmpImage = $root . $tmpImage;
-          } elseif (!strpos($tmpImage, 'http')) { // relative url, example('src/of/image.jpg')
+          } elseif (strpos($tmpImage, 'http') != 0) { // relative url, example('src/of/image.jpg')
             $tmpImage = $root. '/' . $tmpImage;
           }
-
+          echo $root . "\n";
           echo $tmpImage . "\n";
 
           // if image has width larger than 300 return image
