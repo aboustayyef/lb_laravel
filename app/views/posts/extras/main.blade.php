@@ -50,3 +50,10 @@
       Session::set('cardsCounter', Session::get('cardsCounter') + 1);
   ?>
 @endif
+
+@if ($counter == 11)
+  @include('posts.extras.news')
+  <?php
+      Session::set('cardsCounter', Session::get('cardsCounter') + 1);
+  ?>
+@endif
