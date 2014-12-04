@@ -36,7 +36,25 @@ class SocialScore extends BaseController
     return $this->facebookScore;
   }
 
+  public function getVirality()
+  {
+    if (empty($this->facebookScore)) {
+      $this->facebookScore = $this->get_fb();
+    }
+     if (empty($this->twitterScore)) {
+      $this->twitterScore = $this->get_tweets();
+    }
 
+    // make total shared more weighed by twitter because it's less easy to game and buy
+    $totalShares = round((($this->facebookScore + (2 * $this->twitterScore)) / 3 ) * 2 );
+
+    $virality = $totalShares > 1 ? round( 8 * log($totalShares) ) : 2 ;
+
+    // roof at 50
+    $virality = $virality > 50 ? 50 : $virality;
+
+    return $virality;
+  }
 
   // Helper functions (the meat)
 

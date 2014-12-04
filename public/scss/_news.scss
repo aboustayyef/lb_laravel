@@ -1,0 +1,43 @@
+.newsheader{
+  padding:20px 10px;
+  .beta{
+    color: $brand_color;
+    font-size:0.8em;
+    vertical-align: super;
+  }
+  small {
+    font-size: 0.8em;
+    display: block;
+    color: silver;
+    margin-top: 5px;
+  }
+}
+div.newsitem{
+  padding:15px 10px 15px 0;
+  margin-left:10px;
+  border-top:1px solid #E7D0D2;
+  a{
+    color:#626262;
+    font-size:13px;
+    &:hover{
+      color: $brand_color;
+    }
+  }
+  .viralityWrapper{
+    color:#BEBEBE;
+    margin-top:10px;
+    font-size:12px;
+    display: block;
+    .viralityBox{
+      display: inline-block;
+      width: 100px;
+      height: 5px;
+      padding: 0;
+      border: none;
+      background: #e7e7e7;
+      .viralityScore{
+        height:5px;
+      }
+    }
+  }
+}
