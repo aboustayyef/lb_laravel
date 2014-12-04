@@ -2,6 +2,14 @@
   padding:20px 10px;
   .beta{
     color: $brand_color;
+    font-size:0.8em;
+    vertical-align: super;
+  }
+  small {
+    font-size: 0.8em;
+    display: block;
+    color: silver;
+    margin-top: 5px;
   }
 }
 div.newsitem{
@@ -10,7 +18,10 @@ div.newsitem{
   border-top:1px solid #E7D0D2;
   a{
     color:#626262;
-    font-size:14px;
+    font-size:13px;
+    &:hover{
+      color: $brand_color;
+    }
   }
   .viralityWrapper{
     color:#BEBEBE;

@@ -1789,3 +1789,69 @@ Stack trace:
 [25-Sep-2014 13:30:08 UTC] PHP   9. Illuminate\Foundation\Console\TinkerCommand->runBorisShell() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:31
 [25-Sep-2014 13:30:08 UTC] PHP  10. Boris\Boris->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:50
 [25-Sep-2014 13:30:08 UTC] PHP  11. Boris\EvalWorker->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/Boris.php:171
+[04-Dec-2014 09:01:40 UTC] PHP Fatal error:  Class 'newsObject' not found in /Users/Stayyef/Sites/lb_laravel/app/commands/getNews.php on line 46
+[04-Dec-2014 09:01:40 UTC] PHP Stack trace:
+[04-Dec-2014 09:01:40 UTC] PHP   1. {main}() /Users/Stayyef/Sites/lb_laravel/artisan:0
+[04-Dec-2014 09:01:40 UTC] PHP   2. Symfony\Component\Console\Application->run() /Users/Stayyef/Sites/lb_laravel/artisan:59
+[04-Dec-2014 09:01:40 UTC] PHP   3. Symfony\Component\Console\Application->doRun() /Users/Stayyef/Sites/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:124
+[04-Dec-2014 09:01:40 UTC] PHP   4. Symfony\Component\Console\Application->doRunCommand() /Users/Stayyef/Sites/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:193
+[04-Dec-2014 09:01:40 UTC] PHP   5. Illuminate\Console\Command->run() /Users/Stayyef/Sites/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:889
+[04-Dec-2014 09:01:40 UTC] PHP   6. Symfony\Component\Console\Command\Command->run() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php:100
+[04-Dec-2014 09:01:40 UTC] PHP   7. Illuminate\Console\Command->execute() /Users/Stayyef/Sites/lb_laravel/vendor/symfony/console/Symfony/Component/Console/Command/Command.php:252
+[04-Dec-2014 09:01:40 UTC] PHP   8. getNews->fire() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php:112
+[04-Dec-2014 09:02:24 UTC] PHP Fatal error:  Method Illuminate\View\View::__toString() must not throw an exception in /Users/Stayyef/Sites/lb_laravel/app/storage/views/faf5eafa9e5ff5730bca6c9a2d05c6a4 on line 0
+[04-Dec-2014 09:02:24 UTC] PHP Stack trace:
+[04-Dec-2014 09:02:24 UTC] PHP   1. {main}() /Users/Stayyef/Sites/lb_laravel/server.php:0
+[04-Dec-2014 09:02:24 UTC] PHP   2. require_once() /Users/Stayyef/Sites/lb_laravel/server.php:19
+[04-Dec-2014 09:02:24 UTC] PHP   3. Illuminate\Foundation\Application->run() /Users/Stayyef/Sites/lb_laravel/public/index.php:49
+[04-Dec-2014 09:02:24 UTC] PHP   4. Stack\StackedHttpKernel->handle() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:643
+[04-Dec-2014 09:02:24 UTC] PHP   5. Illuminate\Cookie\Guard->handle() /Users/Stayyef/Sites/lb_laravel/vendor/stack/builder/src/Stack/StackedHttpKernel.php:23
+[04-Dec-2014 09:02:24 UTC] PHP   6. Illuminate\Cookie\Queue->handle() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Cookie/Guard.php:51
+[04-Dec-2014 09:02:24 UTC] PHP   7. Illuminate\Session\Middleware->handle() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Cookie/Queue.php:47
+[04-Dec-2014 09:02:24 UTC] PHP   8. Illuminate\Foundation\Application->handle() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Session/Middleware.php:72
+[04-Dec-2014 09:02:24 UTC] PHP   9. Illuminate\Foundation\Application->dispatch() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:747
+[04-Dec-2014 09:02:24 UTC] PHP  10. Illuminate\Routing\Router->dispatch() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:777
+[04-Dec-2014 09:02:24 UTC] PHP  11. Illuminate\Routing\Router->dispatchToRoute() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Routing/Router.php:996
+[04-Dec-2014 09:02:24 UTC] PHP  12. Illuminate\Routing\Router->prepareResponse() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Routing/Router.php:1031
+[04-Dec-2014 09:02:24 UTC] PHP  13. Symfony\Component\HttpFoundation\Response->__construct() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Routing/Router.php:1498
+[04-Dec-2014 09:02:24 UTC] PHP  14. Illuminate\Http\Response->setContent() /Users/Stayyef/Sites/lb_laravel/vendor/symfony/http-foundation/Symfony/Component/HttpFoundation/Response.php:202
+[04-Dec-2014 09:02:24 UTC] PHP  15. Illuminate\View\View->render() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Http/Response.php:43
+[04-Dec-2014 09:02:24 UTC] PHP  16. Illuminate\View\View->renderContents() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/View.php:76
+[04-Dec-2014 09:02:24 UTC] PHP  17. Illuminate\View\View->getContents() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/View.php:102
+[04-Dec-2014 09:02:24 UTC] PHP  18. Illuminate\View\Engines\CompilerEngine->get() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/View.php:134
+[04-Dec-2014 09:02:24 UTC] PHP  19. Illuminate\View\Engines\PhpEngine->evaluatePath() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php:56
+[04-Dec-2014 09:02:24 UTC] PHP  20. include() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php:37
+[04-Dec-2014 09:02:24 UTC] PHP  21. Illuminate\View\View->render() /Users/Stayyef/Sites/lb_laravel/app/storage/views/5eae8408fe938ce358faee2d71cb9e3f:51
+[04-Dec-2014 09:02:24 UTC] PHP  22. Illuminate\View\View->renderContents() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/View.php:76
+[04-Dec-2014 09:02:24 UTC] PHP  23. Illuminate\View\View->getContents() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/View.php:102
+[04-Dec-2014 09:02:24 UTC] PHP  24. Illuminate\View\Engines\CompilerEngine->get() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/View.php:134
+[04-Dec-2014 09:02:24 UTC] PHP  25. Illuminate\View\Engines\PhpEngine->evaluatePath() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php:56
+[04-Dec-2014 09:02:24 UTC] PHP  26. include() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php:37
+[04-Dec-2014 09:13:21 UTC] PHP Fatal error:  Method Illuminate\View\View::__toString() must not throw an exception in /Users/Stayyef/Sites/lb_laravel/app/storage/views/faf5eafa9e5ff5730bca6c9a2d05c6a4 on line 0
+[04-Dec-2014 09:13:21 UTC] PHP Stack trace:
+[04-Dec-2014 09:13:21 UTC] PHP   1. {main}() /Users/Stayyef/Sites/lb_laravel/server.php:0
+[04-Dec-2014 09:13:21 UTC] PHP   2. require_once() /Users/Stayyef/Sites/lb_laravel/server.php:19
+[04-Dec-2014 09:13:21 UTC] PHP   3. Illuminate\Foundation\Application->run() /Users/Stayyef/Sites/lb_laravel/public/index.php:49
+[04-Dec-2014 09:13:21 UTC] PHP   4. Stack\StackedHttpKernel->handle() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:643
+[04-Dec-2014 09:13:21 UTC] PHP   5. Illuminate\Cookie\Guard->handle() /Users/Stayyef/Sites/lb_laravel/vendor/stack/builder/src/Stack/StackedHttpKernel.php:23
+[04-Dec-2014 09:13:21 UTC] PHP   6. Illuminate\Cookie\Queue->handle() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Cookie/Guard.php:51
+[04-Dec-2014 09:13:21 UTC] PHP   7. Illuminate\Session\Middleware->handle() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Cookie/Queue.php:47
+[04-Dec-2014 09:13:21 UTC] PHP   8. Illuminate\Foundation\Application->handle() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Session/Middleware.php:72
+[04-Dec-2014 09:13:21 UTC] PHP   9. Illuminate\Foundation\Application->dispatch() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:747
+[04-Dec-2014 09:13:21 UTC] PHP  10. Illuminate\Routing\Router->dispatch() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:777
+[04-Dec-2014 09:13:21 UTC] PHP  11. Illuminate\Routing\Router->dispatchToRoute() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Routing/Router.php:996
+[04-Dec-2014 09:13:21 UTC] PHP  12. Illuminate\Routing\Router->prepareResponse() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Routing/Router.php:1031
+[04-Dec-2014 09:13:21 UTC] PHP  13. Symfony\Component\HttpFoundation\Response->__construct() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Routing/Router.php:1498
+[04-Dec-2014 09:13:21 UTC] PHP  14. Illuminate\Http\Response->setContent() /Users/Stayyef/Sites/lb_laravel/vendor/symfony/http-foundation/Symfony/Component/HttpFoundation/Response.php:202
+[04-Dec-2014 09:13:21 UTC] PHP  15. Illuminate\View\View->render() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/Http/Response.php:43
+[04-Dec-2014 09:13:21 UTC] PHP  16. Illuminate\View\View->renderContents() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/View.php:76
+[04-Dec-2014 09:13:21 UTC] PHP  17. Illuminate\View\View->getContents() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/View.php:102
+[04-Dec-2014 09:13:21 UTC] PHP  18. Illuminate\View\Engines\CompilerEngine->get() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/View.php:134
+[04-Dec-2014 09:13:21 UTC] PHP  19. Illuminate\View\Engines\PhpEngine->evaluatePath() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php:56
+[04-Dec-2014 09:13:21 UTC] PHP  20. include() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php:37
+[04-Dec-2014 09:13:21 UTC] PHP  21. Illuminate\View\View->render() /Users/Stayyef/Sites/lb_laravel/app/storage/views/5eae8408fe938ce358faee2d71cb9e3f:51
+[04-Dec-2014 09:13:21 UTC] PHP  22. Illuminate\View\View->renderContents() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/View.php:76
+[04-Dec-2014 09:13:21 UTC] PHP  23. Illuminate\View\View->getContents() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/View.php:102
+[04-Dec-2014 09:13:21 UTC] PHP  24. Illuminate\View\Engines\CompilerEngine->get() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/View.php:134
+[04-Dec-2014 09:13:21 UTC] PHP  25. Illuminate\View\Engines\PhpEngine->evaluatePath() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php:56
+[04-Dec-2014 09:13:21 UTC] PHP  26. include() /Users/Stayyef/Sites/lb_laravel/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php:37
