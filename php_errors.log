@@ -1789,3 +1789,6 @@ Stack trace:
 [25-Sep-2014 13:30:08 UTC] PHP   9. Illuminate\Foundation\Console\TinkerCommand->runBorisShell() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:31
 [25-Sep-2014 13:30:08 UTC] PHP  10. Boris\Boris->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/TinkerCommand.php:50
 [25-Sep-2014 13:30:08 UTC] PHP  11. Boris\EvalWorker->start() /Users/Stayyef/Dropbox/_websites_/lb_laravel/vendor/d11wtq/boris/lib/Boris/Boris.php:171
+[31-Oct-2014 11:25:05 UTC] PHP Notice: This XML document is invalid, likely due to invalid characters. XML error: Undeclared entity error at line 89, column 32 in /var/www/html/laravel.lebaneseblogs.com/vendor/simplepie/simplepie/library/SimplePie.php on line 1386
+[28-Nov-2014 21:59:38 UTC] PHP Fatal error:  Class 'LbFunctions' not found in /var/www/html/laravel.lebaneseblogs.com/app/commands/CrawlRss.php on line 104
+[28-Nov-2014 22:03:28 UTC] PHP Fatal error:  Class 'LbFunctions' not found in /var/www/html/laravel.lebaneseblogs.com/app/commands/CrawlRss.php on line 104
