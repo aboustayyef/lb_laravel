@@ -45,7 +45,8 @@
 @endif
 
 @if ($counter == 6)
-  @include('posts.extras.tips')
+  {{-- @include('posts.extras.tips') --}}
+  @include('posts.extras.adsense1')
   <?php
       Session::set('cardsCounter', Session::get('cardsCounter') + 1);
   ?>
@@ -53,6 +54,13 @@
 
 @if ($counter == 11)
   @include('posts.extras.news')
+  <?php
+      Session::set('cardsCounter', Session::get('cardsCounter') + 1);
+  ?>
+@endif
+
+@if (in_array($counter, [14,29,44, 59]))
+  @include('posts.extras.adsense1')
   <?php
       Session::set('cardsCounter', Session::get('cardsCounter') + 1);
   ?>
