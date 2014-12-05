@@ -40,8 +40,11 @@ class getNews extends Command {
   {
     // get naharnet
     $naharnetLocationDefinitions = array(
-      ['li.spotlight-story', 2], // ['css parent of anchor elements', (order of a in that element) ]
-      ['.latest-story', 0]
+      'container'=>'.latest-story',
+      'orderOfAnchor' => 0 ,
+      'ImageContainer' => '.picture-wrap',
+      'timeContainer'=>'.timeago',
+      'timeZone'  =>  'Asia/Beirut'
     );
     $naharnetNewsObject = new newsObject('http://naharnet.com/lebanon','naharnet', 'The News from Naharnet', 'http://www.naharnet.com',$naharnetLocationDefinitions);
     $scraper = new htmlNewsScraper($naharnetNewsObject);

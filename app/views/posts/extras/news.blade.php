@@ -10,15 +10,24 @@ if (!Cache::has('naharnet')) {
     </div>
     <?php
       $articles = Cache::get('naharnet');
-      $articles = array_chunk($articles, 5);
+      $feedTitle = $articles['meta']['feedTitle'];
+      $articles = array_chunk($articles['content'], 5);
       $articles = $articles[0];
     ?>
     <ul>
       @foreach($articles as $article)
-      <?php $virality = $article['virality']; ?>
+      <?php
+        $virality = $article['virality'];
+        $timeAgo = (new Carbon\Carbon($article['gmtDateTime']))->diffForHumans();
+        $img = '/img/cache/naharnet/'.md5($article['img']).'.jpg';
+        //$timeAgo = str_replace(' ', '&nbsp;', $timeAgo);
+      ?>
         <li>
           <div class="newsitem">
-            <a href="{{$article['url']}}" target="blank">{{$article['headline']}}</a>
+            <div class="newsItemImage">
+              <a href="{{$article['url']}}" target="blank"><img src="{{$img}}" height="50px" width="auto" alt=""></a>
+            </div>
+            <a href="{{$article['url']}}" target="blank">{{$article['headline']}}</a><br> <span class="timeAgo"> {{$timeAgo}}</span>
             {{View::make('posts.partials.virality')->with('score',$virality)}}
           </div>
         </li>

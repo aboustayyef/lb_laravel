@@ -1,5 +1,6 @@
 <?php
 use Symfony\Component\DomCrawler\Crawler;
+use Carbon\Carbon;
 
 // Data Transfer object
 // This object holds all the data relating to the news source (eg naharnet)
@@ -39,28 +40,60 @@ class htmlNewsScraper extends newsScraper
     $this->articles = array();
     $content = file_get_contents($this->newsObject->url);
 
-    // initial crawler
+    $definition = $this->newsObject->locationDefinitions;
+
+    // Entire Page Crawler
     $crawler = new Crawler($content);
 
-    foreach ($this->newsObject->locationDefinitions as $key => $definition) {
-      // the container within which we expect to find the anchor elements
-      $parentOfAnchor = $definition[0];
+    // Gets a list of containers that contain our news items
+    $containerCrawler = $crawler->filter($definition['container']);
 
-      // the order of the anchor element that has text
-      //(sometimes, an img anchor element precedes the text)
-      $orderOfAnchor = $definition[1];
+    foreach ($containerCrawler as $containerKey => $containerNode) {
 
-      $crawler2 = $crawler->filter($parentOfAnchor);
-      foreach ($crawler2 as $key => $domnode) {
-        $crawler3 = new Crawler($domnode);
-        $a = $crawler3->filter('a')->eq($orderOfAnchor);
+        // Get the link and title
+        $linkCrawler = new Crawler($containerNode);
+        $a = $linkCrawler->filter('a')->eq($definition['orderOfAnchor']);
         $text = $a->text();
         $link = $a->attr('href');
         $link = $this->newsObject->root.$link;
-        $score = new SocialScore($link);
-        $this->articles[] = array('headline'=>$text, 'url'=> $link, 'virality'=>$score->getVirality());
+        $virality = (new SocialScore($link))->getVirality();
+
+        // Get the image if it exists
+        if (!empty($definition['ImageContainer'])) {
+          $imgCrawler = new Crawler($containerNode);
+          $img = $imgCrawler->filter($definition['ImageContainer'].' img')->first();
+          $img = $img->attr('src');
+
+          // cache image
+          $filename = md5($img).'.jpg';
+          $image = new imagick($img);
+          $image->setFormat('JPEG');
+          $image->cropThumbnailImage(50,50);
+          $outFile = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/'.$this->newsObject->nameid.'/'.$filename;
+          $image->writeImage($outFile);
+        }
+
+        // Get the DateStamp
+        if (!empty($definition['timeContainer'])) {
+          $timeCrawler = new Crawler($containerNode);
+          $time = $timeCrawler->filter($definition['timeContainer'])->first();
+          $time = $time->text();
+          $carbon= new Carbon($time, $definition['timeZone']);
+
+          $gmtDateTime = $carbon->setTimezone('GMT')->toDateTimeString();
+        }
+
+        $this->articles['content'][] = array(
+          'headline'=>$text,
+          'url'=> $link,
+          'virality'=>$virality,
+          'img'=>$img,
+          'gmtDateTime'=>$gmtDateTime
+          );
+        $this->articles['meta'] = array(
+          'feedTitle' => $this->newsObject->title
+        );
       }
-    }
     var_dump($this->articles);
   }
 }
