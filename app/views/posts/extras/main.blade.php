@@ -1,10 +1,10 @@
 {{-- This view handles the routing for the extra cards --}}
 
+<?php
+  $pageKind = Session::get('pageKind');
+?>
 
 @if ($counter == 0)
-  <?php
-    $pageKind = Session::get('pageKind');
-  ?>
 
   @if ($pageKind == 'blogger')
     @include('posts.extras.topBloggerList')
@@ -44,14 +44,6 @@
   ?>
 @endif
 
-@if ($counter == 6)
-  {{-- @include('posts.extras.tips') --}}
-  @include('posts.extras.adsense1')
-  <?php
-      Session::set('cardsCounter', Session::get('cardsCounter') + 1);
-  ?>
-@endif
-
 @if ($counter == 11)
   @include('posts.extras.news')
   <?php
@@ -59,7 +51,7 @@
   ?>
 @endif
 
-@if (in_array($counter, [14,29,44, 59]))
+@if (in_array($counter, [6,14,29,44, 59]))
   @include('posts.extras.adsense1')
   <?php
       Session::set('cardsCounter', Session::get('cardsCounter') + 1);

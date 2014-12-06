@@ -68,7 +68,7 @@ class htmlNewsScraper extends newsScraper
           $filename = md5($img).'.jpg';
           $image = new imagick($img);
           $image->setFormat('JPEG');
-          $image->cropThumbnailImage(50,50);
+          $image->cropThumbnailImage(70,70);
           $outFile = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/'.$this->newsObject->nameid.'/'.$filename;
           $image->writeImage($outFile);
         }

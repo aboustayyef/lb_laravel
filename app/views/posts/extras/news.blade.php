@@ -25,7 +25,7 @@ if (!Cache::has('naharnet')) {
         <li>
           <div class="newsitem">
             <div class="newsItemImage">
-              <a href="{{$article['url']}}" target="blank"><img src="{{$img}}" height="50px" width="auto" alt=""></a>
+              <a href="{{$article['url']}}" target="blank"><img src="{{$img}}" alt=""></a>
             </div>
             <a href="{{$article['url']}}" target="blank">{{$article['headline']}}</a><br> <span class="timeAgo"> {{$timeAgo}}</span>
             {{View::make('posts.partials.virality')->with('score',$virality)}}
