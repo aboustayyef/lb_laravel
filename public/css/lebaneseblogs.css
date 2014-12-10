@@ -830,6 +830,9 @@ div.posts.cards div.post_wrapper div.post_body h2 a.download961 {
     color: #555;
     line-height: 1.5em; }
 
+.arabic a, .arabic .newsheader {
+  font-family: 'Droid Arabic Naskh', serif; }
+
 .newsheader {
   padding: 20px 10px; }
   .newsheader .beta {
@@ -842,10 +845,20 @@ div.posts.cards div.post_wrapper div.post_body h2 a.download961 {
     color: silver;
     margin-top: 5px; }
 
+.arabic .newsheader {
+  direction: rtl; }
+  .arabic .newsheader .beta {
+    float: left;
+    font-family: Montserrat, HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; }
+
 div.newsitem {
+  overflow: auto;
   padding: 15px 10px 15px 0;
   margin-left: 10px;
   border-top: 1px solid #E7D0D2; }
+  div.newsitem .newsContent {
+    width: 190px;
+    float: left; }
   div.newsitem a {
     color: #626262;
     font-size: 13px; }
@@ -875,3 +888,16 @@ div.newsitem {
       background: #e7e7e7; }
       div.newsitem .viralityWrapper .viralityBox .viralityScore {
         height: 5px; }
+
+.arabic .newsitem {
+  padding: 15px 0 15px 10px;
+  margin-left: 0;
+  margin-right: 10px; }
+  .arabic .newsitem .newsItemImage {
+    float: left;
+    margin-left: 0;
+    margin-right: 10px; }
+  .arabic .newsitem .newsContent {
+    float: right; }
+  .arabic .newsitem .timeAgo {
+    font-family: Montserrat, HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; }

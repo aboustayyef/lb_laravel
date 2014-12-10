@@ -45,7 +45,14 @@
 @endif
 
 @if ($counter == 11)
-  @include('posts.extras.news')
+  {{View::make('posts.extras.news')->with('source','naharnet')}}
+  <?php
+      Session::set('cardsCounter', Session::get('cardsCounter') + 1);
+  ?>
+@endif
+
+@if ($counter == 23)
+  {{View::make('posts.extras.news')->with('source','lbci')}}
   <?php
       Session::set('cardsCounter', Session::get('cardsCounter') + 1);
   ?>

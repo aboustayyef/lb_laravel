@@ -6,14 +6,16 @@ use Carbon\Carbon;
 // This object holds all the data relating to the news source (eg naharnet)
 class newsObject
 {
-  public $nameid, $title, $locationDefinitions, $root;
-  function __construct($url, $nameid, $title, $root,  array $locationDefinitions)
+  public $nameid, $title, $locationDefinitions, $root, $attribution, $language;
+  function __construct($locationDefinitions)
   {
-    $this->url = $url;
-    $this->nameid = $nameid;
-    $this->title = $title;
-    $this->root = $root;
-    $this->locationDefinitions = $locationDefinitions;
+    $this->url = $locationDefinitions['url'];
+    $this->nameid = $locationDefinitions['id'];
+    $this->title = $locationDefinitions['title'];
+    $this->language = $locationDefinitions['language'];
+    $this->root = $locationDefinitions['root'];
+    $this->attribution = $locationDefinitions['attribution'];
+    $this->locationDefinitions = $locationDefinitions['scraping'];
   }
 }
 
@@ -38,12 +40,12 @@ class htmlNewsScraper extends newsScraper
 {
   public function getLatestArticles(){
     $this->articles = array();
-    $content = file_get_contents($this->newsObject->url);
-
     $definition = $this->newsObject->locationDefinitions;
 
     // Entire Page Crawler
-    $crawler = new Crawler($content);
+    $crawler = new Crawler;
+    $crawler->addHTMLContent(file_get_contents($this->newsObject->url), 'UTF-8');
+
 
     // Gets a list of containers that contain our news items
     $containerCrawler = $crawler->filter($definition['container']);
@@ -61,15 +63,24 @@ class htmlNewsScraper extends newsScraper
         // Get the image if it exists
         if (!empty($definition['ImageContainer'])) {
           $imgCrawler = new Crawler($containerNode);
-          $img = $imgCrawler->filter($definition['ImageContainer'].' img')->first();
-          $img = $img->attr('src');
+          if ($definition['ImageContainer']=='[IMG]') {
+            $img = $imgCrawler->filter('img')->first();
+          }else {
+            $img = $imgCrawler->filter($definition['ImageContainer'].' img')->first();
+          }
+
+          $img = $definition['ImageRoot'].$img->attr('src');
 
           // cache image
           $filename = md5($img).'.jpg';
+          $directory = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/'.$this->newsObject->nameid ;
+          if (!file_exists($directory)) {
+            mkdir($directory);
+          }
           $image = new imagick($img);
           $image->setFormat('JPEG');
           $image->cropThumbnailImage(70,70);
-          $outFile = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/'.$this->newsObject->nameid.'/'.$filename;
+          $outFile = $directory. '/'. $filename;
           $image->writeImage($outFile);
         }
 
@@ -91,7 +102,9 @@ class htmlNewsScraper extends newsScraper
           'gmtDateTime'=>$gmtDateTime
           );
         $this->articles['meta'] = array(
-          'feedTitle' => $this->newsObject->title
+          'feedTitle' => $this->newsObject->title,
+          'attribution'=> $this->newsObject->attribution,
+          'language'=>$this->newsObject->language
         );
       }
     var_dump($this->articles);

@@ -1,17 +1,22 @@
 <?php
-if (!Cache::has('naharnet')) {
+
+if (!Cache::has($source)) {
   return;
 }
+$articles = Cache::get($source);
 ?>
 <div class="post_wrapper">
-  <div class="card news">
+  <div class="card news
+    <?php if ($articles['meta']['language'] == 'Arabic') {
+      echo 'arabic';
+    } ?>
+  ">
     <div class="newsheader">
-      <h3>Latest Lebanon News <span class="beta">(beta)</span><small>Source: Naharnet</small></h3>
+      <h3>{{$articles['meta']['feedTitle']}} <span class="beta">(beta)</span><small>{{$articles['meta']['attribution']}}</small></h3>
     </div>
     <?php
-      $articles = Cache::get('naharnet');
       $feedTitle = $articles['meta']['feedTitle'];
-      $articles = array_chunk($articles['content'], 5);
+      $articles = array_chunk($articles['content'], 5); // get first 5 articles only
       $articles = $articles[0];
     ?>
     <ul>
@@ -19,7 +24,7 @@ if (!Cache::has('naharnet')) {
       <?php
         $virality = $article['virality'];
         $timeAgo = (new Carbon\Carbon($article['gmtDateTime']))->diffForHumans();
-        $img = '/img/cache/naharnet/'.md5($article['img']).'.jpg';
+        $img = '/img/cache/' . $source . '/'.md5($article['img']).'.jpg';
         //$timeAgo = str_replace(' ', '&nbsp;', $timeAgo);
       ?>
         <li>
@@ -27,8 +32,11 @@ if (!Cache::has('naharnet')) {
             <div class="newsItemImage">
               <a href="{{$article['url']}}" target="blank"><img src="{{$img}}" alt=""></a>
             </div>
-            <a href="{{$article['url']}}" target="blank">{{$article['headline']}}</a><br> <span class="timeAgo"> {{$timeAgo}}</span>
-            {{View::make('posts.partials.virality')->with('score',$virality)}}
+            <div class="newsContent">
+              <a href="{{$article['url']}}" target="blank">{{$article['headline']}}</a><br> <span class="timeAgo"> {{$timeAgo}}</span>
+              {{View::make('posts.partials.virality')->with('score',$virality)}}
+            </div>
+
           </div>
         </li>
       @endforeach

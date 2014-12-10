@@ -1,3 +1,9 @@
+.arabic {
+  a, .newsheader{
+    font-family: 'Droid Arabic Naskh', serif;
+  }
+}
+
 .newsheader{
   padding:20px 10px;
   .beta{
@@ -12,7 +18,20 @@
     margin-top: 5px;
   }
 }
+.arabic .newsheader{
+  direction:rtl;
+  .beta{
+    float:left;
+    font-family: Montserrat, HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  }
+}
+
 div.newsitem{
+  .newsContent{
+    width:190px;
+    float:left;
+  }
+  overflow:auto;
   padding:15px 10px 15px 0;
   margin-left:10px;
   border-top:1px solid #E7D0D2;
@@ -51,5 +70,21 @@ div.newsitem{
         height:5px;
       }
     }
+  }
+}
+.arabic .newsitem {
+  padding:15px 0 15px 10px;
+  margin-left:0;
+  margin-right:10px;
+  .newsItemImage{
+    float: left;
+    margin-left: 0;
+    margin-right: 10px;
+  }
+  .newsContent{
+    float:right;
+  }
+  .timeAgo{
+    font-family: Montserrat, HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
   }
 }
