@@ -71,17 +71,19 @@ class htmlNewsScraper extends newsScraper
 
           $img = $definition['ImageRoot'].$img->attr('src');
 
-          // cache image
-          $filename = md5($img).'.jpg';
-          $directory = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/'.$this->newsObject->nameid ;
-          if (!file_exists($directory)) {
-            mkdir($directory);
+          if (!empty($img)) {
+            // cache image
+            $filename = md5($img).'.jpg';
+            $directory = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/'.$this->newsObject->nameid ;
+            if (!file_exists($directory)) {
+              mkdir($directory);
+            }
+            $image = new imagick($img);
+            $image->setFormat('JPEG');
+            $image->cropThumbnailImage(70,70);
+            $outFile = $directory. '/'. $filename;
+            $image->writeImage($outFile);
           }
-          $image = new imagick($img);
-          $image->setFormat('JPEG');
-          $image->cropThumbnailImage(70,70);
-          $outFile = $directory. '/'. $filename;
-          $image->writeImage($outFile);
         }
 
         // Get the DateStamp
@@ -94,6 +96,10 @@ class htmlNewsScraper extends newsScraper
           $gmtDateTime = $carbon->setTimezone('GMT')->toDateTimeString();
         }
 
+        if (empty($img)) {
+          $img='';
+        }
+
         $this->articles['content'][] = array(
           'headline'=>$text,
           'url'=> $link,
@@ -101,6 +107,7 @@ class htmlNewsScraper extends newsScraper
           'img'=>$img,
           'gmtDateTime'=>$gmtDateTime
           );
+
         $this->articles['meta'] = array(
           'feedTitle' => $this->newsObject->title,
           'attribution'=> $this->newsObject->attribution,

@@ -28,6 +28,11 @@ Route::get('/', function(){
   return Redirect::to('posts/all');
 });
 
+
+Route::get('/news', array(
+  'uses'  =>  'NewsController@index'
+));
+
 Route::get('/user/{section}/{action?}', array(
   'before'  =>  'lb.auth:following',
   'as'  =>  'user',

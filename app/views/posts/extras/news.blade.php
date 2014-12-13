@@ -24,15 +24,28 @@ $articles = Cache::get($source);
       <?php
         $virality = $article['virality'];
         $timeAgo = (new Carbon\Carbon($article['gmtDateTime']))->diffForHumans();
-        $img = '/img/cache/' . $source . '/'.md5($article['img']).'.jpg';
+        if (!empty($article['img'])) {
+          $img = '/img/cache/' . $source . '/'.md5($article['img']).'.jpg';
+        }else{
+          $img='NO_IMAGE';
+        }
+
         //$timeAgo = str_replace(' ', '&nbsp;', $timeAgo);
       ?>
         <li>
           <div class="newsitem">
+
+            @if($img != 'NO_IMAGE')
             <div class="newsItemImage">
               <a href="{{$article['url']}}" target="blank"><img src="{{$img}}" alt=""></a>
             </div>
-            <div class="newsContent">
+            @endif
+
+            <div class="newsContent
+              @if($img == "NO_IMAGE")
+                  noimage
+              @endif
+            ">
               <a href="{{$article['url']}}" target="blank">{{$article['headline']}}</a><br> <span class="timeAgo"> {{$timeAgo}}</span>
               {{View::make('posts.partials.virality')->with('score',$virality)}}
             </div>

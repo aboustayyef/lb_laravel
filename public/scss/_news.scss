@@ -30,6 +30,9 @@ div.newsitem{
   .newsContent{
     width:190px;
     float:left;
+    &.noimage{
+      width:275px;
+    }
   }
   overflow:auto;
   padding:15px 10px 15px 0;

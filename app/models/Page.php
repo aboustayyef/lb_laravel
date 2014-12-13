@@ -18,8 +18,13 @@
         $channelDescription = Channel::description(Session::get('channel'));
         return "Top $channelDescription blogs in Lebanon | Lebanese Blogs";
       }
+
       if ($pagekind == 'following') {
         return 'Posts by Blogs I\'m following';
+      }
+
+      if ($pagekind == 'news') {
+        return 'Latest Lebanon News | Lebanese Blogs';
       }
 
       if ($pagekind == 'blogger') {
