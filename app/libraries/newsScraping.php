@@ -38,6 +38,10 @@ abstract class newsScraper{
 // html scraping class, uses the newsObject;
 class htmlNewsScraper extends newsScraper
 {
+  public function logger($message){
+    echo "$message \n";
+  }
+
   public function getLatestArticles(){
     $this->articles = array();
     $definition = $this->newsObject->locationDefinitions;
@@ -45,74 +49,89 @@ class htmlNewsScraper extends newsScraper
     // Entire Page Crawler
     $crawler = new Crawler;
     $crawler->addHTMLContent(file_get_contents($this->newsObject->url), 'UTF-8');
-
+    $this->logger('created General crawler');
 
     // Gets a list of containers that contain our news items
     $containerCrawler = $crawler->filter($definition['container']);
-
+    $this->logger('Created List of containers, found '.$containerCrawler->count().'. will loop through them');
+    $count = 1;
+    $maximum = 10;
     foreach ($containerCrawler as $containerKey => $containerNode) {
+        try {
+          $this->logger("=== container $count:");
+          // Get the link and title
+          $linkCrawler = new Crawler($containerNode);
+          $this->logger('created Headline/Link Crawler');
+          $a = $linkCrawler->filter('a')->eq($definition['orderOfAnchor']);
+          $text = $a->text();
+          $link = $a->attr('href');
+          $link = $this->newsObject->root.$link;
+          $virality = (new SocialScore($link))->getVirality();
 
-        // Get the link and title
-        $linkCrawler = new Crawler($containerNode);
-        $a = $linkCrawler->filter('a')->eq($definition['orderOfAnchor']);
-        $text = $a->text();
-        $link = $a->attr('href');
-        $link = $this->newsObject->root.$link;
-        $virality = (new SocialScore($link))->getVirality();
-
-        // Get the image if it exists
-        if (!empty($definition['ImageContainer'])) {
-          $imgCrawler = new Crawler($containerNode);
-          if ($definition['ImageContainer']=='[IMG]') {
-            $img = $imgCrawler->filter('img')->first();
-          }else {
-            $img = $imgCrawler->filter($definition['ImageContainer'].' img')->first();
-          }
-
-          $img = $definition['ImageRoot'].$img->attr('src');
-
-          if (!empty($img)) {
-            // cache image
-            $filename = md5($img).'.jpg';
-            $directory = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/'.$this->newsObject->nameid ;
-            if (!file_exists($directory)) {
-              mkdir($directory);
+          // Get the image if it exists
+          if (!empty($definition['ImageContainer'])) {
+            $imgCrawler = new Crawler($containerNode);
+            $this->logger('added image crawler');
+            if ($definition['ImageContainer']=='[IMG]') {
+              $img = $imgCrawler->filter('img')->first();
+            }else {
+              $img = $imgCrawler->filter($definition['ImageContainer'].' img')->first();
             }
-            $image = new imagick($img);
-            $image->setFormat('JPEG');
-            $image->cropThumbnailImage(70,70);
-            $outFile = $directory. '/'. $filename;
-            $image->writeImage($outFile);
+
+            $img = $definition['ImageRoot'].$img->attr('src');
+
+            if (!empty($img)) {
+              // cache image
+              $filename = md5($img).'.jpg';
+              $directory = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/'.$this->newsObject->nameid ;
+              if (!file_exists($directory)) {
+                mkdir($directory);
+              }
+              $image = new imagick($img);
+              $image->setFormat('JPEG');
+              $image->cropThumbnailImage(70,70);
+              $outFile = $directory. '/'. $filename;
+              $image->writeImage($outFile);
+            }
           }
-        }
 
-        // Get the DateStamp
-        if (!empty($definition['timeContainer'])) {
-          $timeCrawler = new Crawler($containerNode);
-          $time = $timeCrawler->filter($definition['timeContainer'])->first();
-          $time = $time->text();
-          $carbon= new Carbon($time, $definition['timeZone']);
+          // Get the DateStamp
+          if (!empty($definition['timeContainer'])) {
+            $timeCrawler = new Crawler($containerNode);
+            $this->logger('added time crawler');
+            $time = $timeCrawler->filter($definition['timeContainer'])->first();
+            $time = $time->text();
+            $carbon= new Carbon($time, $definition['timeZone']);
 
-          $gmtDateTime = $carbon->setTimezone('GMT')->toDateTimeString();
-        }
+            $gmtDateTime = $carbon->setTimezone('GMT')->toDateTimeString();
+          }
 
-        if (empty($img)) {
-          $img='';
-        }
+          if (empty($img)) {
+            $img='';
+          }
 
-        $this->articles['content'][] = array(
-          'headline'=>$text,
-          'url'=> $link,
-          'virality'=>$virality,
-          'img'=>$img,
-          'gmtDateTime'=>$gmtDateTime
+          $this->articles['content'][] = array(
+            'headline'=>$text,
+            'url'=> $link,
+            'virality'=>$virality,
+            'img'=>$img,
+            'gmtDateTime'=>$gmtDateTime
+            );
+
+          $this->articles['meta'] = array(
+            'feedTitle' => $this->newsObject->title,
+            'attribution'=> $this->newsObject->attribution,
+            'language'=>$this->newsObject->language
           );
+          $count++;
+          if ($count > $maximum) {
+            break;
+          }
+        } catch (Exception $e) {
+          $this->logger('Sorry, problem with item '.$count);
+        }
 
-        $this->articles['meta'] = array(
-          'feedTitle' => $this->newsObject->title,
-          'attribution'=> $this->newsObject->attribution,
-          'language'=>$this->newsObject->language
-        );
+
       }
     var_dump($this->articles);
   }

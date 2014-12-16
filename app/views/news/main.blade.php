@@ -17,7 +17,7 @@
 
     <div class="posts cards"> <!-- cards is default -->
       <?php
-        $availableNewsSources = ['naharnet','lbci', 'nna_english'];
+        $availableNewsSources = ['naharnet','lbci', 'nna_english', 'elnashra'];
         foreach ($availableNewsSources as $key => $source) {
           echo View::make('posts.extras.news')->with('source', $source);
         }

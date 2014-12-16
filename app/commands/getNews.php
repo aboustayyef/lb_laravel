@@ -39,13 +39,15 @@ class getNews extends Command {
 
   public function fire(){
     // for testing a single source
-    // $newsSource = (new NewsScrapingDictionary)->source('source');
+
+    // $newsSource = (new NewsScrapingDictionary)->source('lbci');
     // $newsObject = new newsObject($newsSource);
     // $scraper = new htmlNewsScraper($newsObject);
     // $scraper->getLatestArticles();
     // $scraper->storeArticles();
 
     // for the entire library
+
     $newsSources = (new NewsScrapingDictionary)->sources();
     foreach ($newsSources as $key => $newsSource) {
       $newsObject = new newsObject($newsSource);
