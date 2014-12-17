@@ -37,6 +37,13 @@
   @endif
 @endif
 
+@if ($counter == 0)
+  @include('posts.extras.2014countdown')
+  <?php
+      Session::set('cardsCounter', Session::get('cardsCounter') + 1);
+  ?>
+@endif
+
 @if ($counter == 9)
   @include('posts.extras.961mag')
   <?php
