@@ -1,13 +1,13 @@
 $(document).ready(function(){
-  var hour = 8;
-  tz = new Date();
-  hour += tz.getTimezoneOffset();
-  var datestring = "2014/12/22 ";
-  if (hour < 0) {
-    datestring = "2014/12/21 ";
-    hour +=24;
-  };
-  var dateTimeString = datestring + hour + ":00:00";
+  // var hour = 8;
+  // tz = new Date();
+  // hour += tz.getTimezoneOffset();
+  // var datestring = "2014/12/22 ";
+  // if (hour < 0) {
+  //   datestring = "2014/12/21 ";
+  //   hour +=24;
+  // };
+  var dateTimeString = "2014/12/22 8:00:00 GMT";
   $('#list_countdown')
   .countdown(dateTimeString, function(event){
     // $(this).text(
