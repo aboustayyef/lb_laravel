@@ -1,6 +1,15 @@
 $(document).ready(function(){
+  var hour = 8;
+  tz = new Date();
+  hour += tz.getTimezoneOffset();
+  var datestring = "2014/12/22 ";
+  if (hour < 0) {
+    datestring = "2014/12/21 ";
+    hour +=24;
+  };
+  var dateTimeString = datestring + hour + ":00:00";
   $('#list_countdown')
-  .countdown("2014/12/22 08:00:00", function(event){
+  .countdown(dateTimeString, function(event){
     // $(this).text(
     //   event.strftime('%d  |  %H  |  %M  |  %S')
     // );
