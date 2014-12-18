@@ -14,7 +14,7 @@
         </script>
       @endif
       <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-      <script src ="{{asset('js/lebaneseblogs.min.js?v=1411667774')}}"></script>
+      <script src ="{{asset('js/lebaneseblogs.min.js?v=1511667774')}}"></script>
 
       <!-- Start of Google Analytics Code -->
             <script>
