@@ -38,8 +38,31 @@ class endOfYearStats extends Command {
 	 */
 	public function fire()
 	{
-    $this->getFacebookTop(30);
+    $this->getTopPostsPerBlogger();
 	}
+
+  public function getTopPostsPerBlogger(){
+    $topPosts = topPost::Where('top_post_timestamp_added','>',$this->firstDay)->get();
+    $bloggersResults = [];
+    foreach ($topPosts as $key => $topPost) {
+      try {
+        $blog_id = Post::where('post_url',$topPost->top_post_url)->get()->first()->blog_id;
+        if (isset($bloggersResults[$blog_id])) {
+          $bloggersResults[$blog_id] += 1;
+        } else {
+          $bloggersResults[$blog_id] = 1;
+        }
+      }
+       catch (Exception $e) {
+      }
+    }
+    echo "Blog, Number of times #1, Number of Posts \n";
+    foreach ($bloggersResults as $key => $result) {
+      $numberOfPosts = Post::where('blog_id',$key)->where('post_timestamp','>',$this->firstDay)->get()->count();
+      echo "$key, $result, $numberOfPosts\n";
+    }
+//    print_r($bloggersResults);
+  }
 
   public function getListOfBlogStats(){
     $blogs = Blog::where('blog_last_post_timestamp','>',$this->firstDay)->get();
