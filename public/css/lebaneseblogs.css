@@ -903,25 +903,3 @@ div.newsitem {
     float: right; }
   .arabic .newsitem .timeAgo {
     font-family: Montserrat, HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; }
-
-#list_countdown {
-  position: absolute;
-  left: 25px;
-  bottom: 10px;
-  color: white;
-  width: 240px; }
-  #list_countdown .block {
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    width: 50px;
-    float: left;
-    background: #9c212a;
-    margin-left: 10px;
-    text-align: center; }
-    #list_countdown .block .number {
-      padding: 10px 5px;
-      font-size: 26px; }
-    #list_countdown .block .description {
-      padding: 2px 5px;
-      background: #871c25;
-      font-size: 12px;
-      opacity: 0.5; }
