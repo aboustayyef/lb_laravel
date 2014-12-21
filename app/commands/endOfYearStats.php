@@ -38,7 +38,7 @@ class endOfYearStats extends Command {
 	 */
 	public function fire()
 	{
-    $this->getTopPostsPerBlogger();
+    $this->getFacebookTop(20);
 	}
 
   public function getTopPostsPerBlogger(){
@@ -65,24 +65,64 @@ class endOfYearStats extends Command {
   }
 
   public function getListOfBlogStats(){
-    $blogs = Blog::where('blog_last_post_timestamp','>',$this->firstDay)->get();
-    echo "Blog Name, Posts Count, Total Virality \n";
-    foreach ($blogs as $key => $blog) {
-      $blogName = str_replace(',', '', $blog->blog_name);
-      $bloggerPosts = Post::where('blog_id', $blog->blog_id)->get();
-      $postsCount = $bloggerPosts->count();
-      $totalVirality = 0;
-      $totalShares = 0;
-      foreach ($bloggerPosts as $key => $post) {
-        $totalVirality += $post->post_virality;
+    // Temporarily increase memory limit to 256MB
+    ini_set('memory_limit','256M');
+    $blogs = [];
+    $posts = Post::where('post_timestamp','>',$this->firstDay)->get();
+    foreach ($posts as $key => $post) {
+      if (!isset($blogs[$post->blog_id])) {
+        // initialize each blogger's counters
+        $blogs[$post->blog_id] = ['total_virality'=>0,'post_count'=>0];
+      } else {
+        $blogs[$post->blog_id]['total_virality'] += $post->post_virality;
+        $blogs[$post->blog_id]['post_count'] += 1;
       }
-      echo "$blogName, $postsCount, $totalVirality \n";
+    }
+    echo "Blog, total virality, post count \n";
+    foreach ($blogs as $key => $blog) {
+      echo "$key, {$blog['total_virality']}, {$blog['post_count']} \n";
+    }
+  }
+
+
+  public function temp(){
+    $test = ['inkontheside' => '79.17%',
+  'stateofmind13' => '55.41%',
+  'ginosblog' => '35.76%',
+  'beirutreport' => '32.59%',
+  'ivysays' =>  '31.88%',
+  'beirutcityguide' => '31.49%',
+  'plus961' => '31.25%',
+  'blogbaladi' => '28.94%',
+  'blogoftheboss' => '26.73%',
+  'karlremarks' => '25.45%',
+  'ultgate' => '25.42%',
+  'beirutista' => '25.00%',
+  'thedscoop' => '23.08%',
+  'chitiktikchiti3a' => '20.19%',
+  'bikaffe' => '17.86%',
+  'sietske-in-beiroet' => '17.65%',
+  'joesbox' => '14.94%',
+  'lfadi' => '13.37%',
+  'sharbelfaraj' => '12.16%',
+  'nogarlicnoonions' => '10.87%'];
+  $counter = 1;
+  foreach ($test as $key => $value) {
+    $blog = Blog::find($key);
+    $blogname = $blog->blog_name;
+    $bloglink = $blog->blog_url;
+    echo '<tr>';
+    echo "<td>$counter</td>";
+    echo '<td><a href="'.$bloglink.'">'.$blogname.'</a></td>';
+    echo "<td>$value</td>";
+    echo '</tr>';
+    $counter++;
     }
   }
 
   public function getFacebookTop($howMuch){
     //get posts with most facebook shares;
-    $posts = Post::where('post_timestamp','>', $this->firstDay)->orderBy('post_facebookShares','desc')->take($howMuch)->get();
+    $posts = Post::where('post_timestamp','>', $this->firstDay)->where('post_tags','NOT LIKE','%politics%')->orderBy('post_facebookShares','desc')->take($howMuch)->get();
     echo "Post Title, Post URL, Facebook Shares \n";
     foreach ($posts as $key => $post) {
       $title = str_replace(',', '', $post->post_title);

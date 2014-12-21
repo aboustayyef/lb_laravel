@@ -9,7 +9,7 @@ $(document).ready(function(){
   // };
   var dateTimeString = "2014/12/22 8:00:00 GMT";
   $('#list_countdown')
-  .countdown(dateTimeString, function(event){
+  .countdown(dateTimeString).on('update.countdown',function(event){
     // $(this).text(
     //   event.strftime('%d  |  %H  |  %M  |  %S')
     // );
@@ -17,5 +17,7 @@ $(document).ready(function(){
     $(this).find('.block').find('.hours').text(event.strftime('%H'));
     $(this).find('.block').find('.mins').text(event.strftime('%M'));
     $(this).find('.block').find('.secs').text(event.strftime('%S'));
+  }).on('finish.countdown',function(event){
+    location.reload();
   });
 });
