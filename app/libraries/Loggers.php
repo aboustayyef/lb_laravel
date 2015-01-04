@@ -7,7 +7,9 @@ class textFileLogger {
     try {
       $logfile = base_path().'/lebaneseBlogsLog.log';
       $resource = fopen($logfile, 'a');
-      fwrite($resource, $message."\n");
+      $now = (new Carbon\Carbon('now'))->format("Y-M-d H:i:s");
+      $message = "$now - $message \n";
+      fwrite($resource, $message);
       return true;
     } catch (Exception $e) {
       return false;

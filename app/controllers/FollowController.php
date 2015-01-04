@@ -30,8 +30,7 @@ class FollowController extends BaseController
       // Log what just happened;
       $blogName = Blog::find($blogId)->blog_name;
       $userFullName = User::find($userId)->fullName();
-      $now = (new Carbon\Carbon('now'))->format("Y-M-d H:i:s");
-      $loggingMessage = "$now: User $userFullName has followed blog ($blogName)";
+      $loggingMessage = "User ($userFullName) has followed blog ($blogName)";
       textFileLogger::log($loggingMessage);
     }
   }
@@ -53,8 +52,7 @@ class FollowController extends BaseController
       // Log what just happened;
       $blogName = Blog::find($blogId)->blog_name;
       $userFullName = User::find($userId)->fullName();
-      $now = (new Carbon\Carbon('now'))->format("Y-M-d H:i:s");
-      $loggingMessage = "$now: User $userFullName has unfollowed blog ($blogName)";
+      $loggingMessage = "User ($userFullName) has unfollowed blog ($blogName)";
       textFileLogger::log($loggingMessage);
     }
   }

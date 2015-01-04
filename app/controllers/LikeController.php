@@ -27,6 +27,12 @@ class LikeController extends BaseController
       DB::table('post_user')->insert(
         array('post_id' => $postId, 'user_id' => $userId)
       );
+      // Log what just happened;
+      $postTitle = Post::find($postId)->post_title;
+      $blogDetail = Post::find($postId)->blog_id;
+      $userFullName = User::find($userId)->fullName();
+      $loggingMessage = "User ($userFullName) has liked post ($postTitle) by blogger ($blogDetail)";
+      textFileLogger::log($loggingMessage);
     }
     //return Redirect::to('/posts/favorites');
   }
@@ -45,6 +51,13 @@ class LikeController extends BaseController
     // if already favorited, remove record
     if ($saves > 0) {
       DB::table('post_user')->where('post_id',$postId)->where('user_id',$userId)->delete();
+
+      // Log what just happened;
+      $postTitle = Post::find($postId)->post_title;
+      $blogDetail = Post::find($postId)->blog_id;
+      $userFullName = User::find($userId)->fullName();
+      $loggingMessage = "User ($userFullName) has unliked post ($postTitle) by blogger ($blogDetail)";
+      textFileLogger::log($loggingMessage);
     }
   }
 }
