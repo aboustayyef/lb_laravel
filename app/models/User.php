@@ -131,6 +131,19 @@ class User extends Eloquent
     }
   }
 
+  public function lastName(){
+    $lastName = $this->last_name;
+    if (!empty($lastName)) {
+      return $lastName;
+    }else{
+      return '';
+    }
+  }
+
+  public function fullName(){
+    return $this->firstName() . ' ' . $this->lastName();
+  }
+
 
   public function owns($blogId = false){
 

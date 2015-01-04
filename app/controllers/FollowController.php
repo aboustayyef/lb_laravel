@@ -27,8 +27,13 @@ class FollowController extends BaseController
       DB::table('blog_user')->insert(
         array('blog_id' => $blogId, 'user_id' => $userId)
       );
+      // Log what just happened;
+      $blogName = Blog::find($blogId)->blog_name;
+      $userFullName = User::find($userId);
+      $now = (new Carbon\Carbon('now'))->format("Y-M-d H:i:s");
+      $loggingMessage = "$now: User $userFullName has followed blog ($blogName)";
+      textFileLogger::log($loggingMessage);
     }
-    //return Redirect::to('/posts/favorites');
   }
 
   public static function remove($blogId){
@@ -44,6 +49,13 @@ class FollowController extends BaseController
     // if already favorited, remove record
     if ($favs > 0) {
       DB::table('blog_user')->where('blog_id',$blogId)->where('user_id',$userId)->delete();
+
+      // Log what just happened;
+      $blogName = Blog::find($blogId)->blog_name;
+      $userFullName = User::find($userId);
+      $now = (new Carbon\Carbon('now'))->format("Y-M-d H:i:s");
+      $loggingMessage = "$now: User $userFullName has unfollowed blog ($blogName)";
+      textFileLogger::log($loggingMessage);
     }
   }
 
