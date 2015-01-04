@@ -19,8 +19,8 @@ $virality = $score * 2; // convert to a percentile score
 ?>
 <div class="viralityWrapper">
 Virality &nbsp;
- <div class="viralityBox">
+ <div class="viralityBox" title="Virality Score: {{$score}}/50">
   <div class="viralityScore" style ="background: {{$viralityColor}}; width: {{$virality}}px"> <!-- This will be styled from the code -->
   </div>
-</div> 
-</div> 
+</div>
+</div>
