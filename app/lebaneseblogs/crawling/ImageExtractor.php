@@ -3,9 +3,8 @@
 use Symfony\Component\DomCrawler\Crawler ;
 
   interface ImageExtractor{
-    function getImage();
+    function image();
   }
-
 
   /**
   *
@@ -22,7 +21,7 @@ use Symfony\Component\DomCrawler\Crawler ;
       }
     }
 
-    function getImage(){
+    function image(){
       $crawler = new Crawler($this->html);
       $image = $crawler->filter('img.ProfileAvatar-image')->first()->attr('src');
       return $image;

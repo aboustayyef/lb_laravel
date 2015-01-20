@@ -30,7 +30,6 @@ class CrawlRss extends Command {
     parent::__construct();
     $this->hr = str_repeat('-', 70);
     $this->dhr = str_repeat('=', 70);
-    $this->searchClient = new Elasticsearch\Client();
   }
 
   /**

@@ -54,6 +54,11 @@ Route::filter('auth.basic', function()
 	return Auth::basic();
 });
 
+Route::filter('admin.auth', function(){
+  if ( User::signedIn() != 'beirutspring') {
+    die('you don\'t have access');
+  }
+});
 
 Route::filter('lb.auth', function($route,$request,$finalDestination){
   if (!User::signedIn())

@@ -2,7 +2,7 @@
   class Blog extends Eloquent
   {
     protected $primaryKey = 'blog_id';
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function posts(){
       return $this->hasMany('Post');
