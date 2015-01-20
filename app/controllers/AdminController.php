@@ -4,7 +4,7 @@
 * Lebanese Blogs administration. Adding Blogs
 */
 
-class AdminController extends BaseController
+class adminController extends BaseController
 {
 
   function __construct()
