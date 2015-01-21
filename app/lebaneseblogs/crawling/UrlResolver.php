@@ -16,13 +16,18 @@ class UrlResolver
     }
 
     public function resolve(){
+
         //$this->client->addSubscriber($this->history);
-        $request = $this->client->get($this->url);
+        $request = $this->client->get($this->url, ['cookies' => true]);
         $response = $request->send();
         if (!$response->isSuccessful()) {
             return 'Could Not resolve URL ' . $this->url;
         }
-        return $response->getEffectiveUrl();
+        if (@$response->getEffectiveUrl()){
+          return $response->getEffectiveUrl();
+        }else {
+          return false;
+        }
     }
 }
 

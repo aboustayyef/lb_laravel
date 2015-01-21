@@ -12,12 +12,20 @@ use Symfony\Component\DomCrawler\Crawler ;
 */
 
 Route::get('test/{blog}', function($blog){
-  $test = new LebaneseBlogs\Crawling\TwitterLinksExtractor($blog);
-  die($test->listOfLinks());
+  $timeline = new LebaneseBlogs\Crawling\TwitterTimeline($blog);
+  $tweets = $timeline->getTweets();
+  foreach ($tweets as $key => $tweet) {
+    var_dump($tweet->links());
+    var_dump($tweet->hashtags());
+  }
 });
 Route::get('test2', function(){
-  $test = new LebaneseBlogs\Crawling\UrlResolver('http://go.shr.lc/1xWmGOK');
-  echo $test->resolve();
+  $test = new LebaneseBlogs\Crawling\UrlResolver('http://nzzl.me/1IZHcqi');
+  try {
+    return $test->resolve();
+  } catch (Exception $e) {
+    return false;
+  }
 });
 
 // Default route from root
