@@ -11,10 +11,10 @@
     "league/oauth2-client": "~0.3",
     "dg/twitter-php": "3.*",
     "evansims/socialworth": "*",
-  	"elasticsearch/elasticsearch": "~1.0",
     "way/generators": "~2.0",
     "facebook/php-sdk": "dev-master",
-    "dg/twitter-php": "dev-master"
+    "dg/twitter-php": "dev-master",
+    "guzzle/plugin-history": "3.7.*@dev"
 	},
 	"autoload": {
 		"classmap": [

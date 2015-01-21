@@ -11,6 +11,15 @@ use Symfony\Component\DomCrawler\Crawler ;
 |
 */
 
+Route::get('test/{blog}', function($blog){
+  $test = new LebaneseBlogs\Crawling\TwitterLinksExtractor($blog);
+  die($test->listOfLinks());
+});
+Route::get('test2', function(){
+  $test = new LebaneseBlogs\Crawling\UrlResolver('http://go.shr.lc/1xWmGOK');
+  echo $test->resolve();
+});
+
 // Default route from root
 Route::get('/', function(){
   if (Input::has('channel')) {
