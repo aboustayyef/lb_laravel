@@ -903,3 +903,24 @@ div.newsitem {
     float: right; }
   .arabic .newsitem .timeAgo {
     font-family: Montserrat, HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; }
+
+.stars .fullstar {
+  width: 16px; }
+  .stars .fullstar:before {
+    color: #b12530;
+    content: '\2605'; }
+.stars .emptystar {
+  width: 16px; }
+  .stars .emptystar:before {
+    color: silver;
+    content: '\2605'; }
+.stars .halfstar:before {
+  color: silver;
+  content: '\2605'; }
+.stars .halfstar:after {
+  content: '\2605';
+  color: #b12530;
+  width: 8px;
+  margin-left: -16px;
+  position: absolute;
+  overflow: hidden; }

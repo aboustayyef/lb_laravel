@@ -20,3 +20,4 @@ Artisan::add(new checkTopPosts);
 Artisan::add(new spreadPosts);
 Artisan::add(new getNews);
 Artisan::add(new endOfYearStats);
+Artisan::add(new getRatings);

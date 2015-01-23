@@ -204,6 +204,14 @@ class CrawlRss extends Command {
         $post->post_visits = 0 ;
         $post->post_image_hue = 0 ;
         $post->post_tags = $this->blog->blog_tags;
+
+        // See if blogger has reviewed and rated in the post
+        $rating = new LebaneseBlogs\Crawling\RatingExtractor(strip_tags($blog_post_content));
+        if ($rating->getRating()) {
+          $post->rating_numerator = $rating->numerator;
+          $post->rating_denominator = $rating->denominator;
+        }
+
         try {
           $post->save();
           // index post (disabled elastic search now)
@@ -226,8 +234,8 @@ class CrawlRss extends Command {
           $blog = Blog::where('blog_id', $domain)->first();
           $blog->blog_last_post_timestamp = $blog_post_timestamp;
           $blog->save();
-
           $this->comment('New Post Saved: "' . $blog_post_title . '"');
+
         } catch (Exception $e) {
           $this->error($e->getMessage()); //'Cannot save post [' . $blog_post_title . ']'
         }

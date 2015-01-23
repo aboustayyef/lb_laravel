@@ -1,0 +1,31 @@
+.stars{
+  .fullstar{
+    width:16px;
+    &:before{
+      color:$brand_color;
+      content:'\2605';
+    }
+  }
+  .emptystar{
+    width:16px;
+    &:before{
+      color:silver;
+      content:'\2605';
+    }
+  }
+
+  .halfstar{
+    &:before{
+      color:silver;
+      content:'\2605';
+    }
+    &:after{
+      content:'\2605';
+      color:$brand_color;
+      width:8px;
+      margin-left: -16px;
+      position:absolute;
+      overflow:hidden;
+    }
+  }
+}
