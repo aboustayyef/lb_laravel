@@ -206,10 +206,20 @@ class CrawlRss extends Command {
         $post->post_tags = $this->blog->blog_tags;
 
         // See if blogger has reviewed and rated in the post
-        $rating = new LebaneseBlogs\Crawling\RatingExtractor(strip_tags($blog_post_content));
-        if ($rating->getRating()) {
+
+        if ($domain == 'nogarlicnoonions') {
+          // because NGNO's ratings are not in the RSS feed, we use the DOM crawler.
+          $rating = new LebaneseBlogs\Crawling\RatingExtractor(@file_get_contents($blog_post_link));
+          $getRatings = $rating->getNgnoRating();
+        }else{
+          $rating = new LebaneseBlogs\Crawling\RatingExtractor(strip_tags($blog_post_content));
+          $getRatings = $rating->getRating();
+        }
+
+        if ($getRatings) {
           $post->rating_numerator = $rating->numerator;
           $post->rating_denominator = $rating->denominator;
+          $this->comment('added rating ' . $rating->numerator . '/' . $rating->denominator . ' to the post ' . $post->post_title);
         }
 
         try {

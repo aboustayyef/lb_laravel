@@ -54,9 +54,11 @@
         >
         <!-- outward url -->
         <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" target="_blank">{{ $post->post_title }} </a>
+
+        <!-- rating -->
         <?php
-          $rating = new LebaneseBlogs\Crawling\RatingExtractor(strip_tags($post->post_content));
-          if ($rating->getRating()) {
+
+          if (($post->rating_denominator > 0) && ($post->rating_numerator > 1)) {
             echo '<!-- Rating -->';
             echo View::make('posts.partials.rating')->with('n',$post->rating_numerator)->with('d',$post->rating_denominator);
           }

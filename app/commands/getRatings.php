@@ -40,14 +40,23 @@ class getRatings extends Command {
 		if (!Blog::exists($this->argument('blogger'))) {
       throw new Exception("Blogger Doesn't exist", 1);
     }
-      $posts = Post::where('blog_id', $this->argument('blogger'))->get();
+      $posts = Post::where('blog_id', $this->argument('blogger'))->orderBy('post_id','desc')->take(100)->get();
       foreach ($posts as $key => $post) {
-      $rating = new LebaneseBlogs\Crawling\RatingExtractor(strip_tags($post->post_content));
-      if ($rating->getRating()) {
+        $this->info('now crawling ' . $post->post_title );
+        if ($this->argument('blogger') == 'nogarlicnoonions') {
+          // because NGNO's ratings are not in the RSS feed, we use the DOM crawler.
+          $rating = new LebaneseBlogs\Crawling\RatingExtractor(@file_get_contents($post->post_url));
+          $getRatings = $rating->getNgnoRating();
+        }else{
+          $rating = new LebaneseBlogs\Crawling\RatingExtractor(strip_tags($post->post_content));
+          $getRatings = $rating->getRating();
+        }
+
+      if ($getRatings) {
         $post->rating_numerator = $rating->numerator;
         $post->rating_denominator = $rating->denominator;
         $post->save();
-        $this->info('added rating ' . $rating->numerator . '/' . $rating->denominator . ' to the post ' . $post->post_title);
+        $this->comment('added rating ' . $rating->numerator . '/' . $rating->denominator . ' to the post ' . $post->post_title);
       }
     }
 	}
