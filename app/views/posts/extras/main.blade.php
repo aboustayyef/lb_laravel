@@ -37,13 +37,6 @@
   @endif
 @endif
 
-@if ($counter == 9)
-  @include('posts.extras.961mag')
-  <?php
-      Session::set('cardsCounter', Session::get('cardsCounter') + 1);
-  ?>
-@endif
-
 @if ($counter == 11)
   {{View::make('posts.extras.news')->with('source','naharnet')}}
   <?php
