@@ -166,7 +166,8 @@ class CrawlRss extends Command {
 
         // Normalise & sanitize Content
         $blog_post_content = html_entity_decode($item->get_content(), ENT_COMPAT, 'utf-8');
-        $blog_post_content = substr($blog_post_content, 0, 7500); // larger than 8000 chars won't fit in mysql
+        $full_blog_post_content = lbNormalise::unicode_decode($blog_post_content);
+        $blog_post_content = substr($blog_post_content, 0, 7950); // larger than 8000 chars won't fit in mysql
         // remove non utf-8 characters;
         $blog_post_content = lbNormalise::unicode_decode($blog_post_content);
 
@@ -207,14 +208,8 @@ class CrawlRss extends Command {
 
         // See if blogger has reviewed and rated in the post
 
-        if ($domain == 'nogarlicnoonions') {
-          // because NGNO's ratings are not in the RSS feed, we use the DOM crawler.
-          $rating = new LebaneseBlogs\Crawling\RatingExtractor(@file_get_contents($blog_post_link));
-          $getRatings = $rating->getNgnoRating();
-        }else{
-          $rating = new LebaneseBlogs\Crawling\RatingExtractor(strip_tags($blog_post_content));
-          $getRatings = $rating->getRating();
-        }
+        $rating = new LebaneseBlogs\Crawling\RatingExtractor($domain, $full_blog_post_content, $blog_post_link);
+        $getRatings = $rating->getRating();
 
         if ($getRatings) {
           $post->rating_numerator = $rating->numerator;
