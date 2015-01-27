@@ -101,7 +101,7 @@ class crawlHelpers extends BaseController
           // if the image is relative, convert it to absolute
           if ($tmpImage[0] == '/') { // root url, example ('/src/of/image.jpg')
             $tmpImage = $root . $tmpImage;
-          } elseif (strpos($tmpImage, '../') == 0){ // also root ('../src/of/image')
+          } elseif (($tmpImage[0] == '.') && ($tmpImage[1] == '.') && ($tmpImage[2] =='/')){ // also root ('../src/of/image')
             $tmpImage = $root . '/' . substr($tmpImage,3);
           } elseif (strpos($tmpImage, 'http') != 0) { // relative url, example('src/of/image.jpg')
             $tmpImage = $root . '/' . $tmpImage;
