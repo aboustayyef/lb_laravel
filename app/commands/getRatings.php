@@ -37,7 +37,8 @@ class getRatings extends Command {
 	 */
 	public function fire()
 	{
-    $howmany = empty($this->argument('howmany')) ? 100 : $this->argument('howmany');
+    $howmany_argument = $this->argument('howmany');
+    $howmany = empty($howmany_argument) ? 100 : $howmany_argument;
 		if (!Blog::exists($this->argument('blogger'))) {
       throw new Exception("Blogger Doesn't exist", 1);
     }

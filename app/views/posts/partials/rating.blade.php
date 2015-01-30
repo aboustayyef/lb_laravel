@@ -27,7 +27,7 @@ Denominator: $d (int)
 ?>
 
 <div class="stars" title="Blogger rating: {{$score}} / {{$D}} (original: {{$n}} / {{$d}})">
-
+  <span class="rating">Rating:</span>
   <?php
     for ($i=0; $i < $fullStars ; $i++) {
       echo '<span class="fullstar"></span>';
