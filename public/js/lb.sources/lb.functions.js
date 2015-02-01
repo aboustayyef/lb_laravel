@@ -1,13 +1,14 @@
 lbApp.veryFirstLoad= function(){
 
   // adjust sizes of DOM elements
-  lbApp.resizeViewport();
-
+    lbApp.resizeViewport();
   // momentum scrolling hack
   $('#momentumScrollingViewport').css('-webkit-overflow-scrolling: touch;');
 
-  // use masonry to flow the posts
-  lbApp.flowPosts();
+  // if not mobile, use masonry to flow the posts
+  if ($(window).width() > 430) {
+    lbApp.flowPosts();
+  }
 
   // more adjusting of DOM element sizes
   lbApp.fixViewportHeight();
@@ -24,13 +25,13 @@ lbApp.veryFirstLoad= function(){
 lbApp.resizeViewport = function(){
   // this function is only used with cards
   // it serves to recalculate the viewport's width to center the posts
-
-  var columns = Math.floor((($(window).width() ))/320);
-
-  $('div.posts').css('width',columns*320);
-
-  // position logo to be alligned with posts
   if ($(window).width() > 430) {
+    var columns = Math.floor((($(window).width() ))/320);
+
+    $('div.posts').css('width',columns*320);
+
+    // position website logo to be alligned with posts
+
     var $leftMargin = parseInt($('div.posts').css('margin-left'));
     var $logoMargin = $leftMargin - 50 + 10 ;
     if ($logoMargin > 20) {

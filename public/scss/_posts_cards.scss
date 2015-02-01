@@ -247,7 +247,21 @@ div.postvisits{
   padding: 5px;
   }
 div.posts.cards{
-  @media screen and (max-width:360px){
+  @media screen and (max-width:430px){
     margin-top:20px;
+    width:100%;
+    margin:0;
+    div.post_wrapper{
+      margin:0;
+      width:100%;
+    }
+    div.card{
+      margin:10px;
+      border:none;
+      border-top: 1px solid #b3b3b3;
+      .push_down{
+        margin-bottom:0;
+      }
+    }
   }
 }

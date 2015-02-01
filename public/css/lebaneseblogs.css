@@ -256,9 +256,20 @@ div.postvisits {
   background: beige;
   padding: 5px; }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 430px) {
   div.posts.cards {
-    margin-top: 20px; } }
+    margin-top: 20px;
+    width: 100%;
+    margin: 0; }
+    div.posts.cards div.post_wrapper {
+      margin: 0;
+      width: 100%; }
+    div.posts.cards div.card {
+      margin: 10px;
+      border: none;
+      border-top: 1px solid #b3b3b3; }
+      div.posts.cards div.card .push_down {
+        margin-bottom: 0; } }
 
 div.posts.cards.blogger .post_wrapper .blog_header {
   display: none; }
