@@ -66,6 +66,8 @@
   {{ Form::label('excerpt', 'Post Excerpt')}}
   {{ Form::textarea('excerpt', $post->post_excerpt) }}
 
+  {{ Form::label('rating', 'If This is a review, enter your rating (over 5')}}
+  {{ Form::text('rating', $post->rating_numerator) }}
 
 @if ($post->post_image_height > 0 )
   <img src="{{$post->post_image}}" width="300" alt="your post's image">

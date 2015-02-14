@@ -191,6 +191,7 @@ public static function getTopPostsByBlogger($bloggerId){
       $this->post_title = $newDetails['title'];
       $this->post_excerpt = $newDetails['excerpt'];
       $this->post_tags = $categories;
+      $this->rating_numerator = $newDetails['rating'];
       try {
         $this->save();
         return true;
@@ -204,6 +205,7 @@ public static function getTopPostsByBlogger($bloggerId){
       $rules = [
         'title'  =>  'required|min:3',
         'excerpt' =>  'required|min:10| max:123',
+        'rating'  =>  'numeric|max:5'
       ];
 
       $validator = Validator::make($input, $rules);
