@@ -192,6 +192,7 @@ public static function getTopPostsByBlogger($bloggerId){
       $this->post_excerpt = $newDetails['excerpt'];
       $this->post_tags = $categories;
       $this->rating_numerator = $newDetails['rating'];
+      $this->rating_denominator = 5;
       try {
         $this->save();
         return true;
