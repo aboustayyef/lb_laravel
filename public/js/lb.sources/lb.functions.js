@@ -8,6 +8,8 @@ lbApp.veryFirstLoad= function(){
   // if not mobile, use masonry to flow the posts
   if ($(window).width() > 430) {
     lbApp.flowPosts();
+  }else{
+    lbApp.mobileFlowPosts();
   }
 
   // more adjusting of DOM element sizes
@@ -38,16 +40,16 @@ lbApp.resizeViewport = function(){
      $('#logo').css('margin-left', $logoMargin + 'px');
     }else{
       $('#logo').css('margin-left', '20px');
-    };
-  };
-}
+    }
+  }
+};
 
 lbApp.loadLazyImages = function(){
   $('img.lazy').each(function(){
     $(this).attr('src', $(this).data('original'));
     $(this).removeClass('lazy');
   });
-}
+};
 
 lbApp.fixViewportHeight = function(){
   $winHeight = $(window).height();
@@ -56,8 +58,8 @@ lbApp.fixViewportHeight = function(){
 
   if ($('#content').height() < $winHeight) {
     $('#content').height($winHeight);
-  };
-}
+  }
+};
 
 lbApp.flowPosts = function(){
 
@@ -71,7 +73,16 @@ lbApp.flowPosts = function(){
     itemSelector: 'div.post_wrapper',
     transitionDuration: 1, // no animation
   });
-}
+};
+
+lbApp.mobileFlowPosts = function(){
+  var $cardWidth = $(window).width() - 40;
+  $('.cardImage').each(function(){
+    $ratio = $(this).attr('height') / $(this).attr('width');
+    $height = $cardWidth * $ratio;
+    $(this).attr('width', $cardWidth).attr('height',$height);
+  });
+};
 
 lbApp.showLoadingCurtain = function(fadein){
   // This function shows the "loading" window
@@ -81,13 +92,13 @@ lbApp.showLoadingCurtain = function(fadein){
   }else{
     $('#loading').show();
   }
-}
+};
 
 lbApp.hideLoadingCurtain = function(){
   // This function hides the "loading" window
   // after everything has loaded
   $('#loading').hide();
-}
+};
 
 lbApp.showPostsLoadingIndicator = function(){
   $('.posts').after('<div id ="loadingMore"><i class="fa fa-cog fa-spin"></i> Loading More Posts</div>');
@@ -95,11 +106,11 @@ lbApp.showPostsLoadingIndicator = function(){
   $a = $('#loadingMore').outerWidth();
   $center = ($w - $a)/2;
   $('#loadingMore').css('left', $center);
-}
+};
 
 lbApp.hidePostsLoadingIndicator = function(){
   $('#loadingMore').remove();
-}
+};
 
 lbApp.addMorePosts = function(){
 
@@ -113,7 +124,20 @@ lbApp.addMorePosts = function(){
       $data = $(data);
       if ($('.posts').hasClass('cards')) {
         $container = $('.posts');
-        $container.append( $data ).masonry( 'appended', $data, true );
+        if ($(window).width() > 430) {
+          // do the normal masonry thing
+          $container.append( $data ).masonry( 'appended', $data, true );
+        }else{
+          // flow mobile;
+          var $cardWidth = $(window).width() - 40;
+          $data.find('.cardImage').each(function(){
+            console.log('working');
+            $ratio = $(this).attr('height') / $(this).attr('width');
+            $height = $cardWidth * $ratio;
+            $(this).attr('width', $cardWidth).attr('height',$height);
+          });
+          $container.append( $data );
+        }
       }
       $('.post_wrapper').css('visibility','visible');
       lbApp.currentPageNumber = lbApp.currentPageNumber + 1;
