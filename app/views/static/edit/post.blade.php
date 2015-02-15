@@ -67,7 +67,14 @@
   {{ Form::textarea('excerpt', $post->post_excerpt) }}
 
   {{ Form::label('rating', 'If This is a review, enter your rating (over 5)')}}
-  <input name="rating" type="text" value="{{$post->rating_numerator}}" id="rating" style="width:60px"> <br>
+  <?php
+    if ($post->rating_denominator > 0) {
+      $ratingValue = ($post->rating_numerator / $post->rating_denominator) * 5
+    } else {
+      $ratingValue = $post->rating_numerator;
+    }
+  ?>
+  <input name="rating" type="text" value="{{$ratingValue}}" id="rating" style="width:60px"> <br>
 
 @if ($post->post_image_height > 0 )
   <img src="{{$post->post_image}}" width="300" alt="your post's image">
