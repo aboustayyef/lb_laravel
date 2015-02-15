@@ -4,6 +4,8 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
+use LebaneseBlogs\Crawling\Articles\Article;
+
 class CrawlArticles extends Command {
 
   private $columnist;  // (object) columnist being crawled
@@ -77,7 +79,8 @@ class CrawlArticles extends Command {
     $this->info("Now fetching posts from columist: $columnDescription from the home page: $columnHomePage");
 
     // Get list of articles
-    $articles = listArticlesFromUrl::get($this->homepage, $this->columnType);
+    $articles = $this->columnist->latestArticles()->list;
+    $mediaSource = $this->columnist->mediaSource();
     $this->info(print_r($articles));
     // loop through feed items
     foreach($articles as $key => $article)
@@ -86,11 +89,10 @@ class CrawlArticles extends Command {
       $article_link = $article;
 
       // get col_shorthand , example: myoungds
-      $domain = $this->columnist->col_shorthand;
+       $domain = $this->columnist->col_shorthand;
 
       // initialize article crawling object
-      echo $article_link;
-      $article_object = new articleCrawler($article_link, $this->columnType);
+      $article_object = new Article($article_link, $mediaSource);
 
       // get timestamp
       $article_timestamp =  $article_object->getTimeStamp(); // get post's timestamp;
@@ -148,7 +150,6 @@ class CrawlArticles extends Command {
         $article_content = html_entity_decode($article_object->getContent(), ENT_COMPAT, 'utf-8');
         $article_content = substr($article_content, 0, 7500); // larger than 8000 chars won't fit in mysql
         // remove non utf-8 characters;
-        $article_content = lbNormalise::unicode_decode($article_content);
 
         // Crawl for suitable image
         $article_image = $article_object->getImage();
@@ -182,7 +183,7 @@ class CrawlArticles extends Command {
         $post->post_title = $article_title ;
         $post->post_image = $article_image ;
         $post->post_excerpt = $article_excerpt ;
-        $post->blog_id = $domain ;
+        $post->blog_id = $this->columnist->col_shorthand ;
 
         $post->post_content = $article_content ;
         $post->post_image_width = $article_image_width ;
@@ -210,7 +211,7 @@ class CrawlArticles extends Command {
           // $this->comment('Indexed post ' . $post->post_title);
 
           // add timestamp to blogger's record (as timestamp of last post)
-          $blog = Blog::where('blog_id', $domain)->first();
+          $blog = Blog::where('blog_id', $this->columnist->col_shorthand)->first();
           $blog->blog_last_post_timestamp = $article_timestamp;
           $blog->save();
 
@@ -223,14 +224,14 @@ class CrawlArticles extends Command {
         if ($article_image) { // image exists
 
           // cache it
-          $candidateCachingFile = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/' . $article_timestamp.'_'.$domain.'.jpg' ;
+          $candidateCachingFile = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/' . $article_timestamp.'_'.$this->columnist->col_shorthand.'.jpg' ;
           if (!file_exists($candidateCachingFile)) {
             if ($image = new Imagick($article_image))
             {
               $image = $image->flattenImages();
               $image->setFormat('JPEG');
               $image->thumbnailImage(300,0);
-              $outFile = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/' . $article_timestamp.'_'.$domain.'.jpg';//.Lb_functions::get_image_format($blog_post_image);
+              $outFile = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/' . $article_timestamp.'_'.$this->columnist->col_shorthand.'.jpg';//.Lb_functions::get_image_format($blog_post_image);
               echo $outFile;
               $image->writeImage($outFile);
               $this->comment('Image added to cache folder');
