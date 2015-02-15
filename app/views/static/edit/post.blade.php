@@ -69,7 +69,7 @@
   {{ Form::label('rating', 'If This is a review, enter your rating (over 5)')}}
   <?php
     if ($post->rating_denominator > 0) {
-      $ratingValue = ($post->rating_numerator / $post->rating_denominator) * 5
+      $ratingValue = ($post->rating_numerator / $post->rating_denominator) * 5;
     } else {
       $ratingValue = $post->rating_numerator;
     }
