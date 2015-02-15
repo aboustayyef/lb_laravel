@@ -66,7 +66,7 @@ class Article{
 
   public function getImage(){
     $imageContainer = new Crawler($this->getContent());
-    $this->_image = CrawlHelpers::getImageFromContainer($imageContainer, $this->mediaSource->root);
+    $this->_image = crawlHelpers::getImageFromContainer($imageContainer, $this->mediaSource->root);
     return $this->_image;
   }
 
