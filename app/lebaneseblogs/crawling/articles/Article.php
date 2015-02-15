@@ -2,7 +2,7 @@
 
 use Symfony\Component\DomCrawler\Crawler ;
 use \Carbon\Carbon;
-use \CrawlHelpers;
+use \crawlHelpers;
 // Takes in a URL and a Media Source and returns meta data like title, image, content ..etc
 
 class Article{
