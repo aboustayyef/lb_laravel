@@ -20,8 +20,7 @@
   }
   // handle extra cards like welcome message, countdown lists & tips
 
-  // Fix later
-  // echo View::make('posts.extras.main')->with('counter', Session::get('cardsCounter'))->render();
+  echo View::make('posts.extras.main')->with('counter', Session::get('cardsCounter'))->render();
 
 ?>
 
