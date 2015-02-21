@@ -21,7 +21,7 @@
   // handle extra cards like welcome message, countdown lists & tips
 
   // Feb 21, 2015 // added __tostring() to better debug the error i'm getting;
-  echo View::make('posts.extras.main')->with('counter', Session::get('cardsCounter'))->__tostring();
+  echo View::make('posts.extras.main')->with('counter', Session::get('cardsCounter'))->render();
 
 ?>
 
