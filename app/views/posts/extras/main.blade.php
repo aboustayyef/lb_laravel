@@ -44,12 +44,7 @@
   ?>
 @endif
 
-@if ($counter == 23)
-  {{View::make('posts.extras.news')->with('source','lbci')}}
-  <?php
-      Session::set('cardsCounter', Session::get('cardsCounter') + 1);
-  ?>
-@endif
+
 
 @if (in_array($counter, [6,14,29,44, 59]))
   @include('posts.extras.adsense1')
