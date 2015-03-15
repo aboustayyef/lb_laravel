@@ -62,6 +62,7 @@ class SocialScore extends BaseController
   {
     // remove protocole (http://) from URL
     $url = preg_replace("#https?://#u", "", $this->url);
+    $result = 0;
     try {
       $json_string = $this->file_get_contents_curl('http://urls.api.twitter.com/1/urls/count.json?url=' . $url);
       if ($json_string) {

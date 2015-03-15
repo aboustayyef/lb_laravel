@@ -48,12 +48,12 @@ class getNews extends Command {
 
     // for the entire library
 
-    $newsSources = (new NewsScrapingDictionary)->sources();
-    foreach ($newsSources as $key => $newsSource) {
-      $newsObject = new newsObject($newsSource);
-      $scraper = new htmlNewsScraper($newsObject);
-      $scraper->getLatestArticles();
-      $scraper->storeArticles();
+    $newsProvidersList = (new \LebaneseBlogs\Crawling\News\NewsProvidersDictionary)->all();
+    foreach ($newsProvidersList as $key => $newsProviderSource) {
+      $id = $newsProviderSource['id'];
+      $newsProvider = new \LebaneseBlogs\Crawling\News\NewsProvider($id);
+      $newsProvider->getLatestArticles();
+      $newsProvider->storeArticles();
     }
   }
 
