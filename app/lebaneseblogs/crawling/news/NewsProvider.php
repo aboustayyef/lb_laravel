@@ -76,7 +76,7 @@ use Symfony\Component\DomCrawler\Crawler;
           // Check if there's a canonical Link in the body of the article to properly measure virality
           if (isset($scrapingInfo['canonical'])) {
             $canonicalCrawler = new Crawler;
-            $articleContent = file_get_contents($link);
+            $articleContent = file_get_contents(urlencode($link));
             $canonicalCrawler->addHTMLContent($articleContent, 'UTF-8');
             $canonical = $canonicalCrawler->filter($scrapingInfo['canonical']);
             $canonical = $canonical->attr($scrapingInfo['canonicalAttribute']);
