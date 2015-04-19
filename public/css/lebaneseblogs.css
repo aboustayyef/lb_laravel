@@ -915,27 +915,25 @@ div.newsitem {
     font-family: Montserrat, HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; }
 
 .stars {
-  font-size: 16px; }
+  overflow: auto; }
+  .stars .fullstar, .stars .halfstar, .stars .emptystar {
+    margin-top: 4px;
+    width: 16px;
+    height: 16px;
+    display: block;
+    background-size: 13px 13px;
+    float: left; }
+  .stars .fullstar {
+    background-image: url(../img/fullstar.png);
+    background-repeat: no-repeat; }
+  .stars .emptystar {
+    background-image: url(../img/emptystar.png);
+    background-repeat: no-repeat; }
+  .stars .halfstar {
+    background-image: url(../img/halfstar.png);
+    background-repeat: no-repeat; }
   .stars .rating {
+    float: left;
+    margin-right: 5px;
     font-size: 12px;
     color: rgba(0, 0, 0, 0.3); }
-  .stars .fullstar {
-    width: 16px; }
-    .stars .fullstar:before {
-      color: #b12530;
-      content: '\2605'; }
-  .stars .emptystar {
-    width: 16px; }
-    .stars .emptystar:before {
-      color: silver;
-      content: '\2605'; }
-  .stars .halfstar:before {
-    color: silver;
-    content: '\2605'; }
-  .stars .halfstar:after {
-    content: '\2605';
-    color: #b12530;
-    width: 8px;
-    margin-left: -16px;
-    position: absolute;
-    overflow: hidden; }
