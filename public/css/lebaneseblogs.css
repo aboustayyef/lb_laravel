@@ -273,6 +273,57 @@ div.postvisits {
 div.posts.cards.blogger .post_wrapper .blog_header {
   display: none; }
 
+#channelPicker {
+  border-bottom: 1px solid silver;
+  z-index: 4;
+  position: absolute;
+  top: 50px;
+  background: white;
+  width: 100%;
+  padding-left: 10px; }
+  #channelPicker .inner {
+    margin: 0 auto;
+    padding: 3px 0; }
+  #channelPicker ul.channelBar {
+    padding: 0;
+    padding-bottom: 3px; }
+    #channelPicker ul.channelBar li {
+      font-size: 12px;
+      display: inline-block;
+      margin-left: 0;
+      margin-top: 5px;
+      padding: 8px 5px;
+      border: 1px solid #ebebeb; }
+      #channelPicker ul.channelBar li:hover {
+        background-color: #ebebeb; }
+      #channelPicker ul.channelBar li.active .channelDesc {
+        color: white;
+        opacity: 0.8; }
+      #channelPicker ul.channelBar li.active svg, #channelPicker ul.channelBar li.active path {
+        fill: white; }
+      #channelPicker ul.channelBar li.chooseACategory {
+        border: none;
+        color: #c62936;
+        text-transform: uppercase; }
+      #channelPicker ul.channelBar li svg, #channelPicker ul.channelBar li path {
+        fill: silver; }
+    @media all and (max-width: 649px) {
+      #channelPicker ul.channelBar {
+        display: none; } }
+  #channelPicker #channelSelector {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -appearance: none;
+    margin: 4px 0;
+    padding: 7px;
+    cursor: pointer;
+    outline: none;
+    color: #b12530;
+    font-weight: bold; }
+    @media all and (min-width: 650px) {
+      #channelPicker #channelSelector {
+        display: none; } }
+
 .toplist .loading {
   position: absolute;
   padding: 10px;
@@ -329,8 +380,7 @@ body {
   padding: 0;
   margin: 0;
   font-size: 16px;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   -webkit-overflow-scrolling: touch; }
 
 #loading {
@@ -341,7 +391,6 @@ body {
   background: white;
   height: 100%;
   background: white;
-  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
   background: linear-gradient(to bottom, white 0%, #f6f6f6 47%, #ededed 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 ); }
   #loading .loadingWrapper {
@@ -352,9 +401,7 @@ body {
     top: 50%;
     left: 50%;
     text-align: center;
-    -webkit-transform: translate(-60px, -60px);
-        -ms-transform: translate(-60px, -60px);
-            transform: translate(-60px, -60px); }
+    transform: translate(-60px, -60px); }
     #loading .loadingWrapper i {
       opacity: 0.4;
       margin: 5px;
@@ -384,14 +431,14 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  -webkit-transition: 0.2s;
-          transition: 0.2s; }
+  transition: 0.2s; }
   #siteWrapper.open {
-    -webkit-transform: translate3d(320px, 0, 0);
-            transform: translate3d(320px, 0, 0);
+    transform: translate3d(320px, 0, 0);
     opacity: 1; }
 
 #momentumScrollingViewport {
+  position: absolute;
+  top: 0;
   overflow: scroll;
   width: 100%;
   height: 400px; }
@@ -407,26 +454,11 @@ body {
   width: 100%;
   background: #b12530;
   color: white;
-  -webkit-transition: 0.2s;
-          transition: 0.2s; }
+  transition: 0.2s; }
   #topBar i {
     padding: 12.5px;
     font-size: 25px; }
-  #topBar #hamburger {
-    text-align: center;
-    padding: 14px 0;
-    border-right: 1px solid white;
-    width: 49px;
-    cursor: pointer; }
-    #topBar #hamburger svg {
-      width: 24px;
-      height: 20px; }
-      #topBar #hamburger svg path {
-        fill: white; }
-    #topBar #hamburger:hover {
-      background: rgba(0, 0, 0, 0.2); }
   #topBar #logo {
-    margin-left: 20px;
     width: 150px;
     height: 50px;
     background: url(../img/logo-mobile.png);
@@ -434,7 +466,6 @@ body {
     background-size: 150px 40px;
     background-position-y: 5px;
     position: absolute;
-    left: 50px;
     top: 0;
     line-height: 50px; }
     @media screen and (min-width: 401px) {
@@ -443,7 +474,8 @@ body {
         background: url(../img/logo.png);
         background-repeat: no-repeat;
         background-size: 250px 40px;
-        background-position-y: 5px; } }
+        background-position-y: 5px;
+        margin-left: 20px; } }
     #topBar #logo p {
       width: 260px;
       font-size: 12px;
@@ -475,8 +507,7 @@ body {
     display: inline-block;
     width: 250px;
     position: absolute;
-    -webkit-transition: 0.2s;
-            transition: 0.2s;
+    transition: 0.2s;
     right: 10px; }
     #topBar #aboutMenu li {
       background: #871c25;
@@ -546,12 +577,9 @@ body {
   left: -320px;
   z-index: 3;
   border-right: 1px solid silver;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-  -webkit-perspective: 1000;
-          perspective: 1000;
-  -webkit-transition: 0.2s;
-          transition: 0.2s; }
+  backface-visibility: hidden;
+  perspective: 1000;
+  transition: 0.2s; }
   #sidebar .close {
     cursor: pointer;
     position: absolute;
@@ -620,6 +648,7 @@ body {
     width: 60px;
     background: #929292;
     -webkit-appearance: none;
+    -webkit-border-radius: 0;
     border-radius: 0; }
 
 .inner {

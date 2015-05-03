@@ -1,0 +1,71 @@
+#channelPicker{
+  border-bottom:1px solid silver;
+  z-index:4;
+  position:absolute;
+  top:50px;
+  background:white;
+  width:100%;
+  padding-left:10px;
+
+
+  .inner{
+    margin:0 auto;
+    padding:3px 0;
+  }
+
+// For Desktop only
+  ul.channelBar{
+    padding:0;
+    padding-bottom:3px;
+    li{
+      font-size:12px;
+      display:inline-block;
+      margin-left: 0;
+      margin-top:5px;
+      padding:8px 5px;
+      border:1px solid darken(white,8);
+      &:hover{
+        background-color:darken(white,8);
+      }
+      &.active{
+        .channelDesc{
+          color:white;
+          opacity:0.8;
+        }
+        svg, path{
+          fill:white;
+        }
+      }
+      &.chooseACategory{
+        border:none;
+        color: lighten($brand-color, 5);
+        text-transform:uppercase;
+      }
+      svg, path{
+        fill:silver;
+      }
+    }
+    @media all and (max-width:649px){
+      display:none;
+    }
+  }
+
+
+
+// For mobile only
+  #channelSelector{
+    @media all and (min-width:650px){
+      display:none;
+    }
+    -webkit-appearance: none;
+      -moz-appearance: none;
+      -appearance: none;
+      margin: 4px 0;
+      padding: 7px;
+      cursor: pointer;
+      outline: none;
+      color: $brand-color;
+      font-weight:bold;
+  }
+
+}

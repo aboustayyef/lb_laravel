@@ -11,5 +11,4 @@
 
 </div>
 
-@include('partials.sidebar')
 @include('partials.footer')

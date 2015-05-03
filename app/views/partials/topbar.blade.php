@@ -1,16 +1,12 @@
 <div id="topBar" style="height:50px">
-	<div id="hamburger">
-		<?php fontAwesomeToSvg::convert('fa-bars') ?>
-	</div>
 
-	<div id="logo" class="dynamicLink" data-destination="{{URL::to('/')}}">
-    <p id="aboutlb">
-      The best place to <strong>discover</strong>, <strong>read</strong> and <strong>organize</strong> Lebanon's top blogs
-    </p>
+	<div class="inner">
+    <div id="logo" class="dynamicLink" data-destination="{{URL::to('/')}}">
+      <p id="aboutlb">
+        The best place to <strong>discover</strong>, <strong>read</strong> and <strong>organize</strong> Lebanon's top blogs
+      </p>
+    </div>
   </div>
-
-
-
 	<div id= "about">
 		About ▾
 	</div>
@@ -25,3 +21,4 @@
 		</ul>
 	</div>
 </div>
+@include('posts.partials.channelPicker');

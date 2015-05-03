@@ -19,6 +19,9 @@ lbApp.veryFirstLoad= function(){
   $('.post_wrapper').css('visibility','visible');
   lbApp.hideLoadingCurtain();
 
+  // refresh dimensions one more time
+  lbApp.resizeViewport();
+
   // show lazy images
   lbApp.loadLazyImages();
 };
@@ -27,20 +30,16 @@ lbApp.veryFirstLoad= function(){
 lbApp.resizeViewport = function(){
   // this function is only used with cards
   // it serves to recalculate the viewport's width to center the posts
+  $('#content').css('padding-top', ($('#channelPicker').outerHeight() + $('#topBar').outerHeight() ));
   if ($(window).width() > 430) {
     var columns = Math.floor((($(window).width() ))/320);
-
-    $('div.posts').css('width',columns*320);
+    if (columns > 5) { columns = 5};
+    var $width = columns*320;
+    $('div.posts').css('width', $width);
+    $('div.inner').css('width', $width);
 
     // position website logo to be alligned with posts
-
-    var $leftMargin = parseInt($('div.posts').css('margin-left'));
-    var $logoMargin = $leftMargin - 50 + 10 ;
-    if ($logoMargin > 20) {
-     $('#logo').css('margin-left', $logoMargin + 'px');
-    }else{
-      $('#logo').css('margin-left', '20px');
-    }
+    $('#logo').css('margin-left', ($(window).innerWidth() - $width)/2);
   }
 };
 

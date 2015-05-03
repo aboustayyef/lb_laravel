@@ -9,16 +9,6 @@
     }
   ?>
 
-  {{-- Show the Channel bar if we're in the 'channel pagekind' --}}
-
-  @if (Session::get('pageKind') == 'channel')
-      <div class="currentChannel" style="background: {{Channel::color(Session::get('channel'))}}">
-        <span class="close dynamicLink" data-destination="{{URL::to('/posts/all')}}"><a href ="#">&times;</a></span>
-        {{Channel::description(Session::get('channel'))}}
-      </div>
-  @endif
-
-
   {{-- Show a message if one exists --}}
 
   @if (Session::has('lbMessage'))
