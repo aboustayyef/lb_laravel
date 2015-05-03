@@ -11,38 +11,14 @@ use Symfony\Component\DomCrawler\Crawler ;
 |
 */
 
-Route::get('test/{blog}', function($blog){
-  $timeline = new LebaneseBlogs\Crawling\TwitterTimeline($blog);
-  $tweets = $timeline->getTweets();
-  foreach ($tweets as $key => $tweet) {
-    var_dump($tweet->links());
-    var_dump($tweet->hashtags());
-  }
-});
-Route::get('test2', function(){
-  $test = new LebaneseBlogs\Crawling\UrlResolver('http://nzzl.me/1IZHcqi');
-  try {
-    return $test->resolve();
-  } catch (Exception $e) {
-    return false;
-  }
-});
-
 // Default route from root
 Route::get('/', function(){
   if (Input::has('channel')) {
     // handles requests from old permalink structures like lebaneseblogs.com/?channel=fashion
     return Redirect::to('/posts/'.Input::get('channel'));
   }
-  // otherwise, root redirects to user/following if signed in or to posts/all if not
-  if (User::signedIn()) {
-    $follows = User::find(User::signedIn())->followsHowMany();
-    // only set following as home page if user has more than 7 blogs user is following
-    if ($follows > 6) {
-      return Redirect::to('user/following');
-    }
-  }
   return Redirect::to('posts/all');
+
 });
 
 
