@@ -4,7 +4,7 @@
   <?php
     $toptweets = shell_exec('curl ' . getenv('LT_API_CREDENTIALS'));
     $toptweets = json_decode($toptweets);
-    Cache::put('toptweets',$toptweets, 600);
+    Cache::put('toptweets',$toptweets, 10);
   ?>
 @endif
 <?php
