@@ -38,7 +38,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('/img/apple-touch-icons/180x180.png')}}">
 
     <!-- Style Sheet -->
-    <link rel="stylesheet" href="{{asset('/css/lebaneseblogs.css?v=2.4')}}">
+    <link rel="stylesheet" href="{{asset('/css/lebaneseblogs.css?v=2.41')}}">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('/img/favicon.ico')}}" >

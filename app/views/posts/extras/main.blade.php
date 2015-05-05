@@ -44,7 +44,13 @@
   ?>
 @endif
 
-
+{{-- Top 5 tweets --}}
+@if ($counter == 8)
+  {{View::make('posts.extras.toptweets')}}
+  <?php
+      Session::set('cardsCounter', Session::get('cardsCounter') + 1);
+  ?>
+@endif
 
 @if (in_array($counter, [6,14,29,44, 59]))
   @include('posts.extras.adsense1')
