@@ -1,7 +1,7 @@
 @extends('static.template')
 @section('content')
   <h1>What is this website?</h1>
-  <p class="lead"><em>Lebanese Blogs</em> is The best place to discover, read and organize the latest posts from Lebanon's top bloggers and authors. It's made of a vibrant community of passionate people who care and write about a wide variety of topics</p>
+  <p class="lead"><em>Lebanese Blogs</em> is what a magazine would have looked like if it were invented in the internet age. This is the best place to discover, read and organize the latest posts from Lebanon's top online influencers. It's made of a vibrant community of passionate people who care and write about a wide variety of topics</p>
 
   <h2>What people are saying about Lebanese Blogs</h2>
   <ul class="criteria">

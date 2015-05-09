@@ -27,7 +27,7 @@
       </li>
     @else
       <li class = "chooseACategory">
-        Pick A Channel :
+        Sections :
       </li>
     @endif
 

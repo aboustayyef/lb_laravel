@@ -81,7 +81,7 @@
 @endif
 
   <p>
-    If you want to add a photo or change your post's photo, make sure you edit your original post and put your desired photo before the others. Also make sure the photo is at least 300px wide. </p><p>After you do that, delete your post using the button below and allow our algorithm 10-20 minutes to scan it back in...
+    If you want to add a photo or change your post's photo, make sure you edit your original post and put your desired photo before the others. Also make sure the photo is at least 400 pixels wide. </p><p>After you do that, delete your post using the button below and allow our algorithm 10-20 minutes to scan it back in...
   </p>
 
   {{link_to('/delete/post/'.$post->post_id, 'Delete this post', ['class'=>'danger'])}}
