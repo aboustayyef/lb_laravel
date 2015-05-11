@@ -380,8 +380,7 @@ body {
   padding: 0;
   margin: 0;
   font-size: 16px;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   -webkit-overflow-scrolling: touch; }
 
 #loading {
@@ -392,7 +391,6 @@ body {
   background: white;
   height: 100%;
   background: white;
-  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
   background: linear-gradient(to bottom, white 0%, #f6f6f6 47%, #ededed 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 ); }
   #loading .loadingWrapper {
@@ -403,9 +401,7 @@ body {
     top: 50%;
     left: 50%;
     text-align: center;
-    -webkit-transform: translate(-60px, -60px);
-        -ms-transform: translate(-60px, -60px);
-            transform: translate(-60px, -60px); }
+    transform: translate(-60px, -60px); }
     #loading .loadingWrapper i {
       opacity: 0.4;
       margin: 5px;
@@ -435,11 +431,9 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  -webkit-transition: 0.2s;
-          transition: 0.2s; }
+  transition: 0.2s; }
   #siteWrapper.open {
-    -webkit-transform: translate3d(320px, 0, 0);
-            transform: translate3d(320px, 0, 0);
+    transform: translate3d(320px, 0, 0);
     opacity: 1; }
 
 #momentumScrollingViewport {
@@ -460,8 +454,7 @@ body {
   width: 100%;
   background: #b12530;
   color: white;
-  -webkit-transition: 0.2s;
-          transition: 0.2s; }
+  transition: 0.2s; }
   #topBar i {
     padding: 12.5px;
     font-size: 25px; }
@@ -514,8 +507,7 @@ body {
     display: inline-block;
     width: 250px;
     position: absolute;
-    -webkit-transition: 0.2s;
-            transition: 0.2s;
+    transition: 0.2s;
     right: 10px; }
     #topBar #aboutMenu li {
       background: #871c25;
@@ -585,12 +577,9 @@ body {
   left: -320px;
   z-index: 3;
   border-right: 1px solid silver;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-  -webkit-perspective: 1000;
-          perspective: 1000;
-  -webkit-transition: 0.2s;
-          transition: 0.2s; }
+  backface-visibility: hidden;
+  perspective: 1000;
+  transition: 0.2s; }
   #sidebar .close {
     cursor: pointer;
     position: absolute;
@@ -659,6 +648,7 @@ body {
     width: 60px;
     background: #929292;
     -webkit-appearance: none;
+    -webkit-border-radius: 0;
     border-radius: 0; }
 
 .inner {
@@ -1012,6 +1002,13 @@ div.newsitem {
     width: calc(100% - 60px);
     float: right;
     overflow: hidden; }
+    .tweet .content .media {
+      max-height: 218px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      overflow-y: hidden; }
+      .tweet .content .media img {
+        max-width: 100%; }
     .tweet .content h5 {
       font-size: 13px;
       color: #a8a8a8; }

@@ -43,6 +43,13 @@
         <div class="content">
           <h5><strong>{{$tweet->tweep_public_name}}</strong> {{'@'.$tweet->tweep_twitterHandle}}</h5>
           <p @if($isArabic) class="arabic" @endif>{{$tweet->content}}</p>
+          @if($tweet->media)
+            <div class="media">
+               <a href="https://twitter.com/{{$tweet->tweep_twitterHandle}}/status/{{$tweet->twitter_id}}">
+                <img src="{{$tweet->media}}" width="{{$tweet->media_width}}" height="auto">
+              </a>
+            </div>
+          @endif
           <ul class="popularity">
             <li><a href="https://twitter.com/{{$tweet->tweep_twitterHandle}}/status/{{$tweet->twitter_id}}">@include('svgicons.link') link</a></li>
             <li>@include('svgicons.favorites') {{$tweet->favorites}}</li>

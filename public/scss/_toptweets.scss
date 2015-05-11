@@ -42,6 +42,15 @@
     width: calc(100% - 60px);
     float:right;
     overflow:hidden;
+    .media{
+      max-height:218px;
+      margin-top:15px;
+      margin-bottom:15px;
+      overflow-y:hidden;
+      img{
+        max-width:100%;
+      }
+    }
     h5{
       font-size:13px;
       color:#a8a8a8;
