@@ -380,7 +380,8 @@ body {
   padding: 0;
   margin: 0;
   font-size: 16px;
-  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
   -webkit-overflow-scrolling: touch; }
 
 #loading {
@@ -391,6 +392,7 @@ body {
   background: white;
   height: 100%;
   background: white;
+  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
   background: linear-gradient(to bottom, white 0%, #f6f6f6 47%, #ededed 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0 ); }
   #loading .loadingWrapper {
@@ -401,7 +403,9 @@ body {
     top: 50%;
     left: 50%;
     text-align: center;
-    transform: translate(-60px, -60px); }
+    -webkit-transform: translate(-60px, -60px);
+        -ms-transform: translate(-60px, -60px);
+            transform: translate(-60px, -60px); }
     #loading .loadingWrapper i {
       opacity: 0.4;
       margin: 5px;
@@ -431,9 +435,11 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  transition: 0.2s; }
+  -webkit-transition: 0.2s;
+          transition: 0.2s; }
   #siteWrapper.open {
-    transform: translate3d(320px, 0, 0);
+    -webkit-transform: translate3d(320px, 0, 0);
+            transform: translate3d(320px, 0, 0);
     opacity: 1; }
 
 #momentumScrollingViewport {
@@ -454,7 +460,8 @@ body {
   width: 100%;
   background: #b12530;
   color: white;
-  transition: 0.2s; }
+  -webkit-transition: 0.2s;
+          transition: 0.2s; }
   #topBar i {
     padding: 12.5px;
     font-size: 25px; }
@@ -507,7 +514,8 @@ body {
     display: inline-block;
     width: 250px;
     position: absolute;
-    transition: 0.2s;
+    -webkit-transition: 0.2s;
+            transition: 0.2s;
     right: 10px; }
     #topBar #aboutMenu li {
       background: #871c25;
@@ -577,9 +585,12 @@ body {
   left: -320px;
   z-index: 3;
   border-right: 1px solid silver;
-  backface-visibility: hidden;
-  perspective: 1000;
-  transition: 0.2s; }
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-perspective: 1000;
+          perspective: 1000;
+  -webkit-transition: 0.2s;
+          transition: 0.2s; }
   #sidebar .close {
     cursor: pointer;
     position: absolute;
@@ -648,7 +659,6 @@ body {
     width: 60px;
     background: #929292;
     -webkit-appearance: none;
-    -webkit-border-radius: 0;
     border-radius: 0; }
 
 .inner {

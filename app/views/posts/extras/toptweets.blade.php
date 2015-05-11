@@ -49,6 +49,14 @@
                 <img src="{{$tweet->media}}" width="{{$tweet->media_width}}" height="auto">
               </a>
             </div>
+          @elseif($tweet->link)
+            @if($tweet->link->image)
+            <div class="media">
+               <a href="https://twitter.com/{{$tweet->tweep_twitterHandle}}/status/{{$tweet->twitter_id}}">
+                <img src="http://lebanesetweets.net/{{$tweet->link->image}}" width="{{$tweet->link->image_width}}" height="auto">
+              </a>
+            </div>
+            @endif
           @endif
           <ul class="popularity">
             <li><a href="https://twitter.com/{{$tweet->tweep_twitterHandle}}/status/{{$tweet->twitter_id}}">@include('svgicons.link') link</a></li>
