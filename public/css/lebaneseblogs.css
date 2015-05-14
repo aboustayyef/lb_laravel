@@ -1029,7 +1029,10 @@ div.newsitem {
       font-size: 12px; }
       .tweet .content p.arabic {
         font-size: 14px;
-        text-align: right; }
+        text-align: right;
+        font-family: Droid Arabic Naskh; }
+        .tweet .content p.arabic a {
+          font-family: verdana; }
     .tweet .content a {
       color: #b12530; }
       .tweet .content a:hover {
