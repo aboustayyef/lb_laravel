@@ -1030,7 +1030,8 @@ div.newsitem {
       .tweet .content p.arabic {
         font-size: 14px;
         text-align: right;
-        font-family: Droid Arabic Naskh; }
+        font-family: Droid Arabic Naskh;
+        line-height: 20px; }
         .tweet .content p.arabic a {
           font-family: verdana; }
     .tweet .content a {
