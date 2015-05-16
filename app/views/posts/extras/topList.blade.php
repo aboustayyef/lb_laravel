@@ -60,12 +60,12 @@
       <li>
         <div class="item">
           <div class="thumb">
-            <a href ="{{$post->post_url}}">
+            <a href="{{$post->post_url}}" onclick="ga('send', 'event', 'Exit Link', 'Top Posts')">
               {{View::make('images.topListThumb')->with('post',$post)}}
             </a>
           </div>
           <div class="details">
-            <h4><a href ="{{$post->post_url}}">{{$post->post_title}}</a></h4>
+            <h4><a href ="{{$post->post_url}}" onclick="ga('send', 'event', 'Exit Link', 'Top Posts')">{{$post->post_title}}</a></h4>
             <h5>{{$post->blog->blog_name}}</h5>
           </div>
         </div>

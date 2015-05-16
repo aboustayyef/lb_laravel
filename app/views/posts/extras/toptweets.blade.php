@@ -18,7 +18,7 @@
 
     <div class="topTweetsHeader">
       <h4>Popular Tweets In Lebanon</h4>
-      <div class="poweredby">Powered By <a href="http://lebanesetweets.net">Lebanese Tweets</a></div>
+      <div class="poweredby">Powered By <a href="http://lebanesetweets.net" onclick="ga('send', 'event', 'Exit Link', 'Top Tweets')">Lebanese Tweets</a></div>
     </div>
 
     <ul>
@@ -35,7 +35,7 @@
 
       <li class="tweet">
         <div class="profilepic">
-          <a href="https://twitter.com/{{$tweet->tweep_twitterHandle}}/status/{{$tweet->twitter_id}}">
+          <a href="https://twitter.com/{{$tweet->tweep_twitterHandle}}/status/{{$tweet->twitter_id}}" onclick="ga('send', 'event', 'Exit Link', 'Top Tweets')">
             <img src="{{$tweet->user_image}}">
           </a>
 
@@ -45,21 +45,21 @@
           <p @if($isArabic) class="arabic" @endif>{{$tweet->content}}</p>
           @if($tweet->media)
             <div class="media">
-               <a href="https://twitter.com/{{$tweet->tweep_twitterHandle}}/status/{{$tweet->twitter_id}}">
+               <a href="https://twitter.com/{{$tweet->tweep_twitterHandle}}/status/{{$tweet->twitter_id}}" onclick="ga('send', 'event', 'Exit Link', 'Top Tweets')">
                 <img src="{{$tweet->media}}" width="{{$tweet->media_width}}" height="auto">
               </a>
             </div>
           @elseif($tweet->link)
             @if($tweet->link->image)
             <div class="media">
-               <a href="https://twitter.com/{{$tweet->tweep_twitterHandle}}/status/{{$tweet->twitter_id}}">
+               <a href="https://twitter.com/{{$tweet->tweep_twitterHandle}}/status/{{$tweet->twitter_id}}" onclick="ga('send', 'event', 'Exit Link', 'Top Tweets')">
                 <img src="http://lebanesetweets.net/{{$tweet->link->image}}" width="{{$tweet->link->image_width}}" height="auto">
               </a>
             </div>
             @endif
           @endif
           <ul class="popularity">
-            <li><a href="https://twitter.com/{{$tweet->tweep_twitterHandle}}/status/{{$tweet->twitter_id}}">@include('svgicons.link') link</a></li>
+            <li><a href="https://twitter.com/{{$tweet->tweep_twitterHandle}}/status/{{$tweet->twitter_id}}" onclick="ga('send', 'event', 'Exit Link', 'Top Tweets')">@include('svgicons.link') link</a></li>
             <li>@include('svgicons.favorites') {{$tweet->favorites}}</li>
             <li>@include('svgicons.retweets') {{$tweet->retweets}}</li>
           </ul>

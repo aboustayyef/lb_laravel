@@ -53,7 +53,7 @@
         @endif
         >
         <!-- outward url -->
-        <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" target="_blank">{{ $post->post_title }} </a>
+        <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" target="_blank" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">{{ $post->post_title }} </a>
 
         <!-- rating -->
         <?php
@@ -67,7 +67,7 @@
 
       <!-- Post image (if any ) -->
         @if ($post->post_image_height > 0)
-          <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" target="_blank">
+          <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" target="_blank" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">
             {{View::make('posts.partials.post_image')->with('post',$post)}}
           </a>
         @else
@@ -111,7 +111,7 @@
         $tweetExpression = $postTitle.$byline;
         $twitterUrl = urlencode($tweetExpression);
       ?>
-      <a href="https://twitter.com/intent/tweet?text={{$twitterUrl}}" title="Click to send this post to Twitter!" target="_blank">
+      <a href="https://twitter.com/intent/tweet?text={{$twitterUrl}}" title="Click to send this post to Twitter!" target="_blank" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">
         <?php fontAwesomeToSvg::convert('fa-twitter') ?> Tweet
       </a>
 
