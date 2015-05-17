@@ -37,7 +37,7 @@ $articles = Cache::get($source);
 
             @if($img != 'NO_IMAGE')
             <div class="newsItemImage">
-              <a href="{{$article['url']}}" target="blank"><img src="{{$img}}" alt=""></a>
+              <a href="{{$article['url']}}" target="blank" onclick="ga('send', 'event', 'Exit Link', 'Naharnet News')"><img src="{{$img}}" alt=""></a>
             </div>
             @endif
 
@@ -46,7 +46,7 @@ $articles = Cache::get($source);
                   noimage
               @endif
             ">
-              <a href="{{$article['url']}}" target="blank">{{$article['headline']}}</a><br> <span class="timeAgo"> {{$timeAgo}}</span>
+              <a href="{{$article['url']}}" target="blank" onclick="ga('send', 'event', 'Exit Link', 'Naharnet News')">{{$article['headline']}}</a><br> <span class="timeAgo"> {{$timeAgo}}</span>
               {{View::make('posts.partials.virality')->with('score',$virality)}}
             </div>
 
