@@ -2,7 +2,8 @@
 
 <html lang="en">
 <head>
-
+    {{-- optimizely --}}
+    <script src="//cdn.optimizely.com/js/2940060004.js"></script>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
