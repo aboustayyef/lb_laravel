@@ -11,7 +11,6 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <!-- Page Title -->
-    <?php $pageTitle = Page::getTitle() ?>
     <title>Welcome To Lebanese Blogs</title>
 
     <!-- Add to homescreen for Chrome on Android -->
@@ -38,34 +37,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('/img/apple-touch-icons/180x180.png')}}">
 
     <!-- Style Sheet -->
-    <link rel="stylesheet" href="{{asset('/css/lebaneseblogs.css?v=2.4665')}}">
+    <link rel="stylesheet" href="{{asset('/css/mobile.css?v=1.00')}}">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('/img/favicon.ico')}}" >
 </head>
-
-      <script>
-        // Initiate Lebanese Blogs App object
-        if ( typeof lbApp != 'object'){
-          lbApp = {}
-        };
-        // Set up app Variables that require php and blade logic
-          lbApp.imagePlaceHolder = '{{asset('/img/grey.gif')}}';
-          lbApp.rootPath = '{{URL::to('/')}}';
-          lbApp.pageKind = '{{Session::get('pageKind')}}';
-          lbApp.currentPage = '{{Request::path()}}';
-          lbApp.currentPageNumber= 1;
-          lbApp.reachedEndOfPosts = false;
-      </script>
-
-
 <body>
-    <div id="loading">
-      <div class="loadingWrapper">
-        <img src="{{asset('/img/lb-loading.png')}}" width="60" height="60" alt="">
-        <br>
-        <h3>Loading ..</h3>
-        <!-- <i class="fa fa-cog fa-spin"></i> -->
-      </div>
-    </div>
-    <div id="siteWrapper">

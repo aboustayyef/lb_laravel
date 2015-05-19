@@ -1,0 +1,65 @@
+.group{
+  line-height:20px;
+  background:white;
+  width:calc(100% - 20px);
+  margin:$margins auto;
+  border:1px solid #B3B3B3;
+
+  .link{
+    a{
+      font-size:14px;
+      text-decoration:none;
+    }
+  }
+
+  .article{
+    color:#444;
+    font-weight:bold;
+  }
+
+  .blog{
+    color:$shade;
+  }
+
+  .header{
+    background:$header_grey;
+    padding: $margins;
+    font-size:15px;
+    font-weight:bold;
+    color:$red;
+  }
+
+  ul{
+    padding:$margins;
+  }
+
+  li{
+    margin-bottom:$margins;
+    .timestamp{
+      font-size:12px;
+      color:#999;
+      line-height:1;
+    }
+  }
+
+  .top_post{
+    padding:$margins;
+    padding-bottom:2px;
+    &:last-child{
+      padding-bottom:$margins;
+    }
+    .image{
+      margin-top:5px;
+      float:left;
+      margin-right:$margins;
+      width:40px;
+      height:40px;
+      overflow:hidden;
+    }
+    .link{
+      overflow:auto;
+    }
+  }
+
+
+}

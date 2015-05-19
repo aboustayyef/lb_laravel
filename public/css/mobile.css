@@ -1,0 +1,121 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+* {
+  box-sizing: Border-box; }
+
+body {
+  font-family: Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300; }
+
+header {
+  background-color: #B12D2F;
+  overflow: auto;
+  height: 50px; }
+
+#logo {
+  margin-top: 5px;
+  width: 75%;
+  float: left;
+  padding-left: 5px; }
+
+#about {
+  width: 24%;
+  float: right;
+  text-align: center;
+  height: 50px;
+  padding-top: 15px;
+  border-left: 1px solid white; }
+  #about a {
+    color: white;
+    text-decoration: none; }
+
+body {
+  background-color: #d1d1d1; }
+
+.group {
+  line-height: 20px;
+  background: white;
+  width: calc(100% - 20px);
+  margin: 10px auto;
+  border: 1px solid #B3B3B3; }
+  .group .link a {
+    font-size: 14px;
+    text-decoration: none; }
+  .group .article {
+    color: #444;
+    font-weight: bold; }
+  .group .blog {
+    color: #E25154; }
+  .group .header {
+    background: #F7F7F7;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #B12D2F; }
+  .group ul {
+    padding: 10px; }
+  .group li {
+    margin-bottom: 10px; }
+    .group li .timestamp {
+      font-size: 12px;
+      color: #999;
+      line-height: 1; }
+  .group .top_post {
+    padding: 10px;
+    padding-bottom: 2px; }
+    .group .top_post:last-child {
+      padding-bottom: 10px; }
+    .group .top_post .image {
+      margin-top: 5px;
+      float: left;
+      margin-right: 10px;
+      width: 40px;
+      height: 40px;
+      overflow: hidden; }
+    .group .top_post .link {
+      overflow: auto; }
