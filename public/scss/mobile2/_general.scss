@@ -1,0 +1,8 @@
+body{
+  background-color: $bg_grey;
+}
+
+#scrolling{
+  overflow-y:scroll;
+  -webkit-overflow-scrolling:touch;
+}

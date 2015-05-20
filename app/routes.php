@@ -57,6 +57,11 @@ Route::get('posts/mobile', array(
   'uses'  =>  'MobileController@index'
 ));
 
+Route::get('posts/mobile2', array(
+  'as'  =>  'mobile',
+  'uses'  =>  'MobileController@index2'
+));
+
 Route::get('/posts/{channel}/{action?}', array(
   'as'  =>  'posts',
   'uses'  =>  'PostsController@index'

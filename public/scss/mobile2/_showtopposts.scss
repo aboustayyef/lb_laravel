@@ -1,0 +1,9 @@
+.showtopposts{
+  padding:$margins;
+  background-color: rgb(244,244,227);
+  width: calc(100% - 20px);
+  margin: $margins auto;
+  text-align:center;
+  border-bottom:1px solid silver;
+  border-top:1px solid white;
+}
