@@ -1,0 +1,114 @@
+// on off
+.takeover{
+  display:none;
+  &.active{
+    display:block;
+  }
+}
+
+
+// curtain
+.takeover{
+  .deadcenter{
+    position: absolute;
+    top: 50%;
+    width:100%;
+    margin-top: -40px;
+    text-align:center;
+  }
+}
+
+
+// top posts
+.takeover{
+  .top_post{
+    padding:$margins;
+    padding-bottom:2px;
+    overflow:auto;
+    &:last-child{
+      padding-bottom:$margins;
+    }
+    .image{
+      margin-top:5px;
+      float:left;
+      margin-right:$margins;
+      width:40px;
+      height:40px;
+      overflow:hidden;
+    }
+    .link{
+      overflow:auto;
+      a{
+        text-decoration:none;
+        font-size:14px;
+      }
+      .article{
+        color:#666;
+      }
+      .blog{
+        color:$shade;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+
+
+// general
+.takeover{
+  background:white;
+  position:fixed;
+  top:50px;
+  left:0;
+  height:calc(100% - 50px);
+  width:100%;
+  z-index:100;
+  padding:10px;
+
+  .closebutton{
+    float:right;
+    margin-top:5px;
+    width:40px;
+    height:40px;
+    display:block;
+    position:relative;
+    border-radius:50%;
+    background:black;
+    div{
+      color:white;
+      position:absolute;
+      margin-top:2px;
+      font-size:30px;
+      width:100%;
+      text-align:center;
+    }
+  }
+
+  h2{
+    font-size:32px;
+    margin:15px 0;
+  }
+
+  .info{
+    padding:10px;
+  }
+  p{
+    margin-top:10px;
+    line-height:1.4;
+  }
+
+  .action{
+    text-align:center;
+    .button{
+        display:block;
+        padding:15px;
+        background:#1f8dd6;
+        color:white;
+        text-decoration:none;
+        font-size:20px;
+        margin-top:20px;
+      }
+  }
+
+}
