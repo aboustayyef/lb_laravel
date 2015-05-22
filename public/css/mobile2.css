@@ -152,6 +152,9 @@ header {
       font-size: 20px;
       margin-top: 20px; }
 
+a {
+  text-decoration: none; }
+
 body {
   background-color: #d1d1d1; }
 
@@ -188,7 +191,6 @@ body {
     border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.1); }
   .miniCard .blogtitle {
-    overflow: auto;
     font-size: 14px;
     text-decoration: none;
     color: rgba(0, 0, 0, 0.6); }
@@ -216,6 +218,10 @@ body {
     display: block; }
 
 .miniCard .sharingbackground {
+  display: none; }
+  .miniCard .sharingbackground.active {
+    display: block; }
+.miniCard .sharingbackground {
   position: absolute;
   top: 0;
   right: 0;
@@ -223,7 +229,7 @@ body {
   left: 0;
   font-: 12px;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); }
+  background: rgba(0, 0, 0, 0.75); }
   .miniCard .sharingbackground ul {
     position: absolute;
     width: 120px;
@@ -237,8 +243,8 @@ body {
       font-size: 30px; }
   .miniCard .sharingbackground li {
     padding-left: 10px;
-    font-size: 11px;
-    line-height: 30px;
+    font-size: 12px;
+    line-height: 35px;
     background: #B12D2F;
     color: white;
     margin-bottom: 5px; }

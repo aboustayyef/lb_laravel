@@ -30,7 +30,13 @@ $('document').ready(function(){
 // clicking behavior of cards (change later to add sharing)
 $('document').ready(function(){
   $('.miniCard').on('click',function(){
-    window.location.href = $(this).data('post-url');
+    $('.sharingbackground.active').removeClass('active');
+    $(this).find('.sharingbackground').addClass('active');
+    // window.location.href = $(this).data('post-url');
+  });
+  $('.sharingbackground .close').on('click', function(e){
+    $('.sharingbackground.active').removeClass('active');
+    e.stopPropagation();
   });
 });
 

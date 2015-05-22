@@ -100,8 +100,12 @@
         <div class="close">
           &times;
         </div>
-        <li>Share on Twitter</li>
-        <li>Go to Post</li>
+        <a href="{{$post->post_url}}"><li>Go to Post</li></a>
+        <?php
+          $twitterLink = (new \LebaneseBlogs\Utilities\Strings)->prepareTwitterLink($post);
+        ?>
+        <a href="{{$twitterLink}}"><li>Share on Twitter</li></a>
+
       </ul>
     </div>
 

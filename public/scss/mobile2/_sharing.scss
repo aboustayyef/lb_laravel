@@ -1,4 +1,13 @@
 .miniCard{
+
+  .sharingbackground{
+    display:none;
+    &.active{
+      display:block
+    }
+  }
+
+
   .sharingbackground{
     position:absolute;
     top:0;
@@ -7,7 +16,7 @@
     left:0;
     font-:12px;
     height:100%;
-    background:rgba(0,0,0,0.5);
+    background:rgba(0,0,0,0.75);
     ul{
       .close{
         color:white;
@@ -23,8 +32,8 @@
     }
     li{
       padding-left:10px;
-      font-size:11px;
-      line-height:30px;
+      font-size:12px;
+      line-height:35px;
       background:$red;
       color:white;
       margin-bottom:5px;
