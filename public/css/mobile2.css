@@ -170,6 +170,7 @@ body {
   border-top: 1px solid white; }
 
 .miniCard {
+  position: relative;
   line-height: 1.2;
   background: white;
   width: calc((100% - 30px) / 2);
@@ -213,3 +214,31 @@ body {
     padding: 7px; }
   .miniCard .image img {
     display: block; }
+
+.miniCard .sharingbackground {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+  left: 0;
+  font-: 12px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); }
+  .miniCard .sharingbackground ul {
+    position: absolute;
+    width: 120px;
+    height: 80px;
+    top: 50%;
+    margin-top: -60px;
+    left: 50%;
+    margin-left: -60px; }
+    .miniCard .sharingbackground ul .close {
+      color: white;
+      font-size: 30px; }
+  .miniCard .sharingbackground li {
+    padding-left: 10px;
+    font-size: 11px;
+    line-height: 30px;
+    background: #B12D2F;
+    color: white;
+    margin-bottom: 5px; }

@@ -93,6 +93,18 @@
         {{View::make('mobile2.post_image')->with('post',$post)}}
       </div>
     @endif
+
+    {{-- sharing --}}
+    <div class="sharingbackground">
+      <ul class="sharing">
+        <div class="close">
+          &times;
+        </div>
+        <li>Share on Twitter</li>
+        <li>Go to Post</li>
+      </ul>
+    </div>
+
     </li>
     @endfor
 </ul>
