@@ -2,6 +2,16 @@
 
 <html lang="en">
 <head>
+    {{-- Redirect mobile --}}
+
+    <script type="text/javascript">
+      <!--
+      if (screen.width <= 800) {
+        window.location = "/posts/mobile";
+      }
+      //-->
+    </script>
+
     {{-- optimizely --}}
     <script src="//cdn.optimizely.com/js/2940060004.js"></script>
 

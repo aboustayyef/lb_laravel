@@ -4,7 +4,6 @@
 <head>
     {{-- optimizely --}}
     <script src="//cdn.optimizely.com/js/2940060004.js"></script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="The best place to discover, read and organize Lebanon's top blogs">
@@ -37,7 +36,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('/img/apple-touch-icons/180x180.png')}}">
 
     <!-- Style Sheet -->
-    <link rel="stylesheet" href="{{asset('/css/mobile.css?v=1.00')}}">
+    <link rel="stylesheet" href="{{asset('/css/mobile.css?v=1.08')}}">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('/img/favicon.ico')}}" >
