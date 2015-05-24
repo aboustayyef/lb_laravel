@@ -6,7 +6,7 @@
 
     <script type="text/javascript">
       <!--
-      if (screen.width <= 800) {
+      if (screen.width <= 500) {
         window.location = "/posts/mobile";
       }
       //-->
