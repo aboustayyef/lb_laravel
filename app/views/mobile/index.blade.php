@@ -112,7 +112,7 @@
         <div class="close">
           &times;
         </div>
-        <a href="{{$post->post_url}}"><li>Go to Post</li></a>
+        <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" target="_blank" onclick="ga('send', 'event', 'Exit Link (mobile)', 'Card Posts' , '{{$blog->blog_name}}')"><li>Go to Post</li></a>
         <?php
           $twitterLink = (new \LebaneseBlogs\Utilities\Strings)->prepareTwitterLink($post);
         ?>
