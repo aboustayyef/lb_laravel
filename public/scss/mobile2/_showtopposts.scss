@@ -42,18 +42,22 @@
       }
     }
     .link{
+      line-height:1.1;
       overflow:auto;
       max-width:220px;
       a{
         text-decoration:none;
         font-size:14px;
+        font-weight:bold;
       }
       .article{
         color:#666;
       }
       .blog{
+        margin-top:5px;
         color:$shade;
         font-size: 12px;
+        text-transform:uppercase;
       }
     }
   }

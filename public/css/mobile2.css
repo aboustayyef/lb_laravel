@@ -101,6 +101,9 @@ header {
       width: 60px;
       height: 60px; }
   .takeover .top_post .link {
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 1.3;
     margin-top: 5px;
     padding-top: 5px;
     border-top: 1px solid #EDEDED;
@@ -111,6 +114,7 @@ header {
     .takeover .top_post .link .article {
       color: #666; }
     .takeover .top_post .link .blog {
+      text-transform: uppercase;
       color: #E25154;
       font-size: 12px; }
 
@@ -205,16 +209,20 @@ body {
         width: 60px;
         height: 60px; }
     #firstTopPost .top_post .link {
+      line-height: 1.1;
       overflow: auto;
       max-width: 220px; }
       #firstTopPost .top_post .link a {
         text-decoration: none;
-        font-size: 14px; }
+        font-size: 14px;
+        font-weight: bold; }
       #firstTopPost .top_post .link .article {
         color: #666; }
       #firstTopPost .top_post .link .blog {
+        margin-top: 5px;
         color: #E25154;
-        font-size: 12px; }
+        font-size: 12px;
+        text-transform: uppercase; }
 
 .miniCard {
   position: relative;
