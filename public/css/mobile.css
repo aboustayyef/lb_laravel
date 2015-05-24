@@ -209,9 +209,9 @@ body {
         width: 60px;
         height: 60px; }
     #firstTopPost .top_post .link {
-      line-height: 1.1;
+      line-height: 1.2;
       overflow: auto;
-      max-width: 220px; }
+      max-width: 260px; }
       #firstTopPost .top_post .link a {
         text-decoration: none;
         font-size: 14px;
@@ -246,6 +246,11 @@ body {
     font-size: 14px;
     text-decoration: none;
     color: rgba(0, 0, 0, 0.6); }
+  .miniCard .stars {
+    margin-left: 6px;
+    margin-bottom: 5px; }
+    .miniCard .stars .fullstar, .miniCard .stars .halfstar, .miniCard .stars .emptystar {
+      margin-top: 0; }
   .miniCard .meta {
     padding: 7px; }
   .miniCard .timestamp, .miniCard .viralityBox {
@@ -300,3 +305,27 @@ body {
     background: #B12D2F;
     color: white;
     margin-bottom: 5px; }
+
+.stars {
+  overflow: auto; }
+  .stars .fullstar, .stars .halfstar, .stars .emptystar {
+    margin-top: 4px;
+    width: 16px;
+    height: 16px;
+    display: block;
+    background-size: 13px 13px;
+    float: left; }
+  .stars .fullstar {
+    background-image: url(../img/fullstar.png);
+    background-repeat: no-repeat; }
+  .stars .emptystar {
+    background-image: url(../img/emptystar.png);
+    background-repeat: no-repeat; }
+  .stars .halfstar {
+    background-image: url(../img/halfstar.png);
+    background-repeat: no-repeat; }
+  .stars .rating {
+    float: left;
+    margin-right: 5px;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.3); }

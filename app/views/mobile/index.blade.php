@@ -100,6 +100,13 @@
 
     <p class="title">{{$post->post_title}}</p>
 
+    <?php
+      if (($post->rating_denominator > 0) && ($post->rating_numerator > 1)) {
+        echo '<!-- Rating -->';
+        echo View::make('posts.partials.rating')->with('n',$post->rating_numerator)->with('d',$post->rating_denominator);
+      }
+    ?>
+
     @if ($post->post_image_height > 0)
       <div class="image">
         {{View::make('mobile.post_image')->with('post',$post)}}

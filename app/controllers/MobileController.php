@@ -18,7 +18,15 @@
         }
 
         if (!Cache::has('mobileTopPosts')) {
-          Cache::put('mobileTopPosts', Post::getTopPosts('all', 12), 9);
+          $howManyTopPosts = 0;
+          $hours = 12;
+          while ( $howManyTopPosts < 5) {
+            $topPostsCandidates = Post::getTopPosts('all', $hours);
+            $howManyTopPosts = count($topPostsCandidates);
+            $hours *= 2;
+          }
+
+          Cache::put('mobileTopPosts', $topPostsCandidates, 9);
         }
 
         $recentPosts = Cache::get('mobileRecentPosts');

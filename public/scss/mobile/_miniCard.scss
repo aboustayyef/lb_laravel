@@ -29,6 +29,13 @@
     color:rgba(0, 0, 0, 0.6);
   }
 
+  .stars{
+    margin-left: 6px;
+    margin-bottom: 5px;
+    .fullstar, .halfstar, .emptystar{
+      margin-top:0;
+    }
+  }
   .meta{
     padding:$margins;
   }
