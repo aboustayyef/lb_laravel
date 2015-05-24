@@ -61,10 +61,22 @@
 
 </div>
 
-{{-- recent posts (3) --}}
-<div id="showtopposts">
-  Show Top Posts
+{{-- top post && show more --}}
+
+<div id="firstTopPost">
+  <?php $post = $topPosts[0]; ?>
+  <h2>Top Post Right Now <a id="showtopposts" class="minibutton" href="#">Show More</a></h2>
+  <div class="top_post">
+    <div class="image">
+      @include('mobile2.topListThumb')
+    </div>
+    <div class="link">
+      <a href="{{$post->post_url}}" class="article">{{$post->post_title}}</a><br><a href="{{$post->blog->blog_url}}" class="blog">{{$post->blog->blog_name}}</a>
+    </div>
+  </div>
 </div>
+
+{{-- Recent Posts --}}
 
 <ul id="posts">
   @for($i=0; $i<16; $i++)
