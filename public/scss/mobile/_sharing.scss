@@ -17,11 +17,16 @@
     font-:12px;
     height:100%;
     background:rgba(0,0,0,0.75);
+    .close{
+      cursoer:pointer;
+      width:30px;
+      margin-top:0;
+      margin-left:5px;
+      color:white;
+      font-size:40px;
+      line-height:1;
+    }
     ul{
-      .close{
-        color:white;
-        font-size:30px;
-      }
       position:absolute;
       width:120px;
       height:80px;

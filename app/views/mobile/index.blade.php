@@ -79,58 +79,12 @@
 {{-- Recent Posts --}}
 
 <ul id="posts">
-  @for($i=0; $i<16; $i++)
-    <?php $post = $recentPosts[$i] ;?>
-
-
-
-  <li class="miniCard" data-post-url="{{$post->post_url}}" data-blog-url="{{$post->blog->blog_url}}">
-
-    <div class="header">
-      <img src="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}" alt="" class="blogthumb">
-      <p class="blogtitle">{{$post->blog->blog_name}}</p>
-    </div>
-    <div class="meta">
-      <div class="timestamp">
-        <?php $since = (new Carbon\Carbon)->createFromTimestamp($post->post_timestamp)->diffForHumans(); ?>
-        {{$since}}
-      </div>
-      {{View::make('mobile.virality')->with('score',$post->post_virality)}}
-    </div>
-
-    <p class="title">{{$post->post_title}}</p>
-
-    <?php
-      if (($post->rating_denominator > 0) && ($post->rating_numerator > 1)) {
-        echo '<!-- Rating -->';
-        echo View::make('posts.partials.rating')->with('n',$post->rating_numerator)->with('d',$post->rating_denominator);
-      }
-    ?>
-
-    @if ($post->post_image_height > 0)
-      <div class="image">
-        {{View::make('mobile.post_image')->with('post',$post)}}
-      </div>
-    @endif
-
-    {{-- sharing --}}
-    <div class="sharingbackground">
-      <ul class="sharing">
-        <div class="close">
-          &times;
-        </div>
-        <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" target="_blank" onclick="ga('send', 'event', 'Exit Link (mobile)', 'Card Posts' , '{{$post->blog->blog_name}}')"><li>Go to Post</li></a>
-        <?php
-          $twitterLink = (new \LebaneseBlogs\Utilities\Strings)->prepareTwitterLink($post);
-        ?>
-        <a href="{{$twitterLink}}"><li>Share on Twitter</li></a>
-
-      </ul>
-    </div>
-
-    </li>
-    @endfor
+  {{View::make('mobile.setOfPosts')->with('posts', $recentPosts)}}
 </ul>
+
+<div id="loadMorePosts" class="enabled">
+  <div>Load More Posts</div>
+</div>
 
 {{-- Top Posts
 

@@ -172,6 +172,20 @@ body {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch; }
 
+#loadMorePosts {
+  width: 80%;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 15px;
+  margin: 0 auto; }
+  #loadMorePosts div {
+    background: #B12D2F;
+    padding: 10px;
+    text-align: center; }
+  #loadMorePosts.disabled div {
+    opacity: 0.5; }
+
 #firstTopPost {
   padding: 7px;
   background-color: white;
@@ -287,6 +301,14 @@ body {
   font-: 12px;
   height: 100%;
   background: rgba(0, 0, 0, 0.75); }
+  .miniCard .sharingbackground .close {
+    cursoer: pointer;
+    width: 30px;
+    margin-top: 0;
+    margin-left: 5px;
+    color: white;
+    font-size: 40px;
+    line-height: 1; }
   .miniCard .sharingbackground ul {
     position: absolute;
     width: 120px;
@@ -295,9 +317,6 @@ body {
     margin-top: -60px;
     left: 50%;
     margin-left: -60px; }
-    .miniCard .sharingbackground ul .close {
-      color: white;
-      font-size: 30px; }
   .miniCard .sharingbackground li {
     padding-left: 10px;
     font-size: 12px;

@@ -9,3 +9,22 @@ body{
   overflow-y:scroll;
   -webkit-overflow-scrolling:touch;
 }
+
+#loadMorePosts{
+  width:80%;
+  color:white;
+  margin-top:20px;
+  margin-bottom:20px;
+  padding:15px;
+  margin:0 auto;
+  div{
+      background:$red;
+      padding:10px;
+      text-align:center;
+  }
+  &.disabled{
+    div{
+      opacity:0.5;
+    }
+  }
+}

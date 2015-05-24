@@ -42,6 +42,10 @@ Route::group(array('prefix' => 'admin', 'before' => 'admin.auth'), function()
 });
 
 
+Route::get('/mobileAjax/{from}/{howmany}', array(
+  'uses'  =>  'MobileAjaxController@index'
+));
+
 Route::get('/news', array(
   'uses'  =>  'NewsController@index'
 ));

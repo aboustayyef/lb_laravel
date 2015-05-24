@@ -14,7 +14,7 @@
         // get recent posts
 
         if (!Cache::has('mobileRecentPosts')) {
-          Cache::put('mobileRecentPosts', Post::getPosts('all', 0, 16), 9);
+          Cache::put('mobileRecentPosts', Post::getPosts('all', 0, 8), 9);
         }
 
         if (!Cache::has('mobileTopPosts')) {

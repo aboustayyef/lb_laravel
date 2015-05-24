@@ -28,17 +28,17 @@ $('document').ready(function(){
 
 
 // clicking behavior of cards (change later to add sharing)
-$('document').ready(function(){
-  $('.miniCard').on('click',function(){
-    $('.sharingbackground.active').removeClass('active');
-    $(this).find('.sharingbackground').addClass('active');
-    // window.location.href = $(this).data('post-url');
-  });
-  $('.sharingbackground .close').on('click', function(e){
-    $('.sharingbackground.active').removeClass('active');
-    e.stopPropagation();
-  });
-});
+// $('document').ready(function(){
+//   $(document).on('click','.miniCard', function(e){
+//     $('.sharingbackground.active').removeClass('active');
+//     $(this).find('.sharingbackground').addClass('active');
+//     // window.location.href = $(this).data('post-url');
+//   });
+//   $(document).on('click', '.close', function(e){
+//     e.stopPropagation();
+//     $('.sharingbackground.active').removeClass('active');
+//   });
+// });
 
 // behavior of various buttons
 $('document').ready(function(){
@@ -61,6 +61,32 @@ $('document').ready(function(){
   });
 
 });
+
+// Adding More posts
+
+$('document').ready(function(){
+
+  addMorePosts = function(howmany){
+    var existingPosts = $('.miniCard').length;
+
+    $.get( "/mobileAjax/" + (existingPosts + 1) + "/" + howmany , function( data ) {
+      $data = $(data);
+      $data.imagesLoaded(function(){
+        $('#posts').append($data).masonry('appended', $data);
+        $('#loadMorePosts.disabled').removeClass('disabled').addClass('enabled');
+      })
+    });
+  }
+
+  $('#loadMorePosts.enabled div').on('click', function(){
+    $('#loadMorePosts.enabled').removeClass('enabled').addClass('disabled');
+    addMorePosts(10);
+  });
+
+});
+
+
+
 
 </script>
 
