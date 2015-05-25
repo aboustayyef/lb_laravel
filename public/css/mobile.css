@@ -285,8 +285,11 @@ body {
     font-weight: bold;
     color: #666;
     padding: 7px; }
-  .miniCard .image img {
-    display: block; }
+  .miniCard .image {
+    max-height: 250px;
+    overflow: hidden; }
+    .miniCard .image img {
+      display: block; }
 
 .miniCard .sharingbackground {
   display: none; }
