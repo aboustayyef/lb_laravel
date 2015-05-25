@@ -6,9 +6,11 @@
 
 <div id="scrolling">
 <header>
-  <div id="logo">
-    <img src ="/img/logo-mobile.png" width="150px" height="40px">
-  </div>
+  <a href="/posts/mobile">
+    <div id="logo">
+      <img src ="/img/logo-mobile.png" width="150px" height="40px">
+    </div>
+  </a>
   <div id="aboutbutton">
     About
   </div>
