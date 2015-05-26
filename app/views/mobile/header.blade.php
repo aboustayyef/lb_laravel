@@ -36,7 +36,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('/img/apple-touch-icons/180x180.png')}}">
 
     <!-- Style Sheet -->
-    <link rel="stylesheet" href="{{asset('/css/mobile.css?v=1.1')}}">
+    <link rel="stylesheet" href="{{asset('/css/mobile.css?v=1.15')}}">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('/img/favicon.ico')}}" >
