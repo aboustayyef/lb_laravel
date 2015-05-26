@@ -12,7 +12,7 @@ if ($post->hasImage()) {
     $image = asset('/img/no_image.png');
 }?>
 @if ($height > $width)
-<img src="{{$image}}" width="40px" height="auto" alt="">
+<img src="{{$image}}" width="60px" height="auto" alt="">
 @else
-<img src="{{$image}}" height="40px" width="auto" alt="">
+<img src="{{$image}}" height="60px" width="auto" alt="">
 @endif
