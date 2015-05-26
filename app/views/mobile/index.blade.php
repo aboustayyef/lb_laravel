@@ -18,6 +18,26 @@
 
 {{-- Takeover: Loading Curtain --}}
 
+<div id="channelPicker" class="takeover">
+  <div class="closebutton">
+    <div>&times;</div>
+  </div>
+  <div class="info">
+    <h2>
+      Pick a Channel
+    </h2>
+    <ul>
+      <a href="/posts/mobile/all"><li style="background-color:#EDEDED; color:black">Show All</li></a>
+      <?php $channels = Channel::$list;?>
+      @foreach ($channels as $key => $_channel)
+        <a href="/posts/mobile/{{$_channel['name']}}" ><li style="border-left:5px solid {{$_channel['color']}}">{{$_channel['description']}}</li></a>
+      @endforeach
+    </ul>
+  </div>
+</div>
+
+{{-- Takeover: Loading Curtain --}}
+
 <div id="curtain" class="takeover active">
   <div class="deadcenter">
     <img src="{{asset('img/lb-loading.png')}}" width="60px" height="auto"><br>Loading...
@@ -40,6 +60,10 @@
 
   </div>
 </div>
+
+
+{{-- To do: Takeover: Categories --}}
+{{---------------------------------}}
 
 
 {{-- Takeover: Top Posts --}}
@@ -81,6 +105,9 @@
 {{-- Recent Posts --}}
 
 <ul id="posts">
+  <div class="miniCard">
+    {{View::make('mobile.categoriesButton')->with('channel', $channel)}}
+  </div>
   {{View::make('mobile.setOfPosts')->with('posts', $recentPosts)}}
 </ul>
 

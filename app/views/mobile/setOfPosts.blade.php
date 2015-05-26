@@ -1,6 +1,6 @@
 @foreach($posts as $post)
 
-<li class="miniCard" data-post-url="{{$post->post_url}}" data-blog-url="{{$post->blog->blog_url}}">
+<li class="miniCard post" data-post-url="{{$post->post_url}}" data-blog-url="{{$post->blog->blog_url}}">
 
 <div class="header">
   <img src="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}" alt="" class="blogthumb">

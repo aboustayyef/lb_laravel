@@ -67,9 +67,9 @@ $('document').ready(function(){
 $('document').ready(function(){
 
   addMorePosts = function(howmany){
-    var existingPosts = $('.miniCard').length;
+    var existingPosts = $('.miniCard.post').length;
 
-    $.get( "/mobileAjax/" + (existingPosts + 1) + "/" + howmany , function( data ) {
+    $.get( "/mobileAjax/{{$channel}}/" + (existingPosts + 1) + "/" + howmany , function( data ) {
       $data = $(data);
       $data.imagesLoaded(function(){
         $('#posts').append($data).masonry('appended', $data);
@@ -85,7 +85,12 @@ $('document').ready(function(){
 
 });
 
-
+// Channel Picker
+$('document').ready(function(){
+  $('.categoriesButton').on('click', function(){
+    $('#channelPicker').addClass('active');
+  });
+});
 
 
 </script>

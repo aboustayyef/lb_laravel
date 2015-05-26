@@ -42,7 +42,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'admin.auth'), function()
 });
 
 
-Route::get('/mobileAjax/{from}/{howmany}', array(
+Route::get('/mobileAjax/{channel}/{from}/{howmany}', array(
   'uses'  =>  'MobileAjaxController@index'
 ));
 
@@ -56,7 +56,7 @@ Route::get('/user/{section}/{action?}', array(
   'uses'  =>  'UserController@index'
 ));
 
-Route::get('posts/mobile', array(
+Route::get('posts/mobile/{channel?}', array(
   'as'  =>  'mobile',
   'uses'  =>  'MobileController@index'
 ));

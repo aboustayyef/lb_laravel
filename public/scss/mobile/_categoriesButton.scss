@@ -1,0 +1,18 @@
+.categoriesButton{
+  padding:5px 0;
+  h2{
+    font-size:15px;
+    font-weight:bold;
+    padding:2px 5px;
+    &.white{
+      color:white;
+    }
+  }
+  h3{
+    font-size:12px;
+    padding:1px 5px;
+    &.white{
+      color:rgba(255,255,255,0.8)
+    }
+  }
+}

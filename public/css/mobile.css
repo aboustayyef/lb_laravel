@@ -73,7 +73,8 @@ header {
   color: white; }
 
 .takeover {
-  display: none; }
+  display: none;
+  overflow-y: scroll; }
   .takeover.active {
     display: block; }
 
@@ -112,11 +113,19 @@ header {
       text-decoration: none;
       font-size: 14px; }
     .takeover .top_post .link .article {
-      color: #666; }
+      color: #555; }
     .takeover .top_post .link .blog {
       text-transform: uppercase;
       color: #E25154;
       font-size: 12px; }
+
+#channelPicker ul a li {
+  padding: 10px;
+  margin-bottom: 1px;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 3px;
+  border-bottom: 1px solid #EDEDED; }
 
 .takeover {
   background: white;
@@ -327,6 +336,20 @@ body {
     background: #B12D2F;
     color: white;
     margin-bottom: 5px; }
+
+.categoriesButton {
+  padding: 5px 0; }
+  .categoriesButton h2 {
+    font-size: 15px;
+    font-weight: bold;
+    padding: 2px 5px; }
+    .categoriesButton h2.white {
+      color: white; }
+  .categoriesButton h3 {
+    font-size: 12px;
+    padding: 1px 5px; }
+    .categoriesButton h3.white {
+      color: rgba(255, 255, 255, 0.8); }
 
 .stars {
   overflow: auto; }
