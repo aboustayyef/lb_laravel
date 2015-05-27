@@ -14,7 +14,8 @@
     "way/generators": "~2.0",
     "facebook/php-sdk": "dev-master",
     "dg/twitter-php": "dev-master",
-    "guzzle/plugin-history": "3.7.*@dev"
+    "guzzle/plugin-history": "3.7.*@dev",
+    "aboustayyef/previewer": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

@@ -174,6 +174,12 @@ class CrawlRss extends Command {
         // Crawl for suitable image
         $blog_post_image = crawlHelpers::getImageFromContent($blog_post_content, $blog_post_link);
 
+        // alternative image crawl if nothing found
+        if (!$blog_post_image) {
+          echo "\nTrying alternative image seeking method using mustapha class\n";
+          $imageSeeker = new \Aboustayyef\Previewer($blog_post_link);
+          $blog_post_image = $imageSeeker->getImage();
+        }
         // Get Excerpt
         $blog_post_excerpt = lbNormalise::cleanUpText($blog_post_content, 120);
 
