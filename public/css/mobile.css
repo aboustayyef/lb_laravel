@@ -380,7 +380,8 @@ body {
   overflow: auto; }
   #bloggerDetails img {
     float: left;
-    max-width: 30%;
-    margin-right: 10px; }
+    max-width: 12%;
+    margin-right: 10px;
+    border: 1px solid #EDEDED; }
   #bloggerDetails h2 {
     font-weight: bold; }
