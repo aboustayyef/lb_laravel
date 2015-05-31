@@ -2,10 +2,12 @@
 
 <li class="miniCard post" data-post-url="{{$post->post_url}}" data-blog-url="{{$post->blog->blog_url}}">
 
+@if(!$isBlogger)
 <div class="header">
   <img src="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}" alt="" class="blogthumb">
   <p class="blogtitle">{{$post->blog->blog_name}}</p>
 </div>
+@endif
 <div class="meta">
   <div class="timestamp">
     <?php $since = (new Carbon\Carbon)->createFromTimestamp($post->post_timestamp)->diffForHumans(); ?>

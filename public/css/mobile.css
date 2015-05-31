@@ -371,3 +371,16 @@ body {
     margin-right: 5px;
     font-size: 12px;
     color: rgba(0, 0, 0, 0.3); }
+
+#bloggerDetails {
+  width: calc(100% - 20px);
+  margin: 10px auto;
+  background: white;
+  padding: 10px;
+  overflow: auto; }
+  #bloggerDetails img {
+    float: left;
+    max-width: 30%;
+    margin-right: 10px; }
+  #bloggerDetails h2 {
+    font-weight: bold; }

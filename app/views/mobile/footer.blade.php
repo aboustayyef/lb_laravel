@@ -69,7 +69,13 @@ $('document').ready(function(){
   addMorePosts = function(howmany){
     var existingPosts = $('.miniCard.post').length;
 
-    $.get( "/mobileAjax/{{$channel}}/" + (existingPosts + 1) + "/" + howmany , function( data ) {
+    @if(!$isBlogger)
+      <?php $ajaxExpression = "/mobileAjax/$channel/" ?>
+    @else
+      <?php $ajaxExpression = "/mobileAjax/b/$whichBlog/" ?>
+    @endif
+
+    $.get( "{{$ajaxExpression}}" + (existingPosts + 1) + "/" + howmany , function( data ) {
       $data = $(data);
       $data.imagesLoaded(function(){
         $('#posts').append($data).masonry('appended', $data);

@@ -7,7 +7,21 @@
     <script type="text/javascript">
       <!--
       if (screen.width <= 500) {
-        window.location = "/posts/mobile";
+        var lb_url = window.location.href;
+
+        // if it's a blogger's page
+        var is_blogger = lb_url.split('/blogger/');
+        if (is_blogger.length > 1) {
+          var this_blogger = is_blogger.pop();
+          window.location = "/mobile/blogger/" + this_blogger
+        };
+        var is_posts = lb_url.split('/posts/');
+        if (is_posts.length > 1) {
+          var this_posts = is_posts.pop();
+          window.location = "/mobile/posts/" + this_posts
+        };
+
+        //window.location = "/posts/mobile";
       }
       //-->
     </script>
@@ -20,6 +34,10 @@
     <?php $pageDescription = Page::getDescription() ?>
     <meta name="description" content="{{$pageDescription}}">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    {{-- Alternate (mobile) --}}
+    <link rel="alternate" media="only screen and (max-width: 500px)"
+      href="http://lebaneseblogs.com/mobile/{{Request::path()}}" >
 
     <!-- Page Title -->
     <?php $pageTitle = Page::getTitle() ?>

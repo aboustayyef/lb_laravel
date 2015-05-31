@@ -16,8 +16,8 @@
   </div>
 </header>
 
-{{-- Takeover: Loading Curtain --}}
-
+{{-- Takeover: Channel Picker --}}
+@if(!$isBlogger)
 <div id="channelPicker" class="takeover">
   <div class="closebutton">
     <div>&times;</div>
@@ -27,14 +27,15 @@
       Pick a Channel
     </h2>
     <ul>
-      <a href="/posts/mobile/all"><li style="background-color:#EDEDED; color:black">Show All</li></a>
+      <a href="/mobile/posts/all"><li style="background-color:#EDEDED; color:black">Show All</li></a>
       <?php $channels = Channel::$list;?>
       @foreach ($channels as $key => $_channel)
-        <a href="/posts/mobile/{{$_channel['name']}}" ><li style="border-left:5px solid {{$_channel['color']}}">{{$_channel['description']}}</li></a>
+        <a href="/mobile/posts/{{$_channel['name']}}" ><li style="border-left:5px solid {{$_channel['color']}}">{{$_channel['description']}}</li></a>
       @endforeach
     </ul>
   </div>
 </div>
+@endif
 
 {{-- Takeover: Loading Curtain --}}
 
@@ -67,28 +68,30 @@
 
 
 {{-- Takeover: Top Posts --}}
-
-<div id="topposts" class="takeover">
-  <div class="closebutton">
-    <div>&times;</div>
-  </div>
-
-<h2>Top Posts</h2>
-@foreach($topPosts as $post)
-  <div class="top_post">
-    <div class="image">
-      @include('mobile.topListThumb')
+@if(!$isBlogger)
+  <div id="topposts" class="takeover">
+    <div class="closebutton">
+      <div>&times;</div>
     </div>
-    <div class="link">
-      <a href="{{$post->post_url}}" class="article">{{$post->post_title}}</a><br><a href="{{$post->blog->blog_url}}" class="blog">{{$post->blog->blog_name}}</a>
+
+  <h2>Top Posts</h2>
+  @foreach($topPosts as $post)
+    <div class="top_post">
+      <div class="image">
+        @include('mobile.topListThumb')
+      </div>
+      <div class="link">
+        <a href="{{$post->post_url}}" class="article">{{$post->post_title}}</a><br><a href="{{$post->blog->blog_url}}" class="blog">{{$post->blog->blog_name}}</a>
+      </div>
     </div>
+  @endforeach
+
   </div>
-@endforeach
+@endif
 
-</div>
+{{-- top post or Blogger detail --}}
 
-{{-- top post && show more --}}
-
+@if(!$isBlogger)
 <div id="firstTopPost">
   <?php $post = $topPosts[0]; ?>
   <h2>Top Post Right Now <a id="showtopposts" class="minibutton" href="#">Show More</a></h2>
@@ -102,13 +105,24 @@
   </div>
 </div>
 
+@else
+<?php $post = $recentPosts[0] ?>
+<div id="bloggerDetails">
+  <img src="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}">
+  <h2>{{$post->blog->blog_name}}</h2>
+</div>
+
+@endif
+
 {{-- Recent Posts --}}
 
 <ul id="posts">
+  @if(!$isBlogger)
   <div class="miniCard">
     {{View::make('mobile.categoriesButton')->with('channel', $channel)}}
   </div>
-  {{View::make('mobile.setOfPosts')->with('posts', $recentPosts)}}
+  @endif
+  {{View::make('mobile.setOfPosts')->with('posts', $recentPosts)->with('isBlogger', $isBlogger)}}
 </ul>
 
 <div id="loadMorePosts" class="enabled">

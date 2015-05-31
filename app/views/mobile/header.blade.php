@@ -9,6 +9,13 @@
     <meta name="description" content="The best place to discover, read and organize Lebanon's top blogs">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+  @if($isBlogger)
+    <link rel="canonical" href="http://lebaneseblogs.com/blogger/{{$whichBlog}}" />
+  @else
+    <link rel="canonical" href="http://lebaneseblogs.com/posts/{{$channel}}" />
+  @endif
+
+
     <!-- Page Title -->
     <title>Welcome To Lebanese Blogs</title>
 
@@ -36,7 +43,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('/img/apple-touch-icons/180x180.png')}}">
 
     <!-- Style Sheet -->
-    <link rel="stylesheet" href="{{asset('/css/mobile.css?v=1.2')}}">
+    <link rel="stylesheet" href="{{asset('/css/mobile.css?v=1.3')}}">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('/img/favicon.ico')}}" >

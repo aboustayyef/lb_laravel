@@ -1,0 +1,15 @@
+#bloggerDetails{
+  width:calc(100% - 20px);
+  margin:10px auto;
+  background:white;
+  padding:10px;
+  overflow:auto;
+  img{
+    float:left;
+    max-width:30%;
+    margin-right: 10px;
+  }
+  h2{
+    font-weight:bold;
+  }
+}
