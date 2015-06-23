@@ -45,6 +45,28 @@
   </div>
 </div>
 
+{{-- Takeover: Share Sheet --}}
+
+<div id="sharesheet" class="takeover">
+  <div class="closebutton">
+    <div>&times;</div>
+  </div>
+  <div class="info">
+    <h2></h2>
+    <div class="action goto">
+      <a href="#" target="_blank" class="button">Read</a>
+    </div>
+    <div class="action twittershare">
+      <a href="" class="button">Share on Twitter</a>
+    </div>
+    <div class="action bloggerpage">
+      <a href="" class="button">Blogger's Page</a>
+    </div>
+
+  </div>
+</div>
+
+
 {{-- Takeover: About Lebanese Blogs --}}
 
 <div id="about" class="takeover">
@@ -61,10 +83,6 @@
 
   </div>
 </div>
-
-
-{{-- To do: Takeover: Categories --}}
-{{---------------------------------}}
 
 
 {{-- Takeover: Top Posts --}}

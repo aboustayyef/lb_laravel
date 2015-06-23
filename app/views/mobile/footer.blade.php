@@ -27,18 +27,21 @@ $('document').ready(function(){
 });
 
 
-// clicking behavior of cards (change later to add sharing)
-// $('document').ready(function(){
-//   $(document).on('click','.miniCard', function(e){
-//     $('.sharingbackground.active').removeClass('active');
-//     $(this).find('.sharingbackground').addClass('active');
-//     // window.location.href = $(this).data('post-url');
-//   });
-//   $(document).on('click', '.close', function(e){
-//     e.stopPropagation();
-//     $('.sharingbackground.active').removeClass('active');
-//   });
-// });
+// clicking behavior of cards
+
+$('document').ready(function(){
+  $(document).on('click','li.miniCard.post', function(e){
+    $twitterlink = $(this).data('twitter-link');
+    $posttitle = $(this).data('post-title');
+    $exitlink = $(this).data('exit-url');
+    $blogpage = $(this).data('blog-url');
+    $('#sharesheet').find('.goto a').attr('href',$exitlink);
+    $('#sharesheet').find('.twittershare a').attr('href',$twitterlink);
+    $('#sharesheet').find('.bloggerpage a').attr('href',$blogpage);
+    $('#sharesheet').find('h2').text($posttitle);
+    $('#sharesheet').addClass('active');
+  });
+});
 
 // behavior of various buttons
 $('document').ready(function(){

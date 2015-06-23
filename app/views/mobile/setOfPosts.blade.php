@@ -1,14 +1,13 @@
 @foreach($posts as $post)
 
-<li class="miniCard post" data-post-url="{{$post->post_url}}" data-blog-url="{{$post->blog->blog_url}}">
+<li class="miniCard post" data-exit-url="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" data-blog-url="/mobile/blogger/{{$post->blog->blog_id}}" data-post-title="{{$post->post_title}}" data-twitter-link="{{(new \LebaneseBlogs\Utilities\Strings)->prepareTwitterLink($post)}}">
 
 @if(!$isBlogger)
-<a href="/mobile/blogger/{{$post->blog->blog_id}}">
+
   <div class="header">
       <img src="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}" alt="" class="blogthumb">
       <p class="blogtitle">{{$post->blog->blog_name}}</p>
   </div>
-</a>
 
 @endif
 <div class="meta">
@@ -19,7 +18,7 @@
   {{View::make('mobile.virality')->with('score',$post->post_virality)}}
 </div>
 
-<a href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" target="_blank" onclick="ga('send', 'event', 'Exit Link (mobile)', 'Card Posts' , '{{$post->blog->blog_name}}')"><p class="title">{{$post->post_title}}</p></a>
+<p class="title">{{$post->post_title}}</p>
 
 <?php
   if (($post->rating_denominator > 0) && ($post->rating_numerator > 1)) {
@@ -29,9 +28,9 @@
 ?>
 
 @if ($post->post_image_height > 0)
-  <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" target="_blank" onclick="ga('send', 'event', 'Exit Link (mobile)', 'Card Posts' , '{{$post->blog->blog_name}}')"><div class="image">
+ <div class="image">
     {{View::make('mobile.post_image')->with('post',$post)}}
-  </div></a>
+  </div>
 @endif
 
 

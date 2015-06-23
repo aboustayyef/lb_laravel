@@ -81,9 +81,9 @@
 .takeover{
   background:white;
   position:fixed;
-  top:50px;
   left:0;
-  height:calc(100% - 50px);
+  top:0;
+  height:100%;
   width:100%;
   z-index:100;
   padding:10px;
@@ -108,8 +108,8 @@
   }
 
   h2{
-    font-size:32px;
-    margin:15px 0;
+    font-size:28px;
+    margin:50px 0 30px 0;
   }
 
   .info{
@@ -125,7 +125,7 @@
     .button{
         display:block;
         padding:15px;
-        background:#1f8dd6;
+        background:#b12530;
         color:white;
         text-decoration:none;
         font-size:20px;
