@@ -6,7 +6,7 @@
 
   <div class="header">
       <img src="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}" alt="" class="blogthumb">
-      <p class="blogtitle">{{$post->blog->blog_name}}</p>
+      <a href="#"><p class="blogtitle">{{$post->blog->blog_name}}</p></a>
   </div>
 
 @endif
@@ -18,7 +18,7 @@
   {{View::make('mobile.virality')->with('score',$post->post_virality)}}
 </div>
 
-<p class="title">{{$post->post_title}}</p>
+<a href="#"><p class="title">{{$post->post_title}}</p></a>
 
 <?php
   if (($post->rating_denominator > 0) && ($post->rating_numerator > 1)) {
