@@ -31,6 +31,17 @@ $('document').ready(function(){
 
 $('document').ready(function(){
   $(document).on('click','li.miniCard.post', function(e){
+
+    // check if post has an image
+    var postImage = $(this).find('img');
+
+    // remove existing image from sharesheet
+    $('#sharesheet').find('.featureImage').remove();
+
+    if (postImage.length > 0) {
+      $('#sharesheet h2').after('<div class="featureImage"> <img src="' + postImage.attr('src') + '"></div>')
+    };
+
     $twitterlink = $(this).data('twitter-link');
     $posttitle = $(this).data('post-title');
     $exitlink = $(this).data('exit-url');
