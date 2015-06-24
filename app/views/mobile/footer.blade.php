@@ -33,7 +33,7 @@ $('document').ready(function(){
   $(document).on('click','li.miniCard.post', function(e){
 
     // check if post has an image
-    var postImage = $(this).find('img');
+    var postImage = $(this).find('.image img');
 
     // remove existing image from sharesheet
     $('#sharesheet').find('.featureImage').remove();
