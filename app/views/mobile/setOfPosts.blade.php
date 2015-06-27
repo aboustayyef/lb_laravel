@@ -1,6 +1,6 @@
 @foreach($posts as $post)
 
-<li class="miniCard post" data-exit-url="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" data-blog-url="/mobile/blogger/{{$post->blog->blog_id}}" data-post-title="{{$post->post_title}}" data-twitter-link="{{(new \LebaneseBlogs\Utilities\Strings)->prepareTwitterLink($post)}}">
+<li class="miniCard post" data-exit-url="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" data-blog-url="/mobile/blogger/{{$post->blog->blog_id}}" data-post-title="{{$post->post_title}}" data-twitter-link="{{(new \LebaneseBlogs\Utilities\Strings)->prepareTwitterLink($post)}}" data-post-excerpt="{{$post->post_excerpt}}" data-blog-name="{{$post->blog->blog_name}}" data-blog-id="{{$post->blog_id}}">
 
 @if(!$isBlogger)
 

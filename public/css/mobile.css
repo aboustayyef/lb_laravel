@@ -82,6 +82,8 @@ header {
     -webkit-transform: none;
         -ms-transform: none;
             transform: none; }
+  .takeover.dark {
+    background: #d1d1d1; }
 
 .takeover .deadcenter {
   position: absolute;
@@ -90,13 +92,44 @@ header {
   margin-top: -40px;
   text-align: center; }
 
-.takeover .featureImage {
-  width: calc(100% + 40px);
-  margin-left: -20px;
-  max-height: 200px;
-  overflow: hidden; }
-  .takeover .featureImage img {
-    width: 100%; }
+.takeover .bigCard {
+  background: white;
+  border: 1px solid silver;
+  padding: 15px; }
+  .takeover .bigCard a {
+    color: black; }
+  .takeover .bigCard h2 {
+    font-size: 18px;
+    margin: 15px 0; }
+  .takeover .bigCard .blog {
+    overflow: auto;
+    margin-bottom: 10px; }
+  .takeover .bigCard .avatar {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    float: left;
+    border: 1px solid silver; }
+  .takeover .bigCard .title {
+    line-height: 30px;
+    display: block; }
+  .takeover .bigCard p {
+    color: #999;
+    font-size: 16px;
+    padding: 10px; }
+  .takeover .bigCard .featureImage {
+    max-height: 200px;
+    overflow: hidden; }
+    .takeover .bigCard .featureImage img {
+      max-width: 100%;
+      border: 1px solid silver; }
+  .takeover .bigCard .actions {
+    margin-top: 10px; }
+    .takeover .bigCard .actions li {
+      padding: 10px 15px;
+      display: inline-block;
+      border: 1px solid silver; }
 
 .takeover .top_post {
   padding: 7px;
@@ -152,8 +185,9 @@ header {
   .takeover .closebutton {
     float: right;
     margin-top: 5px;
-    width: 30px;
-    height: 30px;
+    margin-right: 5px;
+    width: 27px;
+    height: 27px;
     display: block;
     position: relative;
     border-radius: 50%;
@@ -161,7 +195,7 @@ header {
     .takeover .closebutton div {
       color: white;
       position: absolute;
-      margin-top: 2px;
+      margin-top: 0px;
       font-size: 23px;
       width: 100%;
       text-align: center; }

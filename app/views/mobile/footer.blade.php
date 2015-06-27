@@ -32,6 +32,14 @@ $('document').ready(function(){
 $('document').ready(function(){
   $(document).on('click','li.miniCard.post', function(e){
 
+    $blogid = $(this).data('blog-id');
+    $twitterlink = $(this).data('twitter-link');
+    $posttitle = $(this).data('post-title');
+    $exitlink = $(this).data('exit-url');
+    $blogpage = $(this).data('blog-url');
+    $postexcerpt = $(this).data('post-excerpt');
+    $blogname = $(this).data('blog-name');
+
     // check if post has an image
     var postImage = $(this).find('.image img');
 
@@ -39,15 +47,16 @@ $('document').ready(function(){
     $('#sharesheet').find('.featureImage').remove();
 
     if (postImage.length > 0) {
-      $('#sharesheet h2').after('<div class="featureImage"> <img src="' + postImage.attr('src') + '"></div>')
+      $('#sharesheet a.exitlink').after('<div class="featureImage"><a href="' + $exitlink + '"><img src="' + postImage.attr('src') + '"></a></div>');
     };
 
-    $twitterlink = $(this).data('twitter-link');
-    $posttitle = $(this).data('post-title');
-    $exitlink = $(this).data('exit-url');
-    $blogpage = $(this).data('blog-url');
+    $('#sharesheet').find('a.bloglink').attr('href', $blogpage);
+    $('#sharesheet').find('.avatar').attr('src', '/img/thumbs/' + $blogid + '.jpg');
+    $('#sharesheet').find('.title').text($blogname);
     $('#sharesheet').find('.goto a').attr('href',$exitlink);
+    $('#sharesheet').find('p').text($postexcerpt);
     $('#sharesheet').find('.twittershare a').attr('href',$twitterlink);
+    $('#sharesheet').find('a.exitlink').attr('href', $exitlink);
     $('#sharesheet').find('.bloggerpage a').attr('href',$blogpage);
     $('#sharesheet').find('h2').text($posttitle);
     $('#sharesheet').addClass('active');

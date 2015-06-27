@@ -45,25 +45,34 @@
   </div>
 </div>
 
+
 {{-- Takeover: Share Sheet --}}
 
-<div id="sharesheet" class="takeover">
+<div id="sharesheet" class="takeover dark">
   <div class="closebutton">
     <div>&times;</div>
   </div>
-  <div class="info">
-    <h2></h2>
-    <div class="action goto">
-      <a href="#" target="_blank" class="button">Read</a>
-    </div>
-    <div class="action twittershare">
-      <a href="" class="button">Share on Twitter</a>
-    </div>
-    <div class="action bloggerpage">
-      <a href="" class="button">Blogger's Page</a>
-    </div>
+  <div class="bigCard">
 
-  </div>
+    <a class="bloglink">
+    <div class="blog">
+      <img class="avatar"></img>
+      <span class="title">This is a test</span>
+    </div>
+    </a>
+    <a class="exitlink"><h2></h2></a>
+
+    <p></p>
+
+    <ul class="actions">
+      <li class="goto">
+        <a target="_blank" >Read</a>
+      </li>
+      <li class=" twittershare">
+        <a href="" >{{fontAwesomeToSvg::convert('fa-twitter')}} Share</a>
+      </li>
+    </ul>
+  </div> {{-- Big Card --}}
 </div>
 
 

@@ -6,6 +6,9 @@
   &.active{
     transform:none;
   }
+  &.dark{
+    background:#d1d1d1;
+  }
 }
 
 
@@ -20,17 +23,59 @@
   }
 }
 
-// feature image
+// share sheet ()
 .takeover{
-  .featureImage{
-    width: calc(100% + 40px);
-    margin-left:-20px;
-    max-height:200px;
-    overflow:hidden;
-    img{
-      width:100%;
+  .bigCard{
+    background:white;
+    border:1px solid silver;
+    padding:15px;
+
+    a{
+      color:black;
+    }
+    h2{
+      font-size:18px;
+      margin:15px 0;
+    }
+    .blog{
+      overflow:auto;
+      margin-bottom:10px;
+    }
+    .avatar{
+      margin-right:10px;
+      width:30px;
+      height:30px;
+      border-radius:50%;
+      float:left;
+      border:1px solid silver;
+    }
+    .title{
+      line-height:30px;
+      display:block;
+    }
+    p{
+      color:#999;
+      font-size:16px;
+      padding:10px;
+    }
+    .featureImage{
+      img{
+        max-width:100%;
+        border:1px solid silver;
+      }
+      max-height:200px;
+      overflow:hidden;
+    }
+    .actions{
+      margin-top:10px;
+      li{
+        padding:10px 15px;
+        display:inline-block;
+        border:1px solid silver;
+      }
     }
   }
+
 }
 
 
@@ -105,8 +150,9 @@
   .closebutton{
     float:right;
     margin-top:5px;
-    width:30px;
-    height:30px;
+    margin-right:5px;
+    width:27px;
+    height:27px;
     display:block;
     position:relative;
     border-radius:50%;
@@ -114,7 +160,7 @@
     div{
       color:white;
       position:absolute;
-      margin-top:2px;
+      margin-top:0px;
       font-size:23px;
       width:100%;
       text-align:center;
