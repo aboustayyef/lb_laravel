@@ -1,15 +1,19 @@
 @foreach($posts as $post)
 
-<li class="miniCard post" data-exit-url="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" data-blog-url="/mobile/blogger/{{$post->blog->blog_id}}" data-post-title="{{$post->post_title}}" data-twitter-link="{{(new \LebaneseBlogs\Utilities\Strings)->prepareTwitterLink($post)}}" data-post-excerpt="{{$post->post_excerpt}}" data-blog-name="{{$post->blog->blog_name}}" data-blog-id="{{$post->blog_id}}">
+<li class="miniCard post">
 
 @if(!$isBlogger)
-
-  <div class="header">
+  <a href="/mobile/blogger/{{$post->blog->blog_id}}">
+    <div class="header">
       <img src="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}" alt="" class="blogthumb">
-      <a href="#"><p class="blogtitle">{{$post->blog->blog_name}}</p></a>
-  </div>
+      <p class="blogtitle">{{$post->blog->blog_name}}</p>
+    </div>
+  </a>
+
 
 @endif
+<div class="body" data-exit-url="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" data-blog-url="/mobile/blogger/{{$post->blog->blog_id}}" data-post-title="{{$post->post_title}}" data-twitter-link="{{(new \LebaneseBlogs\Utilities\Strings)->prepareTwitterLink($post)}}" data-post-excerpt="{{$post->post_excerpt}}" data-blog-name="{{$post->blog->blog_name}}" data-blog-id="{{$post->blog_id}}">
+
 <div class="meta">
   <div class="timestamp">
     <?php $since = (new Carbon\Carbon)->createFromTimestamp($post->post_timestamp)->diffForHumans(); ?>
@@ -32,7 +36,7 @@
     {{View::make('mobile.post_image')->with('post',$post)}}
   </div>
 @endif
-
+</div>
 
  <?php
       //$twitterLink = (new \LebaneseBlogs\Utilities\Strings)->prepareTwitterLink($post);

@@ -1,25 +1,33 @@
-// on off
-.takeover{
-  transition:0.2s;
-  overflow-y:scroll;
-  transform: translate3d(0, 102%, 0);
-  &.active{
-    transform:none;
-  }
-  &.dark{
-    background:#d1d1d1;
-  }
-}
-
-
-// curtain
-.takeover{
+#curtain{
+  background:white;
+  position:fixed;
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  z-index:100;
+  padding:10px;
   .deadcenter{
     position: absolute;
     top: 50%;
     width:100%;
     margin-top: -40px;
     text-align:center;
+  }
+}
+
+
+// on off
+.takeover{
+  transition:0.2s;
+  overflow-y:scroll;
+  transform: translate3d(-600px, 0, 0);
+  display:none;
+  &.active{
+    transform:none;
+  }
+  &.dark{
+    background:#d1d1d1;
   }
 }
 
@@ -33,13 +41,19 @@
     a{
       color:black;
     }
+    .bloglink{
+      float:left;
+      display:block;
+      overflow:auto;
+      width: 100%;
+    }
     h2{
       font-size:18px;
       margin:15px 0;
     }
     .blog{
       overflow:auto;
-      margin-bottom:10px;
+      margin-bottom:15px;
     }
     .avatar{
       margin-right:10px;
@@ -54,7 +68,7 @@
       display:block;
     }
     p{
-      color:#999;
+      color:rgb(100,100,100);
       font-size:16px;
       padding:10px;
     }
@@ -149,8 +163,7 @@
 
   .closebutton{
     float:right;
-    margin-top:5px;
-    margin-right:5px;
+    margin:5px;
     width:27px;
     height:27px;
     display:block;

@@ -16,7 +16,11 @@ $('document').ready(function(){
     $container.masonry({
       itemSelector: '.miniCard'
     });
-    $('#curtain.active').removeClass('active');
+    $('#curtain').css('display','none');
+
+    // hack for situation in mobile safari where off-canvas panes prevent scrolling
+    $('.takeover').css('display','block');
+
   });
 });
 
@@ -30,7 +34,7 @@ $('document').ready(function(){
 // clicking behavior of cards
 
 $('document').ready(function(){
-  $(document).on('click','li.miniCard.post', function(e){
+  $(document).on('click','li.miniCard.post .body', function(e){
 
     $blogid = $(this).data('blog-id');
     $twitterlink = $(this).data('twitter-link');

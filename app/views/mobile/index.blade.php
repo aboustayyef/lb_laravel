@@ -39,7 +39,7 @@
 
 {{-- Takeover: Loading Curtain --}}
 
-<div id="curtain" class="takeover active">
+<div id="curtain">
   <div class="deadcenter">
     <img src="{{asset('img/lb-loading.png')}}" width="60px" height="auto"><br>Loading...
   </div>
