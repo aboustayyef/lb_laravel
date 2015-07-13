@@ -1,4 +1,3 @@
-
 - Think of a weekly Newsletter. Calls to action (subscription) at top5 list and about pages
 - mobile implementation of top tweets and news
 - Machine learning for guessing categories.
