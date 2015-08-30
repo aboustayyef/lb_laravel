@@ -21,6 +21,12 @@ Route::get('/', function(){
 
 });
 
+Route::get('/youstink/{howmany?}', array(
+
+  'as'  =>  'youstink',
+  'uses'  =>  'youstinkController@index'
+
+));
 
 Route::group(array('prefix' => 'admin', 'before' => 'admin.auth'), function()
 {
