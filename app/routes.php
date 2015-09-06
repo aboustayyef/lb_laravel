@@ -28,6 +28,13 @@ Route::get('/youstink/{howmany?}', array(
 
 ));
 
+Route::get('/youstink2/{howmany?}', array(
+
+  'as'  =>  'youstink2',
+  'uses'  =>  'youstinkController@index2'
+
+));
+
 Route::group(array('prefix' => 'admin', 'before' => 'admin.auth'), function()
 {
     Route::get('addBlog',array(
