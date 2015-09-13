@@ -28,6 +28,13 @@ Route::get('/youstink/{howmany?}', array(
 
 ));
 
+Route::get('/sources/{password}', function($password){
+  if (Hash::check($password, '$2y$10$6PHNiZP68bq2KPF9QGzVN.2VrWbWYNEowZPgcIaKpisMVfmYjlxbm')) {
+    return Blog::all();
+  }
+
+});
+
 Route::get('/youstink2/{howmany?}', array(
 
   'as'  =>  'youstink2',
