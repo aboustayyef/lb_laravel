@@ -2,6 +2,11 @@
 
 <html lang="en">
 <head>
+    <!-- mobile critical css -->
+    <style type="text/css">
+        #curtain{background:white;position:fixed;left:0;top:0;height:100%;width:100%;z-index:100;padding:10px}#curtain .deadcenter{position:absolute;top:50%;width:100%;margin-top:-40px;text-align:center}
+    </style>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="The best place to discover, read and organize Lebanon's top blogs">
