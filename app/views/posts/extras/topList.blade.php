@@ -28,7 +28,18 @@
   }
 
   if ($posts->count() < 5 ) {
-    die('You need to update database with recent posts');
+    ?>
+    <div class="post_wrapper">
+      <div class="card">
+        <div class="post_body">
+          <h2>Can't produce top list because there are no recent posts</h2>
+          <p>This error is only supposed to show up in testing. If you are seeing this, please <a href="https://twitter.com/beirutspring">contact me</a> about it</p>
+        </div>  
+      </div>
+    </div>
+    <?php 
+      return null;
+    // die('You need to update database with recent posts');
   }
 ?>
 <div class="post_wrapper toplist">
