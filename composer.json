@@ -15,7 +15,8 @@
     "facebook/php-sdk": "dev-master",
     "dg/twitter-php": "dev-master",
     "guzzle/plugin-history": "3.7.*@dev",
-    "aboustayyef/previewer": "dev-master"
+    "aboustayyef/previewer": "dev-master",
+		"aboustayyef/image-extractor": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

@@ -172,7 +172,18 @@ class CrawlRss extends Command {
         $blog_post_content = lbNormalise::unicode_decode($blog_post_content);
 
         // Crawl for suitable image
-        $blog_post_image = crawlHelpers::getImageFromContent($blog_post_content, $blog_post_link);
+        
+        // old way
+        //$blog_post_image = crawlHelpers::getImageFromContent($blog_post_content, $blog_post_link);
+
+        // using the external package way
+        try {
+            $image = new Aboustayyef\ImageExtractor($blog_post_link);
+            $blog_post_image = $image->get(300);          
+        } catch (\Exception $e) {
+            $this->error('could not extract image');
+            $blog_post_image = false;
+        }
 
         // alternative image crawl if nothing found (disabled because of errors)
         // if (!$blog_post_image) {
