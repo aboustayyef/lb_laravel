@@ -179,14 +179,24 @@ class CrawlRss extends Command {
         // using the external package way
         try {
             $image = new Aboustayyef\ImageExtractor($blog_post_link);
-            $blog_post_image = $image->get(300);
-            // if image already exists, disqualify it and try again
+            $result = false;
+            while (!$result) {
+              $blog_post_image = $image->get(300);
+
+              // if no image found, move forward
+              if (!$blog_post_image) {
+                $result = true;
+                $blog_post_image = null;
+                continue;
+              }
+              // if image already exists, disqualify it and try again
               if (Post::where(['blog_id'=> $domain, 'post_image'=> $blog_post_image])->get()->count() > 0) {
                   $this->info("Image $blog_post_image used before. Trying again.");
                   $image->disqualify($blog_post_image);
-                  $blog_post_image = '';
-                  $blog_post_image = $image->get(300);
-              }         
+              } else {
+                $result = true;
+              }
+            }        
         } catch (\Exception $e) {
             $this->error('could not extract image');
             $blog_post_image = false;
