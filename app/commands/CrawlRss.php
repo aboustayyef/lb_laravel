@@ -101,7 +101,7 @@ class CrawlRss extends Command {
       $blog_post_link = urldecode($blog_post_link);
 
       // clean URL from junk
-      $urlparts = LbFunctions::utf8_parse_url($blog_post_link);
+      $urlparts = lbFunctions::utf8_parse_url($blog_post_link);
       $blog_post_link = $urlparts['scheme'].'://'.$urlparts['host'].$urlparts['path'];
       if (!empty($urlparts['query'])) {
         $blog_post_link .= '?'.$urlparts['query'];
