@@ -178,7 +178,7 @@ class CrawlRss extends Command {
 
         // using the external package way
         try {
-            $image = new Aboustayyef\ImageExtractor($blog_post_link);
+            $image = new Aboustayyef\ImageExtractor($blog_post_link, $blog_post_content, true);
             $result = false;
             while (!$result) {
               $blog_post_image = $image->get(300);
