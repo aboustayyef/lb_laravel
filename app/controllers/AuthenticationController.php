@@ -39,8 +39,8 @@ class AuthenticationController extends BaseController
           Session::save();
 
           // Redirect the resource owner to the login screen on the server.
-          return AuthenticationServer::twitter()->authorize($temporaryCredentials);
-
+          $url = AuthenticationServer::twitter()->getAuthorizationUrl($temporaryCredentials);
+          return Redirect::To($url);
 /*
 |---------------------------------------------------------------------
 |   FACEBOOK
