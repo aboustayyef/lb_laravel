@@ -3,8 +3,9 @@
 @include('partials.header')
 @include('partials.topbar')
 
-<div id="momentumScrollingViewport">
+@include('partials.postDetailsModal')
 
+<div id="momentumScrollingViewport">
   <div id="content">
     @yield('content')
   </div>
