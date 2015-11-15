@@ -80,7 +80,7 @@
           @else
             ">
           @endif
-            {{$post->post_excerpt}}
+            {{str_limit($post->post_excerpt, 150)}}
           </p>
         @endif
     </div>
