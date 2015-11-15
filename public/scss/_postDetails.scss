@@ -1,7 +1,7 @@
 // Setup
 $modalWidth: 720px;
-$padding: 30px;
-$modalBackgroundTransparency: 0.3;
+$padding: 20px;
+$modalBackgroundTransparency: 0.5;
 $lightGrey: #ededed;
 
 #lbModalWrapper{
@@ -25,6 +25,7 @@ $lightGrey: #ededed;
 	width:$modalWidth;
 	z-index:21;
 	margin:10px auto;
+	overflow:scroll;
 }
 
 #lbModal__closeButton{
@@ -38,11 +39,17 @@ $lightGrey: #ededed;
     &:after{
     	color:white;
     	content:"\d7";
-	    font-size: 50px;
+	    font-size: 40px;
 	    line-height: 50px;
-	    margin-left:10px;
+	    margin-left:13px;
 
     }
+}
+
+.lbModal__blogTitle{
+	color: silver;
+	font-size:1.1em;
+	text-transform:uppercase;
 }
 
 .lbModal__postTitle{
@@ -53,6 +60,7 @@ $lightGrey: #ededed;
 
 .lbModal__postImage{
 	background: $lightGrey;
+	max-width:100%;
 }
 
 .lbModal__postExcerpt{

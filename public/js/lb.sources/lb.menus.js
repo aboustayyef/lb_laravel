@@ -34,6 +34,7 @@ lbApp.clearMenus = function(){
   $('#sidebar').removeClass('open');
   $('#siteWrapper').removeClass('open');
   $('#topBar').removeClass('open');
+  $('#lbModalWrapper').removeClass('active');
   $('.action.active').each(function(){
     $(this).removeClass('active');
   });

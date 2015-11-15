@@ -38,8 +38,10 @@
       @endif
 
     <!-- Post Body -->
-
-    <div class="post_body">
+    <script>
+      var data{{$post->post_id}} = {{$post->toJson()}};
+    </script>
+    <div class="post_body" onclick="lbApp.showPost(data{{$post->post_id}})">
       <div class="metaInfo">
         <div class="postedSince">
           {{lbFunctions::time_elapsed_string($post->post_timestamp)}}
