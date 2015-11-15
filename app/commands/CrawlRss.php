@@ -3,6 +3,8 @@
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
+use Aboustayyef\Summarizer;
+
 // use \lbFunctions;
 
 class CrawlRss extends Command {
@@ -202,14 +204,10 @@ class CrawlRss extends Command {
             $blog_post_image = false;
         }
 
-        // alternative image crawl if nothing found (disabled because of errors)
-        // if (!$blog_post_image) {
-        //   echo "\nTrying alternative image seeking method using mustapha class\n";
-        //   $imageSeeker = new \Aboustayyef\Previewer($blog_post_link);
-        //   $blog_post_image = $imageSeeker->getImage();
-        // }
         // Get Excerpt
-        $blog_post_excerpt = lbNormalise::cleanUpText($blog_post_content, 120);
+        $summarizer = new Summarizer;
+        $summarizer->text = $blog_post_content;
+        $blog_post_excerpt = $summarizer->summarize(2);
 
         // Get Image Dimensions (if exists)
         if ($blog_post_image) {

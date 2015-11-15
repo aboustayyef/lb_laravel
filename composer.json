@@ -16,7 +16,8 @@
     "dg/twitter-php": "dev-master",
     "guzzle/plugin-history": "3.7.*@dev",
     "aboustayyef/previewer": "dev-master",
-		"aboustayyef/image-extractor": "dev-master"
+	"aboustayyef/image-extractor": "dev-master",
+    "aboustayyef/summarizer": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
