@@ -3,6 +3,7 @@
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
+use Aboustayyef\Summarizer;
 
 use LebaneseBlogs\Crawling\Articles\Article;
 
@@ -155,7 +156,9 @@ class CrawlArticles extends Command {
         $article_image = $article_object->getImage();
 
         // Get Excerpt
-        $article_excerpt = $article_object->getExcerpt();
+        $summarizer = new Summarizer;
+        $summarizer->text = $article_content;
+        $article_excerpt = $summarizer->summarize(2);
 
         // Get Image Dimensions (if exists)
         if ($article_image) {
