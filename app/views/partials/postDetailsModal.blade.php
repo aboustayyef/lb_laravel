@@ -6,7 +6,7 @@
 			Title of the Post
 		</h2>
 		<div class="lbModal__postImage">
-			<a class="exitUrl" href=""><img src=""></a>
+			<a class="exitUrl" href="" target="_blank"><img src=""></a>
 		</div>
 		<div class="lbModal__columnsWrapper">
 			<div class="lbModal__leftColumn">
