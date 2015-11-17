@@ -3,11 +3,24 @@
 		<div id="lbModal__closeButton"></div>
 		<h3 class="lbModal__blogTitle">Blog Name</h3>
 		<h2 class="lbModal__postTitle">
-			15+ Restaurants &amp; Bars Are Opening Soon In The Village Dbayyeh
+			Title of the Post
 		</h2>
 		<div class="lbModal__postImage">
-			<img data-src="http://www.almodon.com/File/GetImageCustom/1c552500-9d5b-47ef-a9f8-acebb8fc35bd/769/438" src="">
+			<a class="exitUrl" href=""><img src=""></a>
 		</div>
-		<p class="lbModal__postExcerpt"></p>
+		<div class="lbModal__columnsWrapper">
+			<div class="lbModal__leftColumn">
+				<h4>Preview</h4>
+				<p class="lbModal__postExcerpt">
+					Excerpt goes here
+				</p>			
+			</div>
+			<div class="lbModal__rightColumn">
+				<h5>Virality: <span class="virality">01</span>/50</h5>
+				<a class="exitUrl lbModal__shareButton" href="" target="_blank">Read Now</a>
+				<a href="" class="shareOnFacebook lbModal__shareButton" target="_blank">Share On Facebook</a>
+				<a href="" class="shareOnTwitter lbModal__shareButton" target="_blank">Share On Twitter</a>
+			</div>		
+		</div>
 	</div>
 </div>

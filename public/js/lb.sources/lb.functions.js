@@ -60,7 +60,7 @@ lbApp.fixViewportHeight = function(){
   }
 
   // fix modal height. it's always 20 pixels smaller than height
-    $('#lbModal').height(($winHeight - 160));
+    $('#lbModal').height(($winHeight - 100));
 };
 
 lbApp.flowPosts = function(){

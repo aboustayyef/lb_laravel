@@ -988,12 +988,26 @@ div.newsitem {
 #lbModal {
   position: relative;
   min-height: 400px;
-  padding: 100px 20px 0;
+  padding: 50px 20px 0;
   background: white;
   width: 720px;
   z-index: 21;
   margin: 10px auto;
-  overflow: scroll; }
+  overflow: scroll;
+  border-bottom: 20px solid white; }
+
+#lbModal h4 {
+  font-size: 1.5em;
+  width: 100px;
+  padding: 5px;
+  color: white; }
+
+#lbModal h5 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  margin-top: 15px; }
+  #lbModal h5:nth-child(1) {
+    margin-top: 0; }
 
 #lbModal__closeButton {
   width: 50px;
@@ -1021,14 +1035,38 @@ div.newsitem {
   margin-bottom: 1em; }
 
 .lbModal__postImage {
+  border: 1px solid silver;
   background: #ededed;
-  max-width: 100%; }
+  max-width: 100%;
+  max-height: 680px;
+  overflow: hidden; }
 
 .lbModal__postExcerpt {
-  font-size: 1.6em;
+  font-size: 1.3em;
   line-height: 1.6;
-  margin-top: 30px;
+  margin-top: 10px;
   font-weight: normal;
   color: #636363;
-  width: 500px;
   padding-bottom: 20px; }
+
+.lbModal__columnsWrapper {
+  padding: 30px 0;
+  overflow: auto; }
+
+.lbModal__leftColumn {
+  width: 450px;
+  float: left; }
+
+.lbModal__rightColumn {
+  width: calc(100% - 490px);
+  float: right; }
+
+.lbModal__shareButton {
+  width: 140px;
+  margin: 5px 0;
+  display: block;
+  border: 1px solid silver;
+  padding: 5px; }
+  .lbModal__shareButton:hover {
+    background: silver;
+    color: white; }

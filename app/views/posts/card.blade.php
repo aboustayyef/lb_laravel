@@ -1,4 +1,4 @@
-<div class="post_wrapper post-{{Session::get('postsCounter')}} card-{{Session::get('cardsCounter')}}"> <!-- /For grouping items together -->
+<div class="post_wrapper postID-{{$post->post_id}} post-{{Session::get('postsCounter')}} card-{{Session::get('cardsCounter')}}"> <!-- /For grouping items together -->
 
   <div class="card">
 
@@ -40,8 +40,9 @@
     <!-- Post Body -->
     <script>
       var data{{$post->post_id}} = {{$post->toJson()}};
+      var exiturl{{$post->post_id}} = "{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}";
     </script>
-    <div class="post_body" onclick="lbApp.showPost(data{{$post->post_id}})">
+    <div class="post_body" onclick="lbApp.showPost(data{{$post->post_id}}, exiturl{{$post->post_id}})">
       <div class="metaInfo">
         <div class="postedSince">
           {{lbFunctions::time_elapsed_string($post->post_timestamp)}}
