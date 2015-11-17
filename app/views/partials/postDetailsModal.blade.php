@@ -16,7 +16,7 @@
 				</p>			
 			</div>
 			<div class="lbModal__rightColumn">
-				<h5>Virality: <span class="virality">01</span>/50</h5>
+				<h5>Virality: <span class="lbModal__virality">01</span>/50</h5>
 				<a class="exitUrl lbModal__shareButton" href="" target="_blank">Read Now</a>
 				<a href="" class="shareOnFacebook lbModal__shareButton" target="_blank">Share On Facebook</a>
 				<a href="" class="shareOnTwitter lbModal__shareButton" target="_blank">Share On Twitter</a>

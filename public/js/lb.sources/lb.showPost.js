@@ -63,6 +63,9 @@ lbApp.showPost = function(details, exiturl){
 		$('.shareOnFacebook').attr('href', $facebookExitLink);
 		$('.shareOnTwitter').attr('href', $twitterExitLink);
 		
+		// update Virality
+		$('.lbModal__virality').text(details.post_virality);
+
 		// Activate the modal
 		
 		$('#lbModalWrapper').addClass('active');
