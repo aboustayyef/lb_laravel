@@ -1,5 +1,10 @@
 lbApp.showPost = function(details, exiturl){
 
+		console.log(event);
+
+		// Ignore middle Button Press
+		if (event.button == 1) {return;};
+
 		var minimumHeight = 780;
 
 		// First check that window is not too small
