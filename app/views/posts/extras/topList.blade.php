@@ -27,9 +27,18 @@
     }
   }
 
+?>
+<div class="post_wrapper toplist">
+  @if(!User::signedIn())
+    <?php echo View::make('posts.extras.welcomeMessage') ?>
+  @else
+    <?php echo View::make('posts.extras.user') ?>
+  @endif
+
+<?php 
+
   if ($posts->count() < 5 ) {
     ?>
-    <div class="post_wrapper">
       <div class="card">
         <div class="post_body">
           <h2>Can't produce top list because there are no recent posts</h2>
@@ -41,14 +50,8 @@
       return null;
     // die('You need to update database with recent posts');
   }
-?>
-<div class="post_wrapper toplist">
-  @if(!User::signedIn())
-    <?php echo View::make('posts.extras.welcomeMessage') ?>
-  @else
-    <?php echo View::make('posts.extras.user') ?>
-  @endif
 
+?>
 
 
   <div class="card">
