@@ -2,7 +2,7 @@
 
   <div id="userTools" class="card no_min <?php if (session::get('pageKind') == 'allPosts' || session::get('pageKind') == 'channel' ) echo 'push_down' ?>">
     <div class="userHeader">
-      <img src="{{$ourUser->profileImage()}}" alt="">
+      <img data-original="{{$ourUser->profileImage()}}" style="background: #F3E7E8" src="{{ asset('/img/transparent.png') }}" alt="profile picture" width="50" height="50">
       <h2>Hello {{$ourUser->firstName()}}!</h2>
       <div class="signout">
         <i class="fa fa-sign-out"></i><a href="{{URL::to('/logout')}}">Sign Out</a>
