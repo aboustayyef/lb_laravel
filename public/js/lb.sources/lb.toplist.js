@@ -23,7 +23,7 @@ lbApp.updateTopFive = function(data){
   $('.posts').masonry('prepended', $('.toplist') );
 
   lbApp.loadLazyImages();
-}
+};
 
 lbApp.loadNewTopFive = function(hours){
 
@@ -36,9 +36,9 @@ lbApp.loadNewTopFive = function(hours){
 			lbApp.updateTopFive(data);
 			//lbApp.showCurrentTopFive();
 		},
-	})
-}
+	});
+};
 
 $(document).on('change', '#topListScoper', function(){
 	lbApp.loadNewTopFive($(this).val());
-})
+});

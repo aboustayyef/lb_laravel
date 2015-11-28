@@ -7,7 +7,7 @@ $(document).on('click', '.followBlogger', function(){
   var $this = $(this); // to persist variable through closure;
 
   // if user is not logged in, forward to login page
-  if (lbApp.signedIn == false) {
+  if (lbApp.signedIn === false) {
     var currentPage = window.location.pathname;
     window.location = lbApp.rootPath + '/login?follow=' + $this.data('blogid') + '&camefrom=' + currentPage;
   // if blog is marked as followed, unfollow it.
@@ -34,12 +34,12 @@ $(document).on('click', '.followBlogger', function(){
             $ivalue = parseInt($('.followerCount').text());
             $nvalue = $ivalue - 1 ;
             $('.followerCount').text($nvalue);
-          };
+          }
 
           // refresh page if we're already in the following page
           if (lbApp.pageKind == 'following') {
             location.reload();
-          };
+          }
         }
       });
     }else{
@@ -64,15 +64,15 @@ $(document).on('click', '.followBlogger', function(){
             $ivalue = parseInt($('.followerCount').text());
             $nvalue = $ivalue + 1;
             $('.followerCount').text($nvalue);
-          };
+          }
 
           // refresh page if we're already in the following page
           if (lbApp.pageKind == 'following') {
             location.reload();
-          };
+          }
         }
       });
-    };
+    }
   }
 });
 

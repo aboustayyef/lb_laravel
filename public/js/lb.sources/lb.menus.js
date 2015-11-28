@@ -25,7 +25,7 @@ $(document).on('click', ".action", function(event){
 	} else {
 		$(this).addClass('active');
 		$(this).html('<i class ="fa fa-times"> </i> Close');
-	};
+	}
 });
 
 
@@ -38,11 +38,11 @@ lbApp.clearMenus = function(){
   $('.action.active').each(function(){
     $(this).removeClass('active');
   });
-}
+};
 
 
 $(document).keyup(function(e) {
   if (e.keyCode == 27) {
-  lbApp.clearMenus()
-  };
+  lbApp.clearMenus();
+  }
 });

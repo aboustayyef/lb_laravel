@@ -9,7 +9,7 @@ $('document').ready(function(){
 
     // if user is not logged in, forward to login page
 
-    if (lbApp.signedIn == false){
+    if (lbApp.signedIn === false){
 
       var currentPage = window.location.pathname;
 
@@ -39,7 +39,7 @@ $('document').ready(function(){
 
               location.reload();
 
-            };
+            }
           }
 
         });

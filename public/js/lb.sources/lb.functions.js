@@ -33,7 +33,7 @@ lbApp.resizeViewport = function(){
   $('#content').css('padding-top', ($('#channelPicker').outerHeight() + $('#topBar').outerHeight() ));
   if ($(window).width() > 430) {
     var columns = Math.floor((($(window).width() ))/320);
-    if (columns > 5) { columns = 5};
+    if (columns > 5) { columns = 5 ;}
     var $width = columns*320;
     $('div.posts').css('width', $width);
     $('div.inner').css('width', $width);
@@ -100,6 +100,8 @@ lbApp.hideLoadingCurtain = function(){
   // This function hides the "loading" window
   // after everything has loaded
   $('#loading').hide();
+  ga('send', 'event', 'LB Custom Analytics', 'Page Completely Loaded' , '');
+  console.log('page Loaded');
 };
 
 lbApp.showPostsLoadingIndicator = function(){
@@ -149,5 +151,5 @@ lbApp.addMorePosts = function(){
       lbApp.loadLazyImages();
     }
   });
-}
+};
 

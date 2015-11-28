@@ -3,14 +3,14 @@ lbApp.showPost = function(details, exiturl){
 		console.log(event);
 
 		// Ignore middle Button Press
-		if (event.button == 1) {return;};
+		if (event.button == 1) {return;}
 
 		var minimumHeight = 780;
 
 		// First check that window is not too small
 		if ($(window).height() < minimumHeight ) {
 			return;
-		};
+		}
 
 		event.preventDefault(); // links degrade gracefully;
 		console.log(details);
@@ -37,7 +37,7 @@ lbApp.showPost = function(details, exiturl){
 		$modalTitle.text(details.post_title);
 
 		// Place Image (if Any)
-		
+		var $highlightColor;
 		if (details.post_image) {
 			// adjust image dimensions
 			$modalImage.show();
@@ -47,10 +47,10 @@ lbApp.showPost = function(details, exiturl){
 			$modalImage.attr('width', $width);
 			$modalImage.attr('height', $height);
 			$modalImage.attr('href',details.post_image); // then replace it 
-			var $highlightColor = 'hsl(' + details.post_image_hue + ', 60% , 40%)';
+			$highlightColor = 'hsl(' + details.post_image_hue + ', 60% , 40%)';
 		} else {
 			$modalImage.hide();
-			var $highlightColor = '#555';
+			$highlightColor = '#555';
 		}
 
 		// Style the word "PREVIEW":

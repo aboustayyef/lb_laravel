@@ -14,7 +14,7 @@ $( window ).on('resize', function(){
       lbApp.resizeViewport();
       lbApp.fixViewportHeight();
       lbApp.checkIfMorePostsNeedToBeAdded();
-  };
+  }
 });
 
 $('#momentumScrollingViewport').on('scroll', function(){
@@ -29,6 +29,6 @@ lbApp.checkIfMorePostsNeedToBeAdded = function(){
     if ($distanceToBottom < 1500) { // add more posts whenever there's a thousand pixels to bottom
         lbApp.showPostsLoadingIndicator();
         lbApp.addMorePosts();
-    };
-  };
-}
+    }
+  }
+};
