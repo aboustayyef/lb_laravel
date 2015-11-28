@@ -1,1 +1,0 @@
-$(document).ready(function(){lb.showPosts=function(o){console.log(o)}});

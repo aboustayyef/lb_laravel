@@ -1,7 +1,7 @@
 div.posts.cards{
   .rtl{
-    font-family: 'Droid Arabic Naskh', serif;
-    font-weight: bold;
+    font-family: 'Tahoma', serif;
+    font-weight: bolder;
     direction:rtl;
     float:right;
     margin-right:0;
@@ -91,13 +91,14 @@ div.posts.cards{
     }
     div.post_body{
       h2{
-        font-size:16px;
+        font-size:17px;
+        font-weight:bolder;
         padding:10px;
         line-height:24px;
         color:#444;
         &.rtl{
           margin-top: 10px;
-          font-size:16px;
+          font-size:17px;
         }
         a{
           color: #444;
