@@ -24,6 +24,7 @@ class YoustinkController extends \BaseController {
     ->where('post_content', 'like', '%youstink%')
     ->orWhere('post_content', 'like', '%you stink%')
     ->orWhere('post_content', 'like', '%طلعت ريحتكم%')
+    ->orWhere('post_content', 'like', '%garbage%')
     ->where('post_title', 'like', '%youstink%')
     ->orWhere('post_title', 'like', '%you stink%')
     ->orWhere('post_title', 'like', '%طلعت ريحتكم%')
