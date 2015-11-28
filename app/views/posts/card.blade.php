@@ -8,11 +8,13 @@
       <!-- Thumbnail -->
       <a href="{{url('/blogger/'.$post->blog_id)}}">
         <img
-          class="thumbnail"
+          style="background: #F3E7E8"
+          class="lazy thumbnail"
+          src="{{ asset('/img/transparent.png') }}"
           @if (app('env') == 'staging')
-            src="http://static1.lebaneseblogs.com/{{$post->blog_id.'.jpg'}}"
+            data-original="http://static1.lebaneseblogs.com/{{$post->blog_id.'.jpg'}}"
           @else
-            src="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}"
+            data-original="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}"
           @endif
           alt="{{$blog->blog_name }} thumbnail"
           width ="50px" height="50px">

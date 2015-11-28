@@ -5,11 +5,8 @@ $width = 278;
 $r = $w/278;
 $height = $h / $r;
 
-$currentPost = new Post;
-$currentPost = $currentPost->find($post->post_id);
-
-if ($currentPost->cacheImage()) {
-  $image = $currentPost->cacheImage();
+if ($post->cacheImage()) {
+  $image = $post->cacheImage();
 } else {
   $image = $post->post_image;
 }
