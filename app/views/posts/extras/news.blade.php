@@ -37,7 +37,17 @@ $articles = Cache::get($source);
 
             @if($img != 'NO_IMAGE')
             <div class="newsItemImage">
-              <a href="{{$article['url']}}" target="blank" onclick="ga('send', 'event', 'Exit Link', 'Naharnet News')"><img src="{{$img}}" alt=""></a>
+              <a href="{{$article['url']}}" target="blank" onclick="ga('send', 'event', 'Exit Link', 'Naharnet News')">
+                <img 
+                    class="lazy"
+                    width="70"
+                    height="70"
+                    data-original="http://lebaneseblogs.com/{{$img}}"
+                    style="background: #F3E7E8"
+                    src="{{ asset('/img/transparent.png') }}"
+                    alt="{{$article['headline']}}"
+                >
+              </a>
             </div>
             @endif
 
