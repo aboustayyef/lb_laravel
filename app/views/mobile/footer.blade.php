@@ -2,8 +2,8 @@
   <footer>
     {{-- later --}}
   </footer>
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script type="text/javascript" src="/js/mobile-min.js"></script>
+  <script async type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script async type="text/javascript" src="/js/mobile-min.js"></script>
 
 
 <script>
