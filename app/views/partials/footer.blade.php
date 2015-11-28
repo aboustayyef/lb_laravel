@@ -14,7 +14,7 @@
         </script>
       @endif
 
-      <script async src ="{{asset('js/lebaneseblogs.min.js?v=22')}}"></script>
+      <script async src ="{{asset('js/lebaneseblogs.min.js?v=23')}}"></script>
 
       <!-- Start of Google Analytics Code -->
             <script>
