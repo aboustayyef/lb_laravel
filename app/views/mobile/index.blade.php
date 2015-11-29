@@ -40,8 +40,9 @@
 {{-- Takeover: Loading Curtain --}}
 
 <div id="curtain">
-  <div class="deadcenter">
-    <img src="{{asset('img/lb-loading.png')}}" width="60px" height="auto"><br>Loading...
+  <div id="hangInThere">Loading..</div>
+  <div id="backgroundPattern">
+    
   </div>
 </div>
 

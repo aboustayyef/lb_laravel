@@ -2,6 +2,8 @@
 $h = $post->post_image_height;
 $w = $post->post_image_width;
 
+$r = $w/$h;
+
 if ($post->cacheImage()) {
   $image = $post->cacheImage();
 } else {
@@ -17,8 +19,14 @@ if ($hue == 0) {
 
 ?>
 <img
-  src="{{ $image }}"
+  data-ratio = "{{$r}}"
+  class="lazy adjustHeight"
+  @if (app('env') == 'staging')
+	src="{{ asset('http://static.lebaneseblogs.com/img/transparent.png') }}"
+  @else
+	src="{{ asset('/img/transparent.png') }}"
+  @endif
+  data-original="{{ $image }}" 
   width="100%"
-  height="auto"
   style="background-color:hsl({{ $hue }},{{ $saturation }}, 75%)"
 >

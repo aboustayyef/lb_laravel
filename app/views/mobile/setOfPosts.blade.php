@@ -5,7 +5,20 @@
 @if(!$isBlogger)
   <a href="/mobile/blogger/{{$post->blog->blog_id}}">
     <div class="header">
-      <img src="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}" alt="" class="blogthumb">
+      <img 
+      @if (app('env') == 'staging')
+          src="{{ asset('http://static.lebaneseblogs.com/img/transparent.png') }}"
+          data-original="http://static1.lebaneseblogs.com/{{$post->blog_id.'.jpg'}}"
+      @else
+          src="{{ asset('/img/transparent.png') }}"
+          data-original="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}"
+      @endif
+      style="background: #F3E7E8"
+      width="29"
+      height="29"
+      alt="post thumbnail" 
+      class="blogthumb lazy"
+      >
       <p class="blogtitle">{{$post->blog->blog_name}}</p>
     </div>
   </a>

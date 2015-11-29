@@ -4,7 +4,7 @@
 <head>
     <!-- mobile critical css -->
     <style type="text/css">
-        #curtain{background:white;position:fixed;left:0;top:0;height:100%;width:100%;z-index:100;padding:10px}#curtain .deadcenter{position:absolute;top:50%;width:100%;margin-top:-40px;text-align:center}
+        #curtain{background:#d1d1d1;position:fixed;left:0;top:50px;height:calc(100% - 50px);width:100%;z-index:100}#curtain #hangInThere{background:yellow;display:inline-block;padding:3px;margin-left:15px;margin-top:15px;font-weight:bold}#curtain #backgroundPattern{min-height:100%;background-image:url(../../img/card_placeholder_mobile.png);margin-left:10px;margin-top:10px}
     </style>
 
     <meta charset="utf-8">
