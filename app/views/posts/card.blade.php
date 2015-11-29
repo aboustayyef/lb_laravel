@@ -11,7 +11,7 @@
           style="background: #F3E7E8"
           class="lazy thumbnail"
           @if (app('env') == 'staging')
-            src="{{ asset('http://static1.lebaneseblogs.com/img/transparent.png') }}"
+            src="{{ asset('http://static.lebaneseblogs.com/img/transparent.png') }}"
             data-original="http://static1.lebaneseblogs.com/{{$post->blog_id.'.jpg'}}"
           @else
             src="{{ asset('/img/transparent.png') }}"
