@@ -2,7 +2,7 @@
   <footer>
     {{-- later --}}
   </footer>
-  <script async type="text/javascript" src="/js/mobile-min.js?v=2"></script>
+  <script type="text/javascript" src="/js/mobile-min.js?v=2"></script>
   @include('mobile.footer_scripts')
       <!-- Start of Google Analytics Code -->
             <script>
