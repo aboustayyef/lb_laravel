@@ -71,7 +71,12 @@ body{padding:0;margin:0;font-size:16px;backface-visibility:hidden;-webkit-overfl
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('/img/apple-touch-icons/180x180.png')}}">
 
     <!-- Style Sheet -->
-    <link rel="stylesheet" href="{{asset('/css/lebaneseblogs.css?v=3.1')}}">
+    @if (app('env') == 'staging')
+      <link rel="stylesheet" href="http://static.lebaneseblogs.com/css/lebaneseblogs.css?v=3.1">
+    @else
+      <link rel="stylesheet" href="{{asset('/css/lebaneseblogs.css?v=3.1')}}">
+    @endif
+    
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('/img/favicon.ico')}}" >

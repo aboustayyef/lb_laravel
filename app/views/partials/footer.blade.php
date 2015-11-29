@@ -14,7 +14,12 @@
         </script>
       @endif
 
-      <script async src ="{{asset('js/lebaneseblogs.min.js?v=23')}}"></script>
+      
+      @if (app('env') == 'staging')
+        <script async src ="http://static.lebaneseblogs.com/js/lebaneseblogs.min.js?v=23"></script>
+      @else
+        <script async src ="{{asset('js/lebaneseblogs.min.js?v=23')}}"></script>
+      @endif
 
       <!-- Start of Google Analytics Code -->
             <script>

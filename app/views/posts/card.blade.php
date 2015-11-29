@@ -10,10 +10,11 @@
         <img
           style="background: #F3E7E8"
           class="lazy thumbnail"
-          src="{{ asset('/img/transparent.png') }}"
           @if (app('env') == 'staging')
+            src="{{ asset('http://static1.lebaneseblogs.com/img/transparent.png') }}"
             data-original="http://static1.lebaneseblogs.com/{{$post->blog_id.'.jpg'}}"
           @else
+            src="{{ asset('/img/transparent.png') }}"
             data-original="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}"
           @endif
           alt="{{$blog->blog_name }} thumbnail"
