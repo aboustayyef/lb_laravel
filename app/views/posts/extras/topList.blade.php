@@ -29,6 +29,10 @@
 
 ?>
 <div class="post_wrapper toplist">
+  <?php 
+    echo View::make('posts.extras.stats2015');
+  ?>
+  
   @if(!User::signedIn())
     <?php echo View::make('posts.extras.welcomeMessage') ?>
   @else
