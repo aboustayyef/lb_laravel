@@ -48,7 +48,7 @@ if ($ourUser) {
     @if (User::signedIn())
       <?php $blogOwner = $blog->blog_author_twitter_username ?>
       <!-- Signed in Twitter Username: {{$ourUser->twitter_username}}    , Blog owned by: {{$blogOwner}} -->
-      @if ($ourUser->twitter_username == 'beirutspring' ||  $ourUser->twitter_username == $blogOwner)
+      @if ($ourUser->twitter_username == 'beirutspring' ||  strtolower($ourUser->twitter_username) == strtolower($blogOwner))
         <div class="editBlog">
           {{link_to('/edit/blog/'.$blog->blog_id, 'edit this blog')}}
         </div>

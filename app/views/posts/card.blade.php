@@ -94,7 +94,7 @@
       <?php $blogOwner = $blog->blog_author_twitter_username ?>
     </div>
     @if (User::signedIn())
-      @if ($ourUser->twitter_username == 'beirutspring' ||  $ourUser->twitter_username == $blogOwner)
+      @if ($ourUser->twitter_username == 'beirutspring' ||  strtolower($ourUser->twitter_username) == strtolower($blogOwner))
         <div class="editpost">
           {{link_to('/edit/post/'.$post->post_id, 'edit this post', ['class'  =>  'button'])}}
         </div>
