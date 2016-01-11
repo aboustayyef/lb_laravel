@@ -17,7 +17,7 @@ class EditController extends \BaseController {
         $blog = Blog::find($which);
         $owner = $blog->blog_author_twitter_username;
         $user = User::find(User::signedIn())->twitter_username;
-        if ($user == 'beirutspring' || $user == $owner) {
+        if ($user == 'beirutspring' || strtolower($user) == strtolower($owner)) {
           return View::make('static.edit.blog', ['blog'=> $blog]);
         } else {
           // user is not authorized
@@ -33,7 +33,7 @@ class EditController extends \BaseController {
         $post = Post::with('blog')->find($which);
         $owner = $post->blog->blog_author_twitter_username;
         $user = User::find(User::signedIn())->twitter_username;
-        if ($user == 'beirutspring' || $user == $owner) {
+        if ($user == 'beirutspring' || strtolower($user) == strtolower($owner)) {
           return View::make('static.edit.post', ['post' => $post]);
         } else {
           // user is not authorized
