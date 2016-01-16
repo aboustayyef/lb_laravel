@@ -1,53 +1,36 @@
 @extends('static.template')
 @section('content')
 
-<?php
-  if($errors->count() > 0):
-    echo '<ul class="message warning">';
-    foreach ($errors->all() as $key => $message) {
-      echo '<li>' . $message . '</li>';
-    };
-    echo '</ul>';
-  elseif (Session::has('message')):
-    echo '<div class="message allok"><p>' . Session::get('message'). '</p>';
-    echo '<a href="' . URL::to('/posts/all') . '">&larr; back to lebanese blogs</a></div>';
-  endif;
-
-?>
-
-<h2>Give Us Feedback.</h2>
-<p>Don't hold anything back. We want to get better</p>
-
-<?php
-
-  // set default values from previously entered values
-
-  $oldValues = Input::old();
-
-  if (empty($oldValues['email'])) {
-    $defaultEmail = '';
-  }else{
-    $defaultEmail = $oldValues['email'];
+<h2>Submit Feedback To Lebanese Blogs</h2>
+<style>
+  p{
+    line-height: 1.5;
+    font-size: 18px;
   }
-
-  if (empty($oldValues['feedback'])) {
-    $defaultFeedback = '';
-  }else{
-    $defaultFeedback = $oldValues['feedback'];
+  a.button{
+    background:#b12530;
+    color:white;
+    padding:8px;
+    border-radius:3px;
+    display:inline-block;
+    border:1px solid #b12530;
   }
+  a.button:hover{
+    color:#b12530;;
+    background:white;
+  }
+  p.understated{
+    font-size:16px;
+    color:#999;
+  }
+</style>
+<p>The best way to submit feedback to Lebanese Blogs is to send us a message on our Facebook page</p>
+<p>
+  <a href="https://www.facebook.com/lebaneseblogs/" class="button">
+    Send Us a Message Now
+  </a>
+</p>
 
-?>
-
-{{ Form::open(array('url' => '/about/feedback')) }}
-
-{{ Form::label('email', 'Email Address: (If you want a response)')}}
-{{ Form::text('email',$defaultEmail, ['placeholder' => 'Optional']) }}
-<br>
-{{ Form::label('feedback', 'Your Feedback')}}
-{{ Form::textarea('feedback', $defaultFeedback, ['placeholder' => 'Complaints, feature requests, compliments.. All fit here']) }}
-<br>
-{{ Form::submit('Submit it') }}
-
-{{ Form::close() }}
+<p class="understated">It typically takes us less than 24 hours to respond. Be frank, don't hold anything back. We want to improve</p>
 
 @stop
