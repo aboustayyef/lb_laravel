@@ -174,7 +174,7 @@ class CrawlRss extends Command {
         $blog_post_content = lbNormalise::unicode_decode($blog_post_content);
 
         // Crawl for suitable image
-        
+
         // old way
         //$blog_post_image = crawlHelpers::getImageFromContent($blog_post_content, $blog_post_link);
 
@@ -182,6 +182,7 @@ class CrawlRss extends Command {
         try {
             $image = new Aboustayyef\ImageExtractor($blog_post_link, $blog_post_content, true);
             $result = false;
+            $disqualified = [];
             while (!$result) {
               $blog_post_image = $image->get(300);
 
@@ -194,11 +195,18 @@ class CrawlRss extends Command {
               // if image already exists, disqualify it and try again
               if (Post::where(['blog_id'=> $domain, 'post_image'=> $blog_post_image])->get()->count() > 0) {
                   $this->info("Image $blog_post_image used before. Trying again.");
+                  if (in_array($blog_post_image, $disqualified)){
+                    // image has already been disqualified, abort;
+                    $result = true;
+                    $blog_post_image = null;
+                    continue;
+                  }
                   $image->disqualify($blog_post_image);
+                  $disqualified[] = $blog_post_image;
               } else {
                 $result = true;
               }
-            }        
+            }
         } catch (\Exception $e) {
             $this->error('could not extract image');
             $blog_post_image = false;
