@@ -44,9 +44,15 @@
   ?>
 @endif
 
+@if (in_array($counter, [6]))
+  @include('posts.extras.beirutmadinati1')
+  <?php
+      Session::set('cardsCounter', Session::get('cardsCounter') + 1);
+  ?>
+@endif
 
-@if (in_array($counter, [6,14,29,44, 59]))
-  @include('posts.extras.adsense1')
+@if (in_array($counter, [14]))
+  @include('posts.extras.beirutmadinati2')
   <?php
       Session::set('cardsCounter', Session::get('cardsCounter') + 1);
   ?>
