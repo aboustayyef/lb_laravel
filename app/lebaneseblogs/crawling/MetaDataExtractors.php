@@ -8,6 +8,7 @@ use Symfony\Component\DomCrawler\Crawler ;
   class MetaDataExtractor
   {
     private $html, $crawler;
+    public $success = false;
 
     function __construct($url)
     {
@@ -15,6 +16,7 @@ use Symfony\Component\DomCrawler\Crawler ;
       if (!$this->html) {
         return false;
       }
+      $this->success = true;
       $this->crawler = new Crawler($this->html);
     }
 
@@ -29,7 +31,11 @@ use Symfony\Component\DomCrawler\Crawler ;
 
     function feed(){
       $crawler = new Crawler($this->html);
-      $feed = $this->crawler->filter('link[type="application/rss+xml"]')->first()->attr('href');
+      try {
+        $feed = $this->crawler->filter('link[type="application/rss+xml"]')->first()->attr('href');
+      } catch(\InvalidArgumentException $e){
+          return false;
+      }
       return $feed;
     }
 

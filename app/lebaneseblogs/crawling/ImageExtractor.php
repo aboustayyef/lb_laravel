@@ -22,9 +22,12 @@ use Symfony\Component\DomCrawler\Crawler ;
     }
 
     function image(){
-      $crawler = new Crawler($this->html);
-      $image = $crawler->filter('img.ProfileAvatar-image')->first()->attr('src');
-      return $image;
+        if($this->html){
+            $crawler = new Crawler($this->html);
+            $image = $crawler->filter('img.ProfileAvatar-image')->first()->attr('src');
+            return $image;
+        }
+        return null;
     }
 
   }

@@ -1,13 +1,12 @@
 <?php
-  $url = Input::get('url');
-  $twitter = Input::get('twitter');
+$url = Input::get('url');
+$twitter = Input::get('twitter');
 
-  $avatar = (new LebaneseBlogs\Crawling\TwitterImageExtractor($twitter))->image();
-  $metadata = new LebaneseBlogs\Crawling\MetaDataExtractor($url);
-  $id = (new LebaneseBlogs\Utilities\Strings($url))->IdFromUrl();
-  $title = $metadata->title();
-  $feed = $metadata->feed();
+$title = $metadata->title();
+$feed = $metadata->feed();
 
+$avatar = (new LebaneseBlogs\Crawling\TwitterImageExtractor($twitter))->image();
+$id = (new LebaneseBlogs\Utilities\Strings($url))->IdFromUrl();
   // Initiate Simple Pie instance for feed
   $maxitems = 0; // no limit on extent of crawl
   $sp_feed = new SimplePie(); // We'll process this feed with all of the default options.

@@ -11,36 +11,32 @@ use Symfony\Component\DomCrawler\Crawler ;
 |
 */
 
-// Default route from root
+// The default route. Check url 'channel' parameter for backward compatibility 
+// Default entrypoint is /posts/all
+
 Route::get('/', function(){
   if (Input::has('channel')) {
-    // handles requests from old permalink structures like lebaneseblogs.com/?channel=fashion
     return Redirect::to('/posts/'.Input::get('channel'));
   }
   return Redirect::to('posts/all');
-
 });
 
-Route::get('/youstink/{howmany?}', array(
-
+// Get a list of #youstink related posts
+// An api hack for youstink.news
+ 
+Route::get('/youstink2/{howmany?}', array(
   'as'  =>  'youstink',
   'uses'  =>  'youstinkController@index'
-
 ));
+
+// Get a list of all the sources.
+// Useful for importing to another database. Used for LBEngine
 
 Route::get('/sources/{password}', function($password){
   if (Hash::check($password, '$2y$10$6PHNiZP68bq2KPF9QGzVN.2VrWbWYNEowZPgcIaKpisMVfmYjlxbm')) {
     return Blog::all();
   }
-
 });
-
-Route::get('/youstink2/{howmany?}', array(
-
-  'as'  =>  'youstink2',
-  'uses'  =>  'youstinkController@index2'
-
-));
 
 Route::group(array('prefix' => 'admin', 'before' => 'admin.auth'), function()
 {
