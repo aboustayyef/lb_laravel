@@ -4,6 +4,7 @@
 /app/storage/cache
 /bootstrap/compiled.php
 /vendor
+/node_modules
 composer.phar
 composer.lock
 .env.*.php
@@ -13,3 +14,4 @@ Thumbs.db
 php_errors.log
 public/config.codekit
 lebaneseBlogsLog.log
+*.swp
