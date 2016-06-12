@@ -1,0 +1,32 @@
+{
+  "name": "lebanese-blogs",
+  "version": "4.0.0",
+  "description": "The best place to discover, read and organize Lebanon's top blogs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aboustayyef/lb_laravel.git"
+  },
+  "keywords": [
+    "lebanon",
+    "blogs",
+    "blogging"
+  ],
+  "author": "Mustapha Hamoui",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aboustayyef/lb_laravel/issues"
+  },
+  "homepage": "https://github.com/aboustayyef/lb_laravel#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-ruby-sass": "^2.0.6",
+    "gulp-sass": "^2.3.1",
+    "gulp-uglify": "^1.5.3"
+  }
+}
