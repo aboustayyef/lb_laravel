@@ -9,15 +9,17 @@ This is the description
 @stop
 
 @section('content')
-<ul>
 	@foreach($posts as $post)
-	<li>
-		<div>
-			<h2>{{$post->post_title}}</h2>	
-			<p>{{$post->post_excerpt}}</p>
-			<hr>
-		</div>
-	</li>
+		<article>
+			<header>
+				<h2>{{$post->post_title}}</h2>			
+			</header>
+			<section>
+				<p>{{$post->post_excerpt}}</p>
+			</section>
+			<footer>
+				<hr>
+			</footer>
+		</article>
 	@endforeach
-</ul>
 @stop

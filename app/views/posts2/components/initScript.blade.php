@@ -4,7 +4,7 @@
   
   if ( typeof lbApp != 'object'){
     lbApp = {}
-  },
+  };
 
   // Set up app Variables that require php and blade logic
   lbApp.state = {

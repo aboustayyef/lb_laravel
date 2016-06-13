@@ -13,10 +13,10 @@
 
     <!-- Style Sheet -->
     @if (app('env') == 'staging')
-      <link rel="stylesheet" href="http://static.lebaneseblogs.com/css/lebaneseblogs.css?v=3.5">
+      <link rel="stylesheet" href="http://static.lebaneseblogs.com/css/lebaneseblogs2.css?v=3.5">
     @else
       <link rel="stylesheet" href="{{asset('/css/lebaneseblogs2.css?v=4.0')}}">
-    @endif  
+    @endif
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('/img/favicon.ico')}}" >
@@ -26,9 +26,17 @@
     @include('posts2.components.initScript')
 
 <body>
-@yield('content')
-</body>
+
+<header>
+    <h1>Lebanese Blogs</h1>
+</header>
+
+<section id="posts">
+    @yield('content')
+</section>
 
 <footer>
-  
+    <p>footer</p>
 </footer>
+
+</body>
