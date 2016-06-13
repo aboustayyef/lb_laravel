@@ -5,12 +5,26 @@ var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 
 gulp.task('styles',function(){
+    //Desktop
     gulp.src('./public/scss/lebaneseblogs.scss')
-//    .pipe(rename('testinggulp.scss'))
     .pipe(sass({
         outputStyle: 'compressed'
     }))
-    .pipe(gulp.dest('./public/css/'))
+    .pipe(gulp.dest('./public/css/'));
+    
+    // Critical Desktop    
+    gulp.src('./public/scss/criticalcss.scss')
+    .pipe(sass({
+        outputStyle: 'compressed'
+    }))
+    .pipe(gulp.dest('./public/css'));
+
+    //Mobile
+    gulp.src('./public/scss/mobile/mobile.scss')
+    .pipe(sass({
+        outputStyle: 'compressed'
+    }))
+    .pipe(gulp.dest('./public/css/'));
 });
 
 gulp.task('scripts', function(){
@@ -28,5 +42,6 @@ gulp.task('scripts', function(){
                 ])
     .pipe(concat('gulptest.js'))
     .pipe(uglify())
+        .pipe(gulp.dest('./public/css/'))
     .pipe(gulp.dest('./public/js'));
 });

@@ -11,6 +11,16 @@ use Symfony\Component\DomCrawler\Crawler ;
 |
  */
 
+
+// upgrade route
+// 
+
+Route::get('/posts2/{channel}/{action?}', [
+    'uses'  =>  'PostsController2@index',
+]);
+
+
+
 // The default route. Check url 'channel' parameter for backward compatibility 
 // Default entrypoint is /posts/all
 
