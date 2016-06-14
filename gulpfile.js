@@ -4,6 +4,10 @@ var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 
+var gutil = require('gulp-util');
+var source = require('vinyl-source-stream');
+var browserify = require('browserify');
+
 gulp.task('styles',function(){
     //Desktop
     gulp.src('./app/resources/scss/lebaneseblogs2.scss')
@@ -11,6 +15,16 @@ gulp.task('styles',function(){
         outputStyle: 'compressed'
     }))
     .pipe(gulp.dest('./public/css/'));
+});
+
+gulp.task('js', function(){
+	return browserify('./app/resources/js/app.js')
+	.bundle()
+	.on('error', function(e){
+		gutil.log(e);
+	})
+	.pipe(source('bundle.js'))
+	.pipe(gulp.dest('./public/js'))
 });
 
 // gulp.task('styles',function(){

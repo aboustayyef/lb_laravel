@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-
-<html lang="en">
+<html>
 <head>
     {{-- Redirect mobile --}}
     @include('posts2.components.redirectScript')
@@ -20,6 +18,8 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('/img/favicon.ico')}}" >
+
+
 </head>
 
     {{-- Init script. Will prepare app state object --}}
@@ -39,4 +39,7 @@
     <p>footer</p>
 </footer>
 
+<script src = "/js/bundle.js" > </script>
+
 </body>
+</html>

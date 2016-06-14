@@ -22,11 +22,16 @@
   },
   "homepage": "https://github.com/aboustayyef/lb_laravel#readme",
   "devDependencies": {
+    "browserify": "^13.0.1",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-rename": "^1.2.2",
     "gulp-ruby-sass": "^2.0.6",
     "gulp-sass": "^2.3.1",
-    "gulp-uglify": "^1.5.3"
+    "gulp-uglify": "^1.5.3",
+    "gulp-util": "^3.0.7",
+    "jquery": "^3.0.0",
+    "masonry-layout": "^4.1.0",
+    "vinyl-source-stream": "^1.1.0"
   }
 }
