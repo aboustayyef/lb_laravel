@@ -1,9 +1,19 @@
+//prerequisits 
 var $ = require('jquery');
 var Masonry = require('masonry-layout');
-var test = require('./test.js');
 
+// Lb App Modules
+var addPosts = require('./addPosts.js');
+
+// Global App object is initialized from within HTML
+
+
+// Main App
 $(document).ready(function(){
-	console.log('document is ready!. Browserify is working');
-	console.log('Type of Masonry is ' + typeof(Masonry));
-	test.init();
+
+	// initialize sub modules
+	addPosts.init();
+
+	// all other code goes here
+	lbApp.addPosts();
 });

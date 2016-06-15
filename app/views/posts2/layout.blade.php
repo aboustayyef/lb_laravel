@@ -19,6 +19,8 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('/img/favicon.ico')}}" >
 
+    <!-- Page specific scripts -->
+    @yield('headScript')
 
 </head>
 
@@ -31,7 +33,7 @@
     <h1>Lebanese Blogs</h1>
 </header>
 
-<section id="posts">
+<section id="posts_canvas">
     @yield('content')
 </section>
 

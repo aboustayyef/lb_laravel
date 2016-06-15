@@ -1,29 +1,57 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var $ = require('jquery');
-var Masonry = require('masonry-layout');
-var test = require('./test.js');
-
-$(document).ready(function(){
-	console.log('document is ready!. Browserify is working');
-	console.log('Type of Masonry is ' + typeof(Masonry));
-	test.init();
-});
-},{"./test.js":2,"jquery":7,"masonry-layout":8}],2:[function(require,module,exports){
-var $ = require('jquery');
 
 var init = function(){
-	$(document).ready(function(){
-		console.log('This code was loaded from a module');
-	});
-	$('p').on('click', function(){
-		console.log('a <p> tag was clicked. This code was from a bundled file');
-	});
+	
+	lbApp.addPosts = function(){
+		$.getJSON('/api/posts/' + this.channel + '/' + this.posts + '/' + this.posts_per_load, function(data){
+			if (data.status == 'ok') {
+				var elems ='';
+				var $posts = data.posts;
+				
+				$.each($posts, function(index, currentPost){
+					var absoluteIndex = lbApp.posts + index;
+					elems += 
+					'<div class="card">' +
+					'<header>' +
+						absoluteIndex + ' ' + currentPost.post_title +
+					'</header>' +
+					'</div>'
+				});
+				$('#'+lbApp.posts_wrapper).append(elems);
+
+				// Update loaded posts number
+				lbApp.posts += lbApp.posts_per_load;
+			}
+		})
+	};
+
 }
 
 module.exports = {
 	init: init
 }
-},{"jquery":7}],3:[function(require,module,exports){
+},{"jquery":7}],2:[function(require,module,exports){
+//prerequisits 
+var $ = require('jquery');
+var Masonry = require('masonry-layout');
+
+// Lb App Modules
+var addPosts = require('./addPosts.js');
+
+// Global App object is initialized from within HTML
+
+
+// Main App
+$(document).ready(function(){
+
+	// initialize sub modules
+	addPosts.init();
+
+	// all other code goes here
+	lbApp.addPosts();
+});
+},{"./addPosts.js":1,"jquery":7,"masonry-layout":8}],3:[function(require,module,exports){
 /**
  * matchesSelector v2.0.1
  * matchesSelector( element, '.selector' )
@@ -12380,4 +12408,4 @@ return Outlayer;
 
 }));
 
-},{"./item":9,"ev-emitter":4,"fizzy-ui-utils":5,"get-size":6}]},{},[1]);
+},{"./item":9,"ev-emitter":4,"fizzy-ui-utils":5,"get-size":6}]},{},[2]);

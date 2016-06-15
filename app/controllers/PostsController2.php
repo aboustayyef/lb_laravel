@@ -19,10 +19,8 @@ class PostsController2 extends \BaseController {
 		if ($canonicalChannel != $channel) {
 		  return Redirect::to('posts2/'.$canonicalChannel);
 		}
-
-		$posts = Post::getLatest($channel, 0 , 20);
 		
-		return View::make('posts2.main')->with(compact('posts'))->with(compact('channel'));
+		return View::make('posts2.main')->with(compact('channel'));
 
 	}
 
