@@ -5,7 +5,7 @@
 <script>
     lbApp = {
     	posts_wrapper: 'posts', 		// The div within which posts are wrapped 
-        channel: "{{$channel}}",		// The channel
+        channel: "{{$channel}}",		// The channel, loaded from route
         posts:0,						// The Number of posts loaded
         cards:0,						// The Number of cards loaded (posts + extras)
         posts_per_load: 15,				// how many posts does each refresh load
@@ -24,7 +24,9 @@
 
 @section('content')
 	<div id="posts">
-		
+		<div class="card">
+			test
+		</div>
 	</div>
 	No Content Yet; <!-- replace with spinning wheel -->
 @stop
