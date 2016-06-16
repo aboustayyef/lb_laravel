@@ -19,7 +19,7 @@ $(document).ready(function(){
 	lbApp.grid = $('#'+lbApp.posts_wrapper).masonry({
 		itemSelector: '.card',
 		columns: 2,
-		gutter: 10
+		gutter:10,
 	});
 
 	// initialize sub modules
