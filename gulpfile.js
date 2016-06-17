@@ -3,6 +3,7 @@ var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
+var watch = require('gulp-watch');
 
 var gutil = require('gulp-util');
 var source = require('vinyl-source-stream');
@@ -25,6 +26,12 @@ gulp.task('js', function(){
 	})
 	.pipe(source('bundle.js'))
 	.pipe(gulp.dest('./public/js'))
+});
+
+gulp.task('watch', function () {
+    gulp.watch('./app/resources/js/*.js', ['js']);
+    gulp.watch('./app/resources/js/lbModules/*.js', ['js']);
+    gulp.watch('./app/resources/scss/*.scss', ['styles']);
 });
 
 // gulp.task('styles',function(){

@@ -1,14 +1,20 @@
 @import "components/variables";
+
+* { 
+    box-sizing: Border-box ;
+}
+
 p{
 	color: $main-color;
 }
 
 body{
 	background: #ededed;
+	margin:0;
 }
 
 #posts{
-	width:1000px;
+	margin-top:100px;
 }
 
 .card{

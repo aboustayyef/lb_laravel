@@ -29,7 +29,7 @@
 
 <body>
 
-<header>
+<header id="#masthead">
     <h1>Lebanese Blogs</h1>
 </header>
 

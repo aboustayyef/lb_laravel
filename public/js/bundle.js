@@ -1,4 +1,120 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+//prerequisits 
+
+// jQuery
+var $ = require('jquery');
+
+// Masonry
+var jQueryBridget = require('jquery-bridget'); // we need it so that Masonry can be used w/ jquery
+var Masonry = require('masonry-layout');
+jQueryBridget('masonry', Masonry, $);
+
+// Lb App Modules
+var lbPosts = require('./lbModules/lbPosts.js');
+var lbCanvas = require('./lbModules/lbCanvas.js');
+var lbEvents = require('./lbModules/lbEvents.js');
+
+// Global App object is initialized from within HTML
+
+// Main App
+$(document).ready(function(){
+
+	// initialize Masonry
+	lbApp.grid = $('#'+lbApp.posts_wrapper).masonry({
+		itemSelector: '.card',
+		transitionDuration: 0,
+		gutter:10,
+	});
+
+	// initialize sub modules
+	lbPosts.init();
+
+	// initialize Canvas
+	lbCanvas.init();
+
+	// initialize Events
+	lbEvents.init();
+
+	// all other code goes here
+	lbApp.getPosts();
+});
+},{"./lbModules/lbCanvas.js":2,"./lbModules/lbEvents.js":3,"./lbModules/lbPosts.js":4,"jquery":11,"jquery-bridget":10,"masonry-layout":12}],2:[function(require,module,exports){
+// jQuery
+var $ = require('jquery')
+
+// Masonry
+var jQueryBridget = require('jquery-bridget'); // we need it so that Masonry can be used w/ jquery
+var Masonry = require('masonry-layout');
+jQueryBridget('masonry', Masonry, $);
+
+var init = function(){
+	
+	var $canvas = $('#'+lbApp.posts_wrapper);
+	var card_width = 300;
+	var gutter = 10;
+	var maxColumns = 5;
+	var minimumMargin = 20;
+
+	lbApp.CanvasRefreshDimensions = function(){
+
+		var w = window.outerWidth;
+		var e_col = card_width + gutter ;							// effective column width = column width + gutter
+		var cols = Math.floor( w / e_col ); 						// number of columns
+		cols = cols > maxColumns ? maxColumns : cols;				// limit columns to maxColumns
+		var new_width = cols * e_col ;								// new width
+		var margin_left = ( w - ( new_width - gutter )) / 2 ;		// add extra gutter for the right
+
+		// if margins are two small, remove one column
+		if (margin_left < minimumMargin) {
+			new_width -= e_col;
+			margin_left += e_col / 2 ;
+		}
+
+		$canvas.outerWidth(new_width);
+		$canvas.css('margin-left', margin_left );
+
+		this.CanvasRefresh();
+	};
+
+	lbApp.CanvasRefresh = function(){
+		$canvas.masonry()
+	}
+
+}
+
+module.exports = {
+	init: init
+}
+},{"jquery":11,"jquery-bridget":10,"masonry-layout":12}],3:[function(require,module,exports){
+var $ = require('jquery');
+
+var init = function(){
+	
+	var resizeTimer;
+	
+	// when document is ready. Adjust dimensions
+	$(document).ready(function(){
+		lbApp.CanvasRefreshDimensions();
+	});
+
+	// debounced resize
+	$(window).on('resize', function(e) {
+
+	  clearTimeout(resizeTimer);
+	  resizeTimer = setTimeout(function() {
+
+	    lbApp.CanvasRefreshDimensions();
+	            
+	  }, 250);
+
+	});
+
+}
+
+module.exports = {
+	init: init
+}
+},{"jquery":11}],4:[function(require,module,exports){
 var $ = require('jquery');
 var template = require('./postTemplate.js');
 
@@ -67,38 +183,7 @@ var init = function(){
 module.exports = {
 	init: init
 }
-},{"./postTemplate.js":3,"jquery":9}],2:[function(require,module,exports){
-//prerequisits 
-var $ = require('jquery');
-
-// Masonry
-var jQueryBridget = require('jquery-bridget'); // we need it so that Masonry can be used w/ jquery
-var Masonry = require('masonry-layout');
-jQueryBridget('masonry', Masonry, $);
-
-// Lb App Modules
-var addPosts = require('./addPosts.js');
-
-// Global App object is initialized from within HTML
-
-
-// Main App
-$(document).ready(function(){
-
-	// initialize Masonry
-	lbApp.grid = $('#'+lbApp.posts_wrapper).masonry({
-		itemSelector: '.card',
-		columns: 2,
-		gutter:10,
-	});
-
-	// initialize sub modules
-	addPosts.init();
-
-	// all other code goes here
-	lbApp.getPosts();
-});
-},{"./addPosts.js":1,"jquery":9,"jquery-bridget":8,"masonry-layout":10}],3:[function(require,module,exports){
+},{"./postTemplate.js":5,"jquery":11}],5:[function(require,module,exports){
 var $ = require('jquery');
 var Mustache = require('mustache');
 
@@ -120,7 +205,7 @@ var init = function(){
 module.exports = {
 	init: init
 }
-},{"jquery":9,"mustache":11}],4:[function(require,module,exports){
+},{"jquery":11,"mustache":13}],6:[function(require,module,exports){
 /**
  * matchesSelector v2.0.1
  * matchesSelector( element, '.selector' )
@@ -175,7 +260,7 @@ module.exports = {
 
 }));
 
-},{}],5:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 /**
  * EvEmitter v1.0.3
  * Lil' event emitter
@@ -286,7 +371,7 @@ return EvEmitter;
 
 }));
 
-},{}],6:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 /**
  * Fizzy UI utils v2.0.2
  * MIT license
@@ -524,7 +609,7 @@ return utils;
 
 }));
 
-},{"desandro-matches-selector":4}],7:[function(require,module,exports){
+},{"desandro-matches-selector":6}],9:[function(require,module,exports){
 /*!
  * getSize v2.0.2
  * measure size of elements
@@ -735,7 +820,7 @@ return getSize;
 
 });
 
-},{}],8:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 /**
  * Bridget makes jQuery widgets
  * v2.0.0
@@ -881,7 +966,7 @@ return jQueryBridget;
 
 }));
 
-},{"jquery":9}],9:[function(require,module,exports){
+},{"jquery":11}],11:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.0.0
  * https://jquery.com/
@@ -10920,7 +11005,7 @@ if ( !noGlobal ) {
 return jQuery;
 } ) );
 
-},{}],10:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 /*!
  * Masonry v4.1.0
  * Cascading grid layout library
@@ -11127,7 +11212,7 @@ return jQuery;
 
 }));
 
-},{"get-size":7,"outlayer":13}],11:[function(require,module,exports){
+},{"get-size":9,"outlayer":15}],13:[function(require,module,exports){
 /*!
  * mustache.js - Logic-less {{mustache}} templates with JavaScript
  * http://github.com/janl/mustache.js
@@ -11758,7 +11843,7 @@ return jQuery;
 
 }));
 
-},{}],12:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /**
  * Outlayer Item
  */
@@ -12313,7 +12398,7 @@ return Item;
 
 }));
 
-},{"ev-emitter":5,"get-size":7}],13:[function(require,module,exports){
+},{"ev-emitter":7,"get-size":9}],15:[function(require,module,exports){
 /*!
  * Outlayer v2.1.0
  * the brains and guts of a layout library
@@ -13254,4 +13339,4 @@ return Outlayer;
 
 }));
 
-},{"./item":12,"ev-emitter":5,"fizzy-ui-utils":6,"get-size":7}]},{},[2]);
+},{"./item":14,"ev-emitter":7,"fizzy-ui-utils":8,"get-size":9}]},{},[1]);

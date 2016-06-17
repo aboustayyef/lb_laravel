@@ -1,4 +1,6 @@
 //prerequisits 
+
+// jQuery
 var $ = require('jquery');
 
 // Masonry
@@ -7,10 +9,11 @@ var Masonry = require('masonry-layout');
 jQueryBridget('masonry', Masonry, $);
 
 // Lb App Modules
-var addPosts = require('./addPosts.js');
+var lbPosts = require('./lbModules/lbPosts.js');
+var lbCanvas = require('./lbModules/lbCanvas.js');
+var lbEvents = require('./lbModules/lbEvents.js');
 
 // Global App object is initialized from within HTML
-
 
 // Main App
 $(document).ready(function(){
@@ -18,12 +21,18 @@ $(document).ready(function(){
 	// initialize Masonry
 	lbApp.grid = $('#'+lbApp.posts_wrapper).masonry({
 		itemSelector: '.card',
-		columns: 2,
+		transitionDuration: 0,
 		gutter:10,
 	});
 
 	// initialize sub modules
-	addPosts.init();
+	lbPosts.init();
+
+	// initialize Canvas
+	lbCanvas.init();
+
+	// initialize Events
+	lbEvents.init();
 
 	// all other code goes here
 	lbApp.getPosts();
