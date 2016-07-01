@@ -45,7 +45,8 @@
 @endif
 
 
-@if (in_array($counter, [6,14,29,44, 59]))
+
+@if (false); {{-- previously: in_array($counter, [6,14,29,44, 59]) --}}
   @include('posts.extras.adsense1')
   <?php
       Session::set('cardsCounter', Session::get('cardsCounter') + 1);
