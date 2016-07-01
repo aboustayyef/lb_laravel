@@ -51,20 +51,20 @@
       </h2>
     </div>
 
-    <div class="card__tools">
+    <ul class="card__tools">
       &nbsp; {{-- This just creates a free space at the bottom of each post --}}
       <?php $blogOwner = $blog->blog_author_twitter_username ?>
       @if (User::signedIn())
         @if ($ourUser->twitter_username == 'beirutspring' ||  strtolower($ourUser->twitter_username) == strtolower($blogOwner))
-          <div class="editpost">
+          <li class="editpost">
             {{link_to('/edit/post/'.$post->post_id, 'edit this post', ['class'  =>  'button'])}}
-          </div>
+          </li>
         @endif
         @if ($ourUser->twitter_username == 'beirutspring')
-          <div class="postvisits">{{$post->post_visits}}</div>
+          <li class="postvisits">{{$post->post_visits}}</li>
         @endif
       @endif
-      <div class="sharingButton tweetit">
+      <li class="sharingButton tweetit">
         <?php
           "%title% %url% [by %@author%] via lebaneseblogs.com";
           $byline = $blog->blog_author_twitter_username ? " by @$blog->blog_author_twitter_username" : "";
@@ -82,8 +82,8 @@
           <?php fontAwesomeToSvg::convert('fa-twitter') ?> Tweet
         </a>
 
-      </div>
-      <div data-postid="{{$post->post_id}}" class="sharingButton likeit
+      </li>
+      <li data-postid="{{$post->post_id}}" class="sharingButton likeit
       <?php if(User::signedIn()){
         if ($ourUser->likes($post->post_id)) {
           echo ' liked ';
@@ -92,9 +92,9 @@
         }
       }?>">
           <?php fontAwesomeToSvg::convert('fa-heart') ?> like
-      </div>
+      </li>
 
-    </div>
+    </ul>
 
     <!-- Blog Header . don't show where we're at the blog's page -->
     @if (Session::get('pageKind') != 'blogger')
