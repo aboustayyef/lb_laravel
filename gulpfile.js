@@ -3,13 +3,16 @@ var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
+var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('styles',function(){
     gulp.src('./public/scss/lebaneseblogs.scss')
+    .pipe(sourcemaps.init())
 //    .pipe(rename('testinggulp.scss'))
     .pipe(sass({
         outputStyle: 'compressed'
     }))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('./public/css/'))
 });
 
