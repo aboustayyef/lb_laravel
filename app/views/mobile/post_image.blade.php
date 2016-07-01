@@ -27,6 +27,5 @@ if ($hue == 0) {
 	src="{{ asset('/img/transparent.png') }}"
   @endif
   data-original="{{ $image }}" 
-  width="100%"
   style="background-color:hsl({{ $hue }},{{ $saturation }}, 75%)"
 >

@@ -1,8 +1,8 @@
 <?php
 $h = $post->post_image_height;
 $w = $post->post_image_width;
-$width = 278;
-$r = $w/278;
+$width = 300;
+$r = $w/$width;
 $height = $h / $r;
 
 if ($post->cacheImage()) {
