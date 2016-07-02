@@ -26,18 +26,19 @@ Denominator: $d (int)
   }
 ?>
 
-<div class="stars" title="Blogger rating: {{$score}} / {{$D}} (original: {{$n}} / {{$d}})">
-  <span class="rating">Rating:</span>
-  <?php
-    for ($i=0; $i < $fullStars ; $i++) {
-      echo '<span class="fullstar"></span>';
-    }
-    if ($halfStars) {
-      echo '<span class="halfstar"></span>';
-    }
-    for ($i=0; $i < $emptyStars ; $i++) {
-      echo '<span class="emptystar"></span>';
-    }
-  ?>
-
-</div>
+<ul class="post__rating" title="Blogger rating: {{$score}} / {{$D}} (original: {{$n}} / {{$d}})">
+  <li class="rating__label">Rating:</li>
+  <li class="rating__stars">
+    <?php
+      for ($i=0; $i < $fullStars ; $i++) {
+        echo '<span class="star fullstar"></span>';
+      }
+      if ($halfStars) {
+        echo '<span class="star halfstar"></span>';
+      }
+      for ($i=0; $i < $emptyStars ; $i++) {
+        echo '<span class="star emptystar"></span>';
+      }
+    ?>
+  </li>
+</ul>

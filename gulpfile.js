@@ -29,7 +29,7 @@ gulp.task('scripts', function(){
                 './public/js/lb.sources/lb.showPost.js',
                 './public/js/lb.sources/lb.toggleChannels.js'
                 ])
-    .pipe(concat('gulptest.js'))
+    .pipe(concat('lebaneseblogs.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./public/js'));
 });

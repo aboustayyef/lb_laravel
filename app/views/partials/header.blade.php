@@ -26,10 +26,6 @@
       //-->
     </script>
 
-    {{-- Critical css. copy/paste criticalcss.css --}}
-
-
-<!-- Critical Css -->
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

@@ -31,15 +31,21 @@ lbApp.resizeViewport = function(){
   // this function is only used with cards
   // it serves to recalculate the viewport's width to center the posts
   $('#content').css('padding-top', ($('#channelPicker').outerHeight() + $('#topBar').outerHeight() ));
+  
   if ($(window).width() > 430) {
-    var columns = Math.floor((($(window).width() ))/320);
+    
+    var columns = Math.floor((($(window).width() - 190 ))/320) - 1;
     if (columns > 5) { columns = 5 ;}
-    var $width = columns*320;
-    $('div.posts').css('width', $width);
-    $('div.inner').css('width', $width);
+    var $postsWidth = columns*320;
+    var $contentWidth = (columns + 1) * 320;
+
+    $('#contentPosts').css('width', $postsWidth);
+    $('.posts').css('width', $contentWidth)
+    $('div.inner').css('width', $contentWidth);
+    $('#sidebar').css('left', ($(window).width() - $contentWidth) / 2 );
 
     // position website logo to be alligned with posts
-    $('#logo').css('margin-left', ($(window).innerWidth() - $width)/2);
+    $('#logo').css('margin-left', ($(window).innerWidth() - $contentWidth)/2);
   }
 };
 
@@ -69,7 +75,7 @@ lbApp.flowPosts = function(){
   // it applies the Masonry effect to the initial
   // set of posts
 
-  var $container = $('.posts');
+  var $container = $('#contentPosts');
   $container.masonry({
     // options
     itemSelector: 'div.post_wrapper',
@@ -127,7 +133,7 @@ lbApp.addMorePosts = function(){
     success: function(data){
       $data = $(data);
       if ($('.posts').hasClass('cards')) {
-        $container = $('.posts');
+        $container = $('#contentPosts');
         if ($(window).width() > 430) {
           // do the normal masonry thing
           $container.append( $data ).masonry( 'appended', $data, true );

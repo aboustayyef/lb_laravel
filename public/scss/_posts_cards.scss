@@ -2,6 +2,19 @@
   margin: auto;
 }
 
+#contentPosts{
+  float:right;
+}
+
+#sidebar{
+  padding:10px;
+  position:fixed;
+  top: 126px;
+  width: 300px;
+  background: white;
+  margin: 10px;
+}
+
 .post_wrapper{
   width:$card-width;
   margin:10px;
@@ -44,15 +57,109 @@ ul.card__tools li+li{
 
 .post__title{
   padding: 10px;
-  padding-top: 20px;
+  margin-top: 30px;
   font-size: 18px;
   line-height: 1.1;
   font-weight: bold;
 }
 
 .cardImage{
-  border-bottom:1px solid silver;
+  border-bottom:1px solid #efefef;
 }
+
+.blog__info{
+  margin-top:30px;
+  padding:10px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.blog__thumbnail{
+  border-radius:50%;
+  border: 1px solid #efefef;
+}
+
+.blog__name{
+  width:150px;
+  height:50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.followBlogger
+{
+  cursor: pointer;
+  font-size:12px;
+  color: #B3B3B3;
+  margin-top:8px;
+  &:hover
+  {
+    &:after
+    {
+      border-color:$brand-color;
+      color:$brand-color;
+    }
+  }
+  &:after
+  {
+    content:"+ Follow";
+    padding:5px;
+    border:1px solid #B3B3B3;
+    border-radius: 5px;
+  }
+  &.followed
+  {
+    &:after
+    {
+      content: "✓ Followed";
+    }
+    &:hover
+    {
+      &:after
+      {
+        content:"x Unfollow";
+      }
+    }
+  }
+}
+
+
+
+.metaInfo{
+  display:flex;
+  justify-content:space-between;
+  height:30px;
+  padding:15px 10px;
+  width:100%;
+  color: $brand-color;
+  .postedSince{
+    font-size:12px;
+  }
+}
+
+.viralityWrapper
+{
+    display:flex;
+    justify-content:space-between;
+    color: rgba(0,0,0,0.5);
+    font-size:0.8em;
+    .viralityBox
+    {
+      width: 100px;
+      height: 5px;
+      margin-top: 6px;
+      border: none;
+      background: #e7e7e7;
+      .viralityScore
+      {
+        height:5px;
+      }
+    }
+}
+
+
+
 
 // div.posts.cards{
 //   .rtl{
@@ -113,35 +220,7 @@ ul.card__tools li+li{
 //         border-radius:50%;
 //         border: 1px solid rgba(0,0,0,0.1);
 //       }
-//       .followBlogger{
-//         cursor: pointer;
-//         position:absolute;
-//         font-size:12px;
-//         top:20px;
-//         right:10px;
-//         color: #B3B3B3;
-//         &:hover{
-//             &:after{
-//               border-color:$brand-color;
-//               color:$brand-color;
-//             }
-//           }
-//         &:after{
-//           content:"+ Follow";
-//           padding:5px;
-//           border:1px solid #B3B3B3;
-//           border-radius: 5px;
-//         }
-//         &.followed{
-//           &:after{
-//             content: "✓ Followed";
-//           }
-//           &:hover{
-//             &:after{
-//               content:"x Unfollow";
-//             }
-//           }
-//         }
+
 //       }
 
 //     }
@@ -194,38 +273,6 @@ ul.card__tools li+li{
 //       img{
 //         margin:9px;
 //         border:1px solid rgba(0,0,0,0.1);
-//       }
-//       .metaInfo{
-//         height:30px;
-//         padding:15px 10px;
-//         width:100%;
-//         position:relative;
-//         color: $brand-color;
-//         .postedSince{
-//           position: absolute;
-//           left:10px;
-//           font-size:12px;
-//           display:inline-block;
-//         }
-//         .viralityWrapper{
-//           color: rgba(0,0,0,0.5);
-//           position:absolute;
-//           right:10px;
-//           display:inline-block;
-//           font-size:0.8em;
-//           .viralityBox{
-//             display:inline-block;
-//             width:100px;
-//             height:5px;
-//             padding:0;
-//             border:none;
-//             background:#e7e7e7;
-//             .viralityScore{
-//               height:5px;
-//             }
-//           }
-//         }
-//       }
 //     }
 //     div.tools_footer{
 //       height:35px;

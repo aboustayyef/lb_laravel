@@ -98,12 +98,12 @@
 
     <!-- Blog Header . don't show where we're at the blog's page -->
     @if (Session::get('pageKind') != 'blogger')
-    <div class="blog_header">
+    <div class="blog__info">
       <!-- Thumbnail -->
       <a href="{{url('/blogger/'.$post->blog_id)}}">
         <img
           style="background: #F3E7E8"
-          class="lazy thumbnail"
+          class="lazy blog__thumbnail"
           @if (app('env') == 'staging')
             src="{{ asset('http://static.lebaneseblogs.com/img/transparent.png') }}"
             data-original="http://static1.lebaneseblogs.com/{{$post->blog_id.'.jpg'}}"
@@ -112,10 +112,10 @@
             data-original="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}"
           @endif
           alt="{{$blog->blog_name }} thumbnail"
-          width ="50px" height="50px">
+          width ="40px" height="40px">
       </a>
       <!-- Blog's Name -->
-      <div class="blogname">
+      <div class="blog__name">
         <a href="{{url('/blogger/'.$post->blog_id)}}">
           {{ $blog->blog_name }}
         </a>

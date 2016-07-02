@@ -27,13 +27,8 @@
     <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
 
   @elseif ($pageKind == 'search')
-    {{-- Nothing yet --}}
+    {{-- Nothing yet --}} 
 
-
-
-  @else
-    @include('posts.extras.topList')
-    <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
   @endif
 @endif
 

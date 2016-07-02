@@ -35,11 +35,21 @@
 
   {{-- Render the first batch of posts --}}
     @if($initialPosts)
+    <aside id="sidebar">
+      @if(!User::signedIn())
+        <?php echo View::make('posts.extras.welcomeMessage') ?>
+      @else
+        <?php echo View::make('posts.extras.user') ?>
+      @endif
+      @include('posts.extras.topList')
+    </aside>
     <div class="posts cards"> <!-- cards is default -->
-      @include('posts.render', array(
-        'posts'=>$initialPosts ,
-        'from'=>0,
-        'to'=>20))
+      <div id="contentPosts">
+        @include('posts.render', array(
+          'posts'=>$initialPosts ,
+          'from'=>0,
+          'to'=>20))
+      </div>    
     </div>
     @endif
 @stop

@@ -28,17 +28,10 @@
   }
 
 ?>
-<div class="post_wrapper toplist">
   <?php 
     echo View::make('posts.extras.stats2015');
   ?>
   
-  @if(!User::signedIn())
-    <?php echo View::make('posts.extras.welcomeMessage') ?>
-  @else
-    <?php echo View::make('posts.extras.user') ?>
-  @endif
-
 <?php 
 
   if ($posts->count() < 5 ) {
@@ -58,7 +51,6 @@
 ?>
 
 
-  <div class="card">
     <h3>Top Posts</h3>
     @if ($channel != 'all')
       <h4 class ="category" style="color:{{Channel::color($channel)}}">In {{Channel::description($channel)}}</h4>
@@ -90,5 +82,3 @@
       </li>
       @endforeach
     </ul>
-  </div>
-</div>
