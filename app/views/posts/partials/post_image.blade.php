@@ -19,11 +19,13 @@ if ($hue == 0) {
 }
 
 ?>
-<img
-	class="lazy cardImage"
-	data-original="{{ $image }}"
-	src="{{ asset('/img/transparent.png') }}"
-	width="{{ $width }}"
-	height="{{ $height }}"
-  style="background-color:hsl({{ $hue }},{{ $saturation }}, 75%)"
->
+<div class="imageWrapper">
+	<img
+		class="lazy cardImage"
+		data-original="{{ $image }}"
+		src="{{ asset('/img/transparent.png') }}"
+		width="{{ $width }}"
+		height="{{ $height }}"
+	  style="background-color:hsl({{ $hue }},{{ $saturation }}, 75%)"
+	>
+</div>

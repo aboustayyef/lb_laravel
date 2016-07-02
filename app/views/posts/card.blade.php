@@ -7,16 +7,6 @@
       <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" target="_blank" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">
         {{View::make('posts.partials.post_image')->with('post',$post)}}
       </a>
-    {{-- @else
-  <!-- Post Excerpt (If no image) -->
-      <p class ="excerpt
-      @if (lbFunctions::isArabic($post->post_excerpt))
-       rtl">
-      @else
-        ">
-      @endif
-        {{str_limit($post->post_excerpt, 150)}}
-      </p> --}}
     @endif
 
     <!-- Post Body -->
@@ -31,14 +21,11 @@
         </div>
         {{View::make('posts.partials.virality')->with('score',$post->post_virality)}}
       </div>
+
       <!-- Post Title -->
-      <h2 class="post__title"
-        @if (lbFunctions::isArabic($post->post_title))
-         class="rtl"
-        @endif
-        >
+      <h2 class="post__title @if(!$post->post_image_height > 0) headline_no_image  @endif">
         <!-- outward url -->
-        <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" target="_blank" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">{{ $post->post_title }} </a>
+        <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" target="_blank" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">{{str_limit($post->post_title, 80)}} </a>
 
         <!-- rating -->
         <?php
@@ -52,7 +39,7 @@
     </div>
 
     <ul class="card__tools">
-      &nbsp; {{-- This just creates a free space at the bottom of each post --}}
+
       <?php $blogOwner = $blog->blog_author_twitter_username ?>
       @if (User::signedIn())
         @if ($ourUser->twitter_username == 'beirutspring' ||  strtolower($ourUser->twitter_username) == strtolower($blogOwner))

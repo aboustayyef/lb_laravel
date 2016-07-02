@@ -32,6 +32,12 @@
   @endif
 @endif
 
+@if ($counter == 15)
+
+  {{View::make('posts.extras.popular')}}
+
+@endif
+
 @if ($counter == 11)
   {{View::make('posts.extras.news')->with('source','naharnet')}}
   <?php

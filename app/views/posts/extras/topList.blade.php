@@ -50,35 +50,23 @@
 
 ?>
 
-
     <h3>Top Posts</h3>
     @if ($channel != 'all')
       <h4 class ="category" style="color:{{Channel::color($channel)}}">In {{Channel::description($channel)}}</h4>
     @endif
 
-    {{Form::open(array('url'=>'my/route'))}}
-    {{Form::select('time_scope', array(
-      '12'    =>  '12 hours',
-      '24'    =>  '24 hours',
-      '72'    =>  '3 days',
-      '168'   =>  '7 days'
-    ), $numberOfHours, array('id' => 'topListScoper')) }}
-    {{ Form::close() }}
-
-    <ul>
+    <ul class= "topList">
       @foreach ($posts as $post)
-      <li>
-        <div class="item">
-          <div class="thumb">
+      <li class= "topList__item">
+          <div class="topList__thumb">
             <a href="{{$post->post_url}}" onclick="ga('send', 'event', 'Exit Link', 'Top Posts', '{{$post->blog->blog_name}}')">
               {{View::make('images.topListThumb')->with('post',$post)}}
             </a>
           </div>
-          <div class="details">
+          <div class="topList__details">
             <h4><a href ="{{$post->post_url}}" onclick="ga('send', 'event', 'Exit Link', 'Top Posts', '{{$post->blog->blog_name}}')">{{$post->post_title}}</a></h4>
             <h5>{{$post->blog->blog_name}}</h5>
           </div>
-        </div>
       </li>
       @endforeach
     </ul>

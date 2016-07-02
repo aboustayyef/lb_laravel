@@ -294,7 +294,7 @@ class CrawlRss extends Command {
             {
               $image = $image->flattenImages();
               $image->setFormat('JPEG');
-              $image->thumbnailImage(400,0);
+              $image->scaleImage(300,165,true);
               $outFile = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/' . $blog_post_timestamp.'_'.$domain.'.jpg';//.Lb_functions::get_image_format($blog_post_image);
               $image->writeImage($outFile);
               $this->comment('Image added to cache folder');

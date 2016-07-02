@@ -1,4 +1,4 @@
-<div id="welcomeMessage" class="card push_down no_min">
+<div id="welcomeMessage">
   <div>
     <h2>
       Discover and Follow the Best Lebanese Blogs

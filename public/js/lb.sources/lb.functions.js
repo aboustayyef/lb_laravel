@@ -35,7 +35,7 @@ lbApp.resizeViewport = function(){
   if ($(window).width() > 430) {
     
     var columns = Math.floor((($(window).width() - 190 ))/320) - 1;
-    if (columns > 5) { columns = 5 ;}
+    if (columns > 4) { columns = 4 ;}
     var $postsWidth = columns*320;
     var $contentWidth = (columns + 1) * 320;
 
