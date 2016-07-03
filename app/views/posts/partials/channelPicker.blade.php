@@ -1,6 +1,6 @@
 <div id="channelPicker">
   {{--Request::path()--}}
-<div class="inner">
+<div class="ut__inner ut__space_between">
 
   {{-- We use a Selector for mobile only --}}
   <select name="channelSelector" id="channelSelector">
@@ -48,6 +48,12 @@
 
   @endforeach
   </ul>
+
+  <label id="openLinksInNewTabs" class="ios7-switch">
+      <span class="lbl">Open Links in New Tabs</span>
+      <input type="checkbox">
+      <span></span>
+  </label>
 
 </div> {{-- inner --}}
 

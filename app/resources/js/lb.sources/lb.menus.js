@@ -1,20 +1,9 @@
 $('#about').on('click', function(e){
-	$(this).toggleClass('open');
+	$('#aboutMenu').toggleClass('open');
+  $('#about').toggleClass('open');
 	e.stopPropagation();
 });
 
-$('#hamburger').on('click', function(e){
-		$('#sidebar').toggleClass('open');
-    $('#siteWrapper').toggleClass('open');
-    //$(this).toggleClass('open');
-  	e.stopPropagation();
-});
-$('#sidebar .close').on('click', function(e){
-    e.preventDefault();
-    $('#sidebar').removeClass('open');
-    $('#siteWrapper').removeClass('open');
-    e.stopPropagation();
-});
 
 $(document).on('click', ".action", function(event){
   event.stopPropagation();

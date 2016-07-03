@@ -1,17 +1,11 @@
 #channelPicker{
   border-bottom:1px solid silver;
   z-index:27;
+  padding:2px 0;
   position:absolute;
   top:$header-height;
   background:white;
   width:100%;
-  padding-left:10px;
-
-
-  .inner{
-    margin:0 auto;
-    padding:3px 0;
-  }
 
 // For Desktop only
   ul.channelBar{

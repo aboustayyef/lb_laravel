@@ -1,0 +1,12 @@
+
+// for positioning all ui items in the center
+.ut__inner{
+	overflow:auto;
+	margin:0 auto;
+	padding:0 10px 0 5px;
+}
+
+.ut__space_between{
+	display:flex;
+	justify-content:space-between;
+}

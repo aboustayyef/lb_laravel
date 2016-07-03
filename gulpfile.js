@@ -6,7 +6,7 @@ var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('styles',function(){
-    gulp.src('./public/scss/lebaneseblogs.scss')
+    gulp.src('./app/resources/scss/lebaneseblogs.scss')
     .pipe(sourcemaps.init())
 //    .pipe(rename('testinggulp.scss'))
     .pipe(sass({
@@ -17,17 +17,17 @@ gulp.task('styles',function(){
 });
 
 gulp.task('scripts', function(){
-    gulp.src([  './public/js/third_party/jquery-1.11.0.min.js',
-                './public/js/third_party/masonry.pkgd.min.js',
-                './public/js/lb.sources/lb.events.js',
-                './public/js/lb.sources/lb.favorites.js',
-                './public/js/lb.sources/lb.functions.js',
-                './public/js/lb.sources/lb.menus.js',
-                './public/js/lb.sources/lb.preparefonts.js',
-                './public/js/lb.sources/lb.saved.js',
-                './public/js/lb.sources/lb.toplist.js' ,
-                './public/js/lb.sources/lb.showPost.js',
-                './public/js/lb.sources/lb.toggleChannels.js'
+    gulp.src([  './app/resources/js/third_party/jquery-1.11.0.min.js',
+                './app/resources/js/third_party/masonry.pkgd.min.js',
+                './app/resources/js/lb.sources/lb.events.js',
+                './app/resources/js/lb.sources/lb.favorites.js',
+                './app/resources/js/lb.sources/lb.functions.js',
+                './app/resources/js/lb.sources/lb.menus.js',
+                './app/resources/js/lb.sources/lb.preparefonts.js',
+                './app/resources/js/lb.sources/lb.saved.js',
+                './app/resources/js/lb.sources/lb.toplist.js' ,
+                './app/resources/js/lb.sources/lb.showPost.js',
+                './app/resources/js/lb.sources/lb.toggleChannels.js'
                 ])
     .pipe(concat('lebaneseblogs.min.js'))
     .pipe(uglify())

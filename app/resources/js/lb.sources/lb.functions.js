@@ -30,22 +30,23 @@ lbApp.veryFirstLoad= function(){
 lbApp.resizeViewport = function(){
   // this function is only used with cards
   // it serves to recalculate the viewport's width to center the posts
-  $('#content').css('padding-top', ($('#channelPicker').outerHeight() + $('#topBar').outerHeight() ));
+  // $('#content').css('padding-top', ($('#channelPicker').outerHeight() + $('#topBar').outerHeight() ));
   
   if ($(window).width() > 430) {
     
     var columns = Math.floor((($(window).width() - 190 ))/320) - 1;
-    if (columns > 4) { columns = 4 ;}
+    if (columns > 4 ) { columns = 4 ;} // maximum: 4 columns + side column
+    if (columns < 3 ) { columns = 2 ;} // minimum: 2 columns + side column
     var $postsWidth = columns*320;
     var $contentWidth = (columns + 1) * 320;
 
     $('#contentPosts').css('width', $postsWidth);
     $('.posts').css('width', $contentWidth)
-    $('div.inner').css('width', $contentWidth);
+    $('div.ut__inner').css('width', $contentWidth);
     $('#sidebar').css('left', ($(window).width() - $contentWidth) / 2 );
-
+    $('#aboutMenu').css('right',($(window).width() - parseInt($('.ut__inner').css('width')))/2 + 10);
     // position website logo to be alligned with posts
-    $('#logo').css('margin-left', ($(window).innerWidth() - $contentWidth)/2);
+    // $('#logo').css('margin-left', ($(window).innerWidth() - $contentWidth)/2);
   }
 };
 
