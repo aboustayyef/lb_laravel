@@ -1,0 +1,44 @@
+$breathing-room: 20px;
+
+#top_posts{
+	display:flex;
+	padding:$breathing-room;
+	img{
+		background:silver;
+	}
+	ul{
+		display:flex;
+		justify-content: space-between;
+		flex-direction:column;
+		height:$card-height - ($breathing-room * 2);
+	}
+	li {
+		padding-left:10px;
+	}
+
+	p{
+		font-size: 14px;
+	    line-height: 1.5;
+	    padding: 10px;
+	    padding-left: 0;
+	    margin-top: 10px;
+	}
+}
+
+.top_posts__content{
+}
+
+.top_posts__left{
+	width:40%;
+}
+
+.top_posts__right{
+	width: calc(60% - 1px);
+	border-left: 1px dashed silver;
+}
+
+.top_posts__header{
+	font-size:28px;
+	font-weight:bold;
+	color:$brand-color;
+}

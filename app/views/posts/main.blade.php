@@ -37,14 +37,6 @@
     @if($initialPosts)
     <div class="posts cards ut__inner"> <!-- cards is default -->
 
-    <aside id="sidebar">
-      @if(!User::signedIn())
-        <?php echo View::make('posts.extras.welcomeMessage') ?>
-      @else
-        <?php echo View::make('posts.extras.user') ?>
-      @endif
-      @include('posts.extras.topList')
-    </aside>
 
       <div id="contentPosts">
 

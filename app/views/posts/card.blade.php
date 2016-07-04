@@ -1,6 +1,4 @@
-<div class="post_wrapper postID-{{$post->post_id}} post-{{Session::get('postsCounter')}} card-{{Session::get('cardsCounter')}}"> <!-- /For grouping items together -->
-
-  <div class="card">
+  <div class="card postID-{{$post->post_id}} post-{{Session::get('postsCounter')}} card-{{Session::get('cardsCounter')}}" >
 
   <!-- Post image (if any ) -->
     @if ($post->post_image_height > 0)
@@ -123,4 +121,3 @@
 
 
   </div> <!-- /card -->
-</div> <!-- /post wrapper -->

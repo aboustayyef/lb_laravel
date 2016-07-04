@@ -1,0 +1,19 @@
+.card{
+	background:white;
+	width: $card-width;
+    margin: $gutter-width / 2;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid silver;
+    height: $card-height;
+}
+
+.card--double{
+	width: ($card-width * 2) + $gutter-width;
+}
+
+.card--tripple{
+	width: ($card-width * 3 ) + ($gutter-width * 2);
+}

@@ -34,14 +34,13 @@ lbApp.resizeViewport = function(){
   
   if ($(window).width() > 430) {
     
-    var columns = Math.floor((($(window).width() - 190 ))/320) - 1;
-    if (columns > 4 ) { columns = 4 ;} // maximum: 4 columns + side column
-    if (columns < 3 ) { columns = 2 ;} // minimum: 2 columns + side column
+    var columns = Math.floor((($(window).width() - 190 ))/320) ;
+    if (columns > 5 ) { columns = 5 ;} // maximum: 4 columns + side column
+    if (columns < 3 ) { columns = 3 ;} // minimum: 2 columns + side column
     var $postsWidth = columns*320;
-    var $contentWidth = (columns + 1) * 320;
+    var $contentWidth = $postsWidth;
 
     $('div.ut__inner').css('width', $contentWidth);
-    $('#sidebar').css('left', ($(window).width() - $contentWidth) / 2 );
     $('#aboutMenu').css('left', $('#about').position().left + $('#about').outerWidth() - $('#aboutMenu').outerWidth());
     // position website logo to be alligned with posts
     // $('#logo').css('margin-left', ($(window).innerWidth() - $contentWidth)/2);

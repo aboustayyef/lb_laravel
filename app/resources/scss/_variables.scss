@@ -12,6 +12,8 @@ $sidebar-background: #353535;
 $content-background: #d1d1d1;
 
 $card-width: 300px;
+$card-height: 400px;
+$gutter-width: 20px;
 
 @mixin lbTransitions(){
 transition: 0.2s;

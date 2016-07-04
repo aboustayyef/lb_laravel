@@ -32,7 +32,7 @@
   @endif
 @endif
 
-@if ($counter == 4)
+@if ($counter == 0)
 
   {{View::make('posts.extras.popular')}}
 

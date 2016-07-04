@@ -3,20 +3,9 @@
 }
 
 #contentPosts{
-  width: calc(100% - 320px);
   float:right;
   display: flex;
   flex-wrap: wrap;
-}
-
-.post_wrapper{
-  width:$card-width;
-  margin:10px;
-  background:white;
-  border-radius:8px;
-  overflow:hidden;
-  display:relative;
-  border:1px solid silver;
 }
 
 .imageWrapper{
@@ -24,11 +13,6 @@
   max-height:165px;
   overflow:hidden;
   border-bottom: 1px solid #efefef;
-}
-
-.card{
-  height:385px;
-  position:relative;
 }
 
 ul.card__tools{
