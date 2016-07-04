@@ -89,11 +89,11 @@
           lbApp.reachedEndOfPosts = false;
       </script>
 <body>
-    <div id="loading">
+{{--     <div id="loading">
       <div class="loadingWrapper">
         <div class="hanginthere">
           Loading... Hang in there
         </div>
       </div>
-    </div>
+    </div> --}}
     <div id="siteWrapper">

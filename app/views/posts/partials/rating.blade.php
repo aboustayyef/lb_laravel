@@ -31,13 +31,14 @@ Denominator: $d (int)
   <li class="rating__stars">
     <?php
       for ($i=0; $i < $fullStars ; $i++) {
-        echo '<span class="star fullstar"></span>';
+        
+        echo '<span class="star"><img src="/img/transparent.png" class="lazy" data-original="/img/fullstar.png"></span>';
       }
       if ($halfStars) {
-        echo '<span class="star halfstar"></span>';
+        echo '<span class="star halfstar"><img src="/img/transparent.png" class="lazy" data-original="/img/halfstar.png"></span>';
       }
       for ($i=0; $i < $emptyStars ; $i++) {
-        echo '<span class="star emptystar"></span>';
+        echo '<span class="star emptystar"><img src="/img/transparent.png" class="lazy" data-original="/img/emptystar.png"></span>';
       }
     ?>
   </li>

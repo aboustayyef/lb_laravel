@@ -18,7 +18,7 @@ gulp.task('styles',function(){
 
 gulp.task('scripts', function(){
     gulp.src([  './app/resources/js/third_party/jquery-1.11.0.min.js',
-                './app/resources/js/third_party/masonry.pkgd.min.js',
+                // './app/resources/js/third_party/masonry.pkgd.min.js',
                 './app/resources/js/lb.sources/lb.events.js',
                 './app/resources/js/lb.sources/lb.favorites.js',
                 './app/resources/js/lb.sources/lb.functions.js',

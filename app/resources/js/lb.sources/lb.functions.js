@@ -40,11 +40,9 @@ lbApp.resizeViewport = function(){
     var $postsWidth = columns*320;
     var $contentWidth = (columns + 1) * 320;
 
-    $('#contentPosts').css('width', $postsWidth);
-    $('.posts').css('width', $contentWidth)
     $('div.ut__inner').css('width', $contentWidth);
     $('#sidebar').css('left', ($(window).width() - $contentWidth) / 2 );
-    $('#aboutMenu').css('right',($(window).width() - parseInt($('.ut__inner').css('width')))/2 + 10);
+    $('#aboutMenu').css('left', $('#about').position().left + $('#about').outerWidth() - $('#aboutMenu').outerWidth());
     // position website logo to be alligned with posts
     // $('#logo').css('margin-left', ($(window).innerWidth() - $contentWidth)/2);
   }
@@ -77,11 +75,11 @@ lbApp.flowPosts = function(){
   // set of posts
 
   var $container = $('#contentPosts');
-  $container.masonry({
-    // options
-    itemSelector: 'div.post_wrapper',
-    transitionDuration: 1, // no animation
-  });
+  // $container.masonry({
+  //   // options
+  //   itemSelector: 'div.post_wrapper',
+  //   transitionDuration: 1, // no animation
+  // });
 };
 
 lbApp.mobileFlowPosts = function(){
@@ -123,6 +121,7 @@ lbApp.hidePostsLoadingIndicator = function(){
   $('#loadingMore').remove();
 };
 
+
 lbApp.addMorePosts = function(){
 
   // The Ajax call to load more posts,
@@ -137,7 +136,7 @@ lbApp.addMorePosts = function(){
         $container = $('#contentPosts');
         if ($(window).width() > 430) {
           // do the normal masonry thing
-          $container.append( $data ).masonry( 'appended', $data, true );
+          $container.append( $data );
         }else{
           // flow mobile;
           var $cardWidth = $(window).width() - 40;

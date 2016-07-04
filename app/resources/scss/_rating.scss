@@ -15,20 +15,12 @@ padding-top:10px;
   float:left;
 }
 
-.fullstar{
-  background-image: url(../img/fullstar.png);
-  background-repeat: no-repeat;
-
-}
-.emptystar{
-  background-image: url(../img/emptystar.png);
-  background-repeat: no-repeat;
-
-}
-
-.halfstar{
-  background-image: url(../img/halfstar.png);
-  background-repeat: no-repeat;
+.star img{
+  width:16px;
+  height:16px;
+  &.lazy{
+    background-color: silver; 
+  }
 }
 
 .rating__label{

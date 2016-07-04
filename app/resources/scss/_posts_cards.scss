@@ -3,7 +3,10 @@
 }
 
 #contentPosts{
+  width: calc(100% - 320px);
   float:right;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .post_wrapper{

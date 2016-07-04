@@ -5,11 +5,8 @@
 
 @include('partials.postDetailsModal')
 
-<div id="momentumScrollingViewport">
-  <div id="content">
-    @yield('content')
-  </div>
-
+<div id="content">
+	@yield('content')
 </div>
 
 @include('partials.footer')

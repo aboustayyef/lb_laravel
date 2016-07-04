@@ -17,15 +17,20 @@ $( window ).on('resize', function(){
   }
 });
 
-$('#momentumScrollingViewport').on('scroll', function(){
+// Remove menu if clicked outside of it
+$(document).on('click', function(){
+  $('#about').removeClass('open');
+  $('#aboutMenu').removeClass('open');
+})
+
+$(window).on('scroll', function(){
   lbApp.checkIfMorePostsNeedToBeAdded();
 });
 
 lbApp.checkIfMorePostsNeedToBeAdded = function(){
   if (!lbApp.busy && !lbApp.reachedEndOfPosts) {
-    $heightOfContent = $('#content').height(); // the height of the total posts content
-    $positionOfContentTop = $('#content').position().top; // a negative number indicating how far content has scrolled
-    $distanceToBottom = $heightOfContent + $positionOfContentTop;
+    $distanceToBottom = $('#content').height() - $(window).scrollTop();
+    console.log($distanceToBottom);
     if ($distanceToBottom < 1500) { // add more posts whenever there's a thousand pixels to bottom
         lbApp.showPostsLoadingIndicator();
         lbApp.addMorePosts();

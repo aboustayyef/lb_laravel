@@ -35,7 +35,7 @@
 
   {{-- Render the first batch of posts --}}
     @if($initialPosts)
-    <div class="posts cards"> <!-- cards is default -->
+    <div class="posts cards ut__inner"> <!-- cards is default -->
 
     <aside id="sidebar">
       @if(!User::signedIn())
