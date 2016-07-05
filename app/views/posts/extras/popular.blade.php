@@ -1,19 +1,38 @@
+<?php
+
+	$topPosts = Post::topPosts();
+?>
+
 <div id = "top_posts" class="card card--double">
 	<div class="top_posts__content top_posts__left">
 		<h3 class="top_posts__header">
 			Top Posts
 		</h3>
-		<p>
+		<p class="top_posts__about">
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto laboriosam necessitatibus soluta quaerat quo temporibus.
 		</p>
 	</div>
 	<div class="top_posts__content top_posts__right">
 		<ul>
-			<li class="top_posts__item"><img src="/img/transparent.png" height = "60px" width="60px" alt=""><a href="">This is the title of a post. it can be big</a></li>
-			<li class="top_posts__item"><img src="/img/transparent.png" height = "60px" width="60px" alt=""><a href="">This is the title of a post. it can be big</a></li>
-			<li class="top_posts__item"><img src="/img/transparent.png" height = "60px" width="60px" alt=""><a href="">This is the title of a post. it can be big</a></li>
-			<li class="top_posts__item"><img src="/img/transparent.png" height = "60px" width="60px" alt=""><a href="">This is the title of a post. it can be big</a></li>
-			<li class="top_posts__item"><img src="/img/transparent.png" height = "60px" width="60px" alt=""><a href="">This is the title of a post. it can be big</a></li>
+			@foreach ($topPosts as $post)
+				<li class="top_posts__item">
+					<div class="top_posts__thumb">
+						<?php $i = $post->image(); ?>
+						@if($i->exists)
+							@if($i->horizontal)
+								<img src="{{$i->src}}" height = "60px" width="{{60/$i->ratio}}px" alt="">
+							@else
+								<img src="{{$i->src}}" width = "60px" height="{{60*$i->ratio}}px" alt="">
+							@endif
+						@endif
+					</div>
+					<div class="top_posts__details">
+						<a class="top_posts__title" href="">{{$post->post_title}}</a>
+						<p class="top_posts__blog">{{$post->blog->blog_name}}</p>
+					</div>
+					
+				</li>
+			@endforeach
 		</ul>
 	</div>
 </div>

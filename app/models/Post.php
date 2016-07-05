@@ -29,6 +29,41 @@ public static function getTopPosts($channel='all', $hours=12){
   return $posts;
 }
 
+
+// convenience functions;
+
+public static function topPosts(){
+  $temp = new \LebaneseBlogs\Utilities\TopPostsGetter;
+  return $temp->get();
+}
+
+// returns an image object
+public function image(){
+  
+  $image = new \stdClass;
+  
+  // exists?
+  if ($this->post_image_height > 0) {
+    $image->exists = true;
+  } else {
+    $image->exists = false;
+  }
+
+  // source
+  if ($this->cacheImage()) {
+    $image->src = $this->cacheImage();
+  } else {
+    $image->src = $this->post_image;
+  }
+
+  $image->height = $this->post_image_height;
+  $image->width = $this->post_image_width;
+  $image->ratio = $this->post_image_height / $this->post_image_width;
+  $image->horizontal = $this->post_image_width > $this->post_image_height;
+
+  return $image;
+}
+
 /*
 |--------------------------------------------------------------------------
 | get favorite posts interval
