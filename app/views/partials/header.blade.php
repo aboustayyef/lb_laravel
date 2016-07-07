@@ -29,7 +29,6 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <?php $pageDescription = Page::getDescription() ?>
     <meta name="description" content="{{$pageDescription}}">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -38,7 +37,6 @@
       href="http://lebaneseblogs.com/mobile/{{Request::path()}}" >
 
     <!-- Page Title -->
-    <?php $pageTitle = Page::getTitle() ?>
     <title>{{$pageTitle}}</title>
 
     <!-- Add to homescreen for Chrome on Android -->
@@ -66,7 +64,7 @@
 
     <!-- Style Sheet -->
     @if (app('env') == 'staging')
-      <link rel="stylesheet" href="http://static.lebaneseblogs.com/css/lebaneseblogs.css?v=3.5">
+      <link rel="stylesheet" href="http://static.lebaneseblogs.com/css/lebaneseblogs.css?v=4.0">
     @else
       <link rel="stylesheet" href="{{asset('/css/lebaneseblogs.css?v=3.5')}}">
     @endif
@@ -89,11 +87,3 @@
           lbApp.reachedEndOfPosts = false;
       </script>
 <body>
-{{--     <div id="loading">
-      <div class="loadingWrapper">
-        <div class="hanginthere">
-          Loading... Hang in there
-        </div>
-      </div>
-    </div> --}}
-    <div id="siteWrapper">

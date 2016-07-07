@@ -47,33 +47,16 @@
       Session::put('postsCounter', 0);
       Session::put('cardsCounter', 0);
 
-      return View::make('posts.main');
+      // initialize metadata and initial posts
+      $initialPosts = Page::getPosts();
+      $pageTitle = Page::getTitle();
+      $pageDescription = Page::getDescription();
+
+      return View::make('posts.main')->with([
+        'initialPosts'      => $initialPosts,
+        'pageTitle'         => $pageTitle,
+        'pageDescription'   => $pageDescription
+      ]);
     }
 
-    public static function elasticSearch($query){
-
-      // prepare elastic search client
-
-      $client = new Elasticsearch\Client();
-      $searchParameters = array();
-      $searchParameters['index']='lebaneseblogs';
-      $searchParameters['type']='post';
-      $searchParameters['size']  = 500; // to return all results
-      $searchParameters['body']['query']['multi_match']['content'] = array(
-        'query' => $query,
-        'fuzziness' =>  0.8,
-        'fields'  =>  ['title^3', 'content'],
-      );
-
-      $results = $client->search($searchParameters);
-
-      $totalResults = $results['hits']['total'];
-      $listOfIds = array();
-      $posts = array();
-      foreach ($results['hits']['hits'] as $key => $result) {
-        $id = $result['_id'];
-        $listOfIds[] = $id;
-      }
-      return $listOfIds;
-    }
 }

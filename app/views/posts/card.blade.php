@@ -2,7 +2,7 @@
 
   <!-- Post image (if any ) -->
     @if ($post->post_image_height > 0)
-      <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" target="_blank" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">
+      <a class="exitLink" href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">
         {{View::make('posts.partials.post_image')->with('post',$post)}}
       </a>
     @endif
@@ -12,7 +12,7 @@
       var data{{$post->post_id}} = {{$post->toJson()}};
       var exiturl{{$post->post_id}} = "{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}";
     </script>
-    <div class="post_body" onclick="lbApp.showPost(data{{$post->post_id}}, exiturl{{$post->post_id}})">
+    <div class="post_body"> {{-- onclick="lbApp.showPost(data{{$post->post_id}}, exiturl{{$post->post_id}})"  --}}
       <div class="metaInfo">
         <div class="postedSince">
           {{lbFunctions::time_elapsed_string($post->post_timestamp)}}
@@ -23,7 +23,7 @@
       <!-- Post Title -->
       <h2 class="post__title @if(!$post->post_image_height > 0) headline_no_image  @endif">
         <!-- outward url -->
-        <a href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" target="_blank" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">{{str_limit($post->post_title, 80)}} </a>
+        <a class="exitLink" href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">{{str_limit($post->post_title, 80)}} </a>
 
         <!-- rating -->
         <?php

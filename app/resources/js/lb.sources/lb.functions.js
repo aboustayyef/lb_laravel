@@ -73,7 +73,7 @@ lbApp.flowPosts = function(){
   // it applies the Masonry effect to the initial
   // set of posts
 
-  var $container = $('#contentPosts');
+  var $container = $('#posts');
   // $container.masonry({
   //   // options
   //   itemSelector: 'div.post_wrapper',
@@ -131,23 +131,9 @@ lbApp.addMorePosts = function(){
     type: "GET",
     success: function(data){
       $data = $(data);
-      if ($('.posts').hasClass('cards')) {
-        $container = $('#contentPosts');
-        if ($(window).width() > 430) {
-          // do the normal masonry thing
-          $container.append( $data );
-        }else{
-          // flow mobile;
-          var $cardWidth = $(window).width() - 40;
-          $data.find('.cardImage').each(function(){
-            console.log('working');
-            $ratio = $(this).attr('height') / $(this).attr('width');
-            $height = $cardWidth * $ratio;
-            $(this).attr('width', $cardWidth).attr('height',$height);
-          });
-          $container.append( $data );
-        }
-      }
+      $container = $('#posts');
+      $container.append( $data );
+
       $('.post_wrapper').css('visibility','visible');
       lbApp.currentPageNumber = lbApp.currentPageNumber + 1;
       lbApp.busy = false;

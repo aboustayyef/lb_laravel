@@ -2,8 +2,7 @@
 
 @include('partials.header')
 @include('partials.topbar')
-
-@include('partials.postDetailsModal')
+@include('posts.partials.channelPicker')
 
 <div id="content">
 	@yield('content')

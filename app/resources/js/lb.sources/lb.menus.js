@@ -35,3 +35,15 @@ $(document).keyup(function(e) {
   lbApp.clearMenus();
   }
 });
+
+// open links depending on whether or not external tab switched is on
+
+$('.exitLink').on('click',function(e){
+    e.preventDefault();
+    var targetLocation = $(e.currentTarget).attr('href');
+    if ($('#newtabs:checked').length === 0 ){
+        location.href = targetLocation;
+    }else{
+        window.open(targetLocation,'_blank');
+    }
+});

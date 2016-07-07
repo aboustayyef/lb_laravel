@@ -29,4 +29,3 @@
 			<li><a href="#">Admin</a></li>
 		</ul>
 	</div>
-@include('posts.partials.channelPicker');

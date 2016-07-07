@@ -1,3 +1,11 @@
+- Make "Open Links in new Tab" work;
+- Latest News Widget
+- Add Signin Button
+- Add navigation options for those who are signed in
+- Audit for unused CSS properties and files
+
+
+
 - Think of a weekly Newsletter. Calls to action (subscription) at top5 list and about pages
 - mobile implementation of top tweets and news
 - Machine learning for guessing categories.

@@ -67,7 +67,7 @@
   display:none;
   z-index: 40;
   width: 300px - $header-height;
-  position:absolute;
+  position:fixed;
   @include lbTransitions();
   right: 10px;
   ul{

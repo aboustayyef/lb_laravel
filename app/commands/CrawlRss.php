@@ -296,7 +296,7 @@ class CrawlRss extends Command {
               $image->setFormat('JPEG');
               $image->scaleImage(300,165,true);
               $outFile = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/' . $blog_post_timestamp.'_'.$domain.'.jpg';//.Lb_functions::get_image_format($blog_post_image);
-              $image->writeImage($outFile);
+              $image->writeImage($outFile); 
               $this->comment('Image added to cache folder');
 
               // add hue color

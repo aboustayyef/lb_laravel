@@ -10,11 +10,9 @@ $(document).ready(function(){
 });
 
 $( window ).on('resize', function(){
-  if ($('.posts').hasClass('cards')) {
       lbApp.resizeViewport();
       lbApp.fixViewportHeight();
       lbApp.checkIfMorePostsNeedToBeAdded();
-  }
 });
 
 // Remove menu if clicked outside of it

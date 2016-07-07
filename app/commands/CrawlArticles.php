@@ -233,7 +233,7 @@ class CrawlArticles extends Command {
             {
               $image = $image->flattenImages();
               $image->setFormat('JPEG');
-              $image->thumbnailImage(300,0);
+              $image->scaleImage(300,165,true);
               $outFile = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/' . $article_timestamp.'_'.$this->columnist->col_shorthand.'.jpg';//.Lb_functions::get_image_format($blog_post_image);
               echo $outFile;
               $image->writeImage($outFile);

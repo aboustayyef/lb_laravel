@@ -1,5 +1,5 @@
-<?php
 
+<?php
 	$topPosts = Post::topPosts();
 ?>
 
@@ -13,26 +13,28 @@
 		</p>
 	</div>
 	<div class="top_posts__content top_posts__right">
-		<ul>
-			@foreach ($topPosts as $post)
-				<li class="top_posts__item">
-					<div class="top_posts__thumb">
-						<?php $i = $post->image(); ?>
-						@if($i->exists)
-							@if($i->horizontal)
-								<img src="{{$i->src}}" height = "60px" width="{{60/$i->ratio}}px" alt="">
-							@else
-								<img src="{{$i->src}}" width = "60px" height="{{60*$i->ratio}}px" alt="">
-							@endif
+	<ul>
+		@foreach ($topPosts as $post)
+			<li class="top_posts__item">
+				<div class="top_posts__thumb">
+					<?php $i = $post->image(); ?>
+					@if($i->exists)
+						<a class="exitLink" href="">
+						@if($i->horizontal)
+							<img src="{{$i->src}}" height = "60px" width="{{60/$i->ratio}}px" alt="">
+						@else
+							<img src="{{$i->src}}" width = "60px" height="{{60*$i->ratio}}px" alt="">
 						@endif
-					</div>
-					<div class="top_posts__details">
-						<a class="top_posts__title" href="">{{$post->post_title}}</a>
-						<p class="top_posts__blog">{{$post->blog->blog_name}}</p>
-					</div>
-					
-				</li>
-			@endforeach
-		</ul>
+						</a>
+					@endif
+				</div>
+				<div class="top_posts__details">
+					<a class="top_posts__title exitLink" href="">{{str_limit($post->post_title, 60)}}</a>
+					<p class="top_posts__blog">{{$post->blog->blog_name}}</p>
+				</div>
+				
+			</li>
+		@endforeach
+	</ul>
 	</div>
 </div>

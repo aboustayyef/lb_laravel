@@ -11,47 +11,15 @@
     @endif
     @foreach (Channel::$list as $channel)
       <option data-target="{{URL::to('/posts/'.$channel['name'])}}" @if(strpos(Request::path(), $channel['name'])) selected="selected" @endif>
-        <?php fontAwesomeToSvg::convert($channel['icon']); ?> {{$channel['description']}}
+        {{$channel['description']}}
       </option>
     @endforeach
   </select>
 
 
-  {{-- If we have a large screen --}}
-  <ul class="channelBar">
-    @if(!(Request::path() == 'posts/all'))
-      <li>
-        <a href="/posts/all">
-          Show All
-        </a>
-      </li>
-    @else
-      <li class = "chooseACategory">
-        Sections :
-      </li>
-    @endif
-
-  @foreach (Channel::$list as $channel)
-
-    <li
-    <?php
-      if (strpos(Request::path(), $channel['name'])) {
-        echo 'class="active"';
-        echo 'style="background-color:'.$channel['color'].'"';
-      }
-    ?>
-    >
-      <a href="{{URL::to('/posts/'.$channel['name'])}}">
-        <?php fontAwesomeToSvg::convert($channel['icon']); ?> <span class="channelDesc">{{$channel['description']}}</span>
-      </a>
-    </li>
-
-  @endforeach
-  </ul>
-
   <label id="openLinksInNewTabs" class="ios7-switch">
       <span class="lbl">Open Links in New Tabs</span>
-      <input type="checkbox">
+      <input id="newtabs" type="checkbox" checked>
       <span></span>
   </label>
 

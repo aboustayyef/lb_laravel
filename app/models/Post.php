@@ -58,7 +58,12 @@ public function image(){
 
   $image->height = $this->post_image_height;
   $image->width = $this->post_image_width;
-  $image->ratio = $this->post_image_height / $this->post_image_width;
+  if ($this->post_image_width > 0) {
+    $image->ratio = $this->post_image_height / $this->post_image_width;
+  } else {
+    $image->ratio = false;
+  }
+  
   $image->horizontal = $this->post_image_width > $this->post_image_height;
 
   return $image;

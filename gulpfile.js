@@ -26,10 +26,12 @@ gulp.task('scripts', function(){
                 './app/resources/js/lb.sources/lb.preparefonts.js',
                 './app/resources/js/lb.sources/lb.saved.js',
                 './app/resources/js/lb.sources/lb.toplist.js' ,
-                './app/resources/js/lb.sources/lb.showPost.js',
+                // './app/resources/js/lb.sources/lb.showPost.js',
                 './app/resources/js/lb.sources/lb.toggleChannels.js'
                 ])
     .pipe(concat('lebaneseblogs.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./public/js'));
 });
+
+gulp.task('default', ['scripts','styles']);
