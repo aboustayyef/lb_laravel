@@ -1,7 +1,7 @@
 $('document').ready(function(){
 
   // like a post
-  $(document).on('click', 'div.sharingButton.likeit', function(){
+  $(document).on('click', '.sharingButton.likeit', function(){
 
     event.stopPropagation();
 
@@ -29,7 +29,7 @@ $('document').ready(function(){
 
             // replace share menu from "add to saved" to remove From saved
 
-            $("div[data-postid='" + $this.data('postid') + "']").removeClass('liked');
+            $("li[data-postid='" + $this.data('postid') + "']").removeClass('liked');
 
             console.log('Successfully removed ' + $this.data('postid') + ' from reading list');
 
@@ -56,7 +56,7 @@ $('document').ready(function(){
 
             // replace share menu from "add to saved" to remove From saved
 
-            $("div[data-postid='" + $this.data('postid') + "']").addClass('liked');
+            $("li[data-postid='" + $this.data('postid') + "']").addClass('liked');
 
             console.log('Successfully added ' + $this.data('postid') + ' to reading list');
 

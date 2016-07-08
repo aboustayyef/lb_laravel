@@ -40,7 +40,7 @@
       $pagekind = Session::get('pageKind');
 
       if ((empty($pagekind)) || ($pagekind == 'allPosts')) {
-        return 'The best place to discover, read and organize Lebanon\'s top blogs';
+        return 'The best place to discover Lebanon\'s top blogs';
       }
 
       if ($pagekind == 'channel') {

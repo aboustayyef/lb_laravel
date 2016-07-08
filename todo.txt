@@ -1,10 +1,15 @@
-- Make "Open Links in new Tab" work;
+√  refactor post images to use the new image() function in the Post model; Will discard post_image partial;
+√  Make "Open Links in new Tab" work;
+
+- Consider killing the user related features: Like and Follow and other tools
 - Latest News Widget
 - Add Signin Button
 - Add navigation options for those who are signed in
 - Audit for unused CSS properties and files
+- Check bloggers pages
 
-
+- Update Facebook Preview and description
+- Update Manifest for Chrome Store
 
 - Think of a weekly Newsletter. Calls to action (subscription) at top5 list and about pages
 - mobile implementation of top tweets and news

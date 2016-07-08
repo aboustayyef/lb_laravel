@@ -3,7 +3,14 @@
   <!-- Post image (if any ) -->
     @if ($post->post_image_height > 0)
       <a class="exitLink" href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">
-        {{View::make('posts.partials.post_image')->with('post',$post)}}
+        <div class="imageWrapper"><img
+            class="lazy cardImage"
+            data-original="{{ $post->image()->src }}"
+            src="{{ asset('/img/transparent.png') }}"
+            width="300px"
+            height="{{ 300 * $post->image()->ratio }}"
+            style="background-color:{{$post->image()->background_color}}"
+          ></div>
       </a>
     @endif
 

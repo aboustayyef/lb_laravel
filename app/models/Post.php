@@ -56,6 +56,7 @@ public function image(){
     $image->src = $this->post_image;
   }
 
+  // dimentions
   $image->height = $this->post_image_height;
   $image->width = $this->post_image_width;
   if ($this->post_image_width > 0) {
@@ -63,8 +64,16 @@ public function image(){
   } else {
     $image->ratio = false;
   }
-  
   $image->horizontal = $this->post_image_width > $this->post_image_height;
+
+  // background color
+  $hue = $this->post_image_hue;
+  $saturation = '20%';
+  $luminosity = '85%';
+  if ($hue == 0) {
+    $saturation = '0%';
+  }
+  $image->background_color = "hsl($hue, $saturation, 75%)";
 
   return $image;
 }

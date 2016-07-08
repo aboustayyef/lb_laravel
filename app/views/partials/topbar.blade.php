@@ -1,17 +1,17 @@
 <div id="topBar">
 	<div class="ut__inner ut__space_between">
+	<div class="logo_slogan_wrapper">
 		<div id="logo" class="dynamicLink ut__Valign" data-destination="{{URL::to('/')}}">
 		  <img src="/img/transparent.png" class="lazy" data-original="/img/logo.png" width="250px" height="40px" >
 		</div>
-		<div id="tailWrap">
-			<div id="aboutlb" class=" ut__Valign">
-			  <p>
-			  	<strong>Discover</strong>, <strong>read</strong> and <strong>organize</strong> Lebanon's top blogs
-			  </p>
-			</div>
-			<div class="ut__Valign">
-				<div id= "about">About ▾</div>
-			</div>
+		<div id="aboutlb" class=" ut__Valign">
+		  <p>
+		  	Discover Lebanon's top blogs
+		  </p>
+		</div>
+	</div>
+		<div class="ut__Valign">
+			<div id= "about">About ▾</div>
 		</div>
 	</div>
 </div>

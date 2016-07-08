@@ -23,8 +23,11 @@
     }
     line-height:$header-height;
     }
-
+.logo_slogan_wrapper{
+  display:flex;
+}
   #aboutlb{
+    margin-left:30px;
     height:$header-height;
   }
 

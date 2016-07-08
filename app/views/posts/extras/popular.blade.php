@@ -21,9 +21,9 @@
 					@if($i->exists)
 						<a class="exitLink" href="">
 						@if($i->horizontal)
-							<img src="{{$i->src}}" height = "60px" width="{{60/$i->ratio}}px" alt="">
+							<img class="lazy" src="/img/transparent.png" data-original="{{$i->src}}" height = "60px" width="{{60/$i->ratio}}px" alt="">
 						@else
-							<img src="{{$i->src}}" width = "60px" height="{{60*$i->ratio}}px" alt="">
+							<img class="lazy" src="/img/transparent.png" data-original="{{$i->src}}" width = "60px" height="{{60*$i->ratio}}px" alt="">
 						@endif
 						</a>
 					@endif

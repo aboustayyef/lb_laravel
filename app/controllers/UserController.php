@@ -15,7 +15,6 @@ class UserController extends \BaseController {
       // initialize posts counters
       Session::put('postsCounter', 0);
       Session::put('cardsCounter', 0);
-      return View::make('posts.main');
 
 /**
  * See posts I have liked
@@ -26,7 +25,6 @@ class UserController extends \BaseController {
       // initialize posts counters
       Session::put('postsCounter', 0);
       Session::put('cardsCounter', 0);
-      return View::make('posts.main');
 
 /**
  * Welcoming new user to new page
@@ -47,5 +45,19 @@ class UserController extends \BaseController {
     elseif ($section == 'unlike'):
       LikeController::remove($action);
     endif;
+
+    
+    if (($section == 'following') || ($section == 'liked')) {
+      // initialize metadata and initial posts
+      $initialPosts = Page::getPosts();
+      $pageTitle = Page::getTitle();
+      $pageDescription = Page::getDescription();
+      
+      return View::make('posts.main')->with([
+        'initialPosts'      => $initialPosts,
+        'pageTitle'         => $pageTitle,
+        'pageDescription'   => $pageDescription
+      ]);
+    }
   }
 }
