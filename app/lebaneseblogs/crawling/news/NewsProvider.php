@@ -2,7 +2,7 @@
 
 
 use Symfony\Component\DomCrawler\Crawler;
-
+use Illuminate\Support\Collection;
 
   /**
    * Creates a NewsProvider Object with methods to extract NewsItem Objects and NewsList Collections
@@ -14,7 +14,7 @@ use Symfony\Component\DomCrawler\Crawler;
   {
 
     public $provider;
-    private $articles = array();
+    private $newsSource;
 
     function __construct($news_provider_id = 'naharnet') // default to Naharnet
     {
@@ -28,6 +28,16 @@ use Symfony\Component\DomCrawler\Crawler;
       foreach ($NewsProviders as $key => $news_provider) {
         if ($news_provider['id'] == $news_provider_id) {
           $this->provider = $news_provider;
+
+          $this->newsSource = new \stdClass;
+          $this->newsSource->articles = new Collection;
+
+          $this->newsSource->meta = [
+            'feedTitle' => $this->provider['title'],
+            'attribution'=> $this->provider['attribution'],
+            'language'=>$this->provider['language']
+          ];
+
           return true;
         }
       }
@@ -88,33 +98,6 @@ use Symfony\Component\DomCrawler\Crawler;
 
           $virality = (new \SocialScore($link))->getVirality();
 
-          // Get the image if it exists
-          if (!empty($scrapingInfo['ImageContainer'])) {
-            $imgCrawler = new Crawler($containerNode);
-            echo 'added image crawler'."\n";
-            if ($scrapingInfo['ImageContainer']=='[IMG]') {
-              $img = $imgCrawler->filter('img')->first();
-            }else {
-              $img = $imgCrawler->filter($scrapingInfo['ImageContainer'].' img')->first();
-            }
-
-            $img = $scrapingInfo['ImageRoot'].$img->attr('src');
-
-            if (!empty($img)) {
-              // cache image
-              $filename = md5($img).'.jpg';
-              $directory = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/cache/'.$this->provider['id'] ;
-              if (!file_exists($directory)) {
-                mkdir($directory);
-              }
-              $image = new \imagick($img);
-              $image->setFormat('JPEG');
-              $image->cropThumbnailImage(70,70);
-              $outFile = $directory. '/'. $filename;
-              $image->writeImage($outFile);
-            }
-          }
-
           // Get the DateStamp
           if (!empty($scrapingInfo['timeContainer'])) {
             $timeCrawler = new Crawler($containerNode);
@@ -130,19 +113,14 @@ use Symfony\Component\DomCrawler\Crawler;
             $img='';
           }
 
-          $this->articles['content'][] = array(
+          $this->newsSource->articles->push([
             'headline'=>$text,
             'url'=> $link,
             'virality'=>$virality,
             'img'=>$img,
-            'gmtDateTime'=>$gmtDateTime
-            );
+            'gmtDateTime'=>$gmtDateTime,
+          ]);
 
-          $this->articles['meta'] = array(
-            'feedTitle' => $this->provider['title'],
-            'attribution'=> $this->provider['attribution'],
-            'language'=>$this->provider['language']
-          );
           $count++;
           if ($count > $maximum) {
             break;
@@ -154,9 +132,8 @@ use Symfony\Component\DomCrawler\Crawler;
   }
 
     public function storeArticles(){
-        \Cache::forever($this->provider['id'], $this->articles);
+        \Cache::forever($this->provider['id'], $this->newsSource);
     }
 
   }
-
 ?>

@@ -1,15 +1,7 @@
 @extends('posts.template')
 
 @section('content')
-
-  <?php
-
-    if (User::signedIn()) {
-      $user =  User::find(User::signedIn());
-    }
-  ?>
-
-  {{-- Show a message if one exists --}}
+{{-- Show a message if one exists --}}
 
   @if (Session::has('lbMessage'))
     @include('posts.partials.helloWindow')
@@ -32,13 +24,13 @@
 
   {{-- Render the first batch of posts --}}
     @if($initialPosts)
-    <div id ="posts" class= "ut__inner"> <!-- cards is default -->
+      <div id ="posts" class= "ut__inner"> <!-- cards is default -->
 
-
-        @include('posts.render', array(
-          'posts'=>$initialPosts ,
-          'from'=>0,
-          'to'=>20))
-    </div>
+          @include('posts.render', array(
+            'posts'=>$initialPosts ,
+            'from'=>0,
+            'to'=>20))
+            
+      </div>
     @endif
 @stop

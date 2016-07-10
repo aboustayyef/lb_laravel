@@ -1,6 +1,6 @@
 <div id="topBar">
 	<div class="ut__inner ut__space_between">
-	<div class="logo_slogan_wrapper">
+	<div class="ut__flexWrapper">
 		<div id="logo" class="dynamicLink ut__Valign" data-destination="{{URL::to('/')}}">
 		  <img src="/img/transparent.png" class="lazy" data-original="/img/logo.png" width="250px" height="40px" >
 		</div>

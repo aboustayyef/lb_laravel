@@ -3,66 +3,18 @@
 if (!Cache::has($source)) {
   return;
 }
-$articles = Cache::get($source);
+$articles = Cache::get($source)->articles->sortByDesc('virality')->take(5);
 ?>
-<div class="post_wrapper">
-  <div class="card news
-    <?php if ($articles['meta']['language'] == 'Arabic') {
-      echo 'arabic';
-    } ?>
-  ">
-    <div class="newsheader">
-      <h3>{{$articles['meta']['feedTitle']}} <span class="beta">(beta)</span><small>{{$articles['meta']['attribution']}}</small></h3>
-    </div>
-    <?php
-      $feedTitle = $articles['meta']['feedTitle'];
-      $articles = array_chunk($articles['content'], 5); // get first 5 articles only
-      $articles = $articles[0];
-    ?>
-    <ul>
-      @foreach($articles as $article)
-      <?php
-        $virality = $article['virality'];
-        $timeAgo = (new Carbon\Carbon($article['gmtDateTime']))->diffForHumans();
-        if (!empty($article['img'])) {
-          $img = '/img/cache/' . $source . '/'.md5($article['img']).'.jpg';
-        }else{
-          $img='NO_IMAGE';
-        }
-
-        //$timeAgo = str_replace(' ', '&nbsp;', $timeAgo);
-      ?>
-        <li>
-          <div class="newsitem">
-
-            @if($img != 'NO_IMAGE')
-            <div class="newsItemImage">
-              <a href="{{$article['url']}}" target="blank" onclick="ga('send', 'event', 'Exit Link', 'Naharnet News')">
-                <img 
-                    class="lazy"
-                    width="70"
-                    height="70"
-                    data-original="http://lebaneseblogs.com/{{$img}}"
-                    style="background: #F3E7E8"
-                    src="{{ asset('/img/transparent.png') }}"
-                    alt="{{$article['headline']}}"
-                >
-              </a>
-            </div>
-            @endif
-
-            <div class="newsContent
-              @if($img == "NO_IMAGE")
-                  noimage
-              @endif
-            ">
-              <a href="{{$article['url']}}" target="blank" onclick="ga('send', 'event', 'Exit Link', 'Naharnet News')">{{$article['headline']}}</a><br> <span class="timeAgo"> {{$timeAgo}}</span>
-              {{View::make('posts.partials.virality')->with('score',$virality)}}
-            </div>
-
-          </div>
-        </li>
-      @endforeach
-    </ul>
-  </div>
+<div class="card news">
+  <h2 class="news__headline">Lebanon News</h2>
+  <ul class="news__list">
+  @foreach ($articles as $article)
+    <li class="news__item">
+      <a class="news__link" href="{{$article['url']}}">{{$article['headline']}}</a>
+      {{View::make('posts.partials.virality')->with('score',$article['virality'])}}
+    </li> 
+  @endforeach
+  </ul>
+  
 </div>
+

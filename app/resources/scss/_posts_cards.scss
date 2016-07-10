@@ -20,15 +20,22 @@ ul.card__tools{
   border:1px solid lighten(black, 30);
 }
 
-ul.card__tools li{
-  color:white;
-  display:inline-block;
-  padding:7px;
-  cursor: pointer;
-}
-
-ul.card__tools li+li{
-  border-left:1px solid lighten(black, 30);
+.tweetit a{
+  padding:5px 7px;
+  color:#777;
+  border:1px solid silver;
+  border-radius:3px;
+  path{
+    fill:silver;
+  }
+  &:hover{
+    background:$brand-color;
+    color:white;
+    border:1px solid $brand-color;
+    path{
+      fill:white;
+    }
+  }
 }
 
 .liked path{
@@ -87,47 +94,6 @@ ul.card__tools li+li{
   justify-content: space-around;
 }
 
-.followBlogger
-{
-  cursor: pointer;
-  font-size:12px;
-  color: #B3B3B3;
-  margin-top:8px;
-  width:85px;
-  text-align:right;
-  &:hover
-  {
-    &:after
-    {
-      border-color:$brand-color;
-      color:$brand-color;
-    }
-  }
-  &:after
-  {
-    content:"+ Follow";
-    padding:5px;
-    border:1px solid #B3B3B3;
-    border-radius: 5px;
-  }
-  &.followed
-  {
-    &:after
-    {
-      content: "✓ Followed";
-    }
-    &:hover
-    {
-      &:after
-      {
-        content:"x Unfollow";
-      }
-    }
-  }
-}
-
-
-
 .metaInfo{
   display:flex;
   justify-content:space-between;
@@ -148,14 +114,15 @@ ul.card__tools li+li{
     font-size:0.8em;
     .viralityBox
     {
+      overflow:auto;
       width: 100px;
-      height: 5px;
+      height: 6px;
       margin-top: 6px;
       border: none;
       background: #e7e7e7;
       .viralityScore
       {
-        height:5px;
+        height:6px;
       }
     }
 }

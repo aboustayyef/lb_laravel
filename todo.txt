@@ -1,13 +1,15 @@
 √  refactor post images to use the new image() function in the Post model; Will discard post_image partial;
 √  Make "Open Links in new Tab" work;
+√ Consider killing the user related features: Like and Follow and other tools
+√ Latest News Widget
 
-- Consider killing the user related features: Like and Follow and other tools
-- Latest News Widget
-- Add Signin Button
-- Add navigation options for those who are signed in
+- improve exit link calculation (use filtering)
+- tiering system for blog check updates. see which blogs take a long time to crawl.
 - Audit for unused CSS properties and files
+- check top posts is working well in all categories
 - Check bloggers pages
 
+- update documentation (static pages)
 - Update Facebook Preview and description
 - Update Manifest for Chrome Store
 

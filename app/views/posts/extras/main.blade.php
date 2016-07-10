@@ -10,24 +10,9 @@
     @include('posts.extras.topBloggerList')
     <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
 
-  @elseif ($pageKind == 'following')
-    <div class="post_wrapper"> <!-- on its own, not part of top list -->
-      @include('posts.extras.user')
-    </div>
-    <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
-
   @elseif ($pageKind == 'searchResults')
     @include('posts.extras.searchResults')
     <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
-
-  @elseif ($pageKind == 'liked')
-    <div class="post_wrapper"> <!-- on its own, not part of top list -->
-      @include('posts.extras.user')
-    </div>
-    <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
-
-  @elseif ($pageKind == 'search')
-    {{-- Nothing yet --}} 
 
   @endif
 @endif

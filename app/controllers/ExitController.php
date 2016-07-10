@@ -47,7 +47,8 @@ class ExitController extends BaseController
             $post->save();
     }
 
-    // update exit log (all users)
+    // update exit log (all u
+    // sers)
     $log->exit_time = time();
     $log->exit_url = $url;
     $log->user_agent = self::isRobot($u_agent) ? '[ROBOT] ' . $u_agent : $u_agent;

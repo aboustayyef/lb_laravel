@@ -1,26 +1,25 @@
 <?php
-$viralityColor = "#39CCCC"; // green
 
-if ($score > 9) {
-  $viralityColor = "#FFDC00"; // yello
-}
+$viralityColors = [
+	50	=>	"#BE0000" , // deep red for score < 50 
+	39	=>	"#FF4136" , // red for score < 39 
+	29	=>	"#FF851B" ,	// orange for score < 29 
+	19	=>	"#FFDC00" , // yello for score < 19
+	9	=>	"#39CCCC" , // turquoise for score < 9
+];
 
-if ($score > 19) {
-  $viralityColor = "#FF851B"; // orange
-}
-if ($score > 29) {
-  $viralityColor = "#FF4136"; // red
-}
-
-if ($score > 39) {
-  $viralityColor = "#BE0000"; // deep red
-}
 $virality = $score * 2; // convert to a percentile score
+
+foreach($viralityColors as $key => $color){
+	if ($score <= $key) {
+		$viralityColor = $color;
+	}
+}
 ?>
 <div class="viralityWrapper">
 Virality &nbsp;
  <div class="viralityBox" title="Virality Score: {{$score}}/50">
-  <div class="viralityScore" style ="background: {{$viralityColor}}; width: {{$virality}}px"> <!-- This will be styled from the code -->
+  <div class="viralityScore" style ="background: {{$viralityColor}}; width: {{$virality}}%"> <!-- This will be styled from the code -->
   </div>
 </div>
 </div>
