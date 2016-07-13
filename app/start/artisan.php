@@ -21,3 +21,6 @@ Artisan::add(new spreadPosts);
 Artisan::add(new getNews);
 Artisan::add(new endOfYearStats);
 Artisan::add(new getRatings);
+Artisan::add(new CleanupExitLog);
+Artisan::add(new CalculateBloggingFrequency);
+Artisan::add(new DeactivateInactiveBlogs);

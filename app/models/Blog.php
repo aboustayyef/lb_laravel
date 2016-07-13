@@ -48,6 +48,20 @@
       }
     }
 
+    public function deactivate($reason="no reason given"){
+      $this->blog_RSSCrawl_active=0;
+      $this->reason_for_deactivation=$reason;
+      $this->save();
+    }
+
+    public function deactivateAndDeletePosts($reason="no reason given"){
+      $this->deactivate($reason);
+      $this->posts->each(function($post){
+        $post->delete();
+        echo PHP_EOL . "Post [$post->post_title] deleted" ;
+      });
+    }
+
     static function validate($input){
       $rules = [
         'name'  =>  'required|min:5',

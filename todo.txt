@@ -2,9 +2,15 @@
 √  Make "Open Links in new Tab" work;
 √ Consider killing the user related features: Like and Follow and other tools
 √ Latest News Widget
+√ improve exit link calculation (use filtering)
 
-- improve exit link calculation (use filtering)
 - tiering system for blog check updates. see which blogs take a long time to crawl.
+
+- Signing in is only for bloggers. Create Admin dashboards for each blogger
+	- Blogger can edit details of their blog
+	- Bloggers can switch blog for multiple blogs
+	- Bloggers can edit details and tags of their posts
+	
 - Audit for unused CSS properties and files
 - check top posts is working well in all categories
 - Check bloggers pages
@@ -16,3 +22,14 @@
 - Think of a weekly Newsletter. Calls to action (subscription) at top5 list and about pages
 - mobile implementation of top tweets and news
 - Machine learning for guessing categories.
+
+
+DEPLOYMENT STEPS:
+
+- Laravel Down
+- Pull branch
+- migrate
+- run cleanupExitLog
+- run DeactivateInactiveBlogs
+- run CalculateBloggingFrequency
+- Add Cron Jobs to above commands

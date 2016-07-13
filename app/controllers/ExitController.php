@@ -38,7 +38,9 @@ class ExitController extends BaseController
     // proceed
     $u_agent = $_SERVER['HTTP_USER_AGENT'];
     $ip_address = self::getIP();
+    Console::log(md5($url.$u_agent.$ip_address));
     $log = new ExitLog;
+
 
     // update counter for post (only human, non-repeat user)
     if ((!self::isRobot($u_agent)) && (!$log->has($ip_address, $url))){
@@ -71,7 +73,7 @@ class ExitController extends BaseController
   }
 
   static function isRobot($user_agent){
-    $robotStrings = ['spider','slurp','bot','Bot', 'crawl', 'crawler'];
+    $robotStrings = ['spider','slurp','bot','Bot', 'crawl'];
     foreach ($robotStrings as $key => $robotString) {
       if (str_contains($user_agent, $robotString)) {
         return true;
