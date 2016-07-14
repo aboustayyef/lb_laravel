@@ -12,7 +12,17 @@ class BloggerController extends BaseController{
       Session::put('postsCounter', 0);
       Session::put('cardsCounter', 0);
 
-      return View::make('posts.main');
+      // initialize metadata and initial posts
+      $initialPosts = Page::getPosts();
+      $pageTitle = Page::getTitle();
+      $pageDescription = Page::getDescription();
+
+      return View::make('posts.main')->with([
+        'initialPosts'      => $initialPosts,
+        'pageTitle'         => $pageTitle,
+        'pageDescription'   => $pageDescription
+      ]);
+      
     else :
       return Response::make('Blogger Not Found', 404);
     endif;

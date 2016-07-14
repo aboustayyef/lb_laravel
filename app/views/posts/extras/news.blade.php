@@ -11,7 +11,6 @@ $articles = Cache::get($source)->articles->sortByDesc('virality')->take(5);
   @foreach ($articles as $article)
     <li class="news__item">
       <a class="news__link" href="{{$article['url']}}">{{$article['headline']}}</a>
-      {{View::make('posts.partials.virality')->with('score',$article['virality'])}}
     </li> 
   @endforeach
   </ul>

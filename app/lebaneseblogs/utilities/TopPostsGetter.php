@@ -28,6 +28,12 @@
 
 		public function get() // Return collection
 		{
+
+			if (Session::get('pageKind') == 'blogger') {
+				$posts = Post::where('blog_id', Session::get('blogger'))->orderBy('post_virality','desc')->take(5)->get();
+				return $posts;
+			}
+
 			foreach ($this->possibleTimeFrames as $key => $hours) {
 				$posts = Post::getTopPosts($this->channel, $hours);
 				if ($posts->count() > 4) {

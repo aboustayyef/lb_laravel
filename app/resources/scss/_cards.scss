@@ -10,6 +10,11 @@
     height: $card-height;
 }
 
+.card--fullWidth{
+    width:100%;
+    height:auto;
+}
+
 .card--double{
 	width: ($card-width * 2) + $gutter-width;
 }

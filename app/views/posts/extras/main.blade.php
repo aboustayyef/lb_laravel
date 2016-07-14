@@ -7,7 +7,7 @@
 @if ($counter == 0)
 
   @if ($pageKind == 'blogger')
-    @include('posts.extras.topBloggerList')
+    {{View::make('posts.extras.bloggerInfo')}}
     <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
 
   @elseif ($pageKind == 'searchResults')

@@ -3,18 +3,19 @@
 √ Consider killing the user related features: Like and Follow and other tools
 √ Latest News Widget
 √ improve exit link calculation (use filtering)
+√ Check bloggers pages . test for blogs with no posts.
 
-- tiering system for blog check updates. see which blogs take a long time to crawl.
+- Virality Calculation (ignore twitter)
 
 - Signing in is only for bloggers. Create Admin dashboards for each blogger
+	- Show blogger's statistics and post statistics
 	- Blogger can edit details of their blog
 	- Bloggers can switch blog for multiple blogs
 	- Bloggers can edit details and tags of their posts
-	
+
 - Audit for unused CSS properties and files
 - check top posts is working well in all categories
-- Check bloggers pages
-
+- Audit routes and check those that will be discarded
 - update documentation (static pages)
 - Update Facebook Preview and description
 - Update Manifest for Chrome Store
@@ -31,5 +32,9 @@ DEPLOYMENT STEPS:
 - migrate
 - run cleanupExitLog
 - run DeactivateInactiveBlogs
-- run CalculateBloggingFrequency
 - Add Cron Jobs to above commands
+
+LATER 
+- Re-Add Search
+- Consider making the scraper an external service via API
+- Tiering system for blog check updates. see which blogs take a long time to crawl. Continue working on CalculateBloggingFrequency;

@@ -25,6 +25,9 @@ class updateVirality extends Command {
    *
    * @return void
    */
+  
+  protected $maxHoursAgoPerPost;
+
   public function __construct()
   {
     parent::__construct();
@@ -38,71 +41,81 @@ class updateVirality extends Command {
   public function fire()
   {
 
-    // get timeframe
+    $maxTimeAgoPerPost = 3 * 24 * 60 * 60 ; //3 days in seconds
+    $hoursAgo = time() - $maxTimeAgoPerPost;
 
-    if ($this->argument('hours')) {
-      $hours = $this->argument('hours');
+    // if the 'blog' argument is set, we only crawl the feed of that blog, otherwise, we crawl all;
+    if ($this->argument('blog')) {
+      $blogs = Blog::where('blog_id','=',$this->argument('blog'))->get();
     } else {
-      $hours = 24; // default is 1 day
+      // get all active blogs
+      $blogs = Blog::where('blog_RSSCrawl_active','=','1')->get();
     }
 
-    // convert timeframe to timestamp
-    $hoursAgo = time() - ($hours * 60 * 60);
+    $blogs->each(function($blog) use ($hoursAgo){
 
-    // get all posts in that timeframe
-    $posts = Post::Where('post_timestamp', '>', $hoursAgo)->get();
+      $this->info("Getting the virality scores for [ $blog->blog_name ]");
 
-    // start the loop
-    foreach ($posts as $key => $post) {
+      $posts = Post::where('blog_id',$blog->blog_id);
 
-      $this->info('Analysing post ' . $post->post_title);
+      // If we are looking to all blogs (ie the blog argument is not specified)
+      // then we add the time limit to posts
 
-      // initiate social score object
-      $score = new SocialScore($post->post_url);
+      if (!$this->argument('blog')) { $posts = $posts->where('post_timestamp', '>', $hoursAgo); }
 
-      // get facebook and twitter scores;
-      $facebookShares = $score->getFacebookScore();
-      $twitterShares = $score->getTwitterScore();
-      $totalShares = $facebookShares + $twitterShares;
+      $posts = $posts->orderBy('post_timestamp','desc')->get();
 
-      // make total shared more weighed by twitter because it's less easy to game and buy
-      $totalShares = round((($facebookShares + (2 * $twitterShares)) / 3 ) * 2 );
+      $posts->each(function($post){
 
-      $this->comment('Facebook Score: ' . $facebookShares . ' , Twitter Score: ' . $twitterShares . ' , Total Score: ' . $totalShares);
+        $this->info('Analysing post ' . $post->post_title);
 
-      // calculate virality
-      $virality = $totalShares > 1 ? round( 8 * log($totalShares) ) : 2 ;
+        // initiate social score object
+        $score = new SocialScore($post->post_url);
 
-      // set virality's upper limit of 50
-      if ($virality > 50) {
-        $virality = 50;
-      }
+        // get facebook likes and shares;
+        $facebookLikes = $score->getFacebookLikes();
+        $facebookShares = $score->getFacebookShares();
+        $facebookComments = $score->getFacebookComments();
 
-      // The social score is the combination of virality and post visits
-      // Visits are twice as important as virality
-      $socialScore = $post->post_visits + round($virality / 2);
+        // weight scores by coefficients. 
+        $coef_comm = 1;
+        $coef_like = 2; // likes are 2 times more important than comments;
+        $coef_shares = 7; // shares most important indicator. 7 times as important as comments;
 
-      // Listicle Penalty (20%)
-      if (self::isListicle($post->post_title)) {
-        $socialScore = round($socialScore*0.8);
-        $this->comment('Listicle Penalty added');
-      }
+        $coef_tot = $coef_comm + $coef_like + $coef_shares; 
+        
+        $weightedValue = round(($coef_comm * $facebookComments + $coef_like * $facebookLikes + $coef_shares * $facebookShares) / $coef_tot);
 
-      $this->comment('Virality: ' . $virality . ' , Social Score: ' . $socialScore);
+        $totalShares = $weightedValue * 2;
 
-      // Save The results to database;
+        // calculate virality
+        $virality = $totalShares > 1 ? round( 8 * log($totalShares) ) : 2 ;
 
-      $post->post_facebookShares = $facebookShares;
-      $post->post_twitterShares = $twitterShares;
-      $post->post_totalShares = $totalShares;
-      $post->post_virality = $virality;
-      $post->post_socialScore = $socialScore;
-      try {
-        $post->save();
-      } catch (Exception $e) {
-        $this->error('Couldnt save details for post in database');
-      }
-    } // (end of foreach)
+        // set virality's upper limit of 50
+        if ($virality > 50) {
+          $virality = 50;
+        }
+
+        $this->comment("Likes: $facebookLikes, Comments: $facebookComments, Shares: $facebookShares, Weighted Score: $weightedValue, Virality: $virality");
+      
+        // The social score is the combination of virality and post visits
+        // Visits are twice as important as virality
+        $socialScore = $post->post_visits + round($virality / 2);
+        $this->comment("SocialScore (virality and visit count) : $socialScore");
+
+        // Save The results to database;
+
+        $post->post_virality = $virality;
+        $post->post_socialScore = $socialScore;
+        try {
+          $post->save();
+        } catch (Exception $e) {
+          $this->error('Couldnt save details for post in database');
+        }
+
+      }); // Posts Loop
+    
+    }); // Blogs Loop
   }
 
   /**
@@ -110,10 +123,11 @@ class updateVirality extends Command {
    *
    * @return array
    */
+  
   protected function getArguments()
   {
     return array(
-      array('hours', InputArgument::OPTIONAL, 'The number of hours to check for'),
+      array('blog', InputArgument::OPTIONAL, 'The blog to check for'),
     );
   }
 
@@ -129,22 +143,5 @@ class updateVirality extends Command {
     );
   }
 
-  public static function isListicle($title){
-    $title = strtolower($title);
-    $parts = explode(" ", $title);
-    $firstWord = $parts[0];
-    if (count($parts) > 1) {
-      $secondWord = $parts[1];
-    } else {
-      $secondWord = 'NotANumber';
-    }
-
-    $listOfNumbers = array('3','4','5','6','7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', 'three','four','five','six','seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen');
-    if ((in_array($firstWord, $listOfNumbers))||(in_array($secondWord, $listOfNumbers))) {
-      return TRUE;
-    }else{
-      return FALSE;
-    }
-  }
 
 }

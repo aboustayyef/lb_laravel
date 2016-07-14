@@ -44,11 +44,10 @@
     </div>
 
     <!-- Blog Header . don't show where we're at the blog's page -->
-    @if (Session::get('pageKind') != 'blogger')
-    <div class="blog__info">
-      <div class="ut__flexWrapper">
+    <div class="blog__info @if (Session::get('pageKind') == 'blogger') blogger_page @endif">
+      <div class="ut__flexWrapper blog__meta">
         <!-- Thumbnail -->
-        <a href="{{url('/blogger/'.$post->blog_id)}}">
+        <a class="ut__Valign" href="{{url('/blogger/'.$post->blog_id)}}">
           <img
             style="background: #F3E7E8"
             class="lazy blog__thumbnail"
@@ -89,7 +88,6 @@
 
       </div>
     </div> <!-- /Blog Header -->
-    @endif
 
 
   </div> <!-- /card -->

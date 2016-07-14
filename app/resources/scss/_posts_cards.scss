@@ -11,15 +11,6 @@
   border-bottom: 1px solid #efefef;
 }
 
-ul.card__tools{
-  visibility:hidden;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background:black;
-  border:1px solid lighten(black, 30);
-}
-
 .tweetit a{
   padding:5px 7px;
   color:#777;
@@ -81,9 +72,15 @@ ul.card__tools{
 }
 
 .blog__thumbnail{
+  max-height:30px;
+  max-width:30px;
   border-radius:50%;
   border: 1px solid #efefef;
   margin-right:10px;
+}
+
+.blogger_page .blog__meta{
+  visibility:hidden;
 }
 
 .blog__name{
