@@ -11,51 +11,33 @@ use Symfony\Component\DomCrawler\Crawler ;
 |
  */
 
-// The default route. Check url 'channel' parameter for backward compatibility 
-// Default entrypoint is /posts/all
+Route::get('manage/{blogId?}/', [
+    'as'    =>  'manage',
+    'uses'  =>  'ManagementController@index'
+]);
 
-Route::get('/', function(){
-    if (Input::has('channel')) {
-        return Redirect::to('/posts/'.Input::get('channel'));
-    }
-    return Redirect::to('posts/all');
-});
+Route::get('manage/{blogId}/edit/{blogOrPost?}/{postId?}', [
+    'as'    =>  'manage',
+    'uses'  =>  'ManagementController@edit'
+]);
 
-// Get a list of #youstink related posts
-// An api hack for youstink.news
+Route::post('manage/{blogId}/edit/{blogOrPost?}/{postId?}', [
+    'as'    =>  'manage.update',
+    'uses'  =>  'ManagementController@update'
+]);
 
-Route::get('/youstink2/{howmany?}', array(
-    'as'  =>  'youstink',
-    'uses'  =>  'youstinkController@index'
-));
+// legacy routes
+require_once(app_path().'/routes/legacyRoutes.php');
 
-// Get a list of all the sources.
-// Useful for importing to another database. Used for LBEngine
+// api routes. Send data to other apps.
+require_once(app_path().'/routes/apiRoutes.php');
 
-Route::get('/sources/{password}', function($password){
-    if (Hash::check($password, '$2y$10$6PHNiZP68bq2KPF9QGzVN.2VrWbWYNEowZPgcIaKpisMVfmYjlxbm')) {
-        return Blog::all();
-    }
-});
+// authentication routes for bloggers to sign in with twitter
+require_once(app_path().'/routes/authRoutes.php');
 
-Route::group(array('prefix' => 'admin', 'before' => 'admin.auth'), function()
-    {
-        Route::get('addBlog',array(
-            'as'  =>  'admin.getAddBlog',
-            'uses' => 'adminController@getstep1'
-        ));
+// administration routes for superuser (me!) for actions like adding blogs
+require_once(app_path().'/routes/adminRoutes.php');
 
-        Route::get('addBlog/step2',array(
-            'as'  =>  'admin.getstep2',
-            'uses' => 'adminController@getstep2'
-        ));
-
-        Route::post('addBlog/step2',array(
-            'as'  =>  'admin.storeBlog',
-            'uses' => 'adminController@store'
-        ));
-
-    });
 
 Route::get('/mobileAjax/b/{blogger}/{from}/{howmany}', array(
     'uses'  =>  'MobileAjaxController@bloggerIndex'
@@ -65,15 +47,6 @@ Route::get('/mobileAjax/{channel}/{from}/{howmany}', array(
     'uses'  =>  'MobileAjaxController@index'
 ));
 
-Route::get('/news', array(
-    'uses'  =>  'NewsController@index'
-));
-
-Route::get('/user/{section}/{action?}', array(
-    'before'  =>  'lb.auth:following',
-    'as'  =>  'user',
-    'uses'  =>  'UserController@index'
-));
 
 Route::get('mobile/{set}/{detail?}', array(
     'as'  =>  'mobile',
@@ -113,30 +86,7 @@ Route::get('/delete/{what?}/{which?}', array(
     'uses'  =>  'DeleteController@index'
 ));
 
-Route::get('/ajax/GetMorePosts', array(
-    'uses'  =>  'AjaxController@loadMorePosts'
-));
-
-Route::get('/ajax/GetTop5', array(
-    'uses'  =>  'AjaxController@loadTopFivePosts'
-));
-
-/*
-|---------------------------------------------------------------------
-|   Logging out
-|---------------------------------------------------------------------
-|
-|   destroys cookies and sessions
-|
- */
-
-Route::get('/logout',function()
-    {
-        Session::forget('lb_user_id');
-        $cookie = Cookie::forget('lb_user_id');
-        return Redirect::to('/')->withCookie($cookie);
-    });
-
+require_once(app_path(). '/routes/ajaxRoutes.php');
 
 /*
 |--------------------------------------------------------------------------
@@ -156,54 +106,6 @@ Route::post('/about/{slug?}', array(
     'uses'  =>  'StaticPagesController@submit'
 ));
 
-
-/*
-|---------------------------------------------------------------------
-|   The Login Page
-|---------------------------------------------------------------------
-|
- */
-
-Route::get('/login',function()
-    {
-        if (Input::has('follow')) {
-            Session::set('blogToFollow', Input::get('follow'));
-        }
-        if (Input::has('like')) {
-            Session::set('postToLike', Input::get('like'));
-        }
-        if (Input::has('camefrom')){
-            Session::set('finalDestination', Input::get('camefrom'));
-        }
-        return View::make('login');
-    });
-
-/**
- * Blog Routes. This will redirect old blog urls based on subfolder to new subdomain.
- */
-
-Route::get('/blog/{slug1?}/{slug2?}/{slug3?}/{slug4?}', function($slug1=null, $slug2=null, $slug3=null, $slug4=null){
-    $endSlug = '/'. $slug1 .'/'. $slug2 .'/'. $slug3 .'/'. $slug4;
-    return Redirect::to('http://blog.lebaneseblogs.com'.$endSlug);
-});
-
-
-/*
-|---------------------------------------------------------------------
-|   Authentication Routes
-|---------------------------------------------------------------------
-|
-|   Use to authenticate with third party providers
-|
- */
-
-Route::get('/auth/{provider}', array(
-    'uses'  =>  'AuthenticationController@auth'
-));
-
-Route::get('/auth/{provider}/callback', array(
-    'uses'  =>  'AuthenticationController@callback'
-));
 
 /*
 |---------------------------------------------------------------------

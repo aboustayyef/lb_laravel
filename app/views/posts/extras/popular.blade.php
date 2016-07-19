@@ -5,12 +5,18 @@
 
 <div id = "top_posts" class="card card--double">
 	<div class="top_posts__content top_posts__left">
-		<h3 class="top_posts__header">
-			Top Posts
-		</h3>
-		<p class="top_posts__about">
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto laboriosam necessitatibus soluta quaerat quo temporibus.
-		</p>
+		<div>
+			<h3 class="top_posts__header">
+				Top Posts
+			</h3>
+
+			<p class="top_posts__about">
+				{{Page::topPostsDescription()}}
+			</p>
+		</div>
+		<div>
+			Questions? Contact @beirutspring
+		</div>
 	</div>
 	<div class="top_posts__content top_posts__right">
 	<ul>

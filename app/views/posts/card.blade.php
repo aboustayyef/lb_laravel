@@ -22,7 +22,7 @@
     <div class="post_body"> {{-- onclick="lbApp.showPost(data{{$post->post_id}}, exiturl{{$post->post_id}})"  --}}
       <div class="metaInfo">
         <div class="postedSince">
-          {{lbFunctions::time_elapsed_string($post->post_timestamp)}}
+          {{$post->carbonDate()->diffForHumans()}}
         </div>
         {{View::make('posts.partials.virality')->with('score',$post->post_virality)}}
       </div>

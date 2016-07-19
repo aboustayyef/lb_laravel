@@ -1,6 +1,7 @@
 <?php
   class Blog extends Eloquent
   {
+    protected $fillable = ['blog_name','blog_description', 'blog_author'];
     protected $primaryKey = 'blog_id';
     public $timestamps = true;
 

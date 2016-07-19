@@ -4,6 +4,7 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Aboustayyef\Summarizer;
+use Illuminate\Support\Collection;
 
 // use \lbFunctions;
 
@@ -59,11 +60,16 @@ class CrawlRss extends Command {
 
 
     // loop through them to look for new posts
+    $c = new Collection;
+    
     foreach ($blogs as $key => $blog) {
       $this->blog = $blog;
       $this->feed = $blog->blog_rss_feed;
       try {
+        $start = time();
         $this->exploreFeed();
+        $duration = time() - $start;
+        $c->push(['blog' => $blog->blog_name, 'duration' => $duration]);
       } catch (Exception $e) {
         $this->error($e);
       }
@@ -72,6 +78,7 @@ class CrawlRss extends Command {
 
     $this->info('Feeds Work Ended: '.date('d M Y , H:i:s'));
     $this->info('Kind of fetching used: '. $this->option('fetching'));
+    Cache::forever('crawlingDurations', $c);
 
 
   } // fire

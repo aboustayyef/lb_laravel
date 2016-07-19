@@ -29,12 +29,19 @@ public static function getTopPosts($channel='all', $hours=12){
   return $posts;
 }
 
-
+public function carbonDate(){
+  return \Carbon\Carbon::createFromTimestamp($this->post_timestamp);
+}
 // convenience functions;
 
 public static function topPosts(){
   $temp = new \LebaneseBlogs\Utilities\TopPostsGetter;
   return $temp->get();
+}
+
+public function increaseCount(){
+  $this->post_views = $this->post_views + 1;
+  $this->save();
 }
 
 // returns an image object

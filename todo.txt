@@ -4,17 +4,22 @@
 √ Latest News Widget
 √ improve exit link calculation (use filtering)
 √ Check bloggers pages . test for blogs with no posts.
-
-- Virality Calculation (ignore twitter)
+√ Virality Calculation (ignore twitter)
+√ check top posts is working well in all categories
 
 - Signing in is only for bloggers. Create Admin dashboards for each blogger
-	- Show blogger's statistics and post statistics
-	- Blogger can edit details of their blog
-	- Bloggers can switch blog for multiple blogs
-	- Bloggers can edit details and tags of their posts
+	√ A blogger Can Sign in using twitter
+	√ Change location of signin button to top bar
+	√ Once Signed in, a Blogger will have an admin area
+	√ From the Admin area, a Blogger can select her blog if she has more than one
+	√ In admin area, blogger sees general stats
+	- In admin area, blogger can edit details of her blog
+	- In admin area, blogger can see list of her posts, and update tags from the list
+	- In admin area, bloggers can edit details and tags of each post
+	- Do a thorough testing of access rights (who can edit what)
 
+- Clean up unused Cookie settings and routes related to old like/follow features
 - Audit for unused CSS properties and files
-- check top posts is working well in all categories
 - Audit routes and check those that will be discarded
 - update documentation (static pages)
 - Update Facebook Preview and description
@@ -26,13 +31,17 @@
 
 
 DEPLOYMENT STEPS:
-
+Local:
+- Hide statistics related to post loads (loads / ctr) with a coming soon. Allow a few days for post load data to gather (add back after a few days)
+- Commit, Merge, Push
 - Laravel Down
+Server:
 - Pull branch
 - migrate
 - run cleanupExitLog
 - run DeactivateInactiveBlogs
-- Add Cron Jobs to above commands
+- run updateVirality, and adjust Cron Job to reflect changes (remove hours at the end)
+- Add Cron Jobs (every midnight) for cleanupExitLog and DeactivateInactiveBlog
 
 LATER 
 - Re-Add Search

@@ -55,9 +55,16 @@ Route::filter('auth.basic', function()
 });
 
 Route::filter('admin.auth', function(){
-  if ( User::signedIn() != 83) {
-    die('you don\'t have access'. User::signedIn());
-  }
+	$canPass = false;
+	if (Session::has('SignedInUser')) {
+		$u = Session::get('SignedInUser');
+		if ($u['twitterHandle'] == 'Beirutspring') {
+			$canPass = true;
+		}
+	}
+	if (! $canPass) {
+		return Response::make('Unauthorized', 401);
+	}
 });
 
 Route::filter('lb.auth', function($route,$request,$finalDestination){

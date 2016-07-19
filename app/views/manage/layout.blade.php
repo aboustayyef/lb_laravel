@@ -14,11 +14,18 @@
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     
-    <!-- Custom CSS -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+    <!-- Custom CSS - Consolidate later -->
     <style>
     body {
         padding-top: 70px;
         /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    }
+    .count {
+        font-size:30px;
+        font-weight:bold;
     }
     </style>
     
@@ -31,7 +38,7 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Lebanese Blogs Admin</a>
+            <a class="navbar-brand" href="#">Manage Your Blogs</a>
             </div>
         </div>
         <!-- /.container -->
@@ -40,15 +47,18 @@
 
     <!-- Page Content -->
     <div class="container">
+      @if(Session::has('lbSuccessMessage'))
+        <div class="alert alert-success">
+          {{Session::get('lbSuccessMessage')}}
+        </div>
+      @endif
+      
       @yield('content')
     </div>
     <!-- /.container -->
 
-    <!-- jQuery Version 1.11.1 -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+    <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 
 </body>
 

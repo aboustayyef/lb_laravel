@@ -1,4 +1,9 @@
 #channelPicker{
+
+  img.lazy{
+    background-color: #ededed;
+  }
+
   border-bottom:1px solid silver;
   z-index:27;
   padding:2px 0;
@@ -22,5 +27,20 @@
       font-weight:bold;
       border-radius:0;
   }
+  .error_message {
+      margin-right: 10px;
+      color: $brand-color;
+  }
+  .user{
+      margin-right:10px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+  }
+
+  .top_posts__button {
+      border-right: 1px solid #e2e0e0;
+      padding: 10px 5px;
+    }
 
 }

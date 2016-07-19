@@ -1,4 +1,9 @@
 @extends('admin.layout')
+
+@section('title')
+    Add New Blog
+@stop
+
 @section('content')
 
 @if($errors->any())

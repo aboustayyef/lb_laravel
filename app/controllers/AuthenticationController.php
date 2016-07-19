@@ -13,171 +13,64 @@
 class AuthenticationController extends BaseController
 {
 
-  function auth($provider){
+  function auth(){
 
-    $list_of_providers = ['twitter','facebook','google'];
+    // Retrieve temporary credentials
+    $temporaryCredentials = AuthenticationServer::twitter()->getTemporaryCredentials();
 
-    // Check if $provider is listed
-    if (!in_array($provider, $list_of_providers)) {
-      //abort
-      return app::abort(404,'Provider Does not exist');
-    }
+    // Store credentials in the session, we'll need them later
+    Session::put('temporaryCredentials', $temporaryCredentials);
+    Session::save();
 
-    switch ($provider) {
-/*
-|---------------------------------------------------------------------
-|   TWITTER
-|---------------------------------------------------------------------
-*/
-      case 'twitter':
-
-          // Retrieve temporary credentials
-          $temporaryCredentials = AuthenticationServer::twitter()->getTemporaryCredentials();
-
-          // Store credentials in the session, we'll need them later
-          Session::put('temporaryCredentials', $temporaryCredentials);
-          Session::save();
-
-          // Redirect the resource owner to the login screen on the server.
-          $url = AuthenticationServer::twitter()->getAuthorizationUrl($temporaryCredentials);
-          return Redirect::To($url);
-/*
-|---------------------------------------------------------------------
-|   FACEBOOK
-|---------------------------------------------------------------------
-*/
-      case 'facebook':
-
-          // Retrieve temporary credentials
-          return Redirect::to(AuthenticationServer::facebook()->getAuthorizationUrl());
-
-        break;
-
-/*
-|---------------------------------------------------------------------
-|   GOOGLE
-|---------------------------------------------------------------------
-*/
-      case 'google':
-
-          // Retrieve temporary credentials
-          return Redirect::to(AuthenticationServer::google()->getAuthorizationUrl());
-
-        break;
-    }
+    // Redirect the resource owner to the login screen on the server.
+    $url = AuthenticationServer::twitter()->getAuthorizationUrl($temporaryCredentials);
+    return Redirect::To($url);
 
   }
 
-  function callback($provider){
-    switch ($provider) {
-/*
-|---------------------------------------------------------------------
-|   TWITTER Callback
-|---------------------------------------------------------------------
-*/
-      case 'twitter':
-        if ((Input::has('oauth_token')) && (Input::has('oauth_verifier'))) {
-            // We will now retrieve token credentials from the server
-            $tokenCredentials = AuthenticationServer::twitter()->getTokenCredentials(
-              Session::get('temporaryCredentials'),
-              Input::get('oauth_token'),
-              Input::get('oauth_verifier')
-            );
+  function callback(){
 
-            // User is an instance of League\OAuth1\Client\Server\User
-            $user = AuthenticationServer::twitter()->getUserDetails($tokenCredentials);
+    if ((Input::has('oauth_token')) && (Input::has('oauth_verifier'))) {
+        // We will now retrieve token credentials from the server
+        $tokenCredentials = AuthenticationServer::twitter()->getTokenCredentials(
+          Session::get('temporaryCredentials'),
+          Input::get('oauth_token'),
+          Input::get('oauth_verifier')
+        );
 
-            // Twitter returns full name
-            $names = explode(' ', $user->name);
-            if (count($names) > 1) {
-              $twitterLastName = $names[1];
-            } else {
-              $twitterLastName = '';
-            }
-            $userDetails = array(
-              'provider'  =>  'Twitter',
-              'providerId' => $user->uid,
-              'twitterHandle' =>  $user->nickname,
-              'firstName'  => $names[0],
-              'lastName'  =>  $twitterLastName,
-              'email'     =>  $user->email,
-              'gender'    =>  null,
-              'imageUrl'  =>  $user->urls['profile_image_url']
-            );
+        // User is an instance of League\OAuth1\Client\Server\User
+        $user = AuthenticationServer::twitter()->getUserDetails($tokenCredentials);
 
-            return User::register($userDetails);
+        // Twitter returns full name
+        $names = explode(' ', $user->name);
+        if (count($names) > 1) {
+          $twitterLastName = $names[1];
         } else {
-          Session::flash('message', 'Sorry, Could not sign in. Want to try again?');
-          return View::make('login');
+          $twitterLastName = '';
         }
-        break;
+        $userDetails = array(
+          'twitterId' => $user->uid,
+          'twitterHandle' =>  $user->nickname,
+          'firstName'  => $names[0],
+          'lastName'  =>  $twitterLastName,
+          'email'     =>  $user->email,
+          'imageUrl'  =>  $user->urls['profile_image_url']
+        );
 
-/*
-|---------------------------------------------------------------------
-|   FACEBOOK Callback
-|---------------------------------------------------------------------
-*/
-      case 'facebook':
-
-
-        if ((Input::has('code'))) {
-            // We will now retrieve token credentials from the server
-            $tokenCredentials = AuthenticationServer::facebook()->getAccessToken('authorizationCode', [
-                'code' => Input::get('code')
-            ]);
-
-            // User is an instance of League\OAuth1\Client\Server\User
-            $user = AuthenticationServer::facebook()->getUserDetails($tokenCredentials);
-            $userDetails = array(
-              'provider'  =>  'Facebook',
-              'providerId' => $user->uid,
-              'twitterHandle' =>  'provider_is_facebook',
-              'firstName'  => $user->firstName,
-              'lastName'  =>  $user->lastName,
-              'email'     =>  $user->email,
-              'gender'    =>  null,
-              'imageUrl'  =>  $user->imageUrl
-            );
-            return User::register($userDetails);
+        // check if twitter ID is associated with a blog
+        if (Blog::where('blog_author_twitter_username', $userDetails['twitterHandle'])->get()->count() > 0) {
+          Session::put('SignedInUser', $userDetails);
+          return Redirect::to('/posts/all');
         } else {
-            Session::flash('message', 'Sorry, Could not sign in. Want to try again?');
-            return View::make('login');
+          Session::flash('NoBlogFound',true);
+          return Redirect::to('/posts/all');
         }
-        break;
-
-/*
-|---------------------------------------------------------------------
-|   GOOGLE Callback
-|---------------------------------------------------------------------
-*/
-      case 'google':
-
-
-        if ((Input::has('code'))) {
-            // We will now retrieve token credentials from the server
-            $tokenCredentials = AuthenticationServer::google()->getAccessToken('authorizationCode', [
-                'code' => Input::get('code')
-            ]);
-
-            // User is an instance of League\OAuth1\Client\Server\User
-            $user = AuthenticationServer::google()->getUserDetails($tokenCredentials);
-            $userDetails = array(
-              'provider'  =>  'Google',
-              'providerId' => $user->uid,
-              'twitterHandle' =>  'provider_is_google',
-              'firstName'  => $user->firstName,
-              'lastName'  =>  $user->lastName,
-              'email'     =>  $user->email,
-              'gender'    =>  null,
-              'imageUrl'  =>  $user->imageUrl
-            );
-            return User::register($userDetails);
-
-        } else {
-            Session::flash('message', 'Sorry, Could not sign in. Want to try again?');
-            return View::make('login');
-        }
-        break;
+        
+        
+    } else {
+      Session::flash('message', 'Sorry, Could not sign in. Want to try again?');
+      return View::make('login');
     }
   }
+
 }

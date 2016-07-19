@@ -48,14 +48,30 @@
         return "Top $channelDescription posts in Lebanon";
       }
 
-      if ($pagekind == 'folowing') {
-        return 'latest posts by blogs I am following';
-      }
 
       if ($pagekind == 'blogger') {
         $bloggerDetails = Blog::find(Session::get('blogger'));
         $blogName = $bloggerDetails->blog_name;
         return 'Latest posts by ' . $blogName . ' At Lebanese Blogs';
+      }
+    }
+
+    public static function topPostsDescription(){
+      $pagekind = Session::get('pageKind');
+
+      if ((empty($pagekind)) || ($pagekind == 'allPosts')) {
+        return 'These are recent posts that our users have found most interesting and shareworthy';
+      }
+
+      if ($pagekind == 'channel') {
+        $channelDescription = Channel::description(Session::get('channel'));
+        return "These are recent $channelDescription posts that our users have found most interesting and shareworthy";
+      }
+
+      if ($pagekind == 'blogger') {
+        $bloggerDetails = Blog::find(Session::get('blogger'));
+        $blogName = $bloggerDetails->blog_name;
+        return 'These are the most popular posts by '. $blogName;
       }
     }
 
@@ -71,7 +87,7 @@
       if ( $pagekind == 'following'):
 
         $posts = Post::getFollowedPosts($from, $amount);
-        return $posts;
+        return $posts;    
 
       elseif ( $pagekind == 'liked'):
 

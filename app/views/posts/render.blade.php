@@ -1,13 +1,3 @@
-<?php
-  // we reinstantiate the user object each time because
-  // this page is requested from ajax with access to session variables only
-
-  $ourUser = User::signedIn();
-  if ($ourUser) {
-    $ourUser = User::find($ourUser);
-  }
-?>
-
 {{-- Start The Loop --}}
 
 @foreach ($posts as $post)
@@ -18,6 +8,7 @@
     Session::set('postsCounter', Session::get('postsCounter') + 1);
     continue;
   }
+
   // handle extra cards like welcome message, countdown lists & tips
 
   echo View::make('posts.extras.main')->with('counter', Session::get('cardsCounter'))->render();
@@ -27,6 +18,9 @@
 <?php
   // get blogger data
   $blog = $post->blog;
+
+  // increase load count
+  // $post->increaseCount();
 ?>
   @include ('posts.card')
 
