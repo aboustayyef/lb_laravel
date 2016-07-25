@@ -13,11 +13,11 @@
     "evansims/socialworth": "*",
     "way/generators": "~2.0",
     "facebook/php-sdk": "dev-master",
-    "dg/twitter-php": "dev-master",
     "guzzle/plugin-history": "3.7.*@dev",
     "aboustayyef/previewer": "dev-master",
 	"aboustayyef/image-extractor": "dev-master",
-    "aboustayyef/summarizer": "dev-master"
+    "aboustayyef/summarizer": "dev-master",
+	"intervention/image": "^2.3"
 	},
 	"autoload": {
 		"classmap": [

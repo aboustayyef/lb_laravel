@@ -2,13 +2,9 @@
 
 class ManagementController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /management
-	 *
-	 * @return Response
-	 */
-	
+
+	// Display lists of posts by chosen blog
+
 	public function index($blogId = null)
 	{
 		// Authorization filtering
@@ -21,70 +17,50 @@ class ManagementController extends \BaseController {
 		return View::Make('manage.index')->with(compact('blog'));
 	}
 
-	/**
-	 *	Editing of posts and blog details
-	 */
 	
-
-	public function edit($blogId, $blogOrPost, $postId = null )
+	//	Edit details of posts or blog 
+	
+	public function edit($blogId, $blogOrPost=null, $postId = null )
 	{
 
-		// FILTERING to make sure of authorization and correct urls
-		//===========================================================
-		//
 		// Authorization filtering
 		$response = $this->filter($blogId);
 		if ( $response != 'ok') {
 			return $response;
 		}
-		//
-		// url correctness filtering (Make sure $blogOrPost is either "blog" or "post")
-		if (!in_array($blogOrPost, ['blog','post'])) {
-			return Response::make('Bad URL', 404);
+
+		// Syntax and proper data filtering
+		$response = $this->filter2($blogId, $blogOrPost, $postId);
+		if ( $response != 'ok') {
+			return $response;
 		}
-		//
-		// if 'blog', make sure $postId is empty
-		if ($blogOrPost == 'blog' && $postId != null) {
-			return Redirect::to("/manage/$blogId/edit/blog");
-		}
-		//
-		// if 'post', make sure $postId is valid
-		if ($blogOrPost == 'post') {
-
-			// handle the case where the post id is null
-			if ($postId == null) {
-				return Response::make('You need to specify a Post Id', 404);
-			}
-
-			// handle the case where a post doesn't exist
-			$postExists = Post::where('post_id', $postId)->get()->count() > 0;
-			if (!$postExists) {
-				return Response::make('This Post does not exist', 404);
-			}
-
-			// handle the case where the post doesnt belong to the blog
-			$postBlog = Post::where('post_id', $postId)->get()->first()->blog_id;
-			if ($postBlog != $blogId) {
-				return Response::make('This Post does not belong to this blog', 401);
-			}
-
-		}		
-		//===========================================================
 
 		return View::make('manage.' . $blogOrPost . 'Edit')->with(compact('blogId'))->with(compact('postId'));
 
 	}
 
+	// update and store the changes made on the form
+
 	public function update($blogId, $blogOrPost, $postId = null){
 		if ($blogOrPost == 'blog') {
-			$blog = Blog::where('blog_id',$blogId)->get()->first();
-			$newBlogInfo = Input::all();
-			array_shift($newBlogInfo); // removes _token
-			$blog->fill($newBlogInfo);
-			$blog->save();
-			return Redirect::to('/manage/' . $blogId)->with('lbSuccessMessage', 'Changes to Blog details succesful');
+
+			$validation = Blog::validate(Input::all());
+
+			if ($validation != 'ok') {
+			  return Redirect::back()->withErrors($validation)->withInput();
+			}
+
+			if (Blog::store($blogId, Input::except('_token'))) {
+				return Redirect::to('/manage/' . $blogId)->with('lbSuccessMessage', 'Changes to Blog details succesful');
+			}
+
+			die('something went wrong');
+			
 		}
 	}
+
+
+	// filter to make sure authorization is correct and only signed in bloggers have access to their blogs
 
 	private function filter($blogId = null){
 		
@@ -113,7 +89,46 @@ class ManagementController extends \BaseController {
 			}
 			
 		}
+		return 'ok';
+	}
 
+	// filter to make sure urls are well formed and posts belong to their blogs
+
+	private function filter2($blogId, $blogOrPost, $postId){
+
+		// url correctness filtering (Make sure $blogOrPost is either "blog" or "post")
+		if (!in_array($blogOrPost, ['blog','post'])) {
+			return Response::make('Bad URL', 404);
+		}
+
+		// if 'blog', make sure $postId is empty
+		if ($blogOrPost == 'blog' && $postId != null) {
+			return Redirect::to("/manage/$blogId/edit/blog");
+		}
+
+		// if 'post', make sure $postId is valid
+		if ($blogOrPost == 'post') {
+
+			// handle the case where the post id is null
+			if ($postId == null) {
+				return Response::make('You need to specify a Post Id', 404);
+			}
+
+			// handle the case where a post doesn't exist
+			$postExists = Post::where('post_id', $postId)->get()->count() > 0;
+			if (!$postExists) {
+				return Response::make('This Post does not exist', 404);
+			}
+
+			// handle the case where the post doesnt belong to the blog
+			$postBlog = Post::where('post_id', $postId)->get()->first()->blog_id;
+			if ($postBlog != $blogId) {
+				return Response::make('This Post does not belong to this blog', 401);
+			}
+		}	
+
+		// if everything passes
+ 
 		return 'ok';
 	}
 

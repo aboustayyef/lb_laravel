@@ -1,7 +1,7 @@
 <?php
   class Blog extends Eloquent
   {
-    protected $fillable = ['blog_name','blog_description', 'blog_author'];
+    protected $fillable = ['blog_name','blog_description', 'blog_author', 'blog_tags'];
     protected $primaryKey = 'blog_id';
     public $timestamps = true;
 
@@ -34,7 +34,11 @@
       }else{
         return false;
       }
+    }
 
+    public function hasChannel($channel){
+      $channels = array_map('trim', explode(',' , $this->blog_tags));
+      return in_array($channel, $channels);
     }
 
     public function editUpdate($newDetails){
@@ -65,9 +69,8 @@
 
     static function validate($input){
       $rules = [
-        'name'  =>  'required|min:5',
-        'description' =>  'required|min:15|max:150',
-        'image'   =>  'image|max:150'
+        'blog_name'  =>  'required|min:5',
+        'blog_description' =>  'required|min:15|max:150',
       ];
 
       $validator = Validator::make($input, $rules);
@@ -77,4 +80,20 @@
         return 'ok';
       }
     }
+
+    static function store($blogId, $input){
+      
+      $blog = Blog::where('blog_id',$blogId)->get()->first();
+
+      // convert blog_tags from array to comma delimited
+      if (is_array($input['blog_tags'])) {
+          $input['blog_tags'] = implode(',', $input['blog_tags']);
+      }
+      $input = array_map('trim', $input);
+    
+      $blog->fill($input);
+      $blog->save();
+      return true;
+    }
+    
   }

@@ -11,20 +11,8 @@ use Symfony\Component\DomCrawler\Crawler ;
 |
  */
 
-Route::get('manage/{blogId?}/', [
-    'as'    =>  'manage',
-    'uses'  =>  'ManagementController@index'
-]);
-
-Route::get('manage/{blogId}/edit/{blogOrPost?}/{postId?}', [
-    'as'    =>  'manage',
-    'uses'  =>  'ManagementController@edit'
-]);
-
-Route::post('manage/{blogId}/edit/{blogOrPost?}/{postId?}', [
-    'as'    =>  'manage.update',
-    'uses'  =>  'ManagementController@update'
-]);
+// blogger management routes
+require_once(app_path().'/routes/manageRoutes.php');
 
 // legacy routes
 require_once(app_path().'/routes/legacyRoutes.php');

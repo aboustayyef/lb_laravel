@@ -4,6 +4,13 @@ var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
+var browserify = require('browserify');
+
+var browserify = require('browserify');
+var babelify = require('babelify');
+var source = require('vinyl-source-stream');
+var uglify = require('gulp-uglify');
+var buffer = require('vinyl-buffer');
 
 gulp.task('styles',function(){
     gulp.src('./app/resources/scss/lebaneseblogs.scss')
@@ -32,6 +39,26 @@ gulp.task('scripts', function(){
     .pipe(concat('lebaneseblogs.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./public/js'));
+});
+
+gulp.task('managementScripts', function(){
+    return browserify({ debug: true })
+    .transform(babelify)
+    .require("./app/resources/js/management/manage.js", { entry: true })
+    .bundle()
+    .pipe(source('management.js'))
+    .pipe(buffer())
+    .pipe(uglify())
+    .pipe(gulp.dest('./public/js/'));
+});
+
+gulp.task('managementStyles',function(){
+    gulp.src('./app/resources/scss/management/manage.scss')
+    .pipe(sass({
+        outputStyle: 'compressed'
+    }))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./public/css/'))
 });
 
 gulp.task('default', ['scripts','styles']);

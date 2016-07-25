@@ -18,6 +18,8 @@
 	- In admin area, bloggers can edit details and tags of each post
 	- Do a thorough testing of access rights (who can edit what)
 
+- When a twitter sign in happens and there is no associate blog, offer to submit new blog.
+- Master Logging for all important actions (example: Blog baladi updated its blog info)
 - Clean up unused Cookie settings and routes related to old like/follow features
 - Audit for unused CSS properties and files
 - Audit routes and check those that will be discarded
@@ -32,10 +34,9 @@
 
 DEPLOYMENT STEPS:
 Local:
-- Hide statistics related to post loads (loads / ctr) with a coming soon. Allow a few days for post load data to gather (add back after a few days)
 - Commit, Merge, Push
-- Laravel Down
 Server:
+- Laravel Down
 - Pull branch
 - migrate
 - run cleanupExitLog

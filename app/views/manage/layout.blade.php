@@ -11,24 +11,12 @@
 
     <title>@yield('title')</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="/css/manage.css">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-
-    <!-- Custom CSS - Consolidate later -->
-    <style>
-    body {
-        padding-top: 70px;
-        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-    }
-    .count {
-        font-size:30px;
-        font-weight:bold;
-    }
-    </style>
-    
+   
 </head>
 
 <body>
@@ -53,12 +41,12 @@
         </div>
       @endif
       
+    <a href="/manage/{{$blog->blog_id}}" class="btn btn-default btn-large">&larr; Go Back</a>
+
       @yield('content')
     </div>
     <!-- /.container -->
-
-    <!-- jQuery -->
-    <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+    @yield('scripts.footer')
 
 </body>
 

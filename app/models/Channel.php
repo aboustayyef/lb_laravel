@@ -92,6 +92,10 @@ class Channel
     return false;
   }
 
+  public static function collection(){
+    return new \Illuminate\Support\Collection(Static::$list);
+  }
+
   public static function resolveTag($tag){
     if (array_key_exists($tag, self::$tagrouter)){
       // only change the channel if explicitely asked

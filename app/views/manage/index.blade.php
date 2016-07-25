@@ -29,9 +29,12 @@
 	    
 	</ul>
 
-	<h2>{{$blog->blog_name}} <a href="/manage/{{$blog->blog_id}}/edit/blog" class="btn btn-default btn-xs">Edit Blog Details</a></h2>
-	
+	<div class="row">
+		<div class="col-sm-1"><br><img src="/img/thumbs/{{$blog->blog_id}}.jpg" class="img-responsive img-thumbnail"></div>
+		<div class="col-sm-11"><h2>{{$blog->blog_name}} <a href="/manage/{{$blog->blog_id}}/edit/blog" class="btn btn-default btn-xs">Edit Blog Details</a></h2></div>
+	</div>
 
+	
 	<hr>
 	
 

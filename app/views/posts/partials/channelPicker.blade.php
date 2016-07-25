@@ -24,7 +24,7 @@
     
       <div class="user">
             <img class="lazy" src="/img/transparent.png" data-original="{{$userDetails['imageUrl']}}" height = "27px" width ="27px">
-          <a href="" class="top_posts__button">
+          <a href="/manage" class="top_posts__button">
             Manage My Blogs
           </a>
           <a href="/signout" class="top_posts__button">

@@ -3,7 +3,7 @@
 class Post extends Eloquent{
 
   protected $primaryKey = 'post_id';
-  public $timestamps = false;
+  public $timestamps = true;
 
   public function blog(){
     return $this->belongsTo('Blog');
@@ -164,13 +164,12 @@ public static function getTopPostsByBlogger($bloggerId){
   */
 
   public function cacheImage(){
-    $cachedImageFilename = $this->post_timestamp.'_'.$this->blog_id.'.jpg';
-    $cachedImage = $_ENV['DIRECTORYTOPUBLICFOLDER'].'/img/cache/'.$this->post_timestamp.'_'.$this->blog_id.'.jpg'; // if exists
+    $cachedImage = public_path() . '/img/cache/' . $this->updated_at->timestamp.'-' . $this->post_id . '.jpg';
     if (file_exists($cachedImage)) {
       if (app('env') == 'staging') {
         return 'http://static2.lebaneseblogs.com/' . $cachedImageFilename;
       } else {
-        return asset('/img/cache/'.$cachedImageFilename);
+        return asset('/img/cache/'.$this->updated_at->timestamp.'-' . $this->post_id . '.jpg');
       }
     } else {
       return FALSE;
@@ -200,6 +199,11 @@ public static function getTopPostsByBlogger($bloggerId){
     } else {
       return FALSE;
     }
+  }
+
+  public function hasChannel($channel){
+    $channels = array_map('trim', explode(',' , $this->post_tags));
+    return in_array($channel, $channels);
   }
 
   public static function getPostsFromSearchResults($from=0, $amount=20){
