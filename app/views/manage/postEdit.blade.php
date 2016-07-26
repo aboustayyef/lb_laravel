@@ -69,7 +69,11 @@ Edit Post Details
         <h4 class="modal-title">Are you sure?</h4>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+        <p>Deleting this post means that you will lose all clicks this post has accumulated so far. <br/>Also, this post may be brought back if you didn't delete it at source</p>
+        {{ Form::open(['method' => 'DELETE', 'url' => "/manage/$blog->blog_id/edit/post/$postId"]) }}
+        	<button type="submit" class="btn btn-danger">Yes, Delete It</button>
+        	<button class="btn" data-dismiss="modal">Cancel</button>
+      	{{ Form::close()}}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

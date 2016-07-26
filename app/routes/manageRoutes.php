@@ -1,20 +1,19 @@
 <?php 
 
 // Managing blogs and posts
+
 Route::group(array('prefix' => 'manage'), function()
-    {
+{
+    Route::get('{blogId?}/', [
+        'as'        =>  'manage',
+        'uses'      =>  'ManagementController@index'
+    ]);
 
-        Route::get('{blogId?}/', [
-            'as'        =>  'manage',
-            'uses'      =>  'ManagementController@index'
-        ]);
-
-        Route::get('{blogId}/edit/{blogOrPost?}/{postId?}', [
-            'as'        =>  'manage',
-            'uses'      =>  'ManagementController@edit'
-        ]);
-
-    });
+    Route::get('{blogId}/edit/{blogOrPost?}/{postId?}', [
+        'as'        =>  'manage',
+        'uses'      =>  'ManagementController@edit'
+    ]);
+});
 
 
 // Posting Data
@@ -38,5 +37,11 @@ Route::post('/manage/uploadPostImage/{PostId}', [
     'uses'      =>  'UploadImagesController@postImage'
 ]);
 
+// Deleting 
+Route::delete('/manage/{blogId}/edit/{blogOrPost?}/{postId?}', [
+    'before'    =>  'csrf',
+    'as'        =>  'posts.destroy',
+    'uses'      =>  'ManagementController@destroy'
+]);
 
 ?>

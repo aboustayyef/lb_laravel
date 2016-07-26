@@ -24,19 +24,20 @@ $(function() {
 	})
 
 	// Dropzone
-	
-	var defaultMessage = "Click Here To upload new avatar";
-	var showMessage = $('.dropzone').data('message') || defaultMessage;
+	if ($('.dropzone').length > 0) {		
+		var defaultMessage = "Click Here To upload new avatar";
+		var showMessage = $('.dropzone').data('message') || defaultMessage;
 
-	var myDropzone = new Dropzone(".dropzone", {
-		maxFiles : 1,
-		acceptedFiles: "image/*",
-		dictDefaultMessage: showMessage	
-	});
+		var myDropzone = new Dropzone(".dropzone", {
+			maxFiles : 1,
+			acceptedFiles: "image/*",
+			dictDefaultMessage: showMessage	
+		});
 
-	myDropzone.on("addedfile", function(file) {
-		location.reload();
-		// event to happen upon succesful change
-  	});
+		myDropzone.on("addedfile", function(file) {
+			location.reload();
+			// event to happen upon succesful change
+	  	});
+	}
 
 })

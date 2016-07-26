@@ -37,12 +37,13 @@
     <div class="container">
       @if(Session::has('lbSuccessMessage'))
         <div class="alert alert-success">
-          {{Session::get('lbSuccessMessage')}}
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{Session::get('lbSuccessMessage')}}
         </div>
       @endif
       
     <a href="/manage/{{$blog->blog_id}}" class="btn btn-default btn-large">&larr; Go Back</a>
-
+    <hr>
       @yield('content')
     </div>
     <!-- /.container -->

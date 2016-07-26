@@ -89,3 +89,6 @@
 			</table>
 		<h3>Blog Details</h3>
 @stop
+@section('scripts.footer')
+	<script src="/js/management.js"></script>
+@stop

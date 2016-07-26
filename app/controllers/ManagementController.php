@@ -59,6 +59,11 @@ class ManagementController extends \BaseController {
 		}
 	}
 
+	public function destroy($blogId, $blogOrPost, $postId = null){
+		$post = Post::findOrFail($postId);
+		$post->delete();
+		return Redirect::to('/manage/' . $blogId)->with('lbSuccessMessage', 'Post Deleted Succesfully');
+	}
 
 	// filter to make sure authorization is correct and only signed in bloggers have access to their blogs
 
