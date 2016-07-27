@@ -84,17 +84,7 @@
         $userId = User::signedIn();
       }
 
-      if ( $pagekind == 'following'):
-
-        $posts = Post::getFollowedPosts($from, $amount);
-        return $posts;    
-
-      elseif ( $pagekind == 'liked'):
-
-        $posts = Post::getSavedPosts($from, $amount);
-        return $posts;
-
-      elseif ( $pagekind == 'allPosts'):
+      if ( $pagekind == 'allPosts'):
 
         $posts = Post::getPosts('all', $from, $amount);
         return $posts;

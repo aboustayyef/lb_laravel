@@ -5,11 +5,7 @@
 	$allBlogsByAuthor = Blog::where('blog_author_twitter_username', $blog->blog_author_twitter_username)->get();
 	$posts = $blog->posts()->orderBy('post_timestamp', 'desc')->take(10)->get();
 
-	$average_virality = round($posts->reduce(function($total, $post){return $post->post_virality + $total;}) / $posts->count());
-
-	$total_clicks = $posts->reduce(function($total,$post){return $post->post_visits + $total;});
-
-	$average_posts_per_week = round((7*24) / ($posts->first()->carbonDate()->diffInHours($posts->last()->carbonDate()) / 10),2);
+	$stats = $blog->stats();
 
 ?>
 
@@ -38,28 +34,27 @@
 	<hr>
 	
 
-	<h3>Statistics</h3>
+	<h3>Statistics for Last 5 Posts</h3>
 	<div class="row tile_count">
-	    
-	    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-	      <span class="count_top"><i class="fa fa-bar-chart"></i> Average Virality</span>
-	      <div class="count">{{$average_virality}}</div>
-	      <span class="count_bottom"><i class="green">4% </i> From previous ten</span>
-	    </div>
 
-	    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-	      <span class="count_top"><i class="fa fa-dot-circle-o"></i> Total Clicks</span>
-	      <div class="count">{{$total_clicks}}</div>
-	      <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From previous ten</span>
-	    </div>
+		@foreach ($stats as $stat)
+			<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+			  <span class="count_top"><i class="fa {{$stat['statIcon']}}"></i> {{$stat['statTitle']}}</span>
+			  <div class="count">{{$stat['value']}}</div>
+			  <span class="count_bottom
+			  @if($stat['percentageChange'] > 0)
+			  	green">
+			  	<i class="fa fa-angle-up"></i>
+			  @elseif($stat['percentageChange'] < 0)
+			  	red">
+			  	<i class="fa fa-angle-down"></i>
+			  @endif
+			  	{{abs($stat['percentageChange'])}}% </i> From previous 5
+			  </span>
+			</div>
+		@endforeach
 
-	    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-	      <span class="count_top"><i class="fa fa-bar-chart"></i> Avg Posts / Week</span>
-	      <div class="count green">{{$average_posts_per_week}}</div>
-	      <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From previous ten</span>
-	    </div>
-
-  	</div>
+ 	</div>
 
 	
 	<hr>

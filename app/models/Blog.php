@@ -25,6 +25,11 @@
       return false;
     }
 
+    public function stats()
+    {
+      return (new \LebaneseBlogs\Utilities\BlogStatsGetter($this))->get();
+    }
+
     public function owner(){
       // return the user id of the blog's owner
       $twitter = $this->blog_author_twitter_username;

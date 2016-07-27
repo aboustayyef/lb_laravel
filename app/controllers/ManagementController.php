@@ -65,6 +65,20 @@ class ManagementController extends \BaseController {
 		return Redirect::to('/manage/' . $blogId)->with('lbSuccessMessage', 'Post Deleted Succesfully');
 	}
 
+
+	public function getStats($blogId = null)
+	{
+		// Authorization filtering
+		$response = $this->filter($blogId);
+		if ( $response != 'ok') {
+			return $response;
+		}
+
+		$blog = Blog::where('blog_id',$blogId)->first();
+		return $blog->stats();
+	}
+
+
 	// filter to make sure authorization is correct and only signed in bloggers have access to their blogs
 
 	private function filter($blogId = null){

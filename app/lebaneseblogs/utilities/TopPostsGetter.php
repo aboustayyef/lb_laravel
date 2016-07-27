@@ -23,7 +23,7 @@
 			}
 
 			$this->postsReady = false;
-			$this->possibleTimeFrames = [12, 24, 72, 168];
+			$this->possibleTimeFrames = [12, 24, 72, 168, 336, 1000];
 		}
 
 		public function get() // Return collection
@@ -39,6 +39,7 @@
 				if ($posts->count() > 4) {
 				  return $posts;
 				}
+
 			}
 		}
 	}

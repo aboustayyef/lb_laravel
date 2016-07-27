@@ -10,3 +10,13 @@ body {
     font-size:30px;
     font-weight:bold;
 }
+
+.count_bottom{
+	font-size:11px;
+	&.red{
+		color:#ea7777;
+	}
+	&.green{
+		color:#8eaf8e;
+	}
+}

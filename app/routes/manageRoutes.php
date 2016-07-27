@@ -5,15 +5,21 @@
 Route::group(array('prefix' => 'manage'), function()
 {
     Route::get('{blogId?}/', [
-        'as'        =>  'manage',
+        'as'        =>  'manage.blog',
         'uses'      =>  'ManagementController@index'
     ]);
 
     Route::get('{blogId}/edit/{blogOrPost?}/{postId?}', [
-        'as'        =>  'manage',
+        'as'        =>  'manage.post',
         'uses'      =>  'ManagementController@edit'
     ]);
 });
+
+// Getting Satistics of Blog
+Route::get('/manage/{blogId}/getstats', [
+    'as'        =>  'getstats',
+    'uses'      =>  'ManagementController@getStats'
+]);
 
 
 // Posting Data
