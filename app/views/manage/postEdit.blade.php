@@ -13,6 +13,7 @@ Edit Post Details
 <a href="/manage/{{$blog->blog_id}}" class="btn btn-default btn-large">&larr; Go Back</a>
 
 <h1>Edit Post Details</h1>
+
 <hr>
 
 <div class="row">
@@ -27,21 +28,41 @@ Edit Post Details
 				    <small class="text-danger">{{ $errors->first('post_title') }}</small>
 				</div>
 			
-				<div class="form-group">
-					<label for="blog_tags">Post Categories (maximum two)</label>
-					<div>
-						@foreach (Channel::collection() as $channel)
-						<div class="checkbox">
-							<label>
-								<input name="blog_tags[]" type="checkbox" value="{{$channel['name']}}" @if($post->
-								hasChannel($channel['name'])) checked @endif>
-							  	{{$channel['description']}}
-							</label>
-						</div>					
-						@endforeach
-						<small id="maxCategoriesWarning" class="text-danger"></small>
+				<div class="row">
+					<div class="form-group col-md-8">
+						<label for="blog_tags">Post Categories (maximum two)</label>
+						<div>
+							@foreach (Channel::collection() as $channel)
+							<div class="checkbox">
+								<label>
+									<input name="post_tags[]" type="checkbox" value="{{$channel['name']}}" @if($post->
+									hasChannel($channel['name'])) checked @endif>
+								  	{{$channel['description']}}
+								</label>
+							</div>					
+							@endforeach
+							<small id="maxCategoriesWarning" class="text-danger"></small>
+						</div>
+					</div>
+					<div class="col-md-4 form-group{{ $errors->has('rating_numerator') ? ' has-error' : '' }}">
+					    <label for="rating_numerator">Post is a review? What's the rating? (optional)</label>
+					    <?php 
+					    	if ($post->rating_denominator > 0) {
+					    		$currentRating = round(($post->rating_numerator / $post->rating_denominator ) * 10);
+					    	}else{
+					    		$currentRating = null;
+					    	}
+					    	 
+					    ?>
+					    <div class="input-group">
+						    <input type="text" name="rating_numerator" class="form-control" @if(Input::old()) value="{{Input::old('rating_numerator')}}" @else value="@if ($currentRating) {{$currentRating}} @endif" @endif>
+						    <div class="input-group-addon">/ 10</div>
+					    </div>
+					    <small class="text-danger">{{ $errors->first('rating_numerator') }}</small>
 					</div>
 				</div>
+
+
 				<button class="btn btn-primary btn-lg">Submit Changes</button>
 				<hr>
 				<h3>Danger:</h3>

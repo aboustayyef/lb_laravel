@@ -42,7 +42,8 @@ class ManagementController extends \BaseController {
 	// update and store the changes made on the form
 
 	public function update($blogId, $blogOrPost, $postId = null){
-		if ($blogOrPost == 'blog') {
+		if ($blogOrPost == 'blog')
+		{
 
 			$validation = Blog::validate(Input::all());
 
@@ -56,6 +57,18 @@ class ManagementController extends \BaseController {
 
 			die('something went wrong');
 			
+		}
+		if ($blogOrPost == 'post') 
+		{
+			$validation = Post::validate(Input::all());
+
+			if ($validation != 'ok') {
+			  return Redirect::back()->withErrors($validation)->withInput();
+			}
+
+			if (Post::store($postId, Input::except('_token'))) {
+				return Redirect::to('/manage/' . $blogId)->with('lbSuccessMessage', 'Changes to post succesful');
+			}
 		}
 	}
 

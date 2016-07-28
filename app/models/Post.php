@@ -4,7 +4,7 @@ class Post extends Eloquent{
 
   protected $primaryKey = 'post_id';
   public $timestamps = true;
-
+  protected $fillable = ['post_title', 'rating_denominator', 'rating_numerator', 'post_tags'];
   public function blog(){
     return $this->belongsTo('Blog');
   }
@@ -264,9 +264,8 @@ public static function getTopPostsByBlogger($bloggerId){
 
     static function validate($input){
       $rules = [
-        'title'  =>  'required|min:3',
-        'excerpt' =>  'required|min:10| max:123',
-        'rating'  =>  'numeric|max:5'
+        'post_title'  =>  'required|min:3',
+        'rating_numerator'  =>  'numeric|between:1,10'
       ];
 
       $validator = Validator::make($input, $rules);
@@ -275,6 +274,29 @@ public static function getTopPostsByBlogger($bloggerId){
       } else {
         return 'ok';
       }
+    }
+
+    static function store($postId, $input){
+      $post = Post::where('post_id',$postId)->get()->first();
+
+      // convert post_tags from array to comma delimited
+      if (is_array($input['post_tags'])) {
+          $input['post_tags'] = implode(',', $input['post_tags']);
+      }
+      // remove white space around tags
+      $input = array_map('trim', $input);
+
+      // sanitize rating and make it optional
+      if (strlen(trim($input["rating_numerator"])) > 0) {
+        $input["rating_numerator"] = intval($input["rating_numerator"]);
+        $input["rating_denominator"] = 10;
+      } else {
+        unset($input["rating_numerator"]);
+      }
+    
+      $post->fill($input);
+      $post->save();
+      return true;
     }
 
 }

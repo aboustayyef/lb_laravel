@@ -42,7 +42,7 @@
 		<div id="stats" class="col-md-7">
 			
 		<h4>Statistics for Last 5 Posts <sup>*</sup></h4>
-		<div class="tile_count">
+		<div class="tile_count row">
 		
 			@foreach ($stats as $stat)
 				<div class="col-md-4 tile_stats_count">
