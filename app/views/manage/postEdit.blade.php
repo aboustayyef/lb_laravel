@@ -10,6 +10,8 @@ Edit Post Details
 @stop
 
 @section('content')
+<a href="/manage/{{$blog->blog_id}}" class="btn btn-default btn-large">&larr; Go Back</a>
+
 <h1>Edit Post Details</h1>
 <hr>
 

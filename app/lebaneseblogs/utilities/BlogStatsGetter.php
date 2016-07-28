@@ -47,7 +47,7 @@ class BlogStatsGetter
 		$percentageChange = round( (( ($lastFive - $previousFive) / $previousFive ) * 100) );
 
 		$this->results->push([
-			'statTitle'			=>	'Posts Per Week',
+			'statTitle'			=>	'Posts / Week',
 			'statDescription'	=>	'The average amount of posts published per week',
 			'value'				=>	round($lastFive,1),
 			'percentageChange'	=>	$percentageChange,
@@ -67,8 +67,8 @@ class BlogStatsGetter
 		$percentageChange = round( (( ($lastFive - $previousFive) / $previousFive ) * 100) );
 
 		$this->results->push([
-			'statTitle'			=>	'Total Clicks',
-			'statDescription'	=>	'The number of clicks on Lebanese Blogs to the last 5 blog posts',
+			'statTitle'			=>	'Avg Clicks',
+			'statDescription'	=>	'The average number of clicks on Lebanese Blogs to the last 5 blog posts',
 			'value'				=>	$lastFive,
 			'percentageChange'	=>	$percentageChange,
 			'statIcon'			=>	'fa-dot-circle-o'

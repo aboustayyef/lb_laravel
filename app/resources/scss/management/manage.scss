@@ -2,21 +2,57 @@
 @import "tags";
 @import "dropzone";
 
+$brand-color: #b12530;
+
 body {
-    padding-top: 70px;
+    padding-top: 90px;
     /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
+
+.navbar-inverse{
+	background-color: $brand-color;
+	border-color:$brand-color;
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+
+.navbar-brand{
+	height:auto;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus{
+	background-color:$brand-color;
+}
+
+#MgHeading{
+	margin-top:20px;
+	margin-bottom:20px;
+	h1{
+		margin:0;
+	}
+}
+
+.tile_count {
+    margin-top: 20px;
+}
+
+.tile_stats_count{
+	margin-bottom:20px;
+}
+
+a{
+	color:$brand-color;
+}
+h3{
+	color:#5f5f5f;
+}
+
 .count {
     font-size:30px;
     font-weight:bold;
-}
-
-.count_bottom{
-	font-size:11px;
-	&.red{
-		color:#ea7777;
-	}
-	&.green{
-		color:#8eaf8e;
-	}
+    .label{
+    	font-size:50%;
+    }
 }

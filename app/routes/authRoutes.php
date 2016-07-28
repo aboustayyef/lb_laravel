@@ -13,7 +13,7 @@ Route::get('/login',function()
 
 Route::get('/signout',function()
 {
-    Session::forget('SignedInUser');
+    Session::forget('SignedInBlogger');
     return Redirect::to('/posts/all');
 });
 

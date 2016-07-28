@@ -60,6 +60,7 @@ class AuthenticationController extends BaseController
         // check if twitter ID is associated with a blog
         if (Blog::where('blog_author_twitter_username', $userDetails['twitterHandle'])->get()->count() > 0) {
           Session::put('SignedInUser', $userDetails);
+          Session::put('SignedInBlogger', new Blogger($userDetails['twitterHandle']));
           return Redirect::to('/posts/all');
         } else {
           Session::flash('NoBlogFound',true);

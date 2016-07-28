@@ -5,6 +5,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Aboustayyef\Summarizer;
 use Illuminate\Support\Collection;
+use Embed\Embed;
 
 // use \lbFunctions;
 
@@ -182,41 +183,17 @@ class CrawlRss extends Command {
 
         // Crawl for suitable image
 
-        // old way
-        //$blog_post_image = crawlHelpers::getImageFromContent($blog_post_content, $blog_post_link);
-
-        // using the external package way
         try {
-            $image = new Aboustayyef\ImageExtractor($blog_post_link, $blog_post_content, true);
-            $result = false;
-            $disqualified = [];
-            while (!$result) {
-              $blog_post_image = $image->get(300);
-
-              // if no image found, move forward
-              if (!$blog_post_image) {
-                $result = true;
-                $blog_post_image = null;
-                continue;
-              }
-              // if image already exists, disqualify it and try again
-              if (Post::where(['blog_id'=> $domain, 'post_image'=> $blog_post_image])->get()->count() > 0) {
-                  $this->info("Image $blog_post_image used before. Trying again.");
-                  if (in_array($blog_post_image, $disqualified)){
-                    // image has already been disqualified, abort;
-                    $result = true;
-                    $blog_post_image = null;
-                    continue;
-                  }
-                  $image->disqualify($blog_post_image);
-                  $disqualified[] = $blog_post_image;
-              } else {
-                $result = true;
-              }
+            $embed = Embed::create($blog_post_link);
+            $image = $embed->image;
+            if ($image) {
+              $blog_post_image = $image;
+            } else {
+              $blog_post_image = null;
             }
         } catch (\Exception $e) {
             $this->error('could not extract image');
-            $blog_post_image = false;
+            $blog_post_image = null;
         }
 
         // Get Excerpt
@@ -224,19 +201,17 @@ class CrawlRss extends Command {
         $summarizer->text = $blog_post_content;
         $blog_post_excerpt = $summarizer->summarize(2);
 
-        // Get Image Dimensions (if exists)
         if ($blog_post_image) {
           $blog_post_image_width = 300;
           $blog_post_image_height = 165;
-          // if (@getimagesize($blog_post_image)) {
-          //   list($width, $height, $type, $attr) = getimagesize($blog_post_image);
-          //   $blog_post_image_width = $width;
-          //   $blog_post_image_height = $height;
-          // }
+          // add hue color
+          $imageAnalyzer = new imageAnalyzer($blog_post_image);
+          $hue = $imageAnalyzer->getDominantHue();
 
         } else {
           $blog_post_image_width = 0;
           $blog_post_image_height = 0;
+          $hue = 0;
         }
 
         // Save new record
@@ -252,7 +227,7 @@ class CrawlRss extends Command {
         $post->post_image_width = $blog_post_image_width ;
         $post->post_image_height = $blog_post_image_height ;
         $post->post_visits = 0 ;
-        $post->post_image_hue = 0 ;
+        $post->post_image_hue = $hue;
         $post->post_tags = $this->blog->blog_tags;
 
         // See if blogger has reviewed and rated in the post
@@ -268,23 +243,6 @@ class CrawlRss extends Command {
 
         try {
           $post->save();
-          // index post (disabled elastic search now)
-          // $params = array();
-          // $params['index']='lebaneseblogs';
-          // $params['type']='post';
-          // $params['id']=$post->post_id;
-          // $params['body']= array(
-          //   'title' =>  $post->post_title,
-          //   'content'  =>  $post->post_content
-          // );
-          // try {
-          //   $ret = $this->searchClient->index($params);
-          // } catch (Exception $e) {
-          //   $this->error($e); //'Failed to index post: ' . $post->post_title
-          // }
-          // $this->comment('Indexed post ' . $post->post_title);
-
-          // add timestamp to blogger's record (as timestamp of last post)
           $blog = Blog::where('blog_id', $domain)->first();
           $blog->blog_last_post_timestamp = $blog_post_timestamp;
           $blog->save();

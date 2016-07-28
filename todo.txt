@@ -13,12 +13,12 @@
 	√ Once Signed in, a Blogger will have an admin area
 	√ From the Admin area, a Blogger can select her blog if she has more than one
 	√ In admin area, blogger sees general stats
-	- In admin area, blogger can edit details of her blog
-	- In admin area, blogger can see list of her posts, and update tags from the list
+	√ In admin area, blogger can edit details of her blog
+	x In admin area, blogger can see list of her posts, and update tags from the list
 	- In admin area, bloggers can edit details and tags of each post
-	- Do a thorough testing of access rights (who can edit what)
+	√ Do a thorough testing of access rights (who can edit what)
 
-- When a twitter sign in happens and there is no associate blog, offer to submit new blog.
+- Handle issue with counting cards (sometimes seeing duplicate posts)
 - Master Logging for all important actions (example: Blog baladi updated its blog info)
 - Clean up unused Cookie settings and routes related to old like/follow features
 - Audit for unused CSS properties and files
@@ -43,8 +43,11 @@ Server:
 - run DeactivateInactiveBlogs
 - run updateVirality, and adjust Cron Job to reflect changes (remove hours at the end)
 - Add Cron Jobs (every midnight) for cleanupExitLog and DeactivateInactiveBlog
+- Remove crawlArticles Cron Job
+- Deactivate MideastWire, WeddingLebanon
 
 LATER 
 - Re-Add Search
 - Consider making the scraper an external service via API
 - Tiering system for blog check updates. see which blogs take a long time to crawl. Continue working on CalculateBloggingFrequency;
+- When a twitter sign in happens and there is no associate blog, offer to submit new blog.

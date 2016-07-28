@@ -26,7 +26,7 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-            <a class="navbar-brand" href="#">Manage Your Blogs</a>
+            <a class="navbar-brand" href="/"><img src="/img/logo.png" height="40" width="auto"></a>
             </div>
         </div>
         <!-- /.container -->
@@ -42,8 +42,6 @@
         </div>
       @endif
       
-    <a href="/manage/{{$blog->blog_id}}" class="btn btn-default btn-large">&larr; Go Back</a>
-    <hr>
       @yield('content')
     </div>
     <!-- /.container -->

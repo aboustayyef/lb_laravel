@@ -85,7 +85,7 @@ class ManagementController extends \BaseController {
 		
 		// if nobody is signed in, return unauthorized 401
 
-		if ( ! Session::has('SignedInUser')) {
+		if ( ! Session::has('SignedInBlogger')) {
 
 			return Response::make('Unauthorized. You have to be signed in with a valid blogger twitter account', 401);
 
@@ -93,7 +93,7 @@ class ManagementController extends \BaseController {
 
 		} else { 
 
-			$blogger = new Blogger(Session::get('SignedInUser')['twitterHandle']);
+			$blogger = Session::get('SignedInBlogger');
 
 			// if the specified blog in the route doesn't exist, redirect to signed in User's default blog
 

@@ -17,7 +17,8 @@
     "aboustayyef/previewer": "dev-master",
 	"aboustayyef/image-extractor": "dev-master",
     "aboustayyef/summarizer": "dev-master",
-	"intervention/image": "^2.3"
+	"intervention/image": "^2.3",
+	"embed/embed": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

@@ -67,6 +67,9 @@ class imageAnalyzer extends BaseController
       }
     }
     $delta = $maxValue - $minValue;
+    if ($delta == 0) {
+        $delta = 0.01;
+    }
     if ($maxKey == 'R') {
       $hue = ($RGB['G'] - $RGB['B']) / $delta;
     }elseif ($maxKey == 'G'){
