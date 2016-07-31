@@ -1,5 +1,5 @@
 <?php
-if ($post->hasImage()) {
+if ($post->image()->exists) {
 	$h = $post->post_image_height;
 	$w = $post->post_image_width;
 
