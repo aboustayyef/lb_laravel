@@ -190,7 +190,7 @@ public static function getPostsByBlogger($bloggerId, $from, $howmany){
     $cachedImage = public_path() . '/img/cache/' . $this->post_timestamp.'-' . $this->post_id . '.jpg';
     if (file_exists($cachedImage)) {
       if (app('env') == 'staging') {
-        return 'http://static2.lebaneseblogs.com/img/cache/'.$this->post_timestamp.'-' . $this->post_id . '.jpg';
+        return 'http://static2.lebaneseblogs.com/'.$this->post_timestamp.'-' . $this->post_id . '.jpg';
       } else {
         return asset('/img/cache/'.$this->post_timestamp.'-' . $this->post_id . '.jpg');
       }
