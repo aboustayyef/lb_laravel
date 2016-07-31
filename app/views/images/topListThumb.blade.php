@@ -5,7 +5,7 @@ $width = $post->post_image_width;
 $currentPost = new Post;
 $currentPost = $currentPost->find($post->post_id);
 
-if ($currentPost->hasImage()) {
+if ($currentPost->image()->exists) {
   if ($currentPost->cacheImage()) {
     $image = $currentPost->cacheImage();
   } else {

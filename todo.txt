@@ -26,22 +26,8 @@
 √ Kill the News section
 √ Add Analytics to all layouts
 
-DEPLOYMENT STEPS:
-Local:
-- Commit, Merge, Push
-Server:
-- Laravel Down
-- Pull 
-- composer install
-- migrate
-- run cleanupExitLog
-- run DeactivateInactiveBlogs
-- run updateVirality, and adjust Cron Job to reflect changes (remove hours at the end)
-- Add Cron Jobs (every midnight) for cleanupExitLog and DeactivateInactiveBlog
-- Remove crawlArticles Cron Job
-- Deactivate MideastWire, WeddingLebanon, 
-
 LATER 
+- Cache Busting for Images
 - Optimize
 - Update Facebook Preview and description
 - update documentation (static pages)
