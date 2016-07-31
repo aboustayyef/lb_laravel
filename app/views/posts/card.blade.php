@@ -1,8 +1,11 @@
   <div class="card postID-{{$post->post_id}} post-{{Session::get('postsCounter')}} card-{{Session::get('cardsCounter')}}" >
 
-  <!-- Post image (if any ) -->
+  <!--==============================-->
+  <!--    Post Image                -->
+  <!--==============================-->
+
     @if ($post->post_image_height > 0)
-      <a class="exitLink" href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">
+      <a class="exitLink" href="{{$post->exitLink()}}" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">
         <div class="imageWrapper"><img
             class="lazy cardImage"
             data-original="{{ $post->image()->src }}"
@@ -13,13 +16,15 @@
           ></div>
       </a>
     @endif
+    
+    <!--==============================-->
+    <!--    Post Body                 -->
+    <!--==============================-->
 
-    <!-- Post Body -->
-    <script>
-      var data{{$post->post_id}} = {{$post->toJson()}};
-      var exiturl{{$post->post_id}} = "{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}";
-    </script>
-    <div class="post_body"> {{-- onclick="lbApp.showPost(data{{$post->post_id}}, exiturl{{$post->post_id}})"  --}}
+    <div class="post_body"> 
+
+      <!-- Meta Info (date & virality) -->
+
       <div class="metaInfo">
         <div class="postedSince">
           {{$post->carbonDate()->diffForHumans()}}
@@ -28,25 +33,30 @@
       </div>
 
       <!-- Post Title -->
+
       <h2 class="post__title @if(!$post->post_image_height > 0) headline_no_image  @endif">
-        <!-- outward url -->
-        <a class="exitLink" href="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">{{str_limit($post->post_title, 80)}} </a>
-
-        <!-- rating -->
-        <?php
-
-          if (($post->rating_denominator > 0) && ($post->rating_numerator > 1)) {
-            echo '<!-- Rating -->';
-            echo View::make('posts.partials.rating')->with('n',$post->rating_numerator)->with('d',$post->rating_denominator);
-          }
-        ?>
+        <a class="exitLink" href="{{$post->exitLink()}}" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">
+          {{str_limit($post->post_title, 80)}} 
+        </a>
       </h2>
+
+      <!-- rating -->
+      @if ($post->hasRating())
+        {{View::make('posts.partials.rating')->with('n',$post->rating_numerator)->with('d',$post->rating_denominator)}}
+      @endif
+
     </div>
 
-    <!-- Blog Header . don't show where we're at the blog's page -->
+    <!--==============================-->
+    <!--    Post Footer               -->
+    <!--==============================-->
+
     <div class="blog__info @if (Session::get('pageKind') == 'blogger') blogger_page @endif">
       <div class="ut__flexWrapper blog__meta">
+    
         <!-- Thumbnail -->
+        <!-- Hide if Blogger's page -->
+
         <a class="ut__Valign" href="{{url('/blogger/'.$post->blog_id)}}">
           <img
             style="background: #F3E7E8"
@@ -61,33 +71,24 @@
             alt="{{$blog->blog_name }} thumbnail"
             width ="40px" height="40px">
         </a>
+
         <!-- Blog's Name -->
+
         <div class="blog__name">
           <a href="{{url('/blogger/'.$post->blog_id)}}">
             {{ $blog->blog_name }}
           </a>
         </div>
+
       </div>
+
+      <!-- Tweet Button -->
       <div class="tweetit ut__Valign">
-        <?php
-          "%title% %url% [by %@author%] via lebaneseblogs.com";
-          $byline = $blog->blog_author_twitter_username ? " by @$blog->blog_author_twitter_username" : "";
-          $byline .= " via lebaneseblogs.com";
-          $allowedTitleSize = 140 - strlen($byline) - 28; // urls count for 22 chars on twitter and we add space
-          $byline = ' ' . $post->post_url . $byline;
-          $postTitle = $post->post_title;
-          if (strlen($postTitle) >= $allowedTitleSize) {
-            $postTitle = substr($postTitle, 0, ($allowedTitleSize - 4)) . '... ';
-          }
-          $tweetExpression = $postTitle.$byline;
-          $twitterUrl = urlencode($tweetExpression);
-        ?>
-        <a href="https://twitter.com/intent/tweet?text={{$twitterUrl}}" title="Click to send this post to Twitter!" target="_blank" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">
+        <!-- Card {{Session::get('cardsCounter')}} Post {{Session::get('postsCounter')}} -->
+        <a href="{{$post->tweetLink()}}" title="Click to send this post to Twitter!" target="_blank" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">
           <?php fontAwesomeToSvg::convert('fa-twitter') ?> Tweet
         </a>
-
       </div>
+
     </div> <!-- /Blog Header -->
-
-
   </div> <!-- /card -->

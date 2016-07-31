@@ -2,12 +2,17 @@
 
 <?php
   $pageKind = Session::get('pageKind');
+  $counter = Session::get('cardsCounter');
 ?>
 
 @if ($counter == 0)
 
   @if ($pageKind == 'blogger')
-    {{View::make('posts.extras.bloggerInfo')}}
+    @include('posts.extras.bloggerInfo')
+    <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
+
+  @elseif ($pageKind == 'channel')
+    @include('posts.extras.channelInfo')
     <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
 
   @elseif ($pageKind == 'searchResults')
@@ -19,7 +24,8 @@
 
 @if ($counter == 0)
 
-  {{View::make('posts.extras.popular')}}
+  @include('posts.extras.popular')
+  <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
 
 @endif
 

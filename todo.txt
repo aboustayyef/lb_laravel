@@ -15,10 +15,11 @@
 	√ In admin area, blogger sees general stats
 	√ In admin area, blogger can edit details of her blog
 	x In admin area, blogger can see list of her posts, and update tags from the list
-	- In admin area, bloggers can edit details and tags of each post
+	√ In admin area, bloggers can edit details and tags of each post
 	√ Do a thorough testing of access rights (who can edit what)
 
-- Handle issue with counting cards (sometimes seeing duplicate posts)
+√ Handle issue with counting cards (sometimes seeing duplicate posts)
+- Facebook API migration for posting top posts
 - Master Logging for all important actions (example: Blog baladi updated its blog info)
 - Clean up unused Cookie settings and routes related to old like/follow features
 - Audit for unused CSS properties and files
@@ -26,6 +27,7 @@
 - update documentation (static pages)
 - Update Facebook Preview and description
 - Update Manifest for Chrome Store
+- Optimize
 
 - Think of a weekly Newsletter. Calls to action (subscription) at top5 list and about pages
 - mobile implementation of top tweets and news
@@ -37,7 +39,8 @@ Local:
 - Commit, Merge, Push
 Server:
 - Laravel Down
-- Pull branch
+- Pull 
+- composer install
 - migrate
 - run cleanupExitLog
 - run DeactivateInactiveBlogs

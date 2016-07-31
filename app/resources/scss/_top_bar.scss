@@ -12,14 +12,11 @@
     padding: ($header-height - 25px)/2;
     font-size: 25px;
   }
-  @include lbTransitions();
 
   #logo{
     height: $header-height;
     img.lazy{
       background-color: lighten($brand-color, 5);
-    }
-    @media screen and (min-width:401px){
     }
     line-height:$header-height;
     }

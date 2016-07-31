@@ -1,8 +1,3 @@
-<?php
-	$blog = Blog::where('blog_id', $blogId)->
-get()->first();
-?>
-
 @extends('manage.layout')
 
 @section('title')

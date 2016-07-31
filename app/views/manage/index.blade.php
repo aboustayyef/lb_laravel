@@ -1,16 +1,7 @@
 @extends('manage.layout')
 
-<?php
-	
-	$allBlogsByAuthor = Blog::where('blog_author_twitter_username', $blog->blog_author_twitter_username)->get();
-	$posts = $blog->posts()->orderBy('post_timestamp', 'desc')->take(10)->get();
-
-	$stats = $blog->stats();
-
-?>
-
 @section('content')
-	<a href="/" class="btn btn-default btn-large">&larr; Go Back</a>
+	<a href="/" class="btn btn-default btn-large">&larr; Home Page</a>
 	<div id="MgHeading" class="row">
 		<div class="col-sm-6"><h1>Manage Your Blogs</h1></div>
 		<div class="col-sm-6">
@@ -37,6 +28,7 @@
 			<img src="/img/thumbs/{{$blog->blog_id}}.jpg" width="50" height="auto">
 			<h3>{{$blog->blog_name}}</h3>
 			<a href="/manage/{{$blog->blog_id}}/edit/blog" class="btn btn-default btn-xs">Edit Blog Details</a>
+			<a href="/blogger/{{$blog->blog_id}}" class="btn btn-default btn-xs">Blog Page</a>
 		</div>
 		
 		<div id="stats" class="col-md-7">
@@ -51,11 +43,15 @@
 				  <span class="label 
 		
 				  @if($stat['percentageChange'] > 0)
-					  label-success">&uarr; 
+						label-success">&uarr; 
+						{{abs($stat['percentageChange'])}}%
 				  @elseif($stat['percentageChange'] < 0)
-					label-danger">&darr; 
+						label-danger">&darr; 
+						{{abs($stat['percentageChange'])}}%
+				  @else
+				  		label-default">
+						Same
 				  @endif
-					{{abs($stat['percentageChange'])}}%
 				  </span></div>
 				</div>
 			@endforeach

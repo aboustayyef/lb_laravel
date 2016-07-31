@@ -58,6 +58,11 @@
       }
     }
 
+    public function isActive()
+    {
+      return $this->blog_RSSCrawl_active == 1;
+    }
+
     public function deactivate($reason="no reason given"){
       $this->blog_RSSCrawl_active=0;
       $this->reason_for_deactivation=$reason;

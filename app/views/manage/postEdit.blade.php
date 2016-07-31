@@ -1,8 +1,3 @@
-<?php
-	$blog = Blog::where('blog_id', $blogId)->get()->first();
-	$post = Post::findOrFail($postId);
-?>
-
 @extends('manage.layout')
 
 @section('title')
@@ -19,7 +14,7 @@ Edit Post Details
 <div class="row">
 
 		<div class="col-md-8">
-			<form action="/manage/{{$blog->blog_id}}/edit/post/{{$postId}}" method="POST" accept-charset="utf-8" enctype="multipart/form-data" >
+			<form action="/manage/{{$blog->blog_id}}/edit/post/{{$post->post_id}}" method="POST" accept-charset="utf-8" enctype="multipart/form-data" >
 				{{Form::token()}}
 
 				<div class="form-group{{ $errors->has('post_title') ? ' has-error' : '' }}">
@@ -47,7 +42,7 @@ Edit Post Details
 					<div class="col-md-4 form-group{{ $errors->has('rating_numerator') ? ' has-error' : '' }}">
 					    <label for="rating_numerator">Post is a review? What's the rating? (optional)</label>
 					    <?php 
-					    	if ($post->rating_denominator > 0) {
+					    	if ($post->hasRating()) {
 					    		$currentRating = round(($post->rating_numerator / $post->rating_denominator ) * 10);
 					    	}else{
 					    		$currentRating = null;
@@ -73,7 +68,7 @@ Edit Post Details
 			<img src="{{$post->image()->src}}" class="img-responsive">
 
 			<h3><i class="fa fa-picture-o"></i> Change Your Post Image</h3>
-			<form class="dropzone" data-message="Click (or Drag) Here to Add a new Image" method ="POST" action="/manage/uploadPostImage/{{$postId}}" enctype="multipart/form-data">
+			<form class="dropzone" data-message="Click (or Drag) Here to Add a new Image" method ="POST" action="/manage/uploadPostImage/{{$post->post_id}}" enctype="multipart/form-data">
 				{{Form::token()}}
 			</form>
 		</div>
@@ -93,7 +88,7 @@ Edit Post Details
       </div>
       <div class="modal-body">
         <p>Deleting this post means that you will lose all clicks this post has accumulated so far. <br/>Also, this post may be brought back if you didn't delete it at source</p>
-        {{ Form::open(['method' => 'DELETE', 'url' => "/manage/$blog->blog_id/edit/post/$postId"]) }}
+        {{ Form::open(['method' => 'DELETE', 'url' => "/manage/$blog->blog_id/edit/post/$post->post_id"]) }}
         	<button type="submit" class="btn btn-danger">Yes, Delete It</button>
         	<button class="btn" data-dismiss="modal">Cancel</button>
       	{{ Form::close()}}

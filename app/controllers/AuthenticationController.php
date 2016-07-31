@@ -61,17 +61,19 @@ class AuthenticationController extends BaseController
         if (Blog::where('blog_author_twitter_username', $userDetails['twitterHandle'])->get()->count() > 0) {
           Session::put('SignedInUser', $userDetails);
           Session::put('SignedInBlogger', new Blogger($userDetails['twitterHandle']));
-          return Redirect::to('/posts/all');
         } else {
           Session::flash('NoBlogFound',true);
-          return Redirect::to('/posts/all');
-        }
-        
-        
+        }       
+    } 
+
+    // return
+
+    if (Session::has('WhereAmI')) {
+      return Redirect::To('/'.Session::get('WhereAmI'));
     } else {
-      Session::flash('message', 'Sorry, Could not sign in. Want to try again?');
-      return View::make('login');
+      return Redirect::To('/posts/all');
     }
+
   }
 
 }

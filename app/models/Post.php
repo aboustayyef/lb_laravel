@@ -44,6 +44,32 @@ public function increaseCount(){
   $this->save();
 }
 
+// Returns exit link for posts
+
+public function exitLink(){
+  $exitLink = '/exit?url='.urlencode($this->post_url).'&token='.Session::get('_token'); 
+  return $exitLink;
+}
+
+// Generate Link to share a post on twitter
+
+public function tweetLink()
+{
+  $byline = $this->blog->blog_author_twitter_username ? " by @" . $this->blog->blog_author_twitter_username : "";
+  $byline .= " via lebaneseblogs.com";
+  $allowedTitleSize = 140 - strlen($byline) - 47;
+  $byline = ' ' . $this->post_url . $byline;
+  $postTitle = str_limit($this->post_title, $allowedTitleSize);
+  $tweetExpression = "New Top Post: " . $postTitle.$byline;
+  $twitterUrl = urlencode($tweetExpression);
+  return "https://twitter.com/intent/tweet?text=$twitterUrl";
+}
+
+public function hasRating()
+{
+  return (($this->rating_denominator > 0) && ($this->rating_numerator > 1));
+}
+
 // returns an image object
 public function image(){
   
@@ -150,10 +176,7 @@ public static function getPostsByBlogger($bloggerId, $from, $howmany){
   return $posts;
 }
 
-public static function getTopPostsByBlogger($bloggerId){
-  $posts = Post::with('blog')->where('blog_id', $bloggerId)->orderBy('posts.post_virality','desc')->take(5)->remember(3)->get();
-  return $posts;
-}
+
 
   /*
   |--------------------------------------------------------------------------
@@ -184,21 +207,6 @@ public static function getTopPostsByBlogger($bloggerId){
       return true;
     }
     return false;
-  }
-
-
-  /*
-  |--------------------------------------------------------------------------
-  | Returns whether or not a post has an image (true or false)
-  |--------------------------------------------------------------------------
-  */
-
-  public function hasImage(){
-    if ($this->post_image_height > 0 ) {
-      return true;
-    } else {
-      return FALSE;
-    }
   }
 
   public function hasChannel($channel){
@@ -291,7 +299,8 @@ public static function getTopPostsByBlogger($bloggerId){
         $input["rating_numerator"] = intval($input["rating_numerator"]);
         $input["rating_denominator"] = 10;
       } else {
-        unset($input["rating_numerator"]);
+        $input["rating_numerator"] = null;
+        $input["rating_denominator"] = null;
       }
     
       $post->fill($input);

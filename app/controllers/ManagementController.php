@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This controller handles the management of a blogger's blogs and posts
+ * Blogger Logs in using twitter and then "manages" their blog.
+ */
+
 class ManagementController extends \BaseController {
 
 
@@ -14,7 +19,15 @@ class ManagementController extends \BaseController {
 		}
 
 		$blog = Blog::where('blog_id',$blogId)->first();
-		return View::Make('manage.index')->with(compact('blog'));
+		$allBlogsByAuthor = Blog::where('blog_author_twitter_username', $blog->blog_author_twitter_username)->get();
+		$posts = $blog->posts()->orderBy('post_timestamp', 'desc')->take(10)->get();
+		$stats = $blog->stats();
+
+		return View::Make('manage.index')
+			->with( compact('blog'))
+            ->with( compact('allBlogsByAuthor'))
+   		    ->with( compact('posts'))
+		    ->with( compact('stats'));
 	}
 
 	
@@ -35,7 +48,12 @@ class ManagementController extends \BaseController {
 			return $response;
 		}
 
-		return View::make('manage.' . $blogOrPost . 'Edit')->with(compact('blogId'))->with(compact('postId'));
+		$blog = Blog::where('blog_id', $blogId)->get()->first();
+		if ($postId) {
+			$post = Post::findOrFail($postId);
+		}
+
+		return View::make('manage.' . $blogOrPost . 'Edit')->with(compact('blog'))->with(compact('post'));
 
 	}
 
@@ -130,7 +148,7 @@ class ManagementController extends \BaseController {
 
 		// url correctness filtering (Make sure $blogOrPost is either "blog" or "post")
 		if (!in_array($blogOrPost, ['blog','post'])) {
-			return Response::make('Bad URL', 404);
+			return App::abort(404);
 		}
 
 		// if 'blog', make sure $postId is empty
@@ -143,19 +161,19 @@ class ManagementController extends \BaseController {
 
 			// handle the case where the post id is null
 			if ($postId == null) {
-				return Response::make('You need to specify a Post Id', 404);
+				return Response::make('You need to specify a Post Id', 400);
 			}
 
 			// handle the case where a post doesn't exist
 			$postExists = Post::where('post_id', $postId)->get()->count() > 0;
 			if (!$postExists) {
-				return Response::make('This Post does not exist', 404);
+				return Response::make('This Post does not exist', 400);
 			}
 
 			// handle the case where the post doesnt belong to the blog
 			$postBlog = Post::where('post_id', $postId)->get()->first()->blog_id;
 			if ($postBlog != $blogId) {
-				return Response::make('This Post does not belong to this blog', 401);
+				return Response::make('This Post does not belong to this blog', 400);
 			}
 		}	
 

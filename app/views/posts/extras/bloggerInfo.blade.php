@@ -1,4 +1,26 @@
-<div id = "blogger_info" class="card card--fullWidth">
-<h2>Blogger Info Goes Here</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident libero, officia fuga odit ut velit, aut aspernatur recusandae, dolorem, numquam ab magnam vel vitae dolore dolores qui. Quisquam amet voluptatibus accusantium, consectetur laudantium omnis quis! Natus omnis neque quasi hic libero fugiat impedit sit assumenda a reprehenderit, mollitia illum nihil necessitatibus. Natus eaque voluptas quia provident qui necessitatibus eum, veniam quas itaque facilis earum praesentium, perspiciatis. Accusamus maiores quisquam tempora, dignissimos incidunt enim architecto obcaecati esse, perspiciatis qui cumque debitis, omnis blanditiis officiis natus error! Aperiam dicta nesciunt tempora soluta. Quas minima, natus quasi nemo tenetur ullam illo reprehenderit tempore quos in ipsa perspiciatis ut, ad a tempora voluptatem, id inventore fugit sed nam. Quos itaque, quam, tempore obcaecati, dignissimos quia aliquid, ratione iste sequi magni nesciunt quis. Quas ab inventore, vel accusamus numquam quasi quae obcaecati quisquam fugiat alias, eos atque sapiente et tenetur repudiandae, voluptates! Quasi, iste. Unde asperiores eligendi necessitatibus reiciendis nobis modi. Aliquam quo excepturi, deserunt, dicta officia quaerat dolor? Repellendus dolorum ratione debitis nostrum tempora fuga sunt numquam atque aliquam, recusandae voluptates architecto, omnis iusto velit commodi voluptatem odit tenetur minus ipsam blanditiis. Quo provident similique sapiente dolore? Mollitia minus quod voluptatum temporibus nihil. Pariatur.</p>
+<div id = "blogger_info" class="card card--fullWidth card--transparent ut__flexWrapper">
+
+<img src="/img/thumbs/{{$blog->blog_id}}.jpg" alt="Blogger Thumbnail" class="blogger__thumb">
+
+<h1 class="pageKind__title">
+	{{$blog->blog_name}}
+</h1>
+
+@if(Session::has('SignedInBlogger'))
+	@if(Session::get('SignedInBlogger')->canManage($blog->blog_id))
+
+		<div class="ut__Valign">
+			<a href="/manage/{{$blog->blog_id}}" class="blogger__manage">Manage this blog</a>
+		</div>
+
+		@if(!$blog->isActive())
+			<div class="ut__Valign">
+				<h2 class="pageKind__warning">Warning: Blog is not active. Reason: {{$blog->reason_for_deactivation}}.<br>Get In Touch with Admin To Reactivate</h1>	
+			</div>
+		@endif
+
+	@endif
+@endif
+</a>
+
 </div>

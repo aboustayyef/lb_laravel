@@ -10,6 +10,11 @@
     height: $card-height;
 }
 
+.card--transparent{
+    background:none;
+    border:none;
+}
+
 .card--fullWidth{
     width:100%;
     height:auto;

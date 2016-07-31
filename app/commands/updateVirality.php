@@ -71,32 +71,7 @@ class updateVirality extends Command {
 
         // initiate social score object
         $score = new SocialScore($post->post_url);
-
-        // get facebook likes and shares;
-        $facebookLikes = $score->getFacebookLikes();
-        $facebookShares = $score->getFacebookShares();
-        $facebookComments = $score->getFacebookComments();
-
-        // weight scores by coefficients. 
-        $coef_comm = 1;
-        $coef_like = 2; // likes are 2 times more important than comments;
-        $coef_shares = 7; // shares most important indicator. 7 times as important as comments;
-
-        $coef_tot = $coef_comm + $coef_like + $coef_shares; 
-        
-        $weightedValue = round(($coef_comm * $facebookComments + $coef_like * $facebookLikes + $coef_shares * $facebookShares) / $coef_tot);
-
-        $totalShares = $weightedValue * 2;
-
-        // calculate virality
-        $virality = $totalShares > 1 ? round( 8 * log($totalShares) ) : 2 ;
-
-        // set virality's upper limit of 50
-        if ($virality > 50) {
-          $virality = 50;
-        }
-
-        $this->comment("Likes: $facebookLikes, Comments: $facebookComments, Shares: $facebookShares, Weighted Score: $weightedValue, Virality: $virality");
+        $virality = $score->getVirality();
       
         // The social score is the combination of virality and post visits
         // Visits are twice as important as virality

@@ -1,5 +1,4 @@
 {{-- Start The Loop --}}
-
 @foreach ($posts as $post)
 
 <?php
@@ -9,18 +8,15 @@
     continue;
   }
 
-  // handle extra cards like welcome message, countdown lists & tips
-
-  echo View::make('posts.extras.main')->with('counter', Session::get('cardsCounter'))->render();
-
 ?>
+
+{{-- handle extra cards like welcome message, countdown lists & tips --}}
+@include('posts.extras.main')
 
 <?php
   // get blogger data
   $blog = $post->blog;
 
-  // increase load count
-  // $post->increaseCount();
 ?>
   @include ('posts.card')
 

@@ -6,14 +6,10 @@
 |
  */
 
-Route::get('/login',function()
-{
-    return View::make('login');
-});
-
 Route::get('/signout',function()
 {
     Session::forget('SignedInBlogger');
+    Session::forget('SignedInUser');
     return Redirect::to('/posts/all');
 });
 

@@ -30,7 +30,7 @@
 		{
 
 			if (Session::get('pageKind') == 'blogger') {
-				$posts = Post::where('blog_id', Session::get('blogger'))->orderBy('post_virality','desc')->take(5)->get();
+				$posts = Post::where('blog_id', Session::get('blogger'))->orderBy('post_virality','desc')->orderBy('post_timestamp','desc')->take(5)->get();
 				return $posts;
 			}
 

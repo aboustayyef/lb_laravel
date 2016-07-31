@@ -71,21 +71,15 @@
       if ($pagekind == 'blogger') {
         $bloggerDetails = Blog::find(Session::get('blogger'));
         $blogName = $bloggerDetails->blog_name;
-        return 'These are the most popular posts by '. $blogName;
+        return 'Recent popular posts by '. $blogName;
       }
     }
 
     public static function getPosts($from=0, $amount=20){
 
       $pagekind = Session::get('pageKind');
-      $user =User::signedIn();
-
-      if (!empty($user)) {
-        $userId = User::signedIn();
-      }
 
       if ( $pagekind == 'allPosts'):
-
         $posts = Post::getPosts('all', $from, $amount);
         return $posts;
 
