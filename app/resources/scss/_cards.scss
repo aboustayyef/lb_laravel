@@ -27,3 +27,25 @@
 .card--tripple{
 	width: ($card-width * 3 ) + ($gutter-width * 2);
 }
+
+.card--square{
+    border-radius:0;
+}
+
+.miniCardsCollection{
+    height:400px;
+    padding:0 10px 25px 10px;
+    background:#c5c4c4;
+    border-bottom:1px solid grey;
+}
+
+.miniCard{
+    background:white;
+    width: 176px;
+    float:left;
+    min-height: 295px;
+}
+
+.miniCard + .miniCard{
+    margin-left:10px;
+}

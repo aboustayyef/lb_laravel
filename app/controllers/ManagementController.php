@@ -70,6 +70,7 @@ class ManagementController extends \BaseController {
 			}
 
 			if (Blog::store($blogId, Input::except('_token'))) {
+				lbFunctions::log('Edits made to ' . $blogId , 'Management.log');
 				return Redirect::to('/manage/' . $blogId)->with('lbSuccessMessage', 'Changes to Blog details succesful');
 			}
 

@@ -19,20 +19,12 @@
 	√ Do a thorough testing of access rights (who can edit what)
 
 √ Handle issue with counting cards (sometimes seeing duplicate posts)
-- Facebook API migration for posting top posts
-- Master Logging for all important actions (example: Blog baladi updated its blog info)
-- Clean up unused Cookie settings and routes related to old like/follow features
-- Audit for unused CSS properties and files
-- Audit routes and check those that will be discarded
-- update documentation (static pages)
-- Update Facebook Preview and description
-- Update Manifest for Chrome Store
-- Optimize
-
-- Think of a weekly Newsletter. Calls to action (subscription) at top5 list and about pages
-- mobile implementation of top tweets and news
-- Machine learning for guessing categories.
-
+√ Audit for unused CSS properties and files
+√ Clean up unused Cookie settings and routes related to old like/follow features
+√ Audit routes and check those that will be discarded
+√ Save Facebook shares to posts (in addition to virality)
+√ Kill the News section
+√ Add Analytics to all layouts
 
 DEPLOYMENT STEPS:
 Local:
@@ -47,10 +39,22 @@ Server:
 - run updateVirality, and adjust Cron Job to reflect changes (remove hours at the end)
 - Add Cron Jobs (every midnight) for cleanupExitLog and DeactivateInactiveBlog
 - Remove crawlArticles Cron Job
-- Deactivate MideastWire, WeddingLebanon
+- Deactivate MideastWire, WeddingLebanon, 
 
 LATER 
+- Optimize
+- Update Facebook Preview and description
+- update documentation (static pages)
+- Master Logging for all important actions (more need to be done)
+- Finish minicards popularLastWeek, but wait at least a week from publishing before implementation to allow time for image caching to take place;
+- Facebook API migration for posting top posts
+- Add "top post" boolean column to posts table and migrate old TopPosts table posts then delete the TopPosts table;
+- Communcation channel with bloggers. Create details table for bloggers that includes their emails and ask for consense in their manage page to communicate with them.
+- Think of a weekly Newsletter. Calls to action (subscription) at top5 list and about pages
+- mobile implementation of top tweets and news
+- Machine learning for guessing categories.
 - Re-Add Search
+- Allow bloggers to download certified most-popular posts ever list
 - Consider making the scraper an external service via API
 - Tiering system for blog check updates. see which blogs take a long time to crawl. Continue working on CalculateBloggingFrequency;
 - When a twitter sign in happens and there is no associate blog, offer to submit new blog.

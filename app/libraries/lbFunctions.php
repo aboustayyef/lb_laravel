@@ -6,6 +6,21 @@
 
   class lbFunctions
   {
+
+    public static function log($message="Default Message", $file='lebaneseBlogs.log')
+    {
+      try {
+        $logfile = storage_path() . '/logs/' . $file;
+        $resource = fopen($logfile, 'a');
+        $now = (new Carbon\Carbon)->format("Y-M-d H:i:s");
+        $message = "$now - $message \n";
+        fwrite($resource, $message);
+        return true;
+      } catch (Exception $e) {
+        return false;
+      }
+    }
+
     public static function isArabic($string){
       if (preg_match("/([ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz]).+/", $string)){
         return false;

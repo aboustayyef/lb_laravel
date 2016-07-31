@@ -81,6 +81,7 @@ class updateVirality extends Command {
         // Save The results to database;
 
         $post->post_virality = $virality;
+        $post->post_facebookShares = $score->getFacebookAll();
         $post->post_socialScore = $socialScore;
         try {
           $post->save();

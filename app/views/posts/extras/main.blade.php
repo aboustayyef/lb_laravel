@@ -9,38 +9,30 @@
 
   @if ($pageKind == 'blogger')
     @include('posts.extras.bloggerInfo')
-    <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
+    @include('posts.extras.popular')
+    <?php Session::set('cardsCounter', Session::get('cardsCounter') + 2); ?>
 
   @elseif ($pageKind == 'channel')
     @include('posts.extras.channelInfo')
-    <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
+    @include('posts.extras.popular')
+    <?php Session::set('cardsCounter', Session::get('cardsCounter') + 2); ?>
 
   @elseif ($pageKind == 'searchResults')
     @include('posts.extras.searchResults')
     <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
 
+  @else
+    @include('posts.extras.popular')
+    <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
+
   @endif
-@endif
-
-@if ($counter == 0)
-
-  @include('posts.extras.popular')
-  <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
 
 @endif
 
-@if ($counter == 11)
-  {{View::make('posts.extras.news')->with('source','naharnet')}}
-  <?php
-      Session::set('cardsCounter', Session::get('cardsCounter') + 1);
+@if ($counter == 8)
+  {{-- include('posts.extras.popularLastWeek') --}}
+  <?php 
+    // Session::set('cardsCounter', Session::get('cardsCounter') + 1); 
   ?>
 @endif
 
-
-
-@if (false); {{-- previously: in_array($counter, [6,14,29,44, 59]) --}}
-  @include('posts.extras.adsense1')
-  <?php
-      Session::set('cardsCounter', Session::get('cardsCounter') + 1);
-  ?>
-@endif

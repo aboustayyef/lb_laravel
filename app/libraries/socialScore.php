@@ -45,6 +45,14 @@ class SocialScore extends BaseController
     return false;
   }
 
+  public function getFacebookAll()
+  {
+    if ($this->facebookScores) {
+      return ($this->getFacebookLikes() + $this->getFacebookComments() + $this->getFacebookShares() ) ;
+    }
+    return false;
+  }
+
   public function getVirality()
   {
     // get facebook likes and shares;

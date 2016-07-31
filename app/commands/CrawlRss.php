@@ -252,7 +252,7 @@ class CrawlRss extends Command {
           $this->error($e->getMessage()); //'Cannot save post [' . $blog_post_title . ']'
         }
         // Cache image if exists. Flatten and convert to jpg;
-        $candidateCachingFile = public_path() . '/img/cache/' . $post->updated_at->timestamp.'-' . $post->post_id . '.jpg' ;
+        $candidateCachingFile = public_path() . '/img/cache/' . $post->post_timestamp.'-' . $post->post_id . '.jpg' ;
         if (!file_exists($candidateCachingFile)) {
           if ($blog_post_image) { // image exists
             

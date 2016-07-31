@@ -25,7 +25,7 @@ Edit Post Details
 			
 				<div class="row">
 					<div class="form-group col-md-8">
-						<label for="blog_tags">Post Categories (maximum two)</label>
+						<label for="post_tags">Post Categories (maximum two)</label>
 						<div>
 							@foreach (Channel::collection() as $channel)
 							<div class="checkbox">

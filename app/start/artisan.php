@@ -17,7 +17,6 @@ Artisan::add(new updateVirality);
 Artisan::add(new indexPosts);
 Artisan::add(new populateHues);
 Artisan::add(new checkTopPosts);
-Artisan::add(new spreadPosts);
 Artisan::add(new getNews);
 Artisan::add(new endOfYearStats);
 Artisan::add(new getRatings);

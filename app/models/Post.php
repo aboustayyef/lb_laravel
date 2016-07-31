@@ -187,12 +187,12 @@ public static function getPostsByBlogger($bloggerId, $from, $howmany){
   */
 
   public function cacheImage(){
-    $cachedImage = public_path() . '/img/cache/' . $this->updated_at->timestamp.'-' . $this->post_id . '.jpg';
+    $cachedImage = public_path() . '/img/cache/' . $this->post_timestamp.'-' . $this->post_id . '.jpg';
     if (file_exists($cachedImage)) {
       if (app('env') == 'staging') {
         return 'http://static2.lebaneseblogs.com/' . $cachedImageFilename;
       } else {
-        return asset('/img/cache/'.$this->updated_at->timestamp.'-' . $this->post_id . '.jpg');
+        return asset('/img/cache/'.$this->post_timestamp.'-' . $this->post_id . '.jpg');
       }
     } else {
       return FALSE;
@@ -287,10 +287,15 @@ public static function getPostsByBlogger($bloggerId, $from, $howmany){
     static function store($postId, $input){
       $post = Post::where('post_id',$postId)->get()->first();
 
+      // allow for nonexistent tags
+      if (!isset($input['post_tags'])) {
+        $input['post_tags'] = '';
+      }
       // convert post_tags from array to comma delimited
       if (is_array($input['post_tags'])) {
           $input['post_tags'] = implode(',', $input['post_tags']);
       }
+
       // remove white space around tags
       $input = array_map('trim', $input);
 
