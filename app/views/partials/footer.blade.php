@@ -15,7 +15,7 @@
 
       
       @if (app('env') == 'staging')
-        <script async src ="http://static.lebaneseblogs.com/js/lebaneseblogs.min.js?v=23"></script>
+        <script async src ="http://static.lebaneseblogs.com/js/lebaneseblogs.min.js?v=4"></script>
         <!-- Start of Google Analytics Code -->
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -28,7 +28,7 @@
           ga('send', 'pageview');
         </script>
       @else
-        <script async src ="{{asset('js/lebaneseblogs.min.js?v=23')}}"></script>
+        <script async src ="{{asset('js/lebaneseblogs.min.js?v=4')}}"></script>
         <script>var ga = function(){}</script>
       @endif
     </div>
