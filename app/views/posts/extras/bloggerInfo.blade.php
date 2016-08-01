@@ -1,6 +1,6 @@
 <div id = "blogger_info" class="card card--fullWidth card--transparent ut__flexWrapper">
 
-<img src="/img/thumbs/{{$blog->blog_id}}.jpg" alt="Blogger Thumbnail" class="blogger__thumb">
+<img src="/img/thumbs/{{$blog->blog_thumb}}.jpg" alt="Blogger Thumbnail" class="blogger__thumb">
 
 <h1 class="pageKind__title">
 	{{$blog->blog_name}}

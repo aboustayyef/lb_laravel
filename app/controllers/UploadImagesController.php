@@ -8,7 +8,13 @@ class UploadImagesController extends \BaseController {
 		{
 			if (Input::hasFile('file'))
 			{
-				Image::make(Input::file('file'))->fit(100,100)->save(public_path().'/img/thumbs/'.$blogId.'.jpg'); 
+				// file name: timestamp-blogId.jpg
+				$fileName = time() . '-' . $blogId;
+				Image::make(Input::file('file'))->fit(100,100)->save(public_path().'/img/thumbs/' . $fileName . '.jpg');
+				$b = Blog::find($blogId);
+				$b->blog_thumb = $fileName;
+				$b->save();
+				return 'success';
 			}
 		} 
 		catch (Exception $e)

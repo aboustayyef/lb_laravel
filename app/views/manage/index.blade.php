@@ -25,7 +25,7 @@
 	
 	<div class="row">
 		<div id="MgSubHeading" class="col-md-5">
-			<img src="/img/thumbs/{{$blog->blog_id}}.jpg" width="50" height="auto">
+			<img src="/img/thumbs/{{$blog->blog_thumb}}.jpg" width="50" height="auto">
 			<h3>{{$blog->blog_name}}</h3>
 			<a href="/manage/{{$blog->blog_id}}/edit/blog" class="btn btn-default btn-xs">Edit Blog Details</a>
 			<a href="/blogger/{{$blog->blog_id}}" class="btn btn-default btn-xs">Blog Page</a>

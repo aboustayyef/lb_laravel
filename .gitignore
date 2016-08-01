@@ -1,6 +1,7 @@
 **/cache
 **/.sass-cache
 /public/img/cache/*.jpg
+/public/img/thumbs/*.jpg
 /app/storage/**
 /app/storage/cache
 /bootstrap/compiled.php
