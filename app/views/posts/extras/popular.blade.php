@@ -35,7 +35,7 @@
 					@endif
 				</div>
 				<div class="top_posts__details">
-					<a class="top_posts__title exitLink" href="">{{str_limit($post->post_title, 60)}}</a>
+					<a class="top_posts__title exitLink" href="{{$post->exitLink()}}">{{str_limit($post->post_title, 60)}}</a>
 					<p class="top_posts__blog">{{$post->blog->blog_name}}</p>
 				</div>
 				

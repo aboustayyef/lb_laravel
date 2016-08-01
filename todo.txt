@@ -27,6 +27,7 @@
 √ Add Analytics to all layouts
 
 LATER 
+- Mobile Version
 - Cache Busting for Images
 - Optimize
 - Update Facebook Preview and description
