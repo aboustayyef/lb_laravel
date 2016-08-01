@@ -188,6 +188,8 @@ class CrawlRss extends Command {
             $image = $embed->image;
             if ($image) {
               $blog_post_image = $image;
+              $blog_post_image_height = $embed->imageHeight;
+              $blog_post_image_width = $embed->imageWidth;
             } else {
               $blog_post_image = null;
             }
@@ -202,8 +204,6 @@ class CrawlRss extends Command {
         $blog_post_excerpt = $summarizer->summarize(2);
 
         if ($blog_post_image) {
-          $blog_post_image_width = 300;
-          $blog_post_image_height = 165;
           // add hue color
           $imageAnalyzer = new imageAnalyzer($blog_post_image);
           $hue = $imageAnalyzer->getDominantHue();
@@ -219,7 +219,7 @@ class CrawlRss extends Command {
 
         $post->post_url = $blog_post_link ;
         $post->post_title = $blog_post_title ;
-        $post->post_image = $blog_post_image ;
+        $post->post_original_image = $blog_post_image ;
         $post->post_excerpt = $blog_post_excerpt ;
         $post->blog_id = $domain ;
         $post->post_timestamp = $blog_post_timestamp ;
@@ -252,21 +252,20 @@ class CrawlRss extends Command {
           $this->error($e->getMessage()); //'Cannot save post [' . $blog_post_title . ']'
         }
         // Cache image if exists. Flatten and convert to jpg;
-        $candidateCachingFile = public_path() . '/img/cache/' . $post->post_timestamp.'-' . $post->post_id . '.jpg' ;
-        if (!file_exists($candidateCachingFile)) {
+        $local_image_name = $post->post_timestamp . '-' . $post->post_id;
+        $candidateCachingFile = public_path() . '/img/cache/' . $local_image_name . '.jpg' ;
           if ($blog_post_image) { // image exists
-            
             // cache it
             try {
               Image::make($blog_post_image)->fit(300,165)->save($candidateCachingFile);
+              $post->post_local_image = $local_image_name;
+              $post->save();
               $this->comment('Image added to cache folder');
             } catch (Exception $e) {
               $this->error('could not cache image');
             }
           }
-        }else{
           $this->info('Cache image ' . $candidateCachingFile . ' already exists');
-        }
       }
 
     } // end foreach feed item

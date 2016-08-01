@@ -26,10 +26,9 @@ class UploadImagesController extends \BaseController {
 	public function postImage($postId)
 	{
 		$post = Post::findOrFail($postId);
-		$post->post_image_height = 165;
-		$post->post_image_width = 300;
+		$postname = $post->post_timestamp . '-' . $post->post_id;
+		Image::make(Input::file('file'))->fit(300,165)->save(public_path().'/img/cache/'. $postname . '.jpg');
+		$post->post_local_image = $postname ;
 		$post->save();
-		$post = Post::findOrFail($postId); // refresh metadata
-		Image::make(Input::file('file'))->fit(300,165)->save(public_path().'/img/cache/'.$post->post_timestamp.'-' . $post->post_id . '.jpg');
 	}
 }

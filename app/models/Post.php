@@ -86,12 +86,18 @@ public function image(){
   if ($this->cacheImage()) {
     $image->src = $this->cacheImage();
   } else {
-    $image->src = $this->post_image;
+    $image->src = $this->post_original_image;
   }
 
   // dimentions
-  $image->height = $this->post_image_height;
-  $image->width = $this->post_image_width;
+  if ($this->cacheImage()) {
+    $image->height = 165;
+    $image->width = 300;
+  } else {
+    $image->height = $this->post_image_height;
+    $image->width = $this->post_image_width;
+  }
+
   if ($this->post_image_width > 0) {
     $image->ratio = $this->post_image_height / $this->post_image_width;
   } else {
@@ -187,12 +193,11 @@ public static function getPostsByBlogger($bloggerId, $from, $howmany){
   */
 
   public function cacheImage(){
-    $cachedImage = public_path() . '/img/cache/' . $this->post_timestamp.'-' . $this->post_id . '.jpg';
-    if (file_exists($cachedImage)) {
+    if (strlen($this->post_local_image) > 0) {
       if (app('env') == 'staging') {
-        return 'http://static2.lebaneseblogs.com/'.$this->post_timestamp.'-' . $this->post_id . '.jpg';
+        return 'http://static2.lebaneseblogs.com/'.$this->post_local_image . '.jpg';
       } else {
-        return asset('/img/cache/'.$this->post_timestamp.'-' . $this->post_id . '.jpg');
+        return '/img/cache/' . $this->post_local_image . '.jpg';
       }
     } else {
       return FALSE;
