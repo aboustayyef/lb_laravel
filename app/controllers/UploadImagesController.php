@@ -31,7 +31,7 @@ class UploadImagesController extends \BaseController {
 			Image::make(Input::file('file'))->fit(300,165)->save(public_path().'/img/cache/'. $postname . '.jpg');
 		} catch (Exception $e) {
 			$user = shell_exec('whoami');
-			return "Could Not upload image with user [ $user ]" ; 			
+			return "Could Not upload image to " . public_path().'/img/cache/'. $postname . '.jpg' ; 			
 		}
 		$post->post_local_image = $postname ;
 		$post->save();
