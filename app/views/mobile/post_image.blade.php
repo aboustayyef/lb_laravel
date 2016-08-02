@@ -1,31 +1,13 @@
 <?php
-$h = $post->post_image_height;
-$w = $post->post_image_width;
-
-$r = $w/$h;
 
 if ($post->cacheImage()) {
   $image = $post->cacheImage();
 } else {
-  $image = $post->post_image;
-}
-
-$hue = $post->post_image_hue;
-$saturation = '20%';
-$luminosity = '85%';
-if ($hue == 0) {
-  $saturation = '0%';
+  $image = $post->image()->src;
 }
 
 ?>
-<img
-  data-ratio = "{{$r}}"
-  class="lazy adjustHeight"
-  @if (app('env') == 'staging')
-	src="{{ asset('http://static.lebaneseblogs.com/img/transparent.png') }}"
-  @else
-	src="{{ asset('/img/transparent.png') }}"
-  @endif
-  data-original="{{ $image }}" 
-  style="background-color:hsl({{ $hue }},{{ $saturation }}, 75%)"
->
+<a href="{{$post->exitLink()}}">
+<div class="image" style="background-color:{{$post->image()->background_color}};background-image:url({{ $image }}) ;padding-top:55%">
+  </div>
+</a>

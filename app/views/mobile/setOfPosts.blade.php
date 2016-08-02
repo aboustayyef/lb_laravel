@@ -25,8 +25,10 @@
 
 
 @endif
+<!--
 <div class="body" data-exit-url="{{URL::to('/exit').'?url='.urlencode($post->post_url).'&token='.Session::get('_token')}}" data-blog-url="/mobile/blogger/{{$post->blog->blog_id}}" data-post-title="{{$post->post_title}}" data-twitter-link="{{(new \LebaneseBlogs\Utilities\Strings)->prepareTwitterLink($post)}}" data-post-excerpt="{{$post->post_excerpt}}" data-blog-name="{{$post->blog->blog_name}}" data-blog-id="{{$post->blog_id}}">
-
+-->
+<div class="postbody">
 <div class="meta">
   <div class="timestamp">
     <?php $since = (new Carbon\Carbon)->createFromTimestamp($post->post_timestamp)->diffForHumans(); ?>
@@ -35,19 +37,16 @@
   {{View::make('mobile.virality')->with('score',$post->post_virality)}}
 </div>
 
-<a href="#"><p class="title">{{$post->post_title}}</p></a>
+<a href="{{$post->exitLink()}}"><p class="title">{{$post->post_title}}</p></a>
 
-<?php
-  if (($post->rating_denominator > 0) && ($post->rating_numerator > 1)) {
-    echo '<!-- Rating -->';
-    echo View::make('posts.partials.rating')->with('n',$post->rating_numerator)->with('d',$post->rating_denominator);
-  }
-?>
+@if ($post->hasRating())
+    <!-- Rating -->
+    {{-- Hide rating for now: --}}
+    {{-- View::make('posts.partials.rating')->with('n',$post->rating_numerator)->with('d',$post->rating_denominator) --}}
+@endif
 
-@if ($post->post_image_height > 0)
- <div class="image">
+@if ($post->image()->exists)
     {{View::make('mobile.post_image')->with('post',$post)}}
-  </div>
 @endif
 </div>
 
