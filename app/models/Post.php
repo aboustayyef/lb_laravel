@@ -94,8 +94,8 @@ public function image(){
     $image->height = 165;
     $image->width = 300;
   } else {
-    $image->height = $this->post_image_height;
-    $image->width = $this->post_image_width;
+    $image->height = "auto";
+    $image->width = "100%";
   }
 
   if ($this->post_image_width > 0) {

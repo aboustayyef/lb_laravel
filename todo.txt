@@ -27,9 +27,9 @@
 √ Add Analytics to all layouts
 
 LATER 
+√ Cache Busting for Images
 - IMPORTANT: situation with Sareen Image and uploading images.
 - Mobile Version
-- Cache Busting for Images
 - Optimize
 - Update Facebook Preview and description
 - update documentation (static pages)
