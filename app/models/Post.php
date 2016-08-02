@@ -60,7 +60,7 @@ public function tweetLink()
   $allowedTitleSize = 140 - strlen($byline) - 47;
   $byline = ' ' . $this->post_url . $byline;
   $postTitle = str_limit($this->post_title, $allowedTitleSize);
-  $tweetExpression = "New Top Post: " . $postTitle.$byline;
+  $tweetExpression = $postTitle.$byline;
   $twitterUrl = urlencode($tweetExpression);
   return "https://twitter.com/intent/tweet?text=$twitterUrl";
 }
