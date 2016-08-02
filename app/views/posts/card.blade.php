@@ -10,8 +10,8 @@
             class="lazy cardImage"
             data-original="{{ $post->image()->src }}"
             src="{{ asset('/img/transparent.png') }}"
-            width="300px"
-            height="{{ 300 * $post->image()->ratio }}"
+            width="{{$post->image()->width}}"
+            height="{{$post->image()->height}}"
             style="background-color:{{$post->image()->background_color}}"
           ></div>
       </a>

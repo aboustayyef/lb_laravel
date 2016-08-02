@@ -27,6 +27,7 @@
 √ Add Analytics to all layouts
 
 LATER 
+- IMPORTANT: situation with Sareen Image and uploading images.
 - Mobile Version
 - Cache Busting for Images
 - Optimize
