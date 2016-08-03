@@ -84,7 +84,7 @@ class CrawlRss extends Command {
     $this->info('Fixing Permissions of cache folder');
     shell_exec('chmod -R 777 '. public_path() . '/img/cache');
     shell_exec('chown -R www-data:www-data ' . public_path() . '/img/cache');
-    $this->find('done');
+    $this->info('done');
 
   } // fire
 
