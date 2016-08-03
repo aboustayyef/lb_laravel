@@ -30,8 +30,7 @@ class UploadImagesController extends \BaseController {
 		try {
 			Image::make(Input::file('file'))->fit(300,165)->save(public_path().'/img/cache/'. $postname . '.jpg');
 		} catch (Exception $e) {
-			$user = shell_exec('whoami');
-			return "Could Not upload image to " . public_path().'/img/cache/'. $postname . '.jpg' ; 			
+			lbFunctions::log( 'Error - Could not upload file for post [ ' . $post->post_title . ' ]', 'Management.log'); 			
 		}
 		$post->post_local_image = $postname ;
 		$post->save();

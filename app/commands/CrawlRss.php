@@ -81,6 +81,10 @@ class CrawlRss extends Command {
     $this->info('Kind of fetching used: '. $this->option('fetching'));
     Cache::forever('crawlingDurations', $c);
 
+    $this->info('Fixing Permissions of cache folder');
+    shell_exec('chmod -R 777 '. public_path() . '/img/cache');
+    shell_exec('chown -R www-data:www-data ' . public_path() . '/img/cache');
+    $this->find('done');
 
   } // fire
 
