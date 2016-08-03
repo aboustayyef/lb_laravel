@@ -8,6 +8,6 @@ if ($post->cacheImage()) {
 
 ?>
 <a href="{{$post->exitLink()}}">
-<div class="image" style="background-color:{{$post->image()->background_color}};background-image:url({{ $image }}) ;padding-top:55%">
+<div class="image" style="background-color:{{$post->image()->background_color}};background-image:url({{ $image }}); background-size:100%; ;padding-top:55%">
   </div>
 </a>

@@ -1,7 +1,7 @@
 <?php
 if ($post->image()->exists) {
-	$h = $post->post_image_height;
-	$w = $post->post_image_width;
+	$h = $post->post_image_height > 0 ? $post->post_image_height : 165;
+	$w = $post->post_image_width > 0 ? $post->post_image_width : 300;
 
 	$width = 60;
 	$r = $w/60;
