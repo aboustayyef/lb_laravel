@@ -35,7 +35,7 @@ $(function() {
 		});
 
 		myDropzone.on("addedfile", function(file) {
-			// location.reload();
+			location.reload();
 			// event to happen upon succesful change
 	  	});
 	}

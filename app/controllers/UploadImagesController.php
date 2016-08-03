@@ -26,7 +26,7 @@ class UploadImagesController extends \BaseController {
 	public function postImage($postId)
 	{
 		$post = Post::findOrFail($postId);
-		$postname = $post->post_timestamp . '-' . $post->post_id;
+		$postname = time() . '-' . $post->post_id;
 		try {
 			Image::make(Input::file('file'))->fit(300,165)->save(public_path().'/img/cache/'. $postname . '.jpg');
 		} catch (Exception $e) {
