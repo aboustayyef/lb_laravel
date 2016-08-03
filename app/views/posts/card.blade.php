@@ -34,7 +34,7 @@
 
       <!-- Post Title -->
 
-      <h2 class="post__title @if(!$post->post_image_height > 0) headline_no_image  @endif">
+      <h2 class="post__title @if(!$post->image()->exists) headline_no_image  @endif">
         <a class="exitLink" href="{{$post->exitLink()}}" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">
           {{str_limit($post->post_title, 80)}} 
         </a>
