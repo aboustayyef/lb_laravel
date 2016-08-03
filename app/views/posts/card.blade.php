@@ -4,7 +4,7 @@
   <!--    Post Image                -->
   <!--==============================-->
 
-    @if ($post->post_image_height > 0)
+    @if ($post->image()->exists)
       <a class="exitLink" href="{{$post->exitLink()}}" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">
         <div class="imageWrapper"><img
             class="lazy cardImage"
