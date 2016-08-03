@@ -76,7 +76,7 @@ public function image(){
   $image = new \stdClass;
   
   // exists?
-  if ($this->post_image_height > 0) {
+  if (strlen($this->post_local_image) > 0) {
     $image->exists = true;
   } else {
     $image->exists = false;
