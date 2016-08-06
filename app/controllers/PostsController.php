@@ -10,7 +10,6 @@
     */
 
     function index($channel='all', $action=null){
-
       if ($channel == 'search'){
         $query = Input::get('q');
         if (empty($query)) {
@@ -52,7 +51,9 @@
       $pageTitle = Page::getTitle();
       $pageDescription = Page::getDescription();
 
-      return View::make('posts.main')->with([
+      $view = str_contains(Request::path(),'mobile') ? 'mobile2.index' : 'posts.main';
+
+      return View::make( $view )->with([
         'initialPosts'      => $initialPosts,
         'pageTitle'         => $pageTitle,
         'pageDescription'   => $pageDescription

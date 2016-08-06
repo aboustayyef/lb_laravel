@@ -2,6 +2,9 @@
 
 <html lang="en">
 <head>
+
+    @include('partials/redirectToMobileScript')
+
     <!-- mobile critical css -->
     <style type="text/css">
         #curtain{background:#d1d1d1;position:fixed;left:0;top:50px;height:calc(100% - 50px);width:100%;z-index:100}#curtain #hangInThere{background:yellow;display:inline-block;padding:3px;margin-left:15px;margin-top:15px;font-weight:bold}#curtain #backgroundPattern{min-height:100%;background-image:url(../../img/card_placeholder_mobile.png);margin-left:10px;margin-top:10px}
@@ -11,13 +14,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="The best place to discover, read and organize Lebanon's top blogs">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-  @if($isBlogger)
-    <link rel="canonical" href="http://lebaneseblogs.com/blogger/{{$whichBlog}}" />
-  @else
-    <link rel="canonical" href="http://lebaneseblogs.com/posts/{{$channel}}" />
-  @endif
-
 
     <!-- Page Title -->
     <title>Welcome To Lebanese Blogs</title>

@@ -3,6 +3,12 @@
 	$topPosts = Post::topPosts();
 ?>
 
+<div class="card card--double card--transparent ut__MobileOnly" style="height:auto">
+	<h3 class="top_posts__header top_posts__header--mobile">
+		Top Posts
+	</h3>
+</div>
+
 <div id = "top_posts" class="card card--double">
 	<div class="top_posts__content top_posts__left">
 		<div>
@@ -43,4 +49,10 @@
 		@endforeach
 	</ul>
 	</div>
+</div>
+
+<div class="card card--double card--transparent ut__MobileOnly" style="height:auto">
+	<h3 class="top_posts__header top_posts__header--mobile">
+		Recent Posts
+	</h3>
 </div>

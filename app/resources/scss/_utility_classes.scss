@@ -4,12 +4,29 @@
 	width:calc(100% - 300px);
 	overflow:auto;
 	margin:0 auto;
+	@media all and (max-width: $mobile-break-point){
+       width:calc(100% - 10px);
+   }
 }
 
 .ut__space_between{
 	display:flex;
 	justify-content:space-between;
 }
+
+.ut__HideMobile, .ut__DesktopOnly{
+	@media all and (max-width: $mobile-break-point){
+		display:none;
+	}
+}
+
+.ut__HideDesktop, .ut__MobileOnly{
+	display:none;
+	@media all and (max-width: $mobile-break-point){
+		display:inherit;
+	}
+}
+
 
 .ut__Valign{
 	display: flex;
@@ -19,4 +36,12 @@
 
 .ut__flexWrapper{
 	display:flex;
+	&.ut__DesktopOnly{
+		@media all and (max-width: $mobile-break-point){
+			display:none;
+		}
+	}
+	&.ut__MobileOnly{
+		display:none;
+	}
 }

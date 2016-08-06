@@ -28,7 +28,7 @@
           ga('send', 'pageview');
         </script>
       @else
-        <script async src ="{{asset('js/lebaneseblogs.min.js?v=4')}}"></script>
+        <script async src ="{{asset('js/lebaneseblogs.min.js?v=4.1')}}"></script>
         <script>var ga = function(){}</script>
       @endif
     </div>

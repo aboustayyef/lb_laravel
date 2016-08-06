@@ -8,10 +8,11 @@ Route::get('/mobileAjax/{channel}/{from}/{howmany}', array(
     'uses'  =>  'MobileAjaxController@index'
 ));
 
-
-Route::get('mobile/{set}/{detail?}', array(
-    'as'  =>  'mobile',
-    'uses'  =>  'MobileController@index'
-));
+Route::group(['prefix'=>'mobile'], function(){
+	Route::get('/posts/{channel}/{action?}', array(
+	    'as'  =>  'mobile',
+	    'uses'  =>  'PostsController@index'
+	));	
+});
 
 ?>

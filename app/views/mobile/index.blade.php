@@ -17,7 +17,7 @@
 </header>
 
 {{-- Takeover: Channel Picker --}}
-@if(!$isBlogger)
+
 <div id="channelPicker" class="takeover">
   <div class="closebutton">
     <div>&times;</div>
@@ -35,7 +35,7 @@
     </ul>
   </div>
 </div>
-@endif
+
 
 {{-- Takeover: Loading Curtain --}}
 
@@ -96,7 +96,7 @@
 
 
 {{-- Takeover: Top Posts --}}
-@if(!$isBlogger)
+
   <div id="topposts" class="takeover">
     <div class="closebutton">
       <div>&times;</div>
@@ -115,11 +115,11 @@
   @endforeach
 
   </div>
-@endif
+
 
 {{-- top post or Blogger detail --}}
 
-@if(!$isBlogger)
+
 <div id="firstTopPost">
   <?php $post = $topPosts[0]; ?>
   <h2>Top Post Right Now <a id="showtopposts" class="minibutton" href="#">Show More</a></h2>
@@ -133,23 +133,15 @@
   </div>
 </div>
 
-@else
-<?php $post = $recentPosts[0] ?>
-<div id="bloggerDetails">
-  <img src="{{asset('/img/thumbs/'.$post->blog_id.'.jpg')}}">
-  <h2>{{$post->blog->blog_name}}</h2>
-</div>
-
-@endif
 
 {{-- Recent Posts --}}
 
 <ul id="posts">
-  @if(!$isBlogger)
+  
   <div class="miniCard">
     {{View::make('mobile.categoriesButton')->with('channel', $channel)}}
   </div>
-  @endif
+  
   {{View::make('mobile.setOfPosts')->with('posts', $recentPosts)->with('isBlogger', $isBlogger)}}
 </ul>
 

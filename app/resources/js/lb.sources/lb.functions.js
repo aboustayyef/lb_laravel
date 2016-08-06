@@ -28,28 +28,28 @@ lbApp.veryFirstLoad= function(){
 
 
 lbApp.resizeViewport = function(){
-  // this function is only used with cards
-  // it serves to recalculate the viewport's width to center the posts
-  // $('#content').css('padding-top', ($('#channelPicker').outerHeight() + $('#topBar').outerHeight() ));
   
-  if ($(window).width() > 430) {
+  if ($(window).width() > 500) {
     
     var columns = Math.floor((($(window).width() - 190 ))/320) ;
     if (columns > 5 ) { columns = 5 ;} // maximum: 4 columns + side column
     if (columns < 3 ) { columns = 3 ;} // minimum: 2 columns + side column
     var $postsWidth = columns*320;
     var $contentWidth = $postsWidth;
-
+  } else {
+    var $contentWidth = $(window).width() - 20;
+  }
     $('div.ut__inner').css('width', $contentWidth);
     $('#aboutMenu').css('left', $('#about').position().left + $('#about').outerWidth() - $('#aboutMenu').outerWidth());
-    // position website logo to be alligned with posts
-    // $('#logo').css('margin-left', ($(window).innerWidth() - $contentWidth)/2);
-  }
 };
 
 lbApp.loadLazyImages = function(){
-  $('img.lazy').each(function(){
-    $(this).attr('src', $(this).data('original'));
+  $('.lazy').each(function(){
+    if ($(this).data('bg') != undefined) {
+      $(this).css('background-image', 'url("'+ $(this).data('bg') +'")');
+    } else {
+      $(this).attr('src', $(this).data('original'));
+    }
     $(this).removeClass('lazy');
   });
 };

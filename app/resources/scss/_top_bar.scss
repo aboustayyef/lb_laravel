@@ -24,6 +24,9 @@
   #aboutlb{
     margin-left:30px;
     height:$header-height;
+    @media all and (max-width:$mobile-break-point){
+      display:none;
+    } 
   }
 
   p{
@@ -116,12 +119,4 @@
   background: $content-background;
   overflow:auto;
   -webkit-overflow-scrolling: touch;
-}
-
-#openLinksInNewTabs{
-  .lbl{
-    color:#949494;
-  }
-  padding:10px 0;
-  font-size:17px;
 }

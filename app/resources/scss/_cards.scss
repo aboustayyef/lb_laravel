@@ -8,6 +8,12 @@
     position: relative;
     border: 1px solid silver;
     height: $card-height;
+    @media all and (max-width: $mobile-break-point){
+        border-radius:0;
+        width: calc(50% - 6px);
+        margin:3px;
+        height:320px;
+    }
 }
 
 .card--transparent{
@@ -22,6 +28,10 @@
 
 .card--double{
 	width: ($card-width * 2) + $gutter-width;
+    @media all and (max-width: $mobile-break-point){
+        width: calc(100% - 6px);
+        height: $card-height;
+    }
 }
 
 .card--tripple{

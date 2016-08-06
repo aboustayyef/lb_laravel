@@ -1,5 +1,17 @@
 #channelPicker{
 
+
+  #openLinksInNewTabs{
+    .lbl{
+      color:#949494;
+    }
+    padding:10px 0;
+    font-size:17px;
+    @media all and (max-width:$mobile-break-point){
+      display:none;
+    }
+  }
+
   img.lazy{
     background-color: #ededed;
   }
@@ -13,9 +25,6 @@
   width:100%;
 
   #channelSelector{
-    @media all and (min-width:650px){
-
-    }
     -webkit-appearance: none;
       -moz-appearance: none;
       -appearance: none;
@@ -41,6 +50,9 @@
   .top_posts__button {
       border-right: 1px solid #e2e0e0;
       padding: 10px 5px;
+      @media all and (max-width:$mobile-break-point){
+        border-right:none;
+      }
     }
 
 }

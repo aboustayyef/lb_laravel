@@ -6,14 +6,9 @@
 
     @if ($post->image()->exists)
       <a class="exitLink" href="{{$post->exitLink()}}" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">
-        <div class="imageWrapper"><img
-            class="lazy cardImage"
-            data-original="{{ $post->image()->src }}"
-            src="{{ asset('/img/transparent.png') }}"
-            width="{{$post->image()->width}}"
-            height="{{$post->image()->height}}"
-            style="background-color:{{$post->image()->background_color}}"
-          ></div>
+        <div data-bg="{{ $post->image()->src }}" class="lazy" style="background-color:{{$post->image()->background_color}}; background-size:100%; ;padding-top:55%;     background-repeat: no-repeat;">
+          </div>
+
       </a>
     @endif
     
@@ -86,7 +81,7 @@
       <div class="tweetit ut__Valign">
         <!-- Card {{Session::get('cardsCounter')}} Post {{Session::get('postsCounter')}} -->
         <a href="{{$post->tweetLink()}}" title="Click to send this post to Twitter!" target="_blank" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">
-          <?php fontAwesomeToSvg::convert('fa-twitter') ?> Tweet
+        <?php fontAwesomeToSvg::convert('fa-twitter') ?><span class="ut__HideMobile" Tweet</span>
         </a>
       </div>
 
