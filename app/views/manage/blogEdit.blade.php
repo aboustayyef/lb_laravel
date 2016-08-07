@@ -68,7 +68,7 @@ Edit Blog Details
 		</div>
 	</form>
 
-	<div class="col-md-4">
+	<div class="col-md-4 visible-md visible-lg">
 		<img src="/img/thumbs/{{$blog->blog_thumb}}.jpg" width="100" height="100" alt="" class="img-thumbnail img-responsive">
 		<h3>Change Your Avatar</h3>
 		<form class="dropzone" method ="POST" action="/manage/uploadBlogAvatar/{{$blog->blog_id}}" enctype="multipart/form-data">

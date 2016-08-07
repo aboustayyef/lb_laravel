@@ -5,7 +5,7 @@
 
 <div class="card card--double card--transparent ut__MobileOnly" style="height:auto">
 	<h3 class="top_posts__header top_posts__header--mobile">
-		Top Posts <a class="top_posts__showMore closed" href="#"></a>
+		Top Posts Right Now<a class="top_posts__showMore closed" href="#"></a>
 	</h3>
 </div>
 
@@ -13,7 +13,7 @@
 	<div class="top_posts__content top_posts__left">
 		<div>
 			<h3 class="top_posts__header">
-				Top Posts 
+				Top Posts
 			</h3>
 
 			<p class="top_posts__about">
@@ -51,8 +51,3 @@
 	</div>
 </div>
 
-<div class="card card--double card--transparent ut__MobileOnly" style="height:auto">
-	<h3 class="top_posts__header top_posts__header--mobile">
-		Recent Posts
-	</h3>
-</div>

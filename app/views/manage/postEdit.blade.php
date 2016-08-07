@@ -64,7 +64,7 @@ Edit Post Details
 				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletePost"><i class="fa fa-trash"></i> Delete Post</button>
 			</form>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-4 visible-md visible-lg">
 			<img src="{{$post->image()->src}}" class="img-responsive">
 
 			<h3><i class="fa fa-picture-o"></i> Change Your Post Image</h3>

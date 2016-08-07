@@ -8,10 +8,20 @@ div.posts.cards.blogger{
 	}
 }
 
+#blogger_info{
+	@media all and (max-width: $mobile-break-point){
+	    margin-bottom:10px;
+	}
+}
+
 .blogger__thumb{
 	height:70px;
 	width:70px;
 	border-radius:50%;
+	@media all and (max-width: $mobile-break-point){
+	    height:40px;
+	    width:40px;
+	}
 }
 
 .pageKind__title{
@@ -20,6 +30,10 @@ div.posts.cards.blogger{
     color: #444;
     line-height: 70px;
     margin-left: 20px;
+    @media all and (max-width: $mobile-break-point){
+        font-size:25px;
+        line-height:40px;
+    }
 }
 
 .pageKind__warning{

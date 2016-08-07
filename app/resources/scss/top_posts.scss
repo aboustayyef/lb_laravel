@@ -21,6 +21,9 @@ $breathing-room: 20px;
 			height:85px;
 		}
 		padding:10px;
+		border:none;
+		margin-top:0;
+		margin-bottom:10px;
 		li{
 			padding-left:0;
 		}
@@ -101,13 +104,16 @@ $breathing-room: 20px;
 	color:$brand-color;
 	padding:30px 0;
 	@media all and (max-width: $mobile-break-point){
-		font-size:22px;
+		font-size:20px;
+		font-weight:normal;
 	}
 }
 
 .top_posts__header--mobile{
-	padding:10px 0;
+	padding:6px 15px;
 	width:100%;
+	background:white;
+	color: #333;
 	overflow:auto;
 }
 
@@ -116,6 +122,7 @@ $breathing-room: 20px;
 	background:darken($brand-color, 10);
     font-size: 12px;
     padding: 4px;
+    float:right;
 	&:before{
 		content:"Show Less";
 	}
