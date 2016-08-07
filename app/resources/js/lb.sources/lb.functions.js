@@ -37,7 +37,7 @@ lbApp.resizeViewport = function(){
     var $postsWidth = columns*320;
     var $contentWidth = $postsWidth;
   } else {
-    var $contentWidth = $(window).width() - 20;
+    var $contentWidth = $(window).width() - 10;
   }
     $('div.ut__inner').css('width', $contentWidth);
     $('#aboutMenu').css('left', $('#about').position().left + $('#about').outerWidth() - $('#aboutMenu').outerWidth());

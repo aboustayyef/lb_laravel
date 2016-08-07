@@ -119,4 +119,7 @@
   background: $content-background;
   overflow:auto;
   -webkit-overflow-scrolling: touch;
+  @media all and (max-width: $mobile-break-point){
+      padding-top:125px;
+  }
 }

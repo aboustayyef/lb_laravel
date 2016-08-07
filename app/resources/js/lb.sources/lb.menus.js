@@ -29,6 +29,11 @@ lbApp.clearMenus = function(){
   });
 };
 
+$('.top_posts__showMore').on('click', function(e){
+  e.stopPropagation();
+  $(this).toggleClass('closed');
+  $('#top_posts').toggleClass('closed');  
+});
 
 $(document).keyup(function(e) {
   if (e.keyCode == 27) {
@@ -47,3 +52,4 @@ $('.exitLink').on('click',function(e){
         window.open(targetLocation,'_blank');
     }
 });
+
