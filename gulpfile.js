@@ -19,7 +19,7 @@ gulp.task('styles',function(){
     .pipe(sass({
         outputStyle: 'compressed'
     }))
-    .pipe(sourcemaps.write())
+    //.pipe(sourcemaps.write())
     .pipe(gulp.dest('./public/css/'))
 });
 

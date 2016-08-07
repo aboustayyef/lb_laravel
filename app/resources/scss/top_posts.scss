@@ -104,7 +104,8 @@ $breathing-room: 20px;
 	color:$brand-color;
 	padding:30px 0;
 	@media all and (max-width: $mobile-break-point){
-		font-size:20px;
+		line-height:1;
+		font-size:18px;
 		font-weight:normal;
 	}
 }
