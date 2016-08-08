@@ -1,5 +1,7 @@
 <?php
 
+use League\OAuth1\Client\Server\Twitter;
+
 /*
 |---------------------------------------------------------------------
 |   Implementing signin with Facebook, Twitter and Google
@@ -13,17 +15,26 @@
 class AuthenticationController extends BaseController
 {
 
+  public function __construct()
+  {
+    $this->twitter = new Twitter(array(
+      'identifier' => $_ENV['TWITTER_IDENTIFIER'],
+      'secret' => $_ENV['TWITTER_SECRET'],
+      'callback_uri' => URL::to('/auth/twitter/callback'),
+    )); 
+  }
+
   function auth(){
 
     // Retrieve temporary credentials
-    $temporaryCredentials = AuthenticationServer::twitter()->getTemporaryCredentials();
+    $temporaryCredentials = $this->twitter->getTemporaryCredentials();
 
     // Store credentials in the session, we'll need them later
     Session::put('temporaryCredentials', $temporaryCredentials);
     Session::save();
 
     // Redirect the resource owner to the login screen on the server.
-    $url = AuthenticationServer::twitter()->getAuthorizationUrl($temporaryCredentials);
+    $url = $this->twitter->getAuthorizationUrl($temporaryCredentials);
     return Redirect::To($url);
 
   }
@@ -32,14 +43,14 @@ class AuthenticationController extends BaseController
 
     if ((Input::has('oauth_token')) && (Input::has('oauth_verifier'))) {
         // We will now retrieve token credentials from the server
-        $tokenCredentials = AuthenticationServer::twitter()->getTokenCredentials(
+        $tokenCredentials = $this->twitter->getTokenCredentials(
           Session::get('temporaryCredentials'),
           Input::get('oauth_token'),
           Input::get('oauth_verifier')
         );
 
         // User is an instance of League\OAuth1\Client\Server\User
-        $user = AuthenticationServer::twitter()->getUserDetails($tokenCredentials);
+        $user = $this->twitter->getUserDetails($tokenCredentials);
 
         // Twitter returns full name
         $names = explode(' ', $user->name);

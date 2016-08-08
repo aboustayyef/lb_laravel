@@ -56,9 +56,9 @@ Route::filter('auth.basic', function()
 
 Route::filter('admin.auth', function(){
 	$canPass = false;
-	if (Session::has('SignedInUser')) {
-		$u = Session::get('SignedInUser');
-		if ($u['twitterHandle'] == 'Beirutspring') {
+	if (Session::has('SignedInBlogger')) {
+		$b = Session::get('SignedInBlogger');
+		if ($b->isAdmin) {
 			$canPass = true;
 		}
 	}

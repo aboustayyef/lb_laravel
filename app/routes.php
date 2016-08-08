@@ -15,9 +15,6 @@ require_once(app_path().'/routes/authRoutes.php');
 // administration routes for superuser (me!) for actions like adding blogs
 require_once(app_path().'/routes/adminRoutes.php');
 
-// mobile version routes
-require_once(app_path().'/routes/mobileRoutes.php');
-
 // Ajax routes
 require_once(app_path(). '/routes/ajaxRoutes.php');
 
