@@ -5,7 +5,7 @@
   <!--==============================-->
 
     @if ($post->image()->exists)
-      <a class="exitLink" href="{{$post->exitLink()}}" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">
+      <a class="exitLink" href="{{$post->exitLink()}}" rel="nofollow" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">
         <div data-bg="{{ $post->image()->src }}" class="lazy" style="background-color:{{$post->image()->background_color}}; background-size:100%; ;padding-top:55%;     background-repeat: no-repeat;">
           </div>
 
@@ -30,7 +30,7 @@
       <!-- Post Title -->
 
       <h2 class="post__title @if(!$post->image()->exists) headline_no_image  @endif">
-        <a class="exitLink" href="{{$post->exitLink()}}" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">
+        <a class="exitLink" href="{{$post->exitLink()}}" rel="nofollow" onclick="ga('send', 'event', 'Exit Link', 'Card Posts' , '{{$blog->blog_name}}')">
           {{str_limit($post->post_title, 80)}} 
         </a>
       </h2>

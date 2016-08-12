@@ -31,7 +31,7 @@
 				<div class="top_posts__thumb">
 					<?php $i = $post->image(); ?>
 					@if($i->exists)
-						<a class="exitLink" href="">
+						<a class="exitLink" href="{{$post->exitLink()}}" rel="nofollow">
 						@if($i->horizontal)
 							<img class="lazy" src="/img/transparent.png" data-original="{{$i->src}}" height = "60px" width="{{60/$i->ratio}}px" alt="">
 						@else
@@ -41,7 +41,7 @@
 					@endif
 				</div>
 				<div class="top_posts__details">
-					<a class="top_posts__title exitLink" href="{{$post->exitLink()}}">{{str_limit($post->post_title, 60)}}</a>
+					<a class="top_posts__title exitLink" href="{{$post->exitLink()}}" rel="nofollow">{{str_limit($post->post_title, 60)}}</a>
 					<p class="top_posts__blog">{{$post->blog->blog_name}}</p>
 				</div>
 				
