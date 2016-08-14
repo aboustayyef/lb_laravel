@@ -35,12 +35,21 @@
 			}
 
 			foreach ($this->possibleTimeFrames as $key => $hours) {
-				$posts = Post::getTopPosts($this->channel, $hours);
+				$posts = $this->getTopPosts($this->channel, $hours);
 				if ($posts->count() > 4) {
 				  return $posts;
 				}
-
 			}
+		}
+
+		private function getTopPosts($channel='all', $hours=12){
+		  $targetTimeStamp = time() - ( $hours * 60 * 60 );
+		  if (isset($channel) && $channel != 'all'){
+		    $posts = Post::with('blog')->where('post_timestamp' , '>' , $targetTimeStamp )->where('post_tags','like', "%$channel%")->orderBy('posts.post_socialScore','desc')->take(5)->remember(3)->get();
+		  }else{
+		    $posts = Post::with('blog')->where('post_timestamp' , '>' , $targetTimeStamp )->orderBy('posts.post_socialScore','desc')->take(5)->remember(3)->get();
+		  }
+		  return $posts;
 		}
 	}
 

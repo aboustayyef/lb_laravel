@@ -166,8 +166,7 @@ class ManagementController extends \BaseController {
 			}
 
 			// handle the case where a post doesn't exist
-			$postExists = Post::where('post_id', $postId)->get()->count() > 0;
-			if (!$postExists) {
+			if (!Post::exists($postId)) {
 				return Response::make('This Post does not exist', 400);
 			}
 

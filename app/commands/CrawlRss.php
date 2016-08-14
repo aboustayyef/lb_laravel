@@ -129,6 +129,13 @@ class CrawlRss extends Command {
       // get timestamp
       $blog_post_timestamp =  strtotime($item->get_date()); // get post's timestamp;
 
+      // if timestamp is in the future, assume lebanese timezone and remove 3 hours
+      $now = (new Carbon\Carbon)->timestamp;
+      if ( ($blog_post_timestamp - $now) > 3600 ) { // more than one hour ahead
+        $blog_post_timestamp -= (3600 * 3); // knock out three hours
+      }
+      
+
       // get title & sanitize it
       $blog_post_title = lbNormalise::cleanUpText($item->get_title(), 120);
       $blog_post_title = lbNormalise::unicode_decode($blog_post_title);
