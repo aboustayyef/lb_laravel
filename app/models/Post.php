@@ -38,6 +38,10 @@ class Post extends Eloquent{
     return $temp->get();
   }
 
+  public static function getTopPosts($channel='all', $hours=12){
+    return (new \LebaneseBlogs\Utilities\TopPostsGetter)->getTopPosts($channel, $hours);
+  }
+
   public function tweetLink(){
     $byline = $this->blog->blog_author_twitter_username ? " by @" . $this->blog->blog_author_twitter_username : "";
     $byline .= " via lebaneseblogs.com";

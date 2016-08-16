@@ -42,7 +42,7 @@
 			}
 		}
 
-		private function getTopPosts($channel='all', $hours=12){
+		public function getTopPosts($channel='all', $hours=12){
 		  $targetTimeStamp = time() - ( $hours * 60 * 60 );
 		  if (isset($channel) && $channel != 'all'){
 		    $posts = Post::with('blog')->where('post_timestamp' , '>' , $targetTimeStamp )->where('post_tags','like', "%$channel%")->orderBy('posts.post_socialScore','desc')->take(5)->remember(3)->get();
