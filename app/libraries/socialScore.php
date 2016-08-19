@@ -9,7 +9,7 @@ class SocialScore extends BaseController
   protected $url;
   protected $timeout;
 
-  protected $facebookScores;   // how many times url was shared, liked and commented on facebook;
+  public $facebookScores;   // how many times url was shared, liked and commented on facebook;
 
   function __construct($url,$timeout=10)
   {
@@ -24,7 +24,7 @@ class SocialScore extends BaseController
   public function getFacebookLikes()
   {
     if ($this->facebookScores) {
-      return $this->facebookScores['like_count'];
+      return $this->facebookScores['share_count'];
     }
     return false;
   }
@@ -83,13 +83,14 @@ class SocialScore extends BaseController
 
   // Helper functions (the meat)
 
-  private function get_fb()
+  public function get_fb()
   {
+
     try {
-      $json_string = $this->file_get_contents_curl('http://api.facebook.com/restserver.php?method=links.getStats&format=json&urls='.$this->url);
+      $json_string = $this->file_get_contents_curl('https://graph.facebook.com/v2.4?id=' . $this->url . '&fields=share&access_token=' . getenv('FACEBOOK_APP_ID') . '|' . getenv('FACEBOOK_APP_SECRET'));
       if ($json_string) {
         $scores = json_decode($json_string, true);
-        return isset($scores)? $scores[0] : false;
+        return isset($scores)? $scores['share'] : false;
       }
     } catch (Exception $e) {
       echo "Could not get Facebook count of URL $this->url\n";
