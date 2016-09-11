@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * This model is used to get Website content (title, description, initial content..)
  */
@@ -19,18 +20,14 @@
         return "Top $channelDescription blogs in Lebanon | Lebanese Blogs";
       }
 
-      if ($pagekind == 'following') {
-        return 'Posts by Blogs I\'m following';
-      }
-
-      if ($pagekind == 'news') {
-        return 'Latest Lebanon News | Lebanese Blogs';
-      }
-
       if ($pagekind == 'blogger') {
         $bloggerDetails = Blog::find(Session::get('blogger'));
         $blogName = $bloggerDetails->blog_name;
         return $blogName.' At Lebanese Blogs';
+      }
+
+      if ($pagekind == 'searchResults'){
+          return 'Search Results for ' . Session::get('searchQuery');
       }
 
     }
@@ -53,6 +50,10 @@
         $bloggerDetails = Blog::find(Session::get('blogger'));
         $blogName = $bloggerDetails->blog_name;
         return 'Latest posts by ' . $blogName . ' At Lebanese Blogs';
+      }
+
+      if ($pagekind == 'searchResults'){
+          return 'Search Results for ' . Session::get('searchQuery');
       }
     }
 
@@ -94,7 +95,10 @@
         return $posts;
 
       elseif ( $pagekind == 'searchResults'):
-        $posts = Post::getPostsFromSearchResults($from, $amount);
+        $posts = lbFunctions::postsSearch( Session::get('searchQuery') , $amount);
+        if (!$posts) {
+          return Session::get('searchMeta')['errorMessage'];
+        }
         return $posts;
       endif;
     }

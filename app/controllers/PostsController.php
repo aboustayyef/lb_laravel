@@ -21,7 +21,15 @@
           Session::put('cardsCounter', 0);
           Session::put('pageKind', 'searchResults');
           Session::put('searchQuery', stripcslashes($query));
-          return View::make('posts.main');
+          // initialize metadata and initial posts
+          $initialPosts = Page::getPosts();
+          $pageTitle = Page::getTitle();
+          $pageDescription = Page::getDescription();
+          return View::make('posts.main')->with([
+            'initialPosts'      => $initialPosts,
+            'pageTitle'         => $pageTitle,
+            'pageDescription'   => $pageDescription
+          ]);
         }
       }
 
@@ -51,9 +59,7 @@
       $pageTitle = Page::getTitle();
       $pageDescription = Page::getDescription();
 
-      $view = str_contains(Request::path(),'mobile') ? 'mobile2.index' : 'posts.main';
-
-      return View::make( $view )->with([
+      return View::make('posts.main')->with([
         'initialPosts'      => $initialPosts,
         'pageTitle'         => $pageTitle,
         'pageDescription'   => $pageDescription

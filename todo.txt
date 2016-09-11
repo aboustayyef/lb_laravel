@@ -29,8 +29,8 @@
 LATER 
 √ Cache Busting for Images
 - IMPORTANT: situation with Sareen Image and uploading images.
-- Mobile Version
-- Optimize
+√ Mobile Version
+√ Optimize
 - Update Facebook Preview and description
 - update documentation (static pages)
 - Master Logging for all important actions (more need to be done)

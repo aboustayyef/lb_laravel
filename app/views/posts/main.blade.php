@@ -8,22 +8,19 @@
   @endif
 
 
-  <?php
-    
-    // if we have less than 20 initial posts, we disable infinite scrolling
-    if (count($initialPosts) < 20) {
-      echo '<script>lbApp.reachedEndOfPosts = true</script>';
-    }
+@if ((count($initialPosts) < 20) || (Session::get('pageKind') == 'searchResults'))
+  <script>lbApp.reachedEndOfPosts = true</script>
+@endif
 
-    // if we don't have any initial posts, we return the relevant "no results" page
-    if (!$initialPosts) {
-      echo View::make('posts.extras.noresults');
-    }
-  ?>
+  @if (!is_object($initialPosts))
+    <div id ="posts" class= "ut__inner"> 
+      {{View::make('posts.extras.noresults')}}
+    </div>
+  @endif
 
 
   {{-- Render the first batch of posts --}}
-    @if($initialPosts)
+    @if(is_object($initialPosts))
       <div id ="posts" class= "ut__inner"> <!-- cards is default -->
 
           @include('posts.render', array(

@@ -29,6 +29,10 @@
       }
     }
 
+    public static function postsSearch($string, $amount){
+      return (new LebaneseBlogs\Utilities\PostsSearcher($string,$amount))->handle();
+    }
+
     public static function hours_to_days($hours){
     $seconds = $hours * 3600;
     $a = array( 12 * 30 * 24 * 60 * 60  =>  'year',

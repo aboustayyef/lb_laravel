@@ -1,6 +1,6 @@
-<div id="searchResults" class="post_wrapper">
-  <div class="card no_min"><?php $term = Input::get('q') ?>
-    <h2>Search Results for "{{$term}}"</h2>
-    <p>Here are the posts containing <span class="highlight">"{{$term}}"</span>. The most recent posts are on top</p>
-  </div>
+<div id="searchResults" class="card card--fullWidth card--transparent">
+    <h1 class="pageKind__title" style="margin-left:0">Search Results for "{{\Session::get('searchQuery')}}"</h1>
+    @if (isset(\Session::get('searchMeta')['message']))
+		<h3 class="page__message">{{\Session::get('searchMeta')['message']}}</h3>    	
+    @endif
 </div>
