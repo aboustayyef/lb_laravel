@@ -9,6 +9,7 @@
 @include('posts.partials.channelPicker')
 
 <div id="content">
+	@include('posts.extras.searchBar')
 	@yield('content')
 </div>
 

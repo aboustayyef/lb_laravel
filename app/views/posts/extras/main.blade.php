@@ -24,15 +24,15 @@
   @else
     @include('posts.extras.popular')
     <?php Session::set('cardsCounter', Session::get('cardsCounter') + 1); ?>
-
   @endif
+
 
 @endif
 
-@if ($counter == 8)
-  {{-- include('posts.extras.popularLastWeek') --}}
+@if ($counter == 6)
+  @include('posts.extras.popularLastWeek')
   <?php 
-    // Session::set('cardsCounter', Session::get('cardsCounter') + 1); 
+    Session::set('cardsCounter', Session::get('cardsCounter') + 1); 
   ?>
 @endif
 

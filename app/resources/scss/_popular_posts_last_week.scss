@@ -1,0 +1,54 @@
+
+.miniCardsCollection{
+    height:400px;
+}
+
+.top_posts__header{
+	font-size: 28px;
+	font-weight: bold;
+	color: #b12530;
+	padding: 20px 10px;
+}
+
+.top_posts__minicards{
+	overflow-x: scroll;
+	padding: 15px 10px;
+	background: #dcdcdc;
+	border-top:1px dashed #333;
+	border-bottom:1px dashed #333;
+}
+
+.minicards_wrapper{
+	width:920px;
+}
+
+.miniCard{
+    background:white;
+    border:1px solid silver;
+    width: 176px;
+    float:left;
+    min-height: 275px;
+}
+
+.miniImageWrapper{
+	overflow:hidden;
+}
+.miniCard + .miniCard{
+    margin-left:10px;
+}
+
+.minipost__title{
+	font-size: 15px;
+    line-height: 1.3;
+    font-weight: bold;
+    color: #4c4c4c;
+    margin-top:15px;
+}
+
+.miniCard__meta {
+    height: 175px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 5px;
+}
