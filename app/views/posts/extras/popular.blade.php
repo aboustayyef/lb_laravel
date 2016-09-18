@@ -12,7 +12,7 @@
 <div id = "top_posts" class="closed card card--double">
 	<div class="top_posts__content top_posts__left">
 		<div>
-			<h3 class="top_posts__header">
+			<h3 class="top_posts__header nopadding">
 				Top Posts
 			</h3>
 

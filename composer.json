@@ -21,6 +21,7 @@
 	"embed/embed": "dev-master"
 	},
 	"autoload": {
+		"files":["app/lebaneseblogs/functions.php"],
 		"classmap": [
 			"app/controllers",
 			"app/models",

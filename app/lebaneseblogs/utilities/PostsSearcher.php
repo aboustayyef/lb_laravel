@@ -27,6 +27,10 @@ class PostsSearcher
 
 		$this->searchMeta['error'] = false;
 
+	}
+
+	function handle()
+	{
 		// If there are no keywords, it means the search is too broad. Abort.
 		if (count($this->keywords) == 0) {
 			$this->searchMeta['error'] = true;
@@ -34,12 +38,7 @@ class PostsSearcher
 			\Session::put('searchMeta', $this->searchMeta);
 			return false;
 		}
-
-
-	}
-
-	function handle()
-	{
+		
 		// Posts That have the Search String in their Title
 		$postsWithStringInTitle = Post::Where('post_title','like','%'.$this->string.'%')->orderBy('post_timestamp','desc')->get()->lists('post_id');
 		$this->searchMeta['exactMatchesTitle'] = count($postsWithStringInTitle);

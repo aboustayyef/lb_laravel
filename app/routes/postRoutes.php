@@ -10,9 +10,4 @@ Route::get('/blogger/{nameId?}', array(
     'uses'  =>  'BloggerController@showPosts'
 ));
 
-Route::get('posts/search', array(
-    'as'      =>  'search',
-    'uses'    =>  'PostsController@search'
-));
-
 ?>

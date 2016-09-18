@@ -72,7 +72,7 @@ class AuthenticationController extends BaseController
         if (Blog::where('blog_author_twitter_username', $userDetails['twitterHandle'])->get()->count() > 0) {
           Session::put('SignedInUser', $userDetails);
           Session::put('SignedInBlogger', new Blogger($userDetails['twitterHandle']));
-          lbFunctions::log('@' . $userDetails['twitterHandle'] . ' has logged in to Admin', 'Management.log');
+          lb_log('@' . $userDetails['twitterHandle'] . ' has logged in to Admin', 'Management.log');
         } else {
           Session::flash('NoBlogFound',true);
         }       

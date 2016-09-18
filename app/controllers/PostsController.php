@@ -21,6 +21,9 @@
           Session::put('cardsCounter', 0);
           Session::put('pageKind', 'searchResults');
           Session::put('searchQuery', stripcslashes($query));
+
+          lb_log(stripcslashes($query), 'SearchTerms.log');
+          
           // initialize metadata and initial posts
           $initialPosts = Page::getPosts();
           $pageTitle = Page::getTitle();
