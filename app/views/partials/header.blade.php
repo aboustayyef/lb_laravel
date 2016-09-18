@@ -36,9 +36,9 @@
 
     <!-- Style Sheet -->
     @if (app('env') == 'staging')
-      <link rel="stylesheet" href="http://static.lebaneseblogs.com/css/lebaneseblogs.css?v=4.8">
+      <link rel="stylesheet" href="http://static.lebaneseblogs.com/css/lebaneseblogs.css?v=4.9">
     @else
-      <link rel="stylesheet" href="{{asset('/css/lebaneseblogs.css?v=4.8')}}">
+      <link rel="stylesheet" href="{{asset('/css/lebaneseblogs.css?v=4.9')}}">
     @endif
     
 

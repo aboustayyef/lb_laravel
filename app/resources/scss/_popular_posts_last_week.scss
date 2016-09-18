@@ -14,13 +14,14 @@
 #popularPostsLastWeek{
     @media all and (max-width:500px){
         width:100%;
-        height: 380px;
+        height: 360px;
+        margin:5px 0;
     }
 }
 
 .top_posts__minicards{
 	overflow-x: scroll;
-	padding: 5px 10px 40px;
+	padding: 5px 10px 15px;
 }
 
 .minicards_wrapper{

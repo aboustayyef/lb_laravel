@@ -3,7 +3,6 @@
 	<h3 class="top_posts__header">
 		{{$ppp->title}}
 	</h3>
-	<small>Scroll for more >></small>
 	<div class="top_posts__minicards">
 		<div class="minicards_wrapper">		
 			@foreach ($ppp->listOfPosts as $minipost)
@@ -53,6 +52,7 @@
 			@endforeach
 		</div>
 	</div>
-		
+	<small>Scroll for more >></small>
+	
 	</div>
 </div>
