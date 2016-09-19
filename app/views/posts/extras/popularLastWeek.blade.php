@@ -6,6 +6,7 @@
 	<div class="top_posts__minicards">
 		<div class="minicards_wrapper">		
 			@foreach ($ppp->listOfPosts as $minipost)
+				@if (is_object($minipost->blog))
 				<div class="miniCard">
 
 					{{-- Image --}}
@@ -49,6 +50,7 @@
 					    </div>
 					</div>
 				</div>
+				@endif
 			@endforeach
 		</div>
 	</div>

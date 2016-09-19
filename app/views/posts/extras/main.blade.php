@@ -27,24 +27,30 @@
 @if (current_card() == 7)
   @if(page_is_main())
     <?php $ppp = new PopularPreviousPosts('week') ?>
-    @include('posts.extras.popularLastWeek')
-    <?php increase_card_count(1); ?>
+    @if($ppp->ok)
+      @include('posts.extras.popularLastWeek')
+      <?php increase_card_count(1); ?>
+    @endif
   @endif
 @endif
 
 @if (current_card() == 12)
   @if(page_is_main())
     <?php $ppp = new PopularPreviousPosts('month') ?>
-    @include('posts.extras.popularLastWeek')
-    <?php increase_card_count(1); ?>
+    @if($ppp->ok)
+      @include('posts.extras.popularLastWeek')
+      <?php increase_card_count(1); ?>
+    @endif
   @endif
 @endif
 
 @if (current_card() == 17)
   @if(page_is_main())
     <?php $ppp = new PopularPreviousPosts('year') ?>
-    @include('posts.extras.popularLastWeek')
-    <?php increase_card_count(1); ?>
+    @if($ppp->ok)
+      @include('posts.extras.popularLastWeek')
+      <?php increase_card_count(1); ?>
+    @endif
   @endif
 @endif
 

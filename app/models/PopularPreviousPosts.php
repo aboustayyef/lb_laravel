@@ -3,10 +3,12 @@
 class PopularPreviousPosts
 {
 	
-	public $listOfPosts, $title;
+	public $listOfPosts, $title, $ok;
 
 	function __construct($period = 'week')
 	{
+		$this->ok = false;
+
 		if (!in_array($period, ['week','month','year'])) {
 			throw new Exception("Period has to be 'week', 'month', or 'year' ", 1);
 		}
@@ -37,6 +39,11 @@ class PopularPreviousPosts
 					 ->where('post_timestamp','<', $timestamp + $secondsPerDay)
 					 ->orderBy('post_socialScore','desc')
 					 ->take(5)->get();
+		if ($this->listOfPosts->count() > 2) {
+
+			$this->ok = true;
+			
+		}
 		
 	}
 }
