@@ -15,7 +15,7 @@
 
       
       @if (app('env') == 'staging')
-        <script async src ="http://static.lebaneseblogs.com/js/lebaneseblogs.min.js?v=4"></script>
+        <script async src ="https://static.lebaneseblogs.com/js/lebaneseblogs.min.js?v=4"></script>
         <!-- Start of Google Analytics Code -->
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

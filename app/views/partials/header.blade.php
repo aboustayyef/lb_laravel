@@ -16,7 +16,7 @@
     <link rel="icon" sizes="192x192" href="{{asset('/img/chrome-touch-icon-192x192.png')}}">
 
     <!-- Facebook Open Graph Data -->
-    <meta property="og:url" content="http://lebaneseblogs.com/posts/all">
+    <meta property="og:url" content="https://lebaneseblogs.com/posts/all">
     <meta property="og:title" content="Lebanese Blogs">
     <meta property="og:description" content="The best place to discover, read and organize Lebanon's top blogs">
     <meta property="og:image" content="{{asset('img/lb_screenshot.jpg')}}">
@@ -36,7 +36,7 @@
 
     <!-- Style Sheet -->
     @if (app('env') == 'staging')
-      <link rel="stylesheet" href="http://static.lebaneseblogs.com/css/lebaneseblogs.css?v=4.9">
+      <link rel="stylesheet" href="https://static.lebaneseblogs.com/css/lebaneseblogs.css?v=4.9">
     @else
       <link rel="stylesheet" href="{{asset('/css/lebaneseblogs.css?v=4.9')}}">
     @endif
