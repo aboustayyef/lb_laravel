@@ -66,7 +66,7 @@ class Post extends Eloquent{
   public function cacheImage(){
     if (strlen($this->post_local_image) > 0) {
       if (app('env') == 'staging') {
-        return 'http://static2.lebaneseblogs.com/'.$this->post_local_image . '.jpg';
+        return 'https://static2.lebaneseblogs.com/'.$this->post_local_image . '.jpg';
       } else {
         return '/img/cache/' . $this->post_local_image . '.jpg';
       }
