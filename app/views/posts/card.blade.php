@@ -56,8 +56,8 @@
             style="background: #F3E7E8"
             class="lazy blog__thumbnail"
             @if (app('env') == 'staging')
-              src="{{ asset('http://static.lebaneseblogs.com/img/transparent.png') }}"
-              data-original="http://static1.lebaneseblogs.com/{{$post->blog->blog_thumb.'.jpg'}}"
+              src="{{ asset('https://static.lebaneseblogs.com/img/transparent.png') }}"
+              data-original="https://static1.lebaneseblogs.com/{{$post->blog->blog_thumb.'.jpg'}}"
             @else
               src="{{ asset('/img/transparent.png') }}"
               data-original="{{asset('/img/thumbs/'.$post->blog->blog_thumb.'.jpg')}}"
