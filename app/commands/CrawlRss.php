@@ -111,12 +111,20 @@ class CrawlRss extends Command {
 
       // clean URL from junk
       $urlparts = lbFunctions::utf8_parse_url($blog_post_link);
-      $blog_post_link = $urlparts['scheme'].'://'.$urlparts['host'].$urlparts['path'];
+
+      if ( str_contains($urlparts['host'], 'youtube.com')) {
+        // youtube links need https to properly register virality
+        $blog_post_link = $urlparts['scheme'].'s://'.$urlparts['host'].$urlparts['path'];
+      } else {
+        $blog_post_link = $urlparts['scheme'].'://'.$urlparts['host'].$urlparts['path'];
+      }
       if (!empty($urlparts['query'])) {
         $blog_post_link .= '?'.$urlparts['query'];
         $blog_post_link= preg_replace('#&amp;#', '&', $blog_post_link);
       }
 
+      // get post_rss_id
+      $post_rss_id = $item->get_id();
 
       // get blogid , example: beirutspring.com -> beirutspring
       $domain = $this->blog->blog_id;
@@ -159,6 +167,20 @@ class CrawlRss extends Command {
       if ($postExists > 0) {
 
       // If the post exists
+
+        // Add RSS ID to the post
+        // This is a temporary measure so later we can use the ID comparison to find new posts
+        try {
+
+          $existingPost =  Post::where('post_title', $blog_post_title)->where('blog_id', $domain)->first();
+          $existingPost->post_rss_id = $post_rss_id;
+          $existingPost->save();
+
+        } catch (Exception $e) {
+
+          #nothing          
+          
+        }
 
         $this->comment('[ x Post already in Database ]');
 
@@ -223,6 +245,7 @@ class CrawlRss extends Command {
         // Save new record
         $post = new Post;
 
+        $post->post_rss_id = $post_rss_id;
         $post->post_url = $blog_post_link ;
         $post->post_title = $blog_post_title ;
         $post->post_original_image = $blog_post_image ;
