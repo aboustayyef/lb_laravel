@@ -138,9 +138,16 @@ class PostsSearcher
 	}
 
 	private function cleanup($string){
+
 		// replace multiple spaces with a single space and trim
 		$string = trim(preg_replace("/(\s+)+/", " ", $string));
+
+		// make all letters lowercase
 		$string = strtolower($string);
+
+		// trim quotation marks
+		$string = trim($string, '"');
+		$string = trim($string, "'");
 
 		return $string;
 	}
