@@ -25,6 +25,14 @@
       return false;
     }
 
+    public static function existsByName($blogName){
+      $blog = self::where('blog_name', $blogName)->first();
+      if (is_object($blog)) {
+        return $blog->blog_id;
+      }
+      return false;
+    }
+
     public function stats()
     {
       return (new \LebaneseBlogs\Utilities\BlogStatsGetter($this))->get();

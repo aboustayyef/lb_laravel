@@ -16,6 +16,12 @@
           // if no parameters, forward back to home page
           return Redirect::to('/posts/all');
         }else{
+
+          // If the query is exactly a blog's name redirect to that blog's page
+          if ($b = Blog::existsByName($query)) {
+            return Redirect::to('/blogger/' . $b);
+          }
+
           // initialize posts counters
           Session::put('postsCounter', 0);
           Session::put('cardsCounter', 0);
