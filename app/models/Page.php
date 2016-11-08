@@ -12,12 +12,12 @@
       $pagekind = Session::get('pageKind');
 
       if ((empty($pagekind)) || ($pagekind == 'allPosts')) {
-        return 'Lebanese Blogs | Latest Posts from the Best Blogs';
+        return 'Lebanese Blogs | Latest Posts from the Best Blogs and Vlogs';
       }
 
       if ($pagekind == 'channel') {
         $channelDescription = Channel::description(Session::get('channel'));
-        return "Top $channelDescription blogs in Lebanon | Lebanese Blogs";
+        return "Top $channelDescription blogs and vlogs in Lebanon | Lebanese Blogs";
       }
 
       if ($pagekind == 'blogger') {
@@ -37,7 +37,7 @@
       $pagekind = Session::get('pageKind');
 
       if ((empty($pagekind)) || ($pagekind == 'allPosts')) {
-        return 'The best place to discover Lebanon\'s top blogs';
+        return 'The best place to discover Lebanon\'s top blogs and vlogs';
       }
 
       if ($pagekind == 'channel') {

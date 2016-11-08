@@ -4,7 +4,7 @@ use League\OAuth1\Client\Server\Twitter;
 
 /*
 |---------------------------------------------------------------------
-|   Implementing signin with Facebook, Twitter and Google
+|   Implementing signin with Twitter
 |---------------------------------------------------------------------
 |
 |   This class handles both the authentication component
@@ -21,7 +21,7 @@ class AuthenticationController extends BaseController
       'identifier' => $_ENV['TWITTER_IDENTIFIER'],
       'secret' => $_ENV['TWITTER_SECRET'],
       'callback_uri' => URL::to('/auth/twitter/callback'),
-    )); 
+    ));
   }
 
   function auth(){
@@ -75,8 +75,8 @@ class AuthenticationController extends BaseController
           lb_log('@' . $userDetails['twitterHandle'] . ' has logged in to Admin', 'Management.log');
         } else {
           Session::flash('NoBlogFound',true);
-        }       
-    } 
+        }
+    }
 
     // return
 

@@ -18,7 +18,7 @@
     <!-- Facebook Open Graph Data -->
     <meta property="og:url" content="https://lebaneseblogs.com/posts/all">
     <meta property="og:title" content="Lebanese Blogs">
-    <meta property="og:description" content="The best place to discover, read and organize Lebanon's top blogs">
+    <meta property="og:description" content="The best place to discover, read and organize Lebanon's top blogs and vlogs">
     <meta property="og:image" content="{{asset('img/lb_screenshot.jpg')}}">
 
     <!-- Link to Facebook Page -->
