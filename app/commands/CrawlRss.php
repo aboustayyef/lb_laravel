@@ -221,6 +221,12 @@ class CrawlRss extends Command {
             } else {
               $blog_post_image = null;
             }
+
+            // use embed for canonical url
+            $url = $embed->url;
+            if ($url) {
+              $blog_post_link = $url;
+            }
         } catch (\Exception $e) {
             $this->error('could not extract image');
             $blog_post_image = null;
