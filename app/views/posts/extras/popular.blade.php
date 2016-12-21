@@ -17,7 +17,26 @@
 			</h3>
 
 			<p class="top_posts__about">
-				{{Page::topPostsDescription()}}
+				<?php 
+				    $pagekind = Session::get('pageKind');
+			    ?>
+
+			      @if ((empty($pagekind)) || ($pagekind == 'allPosts')) 
+			        These are recent posts that our users have found most interesting and shareworthy
+			      @endif
+
+			      @if ($pagekind == 'channel') 
+			        <?php $channelDescription = Channel::description(Session::get('channel')); ?>
+			        These are recent {{$channelDescription}} posts that our users have found most interesting and shareworthy
+			      @endif
+
+			      @if ($pagekind == 'blogger') 
+			        <?php
+				        $bloggerDetails = Blog::find(Session::get('blogger'));
+				        $blogName = $bloggerDetails->blog_name;
+			        ?>
+			        Recent popular posts by {{$blogName}}
+			      @endif
 			</p>
 		</div>
 		<div>

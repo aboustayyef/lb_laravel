@@ -13,13 +13,15 @@ class BloggerController extends BaseController{
       Session::put('cardsCounter', 0);
 
       // initialize metadata and initial posts
-      $initialPosts = Page::getPosts();
-      $pageTitle = Page::getTitle();
-      $pageDescription = Page::getDescription();
-      $blog = Blog::find($nameId);
+      $bloggerDetails = Blog::find($nameId);
+      $blogName = $bloggerDetails->blog_name;
+
+      $pageTitle = $blogName . " at Lebanese Blogs" ;
+      $pageDescription = 'Latest posts by ' . $blogName . ' At Lebanese Blogs';
+      $initialPosts = Post::getPostsByBlogger($nameId, 0, 20);
 
       return View::make('posts.main')->with([
-        'blog'              => $blog,
+        'blog'              => $bloggerDetails,
         'initialPosts'      => $initialPosts,
         'pageTitle'         => $pageTitle,
         'pageDescription'   => $pageDescription
