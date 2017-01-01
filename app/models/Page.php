@@ -2,7 +2,9 @@
 
 
 /**
- * This model is used to get Website content (title, description, initial content..)
+ *
+ * DEPRECATED. WE NO LONGER USE THIS CLASS AFTER COMMIT OF 21 DECEMBER 2016
+ *
  */
 
   class Page
