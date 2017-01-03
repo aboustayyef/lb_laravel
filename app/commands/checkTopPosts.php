@@ -58,7 +58,7 @@ class checkTopPosts extends Command {
         $newTopPost->save();
 
         # share on facebook
-        self::sharePostToFacebook($topPost);
+        # self::sharePostToFacebook($topPost);
 
         # share on twitter
         self::sharePostToTwitter($topPost);
