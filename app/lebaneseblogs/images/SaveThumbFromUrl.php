@@ -16,7 +16,7 @@ class SaveThumbFromUrl
         }catch(\ImagickException $e){
             return false;
         }
-        $image = $image->flattenImages();
+        // $image = $image->flattenImages();
         $image->setFormat('JPEG');
         $image->cropThumbnailImage(100,100);
         $outFile = $_ENV['DIRECTORYTOPUBLICFOLDER'] . '/img/thumbs/' . $this->name .'.jpg';
