@@ -24,36 +24,6 @@ class StaticPagesController extends \BaseController {
   {
     if (in_array($slug, ['submit', 'feedback'])) {
       if ($slug == 'submit') {
-        $rulesSubmit = [
-          'url' =>  'required',
-          'email' =>  'required|email',
-          'twitter' =>  'required|regex:#^@[A-Za-z0-9_]{1,15}$#'
-        ];
-
-        $validator = Validator::make(Input::all(), $rulesSubmit);
-        if ($validator->fails()) {
-          Input::flash();
-          return View::make('static.submit', ['slug'  =>  'submit'])->withErrors($validator);
-        }
-
-        // if everything is okay
-
-        $data = ['twitter' => Input::get('twitter'), 'email'=>Input::get('email'), 'url'  =>  Input::get('url')];
-
-        Mail::queue('emails.submission', $data, function($message)
-        {
-            $message->from('donotreply@lebaneseblogs.com', 'Lebanese Blogs');
-            $message->to('mustapha.hamoui@gmail.com', 'Mustapha Hamoui')->subject('[ Blog Submission ]');
-        });
-
-        // Mail::later(3,'emails.thankyouforsubmitting', $data, function($message)
-        // {
-        //     $email = Input::get('email');
-        //     $message->from('donotreply@lebaneseblogs.com', 'Lebanese Blogs');
-        //     $message->to($email)->subject('Thank You for Submitting your blog');
-        // });
-
-        Session::flash('message', 'Your blog has been submitted. Please permit a few days to process it.');
         return View::make('static.submit', ['slug'  =>  'submit']);
       }elseif ($slug == 'feedback'){
         $rulesFeedback = [
