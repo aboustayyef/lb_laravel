@@ -297,7 +297,7 @@ class CrawlRss extends Command {
               $post->save();
               $this->comment('Image added to cache folder');
             } catch (Exception $e) {
-              $this->error('could not cache image');
+              $this->error('could not extract image. Error Message: [' . $e . ']');
             }
           }
           $this->info('Cache image ' . $candidateCachingFile . ' already exists');
