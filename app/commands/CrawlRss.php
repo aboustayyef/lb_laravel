@@ -228,7 +228,7 @@ class CrawlRss extends Command {
               $blog_post_link = $url;
             }
         } catch (\Exception $e) {
-            $this->error('could not extract image');
+            $this->error('could not extract image. Error Message: [' . $e . ']');
             $blog_post_image = null;
         }
 
