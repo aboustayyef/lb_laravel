@@ -12,9 +12,6 @@ require_once(app_path().'/routes/apiRoutes.php');
 // authentication routes for bloggers to sign in with twitter
 require_once(app_path().'/routes/authRoutes.php');
 
-// administration routes for superuser (me!) for actions like adding blogs
-require_once(app_path().'/routes/adminRoutes.php');
-
 // Ajax routes
 require_once(app_path(). '/routes/ajaxRoutes.php');
 
