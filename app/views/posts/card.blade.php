@@ -24,6 +24,11 @@
           {{$post->carbonDate()->diffForHumans()}}
         </div>
         {{View::make('posts.partials.virality')->with('score',$post->post_virality)}}
+        @if(Session::has('SignedInBlogger'))
+          @if(Session::get('SignedInBlogger')->isAdmin);
+            clicks: {{$post->post_visits}}
+          @endif
+        @endif
       </div>
 
       <!-- Post Title -->
