@@ -70,9 +70,13 @@ class updateVirality extends Command {
         $this->info('Analysing post ' . $post->post_title);
 
         // initiate social score object
-        $score = new SocialScore($post->post_url);
-        $virality = $score->getVirality();
-      
+        $scoreHttp = new SocialScore($this->httpUrl($post->post_url));
+        $scoreHttps = new SocialScore($this->httpsUrl($post->post_url));
+        $viralityHttp = $scoreHttp->getVirality();
+        $viralityHttps = $scoreHttps->getVirality();
+
+        $virality = $viralityHttps >= $viralityHttp? $viralityHttps : $viralityHttp;
+        $score = $viralityHttps >= $viralityHttp? $scoreHttps : $scoreHttp;
         // The social score is the combination of virality and post visits
         // Visits are twice as important as virality
         $socialScore = $post->post_visits + round($virality / 2);
@@ -92,6 +96,20 @@ class updateVirality extends Command {
       }); // Posts Loop
     
     }); // Blogs Loop
+  }
+
+  private function httpUrl($url){
+    if (str_contains($url, 'https://')) {
+      return str_replace('https://', 'http://', $url);
+    }
+    return $url;
+  }
+
+  private function httpsUrl($url){
+    if (str_contains($url, 'http://')) {
+      return str_replace('http://', 'https://', $url);
+    }
+    return $url;
   }
 
   /**
