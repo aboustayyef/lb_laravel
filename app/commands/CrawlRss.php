@@ -112,12 +112,6 @@ class CrawlRss extends Command {
       // clean URL from junk
       $urlparts = lbFunctions::utf8_parse_url($blog_post_link);
 
-      if ( str_contains($urlparts['host'], 'youtube.com')) {
-        // youtube links need https to properly register virality
-        $blog_post_link = $urlparts['scheme'].'s://'.$urlparts['host'].$urlparts['path'];
-      } else {
-        $blog_post_link = $urlparts['scheme'].'://'.$urlparts['host'].$urlparts['path'];
-      }
       if (!empty($urlparts['query'])) {
         $blog_post_link .= '?'.$urlparts['query'];
         $blog_post_link= preg_replace('#&amp;#', '&', $blog_post_link);
