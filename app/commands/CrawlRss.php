@@ -286,7 +286,7 @@ class CrawlRss extends Command {
           if ($blog_post_image) { // image exists
             // cache it
             try {
-              Image::make($blog_post_image)->fit(300,165)->save($candidateCachingFile);
+              Image::make($blog_post_image)->fit(600,330)->save($candidateCachingFile);
               $post->post_local_image = $local_image_name;
               $post->save();
               $this->comment('Image added to cache folder');
