@@ -121,7 +121,7 @@ class checkTopPosts extends Command {
     $twitter_author = $post->blog->blog_author_twitter_username;
 
     $length_of_twitter_handle = strlen($twitter_author);
-    $title_allowance = 59 - $length_of_twitter_handle; // twitter handle + title should be equal to 59 in length to accomodate rest of tweet.
+    $title_allowance = 180 - $length_of_twitter_handle; // twitter handle + title should be equal to 180 in length to accomodate rest of tweet.
     $title = substr($post->post_title, 0, $title_allowance);
 
     if ($length_of_twitter_handle > 0) {
